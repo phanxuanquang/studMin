@@ -57,24 +57,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ForgetPassword_UC.cs">
+    <Compile Include="GUI\Login\ForgetPassword_UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ForgetPassword_UC.Designer.cs">
+    <Compile Include="GUI\Login\ForgetPassword_UC.Designer.cs">
       <DependentUpon>ForgetPassword_UC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login_Window.cs">
+    <Compile Include="GUI\Login\Login_Window.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login_Window.Designer.cs">
+    <Compile Include="GUI\Login\Login_Window.Designer.cs">
       <DependentUpon>Login_Window.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ForgetPassword_UC.resx">
+    <EmbeddedResource Include="GUI\Login\ForgetPassword_UC.resx">
       <DependentUpon>ForgetPassword_UC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login_Window.resx">
+    <EmbeddedResource Include="GUI\Login\Login_Window.resx">
       <DependentUpon>Login_Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -115,6 +115,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\BackToLogin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Action\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
