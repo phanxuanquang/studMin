@@ -57,6 +57,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.Designer.cs">
+      <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\ClassInfor_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\ClassInfor_SubTab.Designer.cs">
+      <DependentUpon>ClassInfor_SubTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +101,12 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\AccountInfor_Window.Designer.cs">
       <DependentUpon>AccountInfor_Window.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.resx">
+      <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\ClassInfor_SubTab.resx">
+      <DependentUpon>ClassInfor_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.resx">
       <DependentUpon>TeacherDashboard_Base.cs</DependentUpon>
     </EmbeddedResource>

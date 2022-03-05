@@ -38,7 +38,6 @@
             this.RoundCornerForm = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.DragForm = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.zeroitOJAnimEdit1 = new Zeroit.Framework.Transitions.ZeroitOJAnimEdit();
             this.forgetPassword_UC1 = new studMin.ForgetPassword_UC();
             this.ForgetPasswordUC_MoverUp = new Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit();
             this.SuspendLayout();
@@ -187,27 +186,6 @@
             // 
             this.DragForm.TargetControl = this;
             // 
-            // zeroitOJAnimEdit1
-            // 
-            this.zeroitOJAnimEdit1.AnimationMode = Zeroit.Framework.Transitions.ZeroitOJAnimEdit.ZeroitObjectAnimationMode.ColorAnimation;
-            this.zeroitOJAnimEdit1.AnimationSpeed = 1;
-            this.zeroitOJAnimEdit1.ColorAnimation = Zeroit.Framework.Transitions.ZeroitOJAnimEdit.ZeroitObjectColorAnimation.FillEllipse;
-            this.zeroitOJAnimEdit1.ColorAnimationDelay = 10;
-            this.zeroitOJAnimEdit1.ColorToAnimate = System.Drawing.Color.White;
-            this.zeroitOJAnimEdit1.Delay = 200;
-            this.zeroitOJAnimEdit1.FormAnimation = Zeroit.Framework.Transitions.ZeroitOJAnimEdit.ZeroitObjectFormAnimation.FadeIn;
-            this.zeroitOJAnimEdit1.FormAnimationDelay = 50;
-            this.zeroitOJAnimEdit1.KeepColor = false;
-            this.zeroitOJAnimEdit1.LowerSpeedLimit = 1;
-            this.zeroitOJAnimEdit1.StandardAnimation = Zeroit.Framework.Transitions.ZeroitOJAnimEdit.ZeroitObjectStandardAnimation.Hop;
-            this.zeroitOJAnimEdit1.StandardHopDelay = 100;
-            this.zeroitOJAnimEdit1.StandardShootDelay = 50;
-            this.zeroitOJAnimEdit1.StandardSlideDelay = 40;
-            this.zeroitOJAnimEdit1.StandardSlugDelay = new int[] {
-        100,
-        50};
-            this.zeroitOJAnimEdit1.UpperSpeedLimit = 10;
-            // 
             // forgetPassword_UC1
             // 
             this.forgetPassword_UC1.BackColor = System.Drawing.Color.Transparent;
@@ -276,7 +254,6 @@
         private Guna.UI2.WinForms.Guna2DragControl DragForm;
         private Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit ForgetPasswordUC_MoverUp;
         private ForgetPassword_UC forgetPassword_UC1;
-        private Zeroit.Framework.Transitions.ZeroitOJAnimEdit zeroitOJAnimEdit1;
     }
 }
 

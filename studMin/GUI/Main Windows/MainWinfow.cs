@@ -18,6 +18,7 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
             ContainerPanel.Controls.Add(new TeacherDashboard_Base());
         }
+
         protected override CreateParams CreateParams
         {
             get
