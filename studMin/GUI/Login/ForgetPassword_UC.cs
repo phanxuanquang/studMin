@@ -39,7 +39,7 @@ namespace studMin
         {
             if (Username_Box.Text == String.Empty || Email_Box.Text == String.Empty)
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Không thể kết nối đến hệ thống!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (isValidAccount(Username_Box.Text, Email_Box.Text))
             {

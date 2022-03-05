@@ -38,5 +38,10 @@ namespace studMin
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void Logout_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -63,16 +63,21 @@ namespace studMin
         #region Buttons
         private void Login_Button_Click(object sender, EventArgs e)
         {
-            MainWinfow mainWinfow = new MainWinfow();
-            mainWinfow.ShowDialog();
+            
             if (Username_Box.Text == String.Empty || Password_Box.Text == String.Empty)
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if(isValidAccount(Username_Box.Text, Password_Box.Text))
             {
-                //MainWinfow mainWinfow = new MainWinfow();
-                //mainWinfow.ShowDialog();
+                this.Hide();
+                this.ShowIcon = this.ShowInTaskbar = false;
+
+                MainWinfow mainWinfow = new MainWinfow();
+                mainWinfow.ShowDialog();
+
+                this.ShowIcon = this.ShowInTaskbar = true;
+                this.ShowDialog();
             }
         }
 

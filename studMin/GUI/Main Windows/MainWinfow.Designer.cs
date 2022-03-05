@@ -34,15 +34,15 @@
             this.DragForm = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.RoundCornerForm = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.menuBar = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.ContainerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.Minimize_Button = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.Exit_Button = new Guna.UI2.WinForms.Guna2ImageButton();
             this.Setting_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Dashboard_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Statistic_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Logout_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Notification_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Timetable_MenuButton = new Guna.UI2.WinForms.Guna2Button();
+            this.ContainerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.Minimize_Button = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.Exit_Button = new Guna.UI2.WinForms.Guna2ImageButton();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,50 +75,6 @@
             this.menuBar.ShadowShift = 0;
             this.menuBar.Size = new System.Drawing.Size(60, 750);
             this.menuBar.TabIndex = 0;
-            // 
-            // ContainerPanel
-            // 
-            this.ContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.ContainerPanel.BorderRadius = 15;
-            this.ContainerPanel.FillColor = System.Drawing.Color.White;
-            this.ContainerPanel.FillColor2 = System.Drawing.Color.White;
-            this.ContainerPanel.Location = new System.Drawing.Point(97, 36);
-            this.ContainerPanel.Name = "ContainerPanel";
-            this.ContainerPanel.ShadowDecoration.Parent = this.ContainerPanel;
-            this.ContainerPanel.Size = new System.Drawing.Size(924, 740);
-            this.ContainerPanel.TabIndex = 5;
-            // 
-            // Minimize_Button
-            // 
-            this.Minimize_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Minimize_Button.BackColor = System.Drawing.Color.Transparent;
-            this.Minimize_Button.CheckedState.Parent = this.Minimize_Button;
-            this.Minimize_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Minimize_Button.HoverState.ImageSize = new System.Drawing.Size(21, 21);
-            this.Minimize_Button.HoverState.Parent = this.Minimize_Button;
-            this.Minimize_Button.Image = global::studMin.Properties.Resources.Minimize;
-            this.Minimize_Button.Location = new System.Drawing.Point(998, 6);
-            this.Minimize_Button.Name = "Minimize_Button";
-            this.Minimize_Button.PressedState.Parent = this.Minimize_Button;
-            this.Minimize_Button.Size = new System.Drawing.Size(25, 25);
-            this.Minimize_Button.TabIndex = 2;
-            this.Minimize_Button.Click += new System.EventHandler(this.Minimize_Button_Click);
-            // 
-            // Exit_Button
-            // 
-            this.Exit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Exit_Button.BackColor = System.Drawing.Color.Transparent;
-            this.Exit_Button.CheckedState.Parent = this.Exit_Button;
-            this.Exit_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Exit_Button.HoverState.ImageSize = new System.Drawing.Size(21, 21);
-            this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Image = global::studMin.Properties.Resources.Exit;
-            this.Exit_Button.Location = new System.Drawing.Point(1026, 6);
-            this.Exit_Button.Name = "Exit_Button";
-            this.Exit_Button.PressedState.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(25, 25);
-            this.Exit_Button.TabIndex = 0;
-            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
             // Setting_MenuButton
             // 
@@ -208,6 +164,7 @@
             this.Logout_Button.ShadowDecoration.Parent = this.Logout_Button;
             this.Logout_Button.Size = new System.Drawing.Size(44, 44);
             this.Logout_Button.TabIndex = 18;
+            this.Logout_Button.Click += new System.EventHandler(this.Logout_Button_Click);
             // 
             // Notification_MenuButton
             // 
@@ -252,6 +209,50 @@
             this.Timetable_MenuButton.ShadowDecoration.Parent = this.Timetable_MenuButton;
             this.Timetable_MenuButton.Size = new System.Drawing.Size(44, 44);
             this.Timetable_MenuButton.TabIndex = 19;
+            // 
+            // ContainerPanel
+            // 
+            this.ContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.ContainerPanel.BorderRadius = 15;
+            this.ContainerPanel.FillColor = System.Drawing.Color.White;
+            this.ContainerPanel.FillColor2 = System.Drawing.Color.White;
+            this.ContainerPanel.Location = new System.Drawing.Point(97, 36);
+            this.ContainerPanel.Name = "ContainerPanel";
+            this.ContainerPanel.ShadowDecoration.Parent = this.ContainerPanel;
+            this.ContainerPanel.Size = new System.Drawing.Size(924, 740);
+            this.ContainerPanel.TabIndex = 5;
+            // 
+            // Minimize_Button
+            // 
+            this.Minimize_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Minimize_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Minimize_Button.CheckedState.Parent = this.Minimize_Button;
+            this.Minimize_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Minimize_Button.HoverState.ImageSize = new System.Drawing.Size(21, 21);
+            this.Minimize_Button.HoverState.Parent = this.Minimize_Button;
+            this.Minimize_Button.Image = global::studMin.Properties.Resources.Minimize;
+            this.Minimize_Button.Location = new System.Drawing.Point(998, 6);
+            this.Minimize_Button.Name = "Minimize_Button";
+            this.Minimize_Button.PressedState.Parent = this.Minimize_Button;
+            this.Minimize_Button.Size = new System.Drawing.Size(25, 25);
+            this.Minimize_Button.TabIndex = 2;
+            this.Minimize_Button.Click += new System.EventHandler(this.Minimize_Button_Click);
+            // 
+            // Exit_Button
+            // 
+            this.Exit_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Exit_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Exit_Button.CheckedState.Parent = this.Exit_Button;
+            this.Exit_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Exit_Button.HoverState.ImageSize = new System.Drawing.Size(21, 21);
+            this.Exit_Button.HoverState.Parent = this.Exit_Button;
+            this.Exit_Button.Image = global::studMin.Properties.Resources.Exit;
+            this.Exit_Button.Location = new System.Drawing.Point(1026, 6);
+            this.Exit_Button.Name = "Exit_Button";
+            this.Exit_Button.PressedState.Parent = this.Exit_Button;
+            this.Exit_Button.Size = new System.Drawing.Size(25, 25);
+            this.Exit_Button.TabIndex = 0;
+            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
             // MainWinfow
             // 
