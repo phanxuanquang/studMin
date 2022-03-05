@@ -77,6 +77,7 @@
             this.Email_Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Email_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Email_Box.HoverState.Parent = this.Email_Box;
+            this.Email_Box.IconLeft = global::studMin.Properties.Resources.Email;
             this.Email_Box.IconLeftOffset = new System.Drawing.Point(9, 0);
             this.Email_Box.IconLeftSize = new System.Drawing.Size(18, 18);
             this.Email_Box.Location = new System.Drawing.Point(56, 154);
@@ -115,6 +116,7 @@
             this.Username_Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Username_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Username_Box.HoverState.Parent = this.Username_Box;
+            this.Username_Box.IconLeft = global::studMin.Properties.Resources.Account;
             this.Username_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
             this.Username_Box.Location = new System.Drawing.Point(56, 88);
             this.Username_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

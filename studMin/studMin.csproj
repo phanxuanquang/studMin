@@ -57,6 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.Designer.cs">
+      <DependentUpon>TeacherDashboard_Base.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Login\ForgetPassword_UC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -69,18 +75,39 @@
     <Compile Include="GUI\Login\Login_Window.Designer.cs">
       <DependentUpon>Login_Window.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\MainWinfow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\MainWinfow.Designer.cs">
+      <DependentUpon>MainWinfow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\AccountInfor_Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\AccountInfor_Window.Designer.cs">
+      <DependentUpon>AccountInfor_Window.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.resx">
+      <DependentUpon>TeacherDashboard_Base.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Login\ForgetPassword_UC.resx">
       <DependentUpon>ForgetPassword_UC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Login\Login_Window.resx">
       <DependentUpon>Login_Window.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\MainWinfow.resx">
+      <DependentUpon>MainWinfow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\AccountInfor_Window.resx">
+      <DependentUpon>AccountInfor_Window.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -105,20 +132,65 @@
     <None Include="Resources\Login_BG.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icons\Username.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\Password.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Bottom_SlideBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\BackToLogin.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Action\" />
     <Folder Include="Database\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Timetable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Menu Bar\Statistic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Login\Username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Login\BackToLogin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Login\Email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Login\Password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Dashboard\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Dashboard\Filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\Dashboard\Person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Main Windows\PictureBox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icons\Login\Account.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
