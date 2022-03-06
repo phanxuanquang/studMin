@@ -16,6 +16,7 @@ namespace studMin
         {
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
+            this.Icon = Properties.Resources.studMin_Icon;
         }
 
         protected override CreateParams CreateParams
@@ -77,7 +78,7 @@ namespace studMin
                 mainWinfow.ShowDialog();
 
                 this.ShowIcon = this.ShowInTaskbar = true;
-                this.ShowDialog();
+                this.Show();
             }
         }
 

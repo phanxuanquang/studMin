@@ -16,6 +16,8 @@ namespace studMin
         {
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
+            this.Icon = Properties.Resources.studMin_Icon;
+
             ContainerPanel.Controls.Add(new TeacherDashboard_Base());
         }
 
