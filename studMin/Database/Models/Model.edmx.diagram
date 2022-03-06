@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40a6a074e4284ff2aa7a9cbc7fa9e57f" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="StudMinModel.CLASS" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.LIMIT" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.MEMBER" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.ROLESUBJECT" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.SCORE" Width="1.5" PointX="12" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.STUDENT" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.STUDYING" Width="1.5" PointX="12" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.SUBJECT" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.TEACH" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.TEACHER" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.TRANSCRIPT" Width="1.5" PointX="12" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.USERROLE" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinModel.USER" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <AssociationConnector Association="StudMinModel.FK__CLASS__IDTEACHER__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__STUDENT__IDCLASS__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__STUDENT__IDCLASS__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__STUDYING__IDCLAS__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__TEACH__IDCLASS__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__MEMBERS__IDUSERR__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__TEACHER__ID__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__USERS__IDINFO__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__SCORE__IDROLESUB__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__SCORE__IDSTUDENT__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__SCORE__IDSUBJECT__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__STUDYING__IDSTUD__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__TRANSCRIP__IDSTU__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__SUBJECT__IDHEADT__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__TEACH__IDSUBJECT__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinModel.FK__TEACH__IDTEACHER__5070F446" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
