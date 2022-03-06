@@ -119,10 +119,10 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\AccountInfor_Window.Designer.cs">
       <DependentUpon>AccountInfor_Window.cs</DependentUpon>
     </Compile>
-    <Compile Include="StudentInfor_SubTab.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\StudentInfor_SubTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="StudentInfor_SubTab.Designer.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\StudentInfor_SubTab.Designer.cs">
       <DependentUpon>StudentInfor_SubTab.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.resx">
@@ -151,7 +151,7 @@
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\AccountInfor_Window.resx">
       <DependentUpon>AccountInfor_Window.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StudentInfor_SubTab.resx">
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\StudentInfor_SubTab.resx">
       <DependentUpon>StudentInfor_SubTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

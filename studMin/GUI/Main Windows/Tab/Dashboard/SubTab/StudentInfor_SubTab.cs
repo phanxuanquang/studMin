@@ -16,10 +16,5 @@ namespace studMin
         {
             InitializeComponent();
         }
-
-        private void StudentInfor_SubTab_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -16,5 +16,15 @@ namespace studMin
         {
             InitializeComponent();
         }
+
+        private void GradeModify_SubTab_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

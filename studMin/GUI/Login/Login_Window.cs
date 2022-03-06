@@ -76,9 +76,6 @@ namespace studMin
 
                 MainWinfow mainWinfow = new MainWinfow();
                 mainWinfow.ShowDialog();
-
-                this.ShowIcon = this.ShowInTaskbar = true;
-                this.Show();
             }
         }
 

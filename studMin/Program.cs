@@ -15,8 +15,9 @@ namespace studMin
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login_Window());
+            //Application.SetCompatibleTextRenderingDefault(true);
+            Application.Run(login_Window);
         }
+        public static Login_Window login_Window = new Login_Window();
     }
 }

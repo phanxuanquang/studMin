@@ -43,7 +43,11 @@ namespace studMin
 
         private void Logout_Button_Click(object sender, EventArgs e)
         {
+            this.Hide();
             this.Close();
+            Program.login_Window = new Login_Window();
+            Program.login_Window.ShowIcon = Program.login_Window.ShowInTaskbar = true;
+            Program.login_Window.Show();
         }
     }
 }
