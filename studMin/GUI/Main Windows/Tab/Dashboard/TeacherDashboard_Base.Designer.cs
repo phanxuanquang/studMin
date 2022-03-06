@@ -73,7 +73,7 @@
             this.AccountInfor_Button.CustomImages.Parent = this.AccountInfor_Button;
             this.AccountInfor_Button.FillColor = System.Drawing.Color.White;
             this.AccountInfor_Button.FillColor2 = System.Drawing.Color.White;
-            this.AccountInfor_Button.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.AccountInfor_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.AccountInfor_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.AccountInfor_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.AccountInfor_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
@@ -83,7 +83,7 @@
             this.AccountInfor_Button.ShadowDecoration.Parent = this.AccountInfor_Button;
             this.AccountInfor_Button.Size = new System.Drawing.Size(231, 52);
             this.AccountInfor_Button.TabIndex = 20;
-            this.AccountInfor_Button.Text = "THÔNG TIN TÀI KHOẢN";
+            this.AccountInfor_Button.Text = "TÀI KHOẢN";
             this.AccountInfor_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.AccountInfor_Button.Click += new System.EventHandler(this.AccountInfor_Button_Click);
             // 
@@ -101,7 +101,7 @@
             this.ClassInfor_Button.CustomImages.Parent = this.ClassInfor_Button;
             this.ClassInfor_Button.FillColor = System.Drawing.Color.White;
             this.ClassInfor_Button.FillColor2 = System.Drawing.Color.White;
-            this.ClassInfor_Button.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.ClassInfor_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ClassInfor_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.ClassInfor_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.ClassInfor_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
@@ -111,7 +111,7 @@
             this.ClassInfor_Button.ShadowDecoration.Parent = this.ClassInfor_Button;
             this.ClassInfor_Button.Size = new System.Drawing.Size(231, 52);
             this.ClassInfor_Button.TabIndex = 18;
-            this.ClassInfor_Button.Text = "THÔNG TIN LỚP HỌC";
+            this.ClassInfor_Button.Text = "LỚP HỌC";
             this.ClassInfor_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.ClassInfor_Button.Click += new System.EventHandler(this.ClassInfor_Button_Click);
             // 
@@ -128,7 +128,7 @@
             this.GradeModify_Button.CustomImages.Parent = this.GradeModify_Button;
             this.GradeModify_Button.FillColor = System.Drawing.Color.White;
             this.GradeModify_Button.FillColor2 = System.Drawing.Color.White;
-            this.GradeModify_Button.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.GradeModify_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.GradeModify_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.GradeModify_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.GradeModify_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
@@ -138,7 +138,7 @@
             this.GradeModify_Button.ShadowDecoration.Parent = this.GradeModify_Button;
             this.GradeModify_Button.Size = new System.Drawing.Size(231, 52);
             this.GradeModify_Button.TabIndex = 19;
-            this.GradeModify_Button.Text = "HIỆU CHỈNH ĐIỂM SỐ";
+            this.GradeModify_Button.Text = "ĐIỂM SỐ";
             this.GradeModify_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.GradeModify_Button.Click += new System.EventHandler(this.GradeModify_Button_Click);
             // 
@@ -155,7 +155,7 @@
             this.StudentInfor_Button.CustomImages.Parent = this.StudentInfor_Button;
             this.StudentInfor_Button.FillColor = System.Drawing.Color.White;
             this.StudentInfor_Button.FillColor2 = System.Drawing.Color.White;
-            this.StudentInfor_Button.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.StudentInfor_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.StudentInfor_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.StudentInfor_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.StudentInfor_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
@@ -165,7 +165,7 @@
             this.StudentInfor_Button.ShadowDecoration.Parent = this.StudentInfor_Button;
             this.StudentInfor_Button.Size = new System.Drawing.Size(231, 52);
             this.StudentInfor_Button.TabIndex = 17;
-            this.StudentInfor_Button.Text = "THÔNG TIN HỌC SINH";
+            this.StudentInfor_Button.Text = "HỌC SINH";
             this.StudentInfor_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.StudentInfor_Button.Click += new System.EventHandler(this.StudentInfor_Button_Click);
             // 

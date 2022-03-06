@@ -15,12 +15,14 @@ namespace studMin
     {
         GradeModify_SubTab gradeModify_SubTab;
         ClassInfor_SubTab classInfor_SubTab;
+        StudentInfor_SubTab studentInfor_SubTab;
         public TeacherDashboard_Base()
         {
             InitializeComponent();
 
             gradeModify_SubTab = new GradeModify_SubTab();
             classInfor_SubTab = new ClassInfor_SubTab();
+            studentInfor_SubTab = new StudentInfor_SubTab();
 
             moveBadgeAndLoadTab(ClassInfor_Button, classInfor_SubTab);
         }
@@ -28,12 +30,18 @@ namespace studMin
         {
             Badge.Left = button.Location.X;
             
-            if (!ContainerPanel.Controls.Contains(SubTab))
+            if(SubTab != null)
             {
-                ContainerPanel.Controls.Add(SubTab);
-                SubTab.BringToFront();
+                if (!ContainerPanel.Controls.Contains(SubTab))
+                {
+                    ContainerPanel.Controls.Add(SubTab);
+                    SubTab.BringToFront();
+                }
+                else
+                {
+                    SubTab.BringToFront();
+                }
             }
-            SubTab.BringToFront();
         }
 
         #region Buttons
@@ -44,7 +52,7 @@ namespace studMin
 
         private void StudentInfor_Button_Click(object sender, EventArgs e)
         {
-            moveBadgeAndLoadTab(StudentInfor_Button, null);
+            moveBadgeAndLoadTab(StudentInfor_Button, studentInfor_SubTab);
         }
 
         private void ClassInfor_Button_Click(object sender, EventArgs e)
