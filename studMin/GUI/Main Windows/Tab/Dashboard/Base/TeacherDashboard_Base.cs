@@ -26,7 +26,7 @@ namespace studMin
 
             moveBadgeAndLoadTab(ClassInfor_Button, classInfor_SubTab);
         }
-        void moveBadgeAndLoadTab(Guna2GradientButton button, UserControl SubTab)
+        protected void moveBadgeAndLoadTab(Guna2GradientButton button, UserControl SubTab)
         {
             Badge.Left = button.Location.X;
             

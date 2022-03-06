@@ -75,22 +75,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.Designer.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.Designer.cs">
+      <DependentUpon>ClassHeadTeacherDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.Designer.cs">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\ClassInfor_SubTab.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\ClassInfor_SubTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\ClassInfor_SubTab.Designer.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\ClassInfor_SubTab.Designer.cs">
       <DependentUpon>ClassInfor_SubTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\TeacherDashboard_Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.Designer.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\TeacherDashboard_Base.Designer.cs">
       <DependentUpon>TeacherDashboard_Base.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Login\ForgetPassword_UC.cs">
@@ -113,19 +119,25 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\StudentInfor_SubTab.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\SubTab\StudentInfor_SubTab.Designer.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.Designer.cs">
       <DependentUpon>StudentInfor_SubTab.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\GradeModify_SubTab.resx">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.Designer.cs">
+      <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\ClassInfor_SubTab.resx">
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\ClassInfor_SubTab.resx">
       <DependentUpon>ClassInfor_SubTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\TeacherDashboard_Base.resx">
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\TeacherDashboard_Base.resx">
       <DependentUpon>TeacherDashboard_Base.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Login\ForgetPassword_UC.resx">
@@ -137,13 +149,19 @@
     <EmbeddedResource Include="GUI\Main Windows\MainWinfow.resx">
       <DependentUpon>MainWinfow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.resx">
+      <DependentUpon>ClassHeadTeacherDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\SubTab\StudentInfor_SubTab.resx">
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.resx">
       <DependentUpon>StudentInfor_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.resx">
+      <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -28,41 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.TopBanner = new System.Windows.Forms.Panel();
             this.menuBar = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.MoralQualify_Button = new Guna.UI2.WinForms.Guna2GradientButton();
             this.Badge = new System.Windows.Forms.Panel();
             this.StudentInfor_Button = new Guna.UI2.WinForms.Guna2GradientButton();
             this.ClassInfor_Button = new Guna.UI2.WinForms.Guna2GradientButton();
             this.GradeModify_Button = new Guna.UI2.WinForms.Guna2GradientButton();
             this.ContainerPanel = new System.Windows.Forms.Panel();
-            this.BadgeMover = new Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit();
-            this.panel1.SuspendLayout();
+            this.TopBanner.SuspendLayout();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // TopBanner
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.panel1.Controls.Add(this.menuBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(924, 52);
-            this.panel1.TabIndex = 16;
+            this.TopBanner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.TopBanner.Controls.Add(this.menuBar);
+            this.TopBanner.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBanner.Location = new System.Drawing.Point(0, 0);
+            this.TopBanner.Name = "TopBanner";
+            this.TopBanner.Size = new System.Drawing.Size(924, 52);
+            this.TopBanner.TabIndex = 16;
             // 
             // menuBar
             // 
+            this.menuBar.Controls.Add(this.MoralQualify_Button);
             this.menuBar.Controls.Add(this.Badge);
             this.menuBar.Controls.Add(this.StudentInfor_Button);
             this.menuBar.Controls.Add(this.ClassInfor_Button);
             this.menuBar.Controls.Add(this.GradeModify_Button);
             this.menuBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.menuBar.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.menuBar.Location = new System.Drawing.Point(222, 5);
+            this.menuBar.Location = new System.Drawing.Point(142, 5);
             this.menuBar.Name = "menuBar";
             this.menuBar.ShadowDecoration.Parent = this.menuBar;
-            this.menuBar.Size = new System.Drawing.Size(480, 47);
+            this.menuBar.Size = new System.Drawing.Size(640, 47);
             this.menuBar.TabIndex = 0;
+            // 
+            // MoralQualify_Button
+            // 
+            this.MoralQualify_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.MoralQualify_Button.Animated = true;
+            this.MoralQualify_Button.BackColor = System.Drawing.Color.White;
+            this.MoralQualify_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.MoralQualify_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.MoralQualify_Button.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.MoralQualify_Button.CheckedState.Parent = this.MoralQualify_Button;
+            this.MoralQualify_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MoralQualify_Button.CustomImages.Parent = this.MoralQualify_Button;
+            this.MoralQualify_Button.FillColor = System.Drawing.Color.White;
+            this.MoralQualify_Button.FillColor2 = System.Drawing.Color.White;
+            this.MoralQualify_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MoralQualify_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MoralQualify_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.MoralQualify_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.MoralQualify_Button.HoverState.Parent = this.MoralQualify_Button;
+            this.MoralQualify_Button.Location = new System.Drawing.Point(480, -1);
+            this.MoralQualify_Button.Name = "MoralQualify_Button";
+            this.MoralQualify_Button.ShadowDecoration.Parent = this.MoralQualify_Button;
+            this.MoralQualify_Button.Size = new System.Drawing.Size(160, 42);
+            this.MoralQualify_Button.TabIndex = 25;
+            this.MoralQualify_Button.Text = "HẠNH KIỂM";
+            this.MoralQualify_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
             // Badge
             // 
@@ -162,51 +189,30 @@
             this.ContainerPanel.Size = new System.Drawing.Size(924, 688);
             this.ContainerPanel.TabIndex = 17;
             // 
-            // BadgeMover
-            // 
-            this.BadgeMover.Acceleration = 0.7F;
-            this.BadgeMover.AnimationType = Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide;
-            this.BadgeMover.Control = this.Badge;
-            this.BadgeMover.CordinateEnd_X = 0F;
-            this.BadgeMover.CordinateEnd_Y = 47F;
-            this.BadgeMover.CordinateStart_X = 0F;
-            this.BadgeMover.CordinateStart_Y = 47F;
-            this.BadgeMover.Duration = 800;
-            this.BadgeMover.EasingEnd = 1F;
-            this.BadgeMover.EasingNames = Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.easingNames.BackEaseIn;
-            this.BadgeMover.EasingStart = 0.2F;
-            this.BadgeMover.Editor = new Zeroit.Framework.Transitions.AnimationEditors.ZeroitPizaroAnimatorInput(Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide, 0F, 47F, 0F, 47F, true, this.Badge, 800, 0.7F, 0.2F, 1F);
-            this.BadgeMover.Fade_Begin = 0F;
-            this.BadgeMover.Fade_Limit = 1F;
-            this.BadgeMover.ResizeHeight_Begin = 10F;
-            this.BadgeMover.ResizeHeight_Limit = 50F;
-            this.BadgeMover.ResizeWidth_Begin = 10F;
-            this.BadgeMover.ResizeWidth_Limit = 50F;
-            // 
             // TeacherDashboard_Base
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.ContainerPanel);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.TopBanner);
             this.DoubleBuffered = true;
             this.Name = "TeacherDashboard_Base";
             this.Size = new System.Drawing.Size(924, 740);
-            this.panel1.ResumeLayout(false);
+            this.TopBanner.ResumeLayout(false);
             this.menuBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel ContainerPanel;
-        private Guna.UI2.WinForms.Guna2GradientButton GradeModify_Button;
-        private Guna.UI2.WinForms.Guna2GradientButton ClassInfor_Button;
-        private Guna.UI2.WinForms.Guna2GradientButton StudentInfor_Button;
-        private Guna.UI2.WinForms.Guna2GradientPanel menuBar;
-        private System.Windows.Forms.Panel Badge;
-        private Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit BadgeMover;
+        private System.Windows.Forms.Panel TopBanner;
+        protected System.Windows.Forms.Panel ContainerPanel;
+        protected Guna.UI2.WinForms.Guna2GradientButton GradeModify_Button;
+        protected Guna.UI2.WinForms.Guna2GradientButton ClassInfor_Button;
+        protected Guna.UI2.WinForms.Guna2GradientButton StudentInfor_Button;
+        protected Guna.UI2.WinForms.Guna2GradientPanel menuBar;
+        protected System.Windows.Forms.Panel Badge;
+        protected Guna.UI2.WinForms.Guna2GradientButton MoralQualify_Button;
     }
 }
