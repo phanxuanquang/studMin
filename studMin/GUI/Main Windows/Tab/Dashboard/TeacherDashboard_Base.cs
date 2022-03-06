@@ -44,6 +44,7 @@ namespace studMin
             }
         }
 
+
         #region Buttons
         private void GradeModify_Button_Click(object sender, EventArgs e)
         {
@@ -58,11 +59,6 @@ namespace studMin
         private void ClassInfor_Button_Click(object sender, EventArgs e)
         {
             moveBadgeAndLoadTab(ClassInfor_Button, classInfor_SubTab);
-        }
-
-        private void AccountInfor_Button_Click(object sender, EventArgs e)
-        {
-            moveBadgeAndLoadTab(AccountInfor_Button, null);
         }
         #endregion
     }
