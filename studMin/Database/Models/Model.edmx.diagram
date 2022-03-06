@@ -4,36 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40a6a074e4284ff2aa7a9cbc7fa9e57f" Name="Diagram1" ZoomLevel="82">
-        <EntityTypeShape EntityType="StudMinModel.CLASS" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.LIMIT" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.MEMBER" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.ROLESUBJECT" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.SCORE" Width="1.5" PointX="12" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.STUDENT" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.STUDYING" Width="1.5" PointX="12" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.SUBJECT" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.TEACH" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.TEACHER" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.TRANSCRIPT" Width="1.5" PointX="12" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.USERROLE" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudMinModel.USER" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
-        <AssociationConnector Association="StudMinModel.FK__CLASS__IDTEACHER__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__STUDENT__IDCLASS__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__STUDENT__IDCLASS__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__STUDYING__IDCLAS__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__TEACH__IDCLASS__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__MEMBERS__IDUSERR__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__TEACHER__ID__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__USERS__IDINFO__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__SCORE__IDROLESUB__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__SCORE__IDSTUDENT__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__SCORE__IDSUBJECT__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__STUDYING__IDSTUD__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__TRANSCRIP__IDSTU__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__SUBJECT__IDHEADT__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__TEACH__IDSUBJECT__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="StudMinModel.FK__TEACH__IDTEACHER__5070F446" ManuallyRouted="false" />
+      <Diagram DiagramId="d63266d0e0f34af992a50ee345e16e8e" Name="Diagram1">
+        <EntityTypeShape EntityType="StudMinDBModel.CLASS" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.LIMIT" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.MEMBER" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.ROLESUBJECT" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.SCORE" Width="1.5" PointX="12" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.STUDENT" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.STUDYING" Width="1.5" PointX="12" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.SUBJECT" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.TEACH" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.TEACHER" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.TRANSCRIPT" Width="1.5" PointX="12" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.USERROLE" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudMinDBModel.USER" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="StudMinDBModel.FK__CLASS__IDTEACHER__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__STUDENT__IDCLASS__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__STUDYING__IDCLAS__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__TEACH__IDCLASS__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__MEMBER__IDUSERRO__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__TEACHER__ID__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__USERS__IDINFO__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__SCORE__IDROLESUB__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__SCORE__IDSTUDENT__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__SCORE__IDSUBJECT__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__STUDYING__IDSTUD__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__TRANSCRIP__IDSTU__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__SUBJECT__IDHEADT__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__TEACH__IDSUBJECT__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="StudMinDBModel.FK__TEACH__IDTEACHER__07C12930" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
