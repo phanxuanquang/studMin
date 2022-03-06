@@ -38,8 +38,9 @@
             this.RoundCornerForm = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.DragForm = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.forgetPassword_UC1 = new studMin.ForgetPassword_UC();
+            this.RememberLogin_CheckBox = new Guna.UI2.WinForms.Guna2CheckBox();
             this.ForgetPasswordUC_MoverUp = new Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit();
+            this.forgetPassword_UC1 = new studMin.ForgetPassword_UC();
             this.SuspendLayout();
             // 
             // Username_Box
@@ -130,7 +131,7 @@
             this.Login_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Login_Button.ForeColor = System.Drawing.Color.White;
             this.Login_Button.HoverState.Parent = this.Login_Button;
-            this.Login_Button.Location = new System.Drawing.Point(50, 538);
+            this.Login_Button.Location = new System.Drawing.Point(50, 540);
             this.Login_Button.Name = "Login_Button";
             this.Login_Button.ShadowDecoration.Parent = this.Login_Button;
             this.Login_Button.Size = new System.Drawing.Size(340, 47);
@@ -144,15 +145,17 @@
             this.ForgetPassword_LinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ForgetPassword_LinkLabel.AutoSize = true;
             this.ForgetPassword_LinkLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ForgetPassword_LinkLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ForgetPassword_LinkLabel.Location = new System.Drawing.Point(301, 508);
+            this.ForgetPassword_LinkLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.ForgetPassword_LinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.ForgetPassword_LinkLabel.Location = new System.Drawing.Point(297, 510);
             this.ForgetPassword_LinkLabel.Name = "ForgetPassword_LinkLabel";
-            this.ForgetPassword_LinkLabel.Size = new System.Drawing.Size(89, 15);
+            this.ForgetPassword_LinkLabel.Size = new System.Drawing.Size(94, 19);
             this.ForgetPassword_LinkLabel.TabIndex = 4;
             this.ForgetPassword_LinkLabel.TabStop = true;
             this.ForgetPassword_LinkLabel.Text = "Quên mật khẩu";
             this.ForgetPassword_LinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ForgetPassword_LinkLabel.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAliasGridFit;
+            this.ForgetPassword_LinkLabel.UseCompatibleTextRendering = true;
             this.ForgetPassword_LinkLabel.UseMnemonic = false;
             this.ForgetPassword_LinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForgetPassword_LinkLabel_LinkClicked);
             // 
@@ -168,7 +171,7 @@
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(50, 603);
+            this.Exit_Button.Location = new System.Drawing.Point(50, 605);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
             this.Exit_Button.Size = new System.Drawing.Size(340, 47);
@@ -186,15 +189,28 @@
             // 
             this.DragForm.TargetControl = this;
             // 
-            // forgetPassword_UC1
+            // RememberLogin_CheckBox
             // 
-            this.forgetPassword_UC1.BackColor = System.Drawing.Color.Transparent;
-            this.forgetPassword_UC1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("forgetPassword_UC1.BackgroundImage")));
-            this.forgetPassword_UC1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.forgetPassword_UC1.Location = new System.Drawing.Point(0, 659);
-            this.forgetPassword_UC1.Name = "forgetPassword_UC1";
-            this.forgetPassword_UC1.Size = new System.Drawing.Size(440, 351);
-            this.forgetPassword_UC1.TabIndex = 6;
+            this.RememberLogin_CheckBox.Animated = true;
+            this.RememberLogin_CheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.RememberLogin_CheckBox.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.RememberLogin_CheckBox.CheckedState.BorderRadius = 2;
+            this.RememberLogin_CheckBox.CheckedState.BorderThickness = 0;
+            this.RememberLogin_CheckBox.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.RememberLogin_CheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RememberLogin_CheckBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.RememberLogin_CheckBox.Location = new System.Drawing.Point(55, 509);
+            this.RememberLogin_CheckBox.Name = "RememberLogin_CheckBox";
+            this.RememberLogin_CheckBox.Size = new System.Drawing.Size(155, 18);
+            this.RememberLogin_CheckBox.TabIndex = 8;
+            this.RememberLogin_CheckBox.Text = " Ghi nhớ đăng nhập";
+            this.RememberLogin_CheckBox.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.RememberLogin_CheckBox.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.RememberLogin_CheckBox.UncheckedState.BorderRadius = 2;
+            this.RememberLogin_CheckBox.UncheckedState.BorderThickness = 0;
+            this.RememberLogin_CheckBox.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(199)))), ((int)(((byte)(251)))));
+            this.RememberLogin_CheckBox.UseCompatibleTextRendering = true;
+            this.RememberLogin_CheckBox.UseVisualStyleBackColor = false;
             // 
             // ForgetPasswordUC_MoverUp
             // 
@@ -217,6 +233,16 @@
             this.ForgetPasswordUC_MoverUp.ResizeWidth_Begin = 10F;
             this.ForgetPasswordUC_MoverUp.ResizeWidth_Limit = 50F;
             // 
+            // forgetPassword_UC1
+            // 
+            this.forgetPassword_UC1.BackColor = System.Drawing.Color.Transparent;
+            this.forgetPassword_UC1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("forgetPassword_UC1.BackgroundImage")));
+            this.forgetPassword_UC1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.forgetPassword_UC1.Location = new System.Drawing.Point(0, 659);
+            this.forgetPassword_UC1.Name = "forgetPassword_UC1";
+            this.forgetPassword_UC1.Size = new System.Drawing.Size(440, 351);
+            this.forgetPassword_UC1.TabIndex = 6;
+            // 
             // Login_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +250,7 @@
             this.BackgroundImage = global::studMin.Properties.Resources.Login_BG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(440, 720);
+            this.Controls.Add(this.RememberLogin_CheckBox);
             this.Controls.Add(this.forgetPassword_UC1);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.ForgetPassword_LinkLabel);
@@ -253,6 +280,7 @@
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
         private Guna.UI2.WinForms.Guna2DragControl DragForm;
         private Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit ForgetPasswordUC_MoverUp;
+        private Guna.UI2.WinForms.Guna2CheckBox RememberLogin_CheckBox;
         private ForgetPassword_UC forgetPassword_UC1;
     }
 }

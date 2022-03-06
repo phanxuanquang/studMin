@@ -86,6 +86,7 @@ namespace studMin
 
         private void ForgetPassword_LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            forgetPassword_UC1.BringToFront();
             ForgetPasswordUC_MoverUp.Activate();
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
