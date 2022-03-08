@@ -62,7 +62,7 @@ namespace studMin
 
         private void DataGridViewImport_Button_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel|*.xlsx", Multiselect = false})
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image Files| *.xlsc; *.xls; *.xlsm; *.xlsx", Multiselect = false})
             {
                 try
                 {
@@ -107,8 +107,37 @@ namespace studMin
                                 flag++;
                             }
 
-                            dataGridView1.DataSource = dt.DefaultView;
+                            GridView.DataSource = dt.DefaultView;
                             Cursor.Current = Cursors.Default;
+                        }
+                    }
+                }
+                catch 
+                {
+                    MessageBox.Show("Truy xuất dữ liệu thất bại. Tệp tin bạn chọn không đúng quy chuẩn hoặc chứa dữ liệu không hợp lệ.\nVui lòng thử lại sau.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+            if (Class_ComboBox.Text != "Mọi lớp")
+            {
+                MessageBox.Show("Bận phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                try
+                {
+                    for (int i = 0; i < GridView.RowCount; i++)
+                    {
+                        if (GridView.Rows[i].Cells[0].Value != null && GridView.Rows[i].Cells[1].Value != null && GridView.Rows[i].Cells[0].Value.ToString().ToLower() == Search_Box.Text.ToLower() || GridView.Rows[i].Cells[1].Value.ToString().ToLower() == Search_Box.Text.ToLower())
+                        {
+                            GridView.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            GridView.Rows[i].Visible = false;
                         }
                     }
                 }
@@ -116,6 +145,14 @@ namespace studMin
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void FullGridView_Button_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < GridView.RowCount; i++)
+            {
+                GridView.Rows[i].Visible = true;
             }
         }
     }
