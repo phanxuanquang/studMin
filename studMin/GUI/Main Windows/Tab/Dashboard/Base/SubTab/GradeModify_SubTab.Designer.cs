@@ -199,7 +199,6 @@
             this.Search_Box.Size = new System.Drawing.Size(247, 36);
             this.Search_Box.TabIndex = 32;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
-            this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
             // 
             // DataTable
             // 
@@ -403,6 +402,7 @@
             this.OralTestScore_Box.Size = new System.Drawing.Size(67, 36);
             this.OralTestScore_Box.TabIndex = 41;
             this.OralTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.OralTestScore_Box.TextChanged += new System.EventHandler(this.OralTestScore_Box_TextChanged);
             // 
             // MidTermTest_GroupBox
             // 
@@ -491,6 +491,7 @@
             this.MidTermTestScore_Box.Size = new System.Drawing.Size(67, 36);
             this.MidTermTestScore_Box.TabIndex = 41;
             this.MidTermTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MidTermTestScore_Box.TextChanged += new System.EventHandler(this.MidTermTestScore_Box_TextChanged);
             // 
             // RegularTest_GroupBox
             // 
@@ -581,6 +582,7 @@
             this.RegularTestScore_Box.Size = new System.Drawing.Size(67, 36);
             this.RegularTestScore_Box.TabIndex = 41;
             this.RegularTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.RegularTestScore_Box.TextChanged += new System.EventHandler(this.RegularTestScore_Box_TextChanged);
             // 
             // DataGridViewImport_Button
             // 
@@ -622,7 +624,6 @@
             this.DoubleBuffered = true;
             this.Name = "GradeModify_SubTab";
             this.Size = new System.Drawing.Size(924, 688);
-            this.Load += new System.EventHandler(this.GradeModify_SubTab_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             this.OralTest_GroupBox.ResumeLayout(false);
             this.MidTermTest_GroupBox.ResumeLayout(false);
