@@ -18,7 +18,7 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
             this.Icon = Properties.Resources.studMin_Icon;
 
-            ContainerPanel.Controls.Add(new TeacherDashboard_Base());
+            ContainerPanel.Controls.Add(new ClassHeadTeacherDashboard());
         }
 
         protected override CreateParams CreateParams

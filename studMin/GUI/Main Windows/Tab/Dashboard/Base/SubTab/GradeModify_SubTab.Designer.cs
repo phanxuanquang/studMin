@@ -28,22 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
             this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Class_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.Search_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Search_Box = new Guna.UI2.WinForms.Guna2TextBox();
-            this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OralTest_Scode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegularTest_Scode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MidTermTest_Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndTermTest_Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Average_Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OralTest_GroupBox = new Guna.UI2.WinForms.Guna2GroupBox();
             this.OralTestScore_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.OralTestScore_Box = new Guna.UI2.WinForms.Guna2TextBox();
@@ -54,10 +45,12 @@
             this.RegularTestScore_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.RegularTestScore_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataGridViewImport_Button = new Guna.UI2.WinForms.Guna2Button();
-            ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
+            this.GridView = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.FullGridView_Button = new Guna.UI2.WinForms.Guna2Button();
             this.OralTest_GroupBox.SuspendLayout();
             this.MidTermTest_GroupBox.SuspendLayout();
             this.RegularTest_GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
             // UpdateData_Button
@@ -138,32 +131,6 @@
             this.Class_ComboBox.TabIndex = 25;
             this.Class_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
-            // Search_Button
-            // 
-            this.Search_Button.Animated = true;
-            this.Search_Button.BackColor = System.Drawing.Color.White;
-            this.Search_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Search_Button.BorderRadius = 5;
-            this.Search_Button.BorderThickness = 2;
-            this.Search_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.Search_Button.CheckedState.Parent = this.Search_Button;
-            this.Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Search_Button.CustomImages.Parent = this.Search_Button;
-            this.Search_Button.FillColor = System.Drawing.Color.White;
-            this.Search_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Search_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Search_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.Search_Button.HoverState.Parent = this.Search_Button;
-            this.Search_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Search_Button.Location = new System.Drawing.Point(400, 32);
-            this.Search_Button.Name = "Search_Button";
-            this.Search_Button.PressedDepth = 20;
-            this.Search_Button.ShadowDecoration.Parent = this.Search_Button;
-            this.Search_Button.Size = new System.Drawing.Size(107, 36);
-            this.Search_Button.TabIndex = 31;
-            this.Search_Button.Text = "TÌM KIẾM";
-            this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            // 
             // Search_Box
             // 
             this.Search_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -196,123 +163,10 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(247, 36);
+            this.Search_Box.Size = new System.Drawing.Size(244, 36);
             this.Search_Box.TabIndex = 32;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
-            // 
-            // DataTable
-            // 
-            this.DataTable.AllowDrop = true;
-            this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.DataTable.BackgroundColor = System.Drawing.Color.White;
-            this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataTable.ColumnHeadersHeight = 25;
-            this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.FullName,
-            this.OralTest_Scode,
-            this.RegularTest_Scode,
-            this.MidTermTest_Score,
-            this.EndTermTest_Score,
-            this.Average_Score});
-            this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DataTable.EnableHeadersVisualStyles = false;
-            this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 199);
-            this.DataTable.Name = "DataTable";
-            this.DataTable.RowHeadersVisible = false;
-            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(924, 489);
-            this.DataTable.TabIndex = 24;
-            this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
-            this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.DataTable.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.DataTable.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.DataTable.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.DataTable.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.DataTable.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.DataTable.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.DataTable.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.DataTable.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.DataTable.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataTable.ThemeStyle.HeaderStyle.Height = 25;
-            this.DataTable.ThemeStyle.ReadOnly = false;
-            this.DataTable.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.DataTable.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.DataTable.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.DataTable.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.ThemeStyle.RowsStyle.Height = 22;
-            this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            // 
-            // ID
-            // 
-            this.ID.FillWeight = 120F;
-            this.ID.HeaderText = "Mã học sinh";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // FullName
-            // 
-            this.FullName.HeaderText = "Họ và tên";
-            this.FullName.Name = "FullName";
-            // 
-            // OralTest_Scode
-            // 
-            this.OralTest_Scode.HeaderText = "Kiểm tra miệng";
-            this.OralTest_Scode.Name = "OralTest_Scode";
-            this.OralTest_Scode.ReadOnly = true;
-            // 
-            // RegularTest_Scode
-            // 
-            this.RegularTest_Scode.HeaderText = "Kiểm tra 15 phút";
-            this.RegularTest_Scode.Name = "RegularTest_Scode";
-            this.RegularTest_Scode.ReadOnly = true;
-            // 
-            // MidTermTest_Score
-            // 
-            this.MidTermTest_Score.HeaderText = "Kiểm tra 1 tiết";
-            this.MidTermTest_Score.Name = "MidTermTest_Score";
-            this.MidTermTest_Score.ReadOnly = true;
-            // 
-            // EndTermTest_Score
-            // 
-            this.EndTermTest_Score.HeaderText = "Kiểm tra học kỳ";
-            this.EndTermTest_Score.Name = "EndTermTest_Score";
-            this.EndTermTest_Score.ReadOnly = true;
-            // 
-            // Average_Score
-            // 
-            this.Average_Score.HeaderText = "Trung bình chung";
-            this.Average_Score.Name = "Average_Score";
-            this.Average_Score.ReadOnly = true;
             // 
             // OralTest_GroupBox
             // 
@@ -603,30 +457,122 @@
             this.DataGridViewImport_Button.TabIndex = 47;
             this.DataGridViewImport_Button.Text = "NHẬP DANH SÁCH";
             this.DataGridViewImport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.DataGridViewImport_Button.Click += new System.EventHandler(this.DataGridViewImport_Button_Click);
+            // 
+            // GridView
+            // 
+            this.GridView.AllowDrop = true;
+            this.GridView.AllowUserToAddRows = false;
+            this.GridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.GridView.BackgroundColor = System.Drawing.Color.White;
+            this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.GridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.GridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.GridView.ColumnHeadersHeight = 25;
+            this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.GridView.Cursor = System.Windows.Forms.Cursors.Hand;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle9;
+            this.GridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GridView.EnableHeadersVisualStyles = false;
+            this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.GridView.Location = new System.Drawing.Point(0, 199);
+            this.GridView.Name = "GridView";
+            this.GridView.ReadOnly = true;
+            this.GridView.RowHeadersVisible = false;
+            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.GridView.Size = new System.Drawing.Size(924, 489);
+            this.GridView.TabIndex = 102;
+            this.GridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
+            this.GridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.GridView.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.GridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.GridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.GridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.GridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.GridView.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.GridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.GridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.GridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.GridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.GridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.GridView.ThemeStyle.HeaderStyle.Height = 25;
+            this.GridView.ThemeStyle.ReadOnly = true;
+            this.GridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.GridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.GridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.GridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.GridView.ThemeStyle.RowsStyle.Height = 22;
+            this.GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            this.GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            // 
+            // FullGridView_Button
+            // 
+            this.FullGridView_Button.Animated = true;
+            this.FullGridView_Button.BackColor = System.Drawing.Color.White;
+            this.FullGridView_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.FullGridView_Button.BorderRadius = 5;
+            this.FullGridView_Button.BorderThickness = 2;
+            this.FullGridView_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.FullGridView_Button.CheckedState.Parent = this.FullGridView_Button;
+            this.FullGridView_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FullGridView_Button.CustomImages.Parent = this.FullGridView_Button;
+            this.FullGridView_Button.FillColor = System.Drawing.Color.White;
+            this.FullGridView_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.FullGridView_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.FullGridView_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.FullGridView_Button.HoverState.Parent = this.FullGridView_Button;
+            this.FullGridView_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.FullGridView_Button.Location = new System.Drawing.Point(399, 32);
+            this.FullGridView_Button.Name = "FullGridView_Button";
+            this.FullGridView_Button.PressedDepth = 20;
+            this.FullGridView_Button.ShadowDecoration.Parent = this.FullGridView_Button;
+            this.FullGridView_Button.Size = new System.Drawing.Size(107, 36);
+            this.FullGridView_Button.TabIndex = 103;
+            this.FullGridView_Button.Text = "CẢ LỚP";
+            this.FullGridView_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.FullGridView_Button.Click += new System.EventHandler(this.FullGridView_Button_Click);
             // 
             // GradeModify_SubTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.FullGridView_Button);
+            this.Controls.Add(this.GridView);
             this.Controls.Add(this.DataGridViewImport_Button);
             this.Controls.Add(this.RegularTest_GroupBox);
             this.Controls.Add(this.MidTermTest_GroupBox);
             this.Controls.Add(this.OralTest_GroupBox);
             this.Controls.Add(this.Search_Box);
-            this.Controls.Add(this.Search_Button);
             this.Controls.Add(this.UpdateData_Button);
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Class_ComboBox);
-            this.Controls.Add(this.DataTable);
             this.DoubleBuffered = true;
             this.Name = "GradeModify_SubTab";
             this.Size = new System.Drawing.Size(924, 688);
-            this.Load += new System.EventHandler(this.GradeModify_SubTab_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             this.OralTest_GroupBox.ResumeLayout(false);
             this.MidTermTest_GroupBox.ResumeLayout(false);
             this.RegularTest_GroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -636,9 +582,7 @@
         private Guna.UI2.WinForms.Guna2Button UpdateData_Button;
         private Guna.UI2.WinForms.Guna2Button DataGridViewExport_Button;
         private Guna.UI2.WinForms.Guna2ComboBox Class_ComboBox;
-        private Guna.UI2.WinForms.Guna2Button Search_Button;
         private Guna.UI2.WinForms.Guna2TextBox Search_Box;
-        private Guna.UI2.WinForms.Guna2DataGridView DataTable;
         private Guna.UI2.WinForms.Guna2GroupBox OralTest_GroupBox;
         private Guna.UI2.WinForms.Guna2ComboBox OralTestScore_ComboBox;
         private Guna.UI2.WinForms.Guna2TextBox OralTestScore_Box;
@@ -648,13 +592,8 @@
         private Guna.UI2.WinForms.Guna2GroupBox RegularTest_GroupBox;
         private Guna.UI2.WinForms.Guna2ComboBox RegularTestScore_ComboBox;
         private Guna.UI2.WinForms.Guna2TextBox RegularTestScore_Box;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OralTest_Scode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RegularTest_Scode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MidTermTest_Score;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndTermTest_Score;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Average_Score;
         private Guna.UI2.WinForms.Guna2Button DataGridViewImport_Button;
+        private Guna.UI2.WinForms.Guna2DataGridView GridView;
+        private Guna.UI2.WinForms.Guna2Button FullGridView_Button;
     }
 }

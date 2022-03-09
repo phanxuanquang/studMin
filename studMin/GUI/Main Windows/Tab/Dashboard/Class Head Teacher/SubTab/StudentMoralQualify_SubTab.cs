@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace studMin
 {
-    public partial class AccountInfor_Window : Form
+    public partial class StudentMoralQualify_SubTab : UserControl
     {
-        public AccountInfor_Window()
+        public StudentMoralQualify_SubTab()
         {
             InitializeComponent();
         }
