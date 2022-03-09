@@ -32,7 +32,7 @@ namespace studMin.Database.Models
         public Nullable<System.Guid> IDCLASS { get; set; }
         public Nullable<int> GRADE { get; set; }
         public string EMAILPARENT { get; set; }
-        public Nullable<int> TEL { get; set; }
+        public string TEL { get; set; }
         public Nullable<int> Status { get; set; }
     
         public virtual CLASS CLASS { get; set; }

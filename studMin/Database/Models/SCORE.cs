@@ -23,7 +23,7 @@ namespace studMin.Database.Models
         public Nullable<System.Guid> IDROLESUBJECT { get; set; }
     
         public virtual ROLESUBJECT ROLESUBJECT { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual SUBJECT SUBJECT { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

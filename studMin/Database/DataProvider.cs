@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace studMin.Database
 {
-    internal class DataProvider
+    using Models;
+    public class DataProvider
     {
+        private static DataProvider instance;
+
+        public StudMinDBEntities Database { get; set; }
+        public static DataProvider Instance => instance ?? (instance = new DataProvider());
+        private DataProvider()
+        {
+            Database = new StudMinDBEntities();
+        }
     }
 }
