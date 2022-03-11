@@ -91,13 +91,21 @@ namespace studMin
                                         int i = 0;
                                         foreach (IXLCell cell in row.Cells())
                                         {
-                                            if (i >= 3 && i <= 6)
+                                            if (i >= 0 && i<= 2 || i == 15 || i == 16)
+                                            {
+                                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                            }
+                                            else if (i >= 3 && i <= 6)
                                             {
                                                 dt.Rows[dt.Rows.Count - 1][2] += " " + cell.Value.ToString();
                                             }
-                                            else
+                                            else if (i >= 7 && i <= 11)
                                             {
-                                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                                dt.Rows[dt.Rows.Count - 1][3] += " " + cell.Value.ToString();
+                                            }
+                                            else if (i >= 12 && i <= 14)
+                                            {
+                                                dt.Rows[dt.Rows.Count - 1][4] += " " + cell.Value.ToString();
                                             }
                                             i++;
                                         }
