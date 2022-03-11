@@ -89,26 +89,48 @@ namespace studMin
                                     {
                                         dt.Rows.Add();
                                         int i = 0;
+                                        double oralTest = 0, fifteenMinutes = 0, fortyMinutes = 0, semesterTest = 0, overallAverage = 0;
+                                        int flagOralTest = 0, flagFifteenMinutes = 0;
                                         foreach (IXLCell cell in row.Cells())
                                         {
-                                            if (i >= 0 && i<= 2 || i == 15 || i == 16)
+                                            if (cell.Value.ToString() != null)
                                             {
-                                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                                if (i == 0 || i == 1)
+                                                {
+                                                    dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                                }
+                                                else if (i >= 2 && i <= 6)
+                                                {
+                                                    oralTest += Double.Parse(cell.Value.ToString());
+                                                    flagOralTest++;
+                                                }
+                                                else if (i >= 7 && i <= 11)
+                                                {
+                                                    fifteenMinutes += Double.Parse(cell.Value.ToString());
+                                                    flagFifteenMinutes++;
+                                                } 
+                                                else if (i >= 12 && i <= 14)
+                                                {
+                                                    fortyMinutes += Double.Parse(cell.Value.ToString());
+                                                } 
+                                                else if (i == 15)
+                                                {
+                                                    semesterTest = Double.Parse(cell.Value.ToString());
+                                                }
+                                                else
+                                                {
+                                                    overallAverage = Double.Parse(cell.Value.ToString());
+                                                }
                                             }
-                                            else if (i >= 3 && i <= 6)
-                                            {
-                                                dt.Rows[dt.Rows.Count - 1][2] += " " + cell.Value.ToString();
-                                            }
-                                            else if (i >= 7 && i <= 11)
-                                            {
-                                                dt.Rows[dt.Rows.Count - 1][3] += " " + cell.Value.ToString();
-                                            }
-                                            else if (i >= 12 && i <= 14)
-                                            {
-                                                dt.Rows[dt.Rows.Count - 1][4] += " " + cell.Value.ToString();
-                                            }
+
                                             i++;
                                         }
+
+                                        dt.Rows[dt.Rows.Count - 1][2] = (oralTest / flagOralTest).ToString();
+                                        dt.Rows[dt.Rows.Count - 1][3] = (fifteenMinutes / flagFifteenMinutes).ToString();
+                                        dt.Rows[dt.Rows.Count - 1][4] = (fortyMinutes / 3).ToString();
+                                        dt.Rows[dt.Rows.Count - 1][5] = semesterTest.ToString();
+                                        dt.Rows[dt.Rows.Count - 1][6] = overallAverage.ToString();
                                     }
                                 }
 

@@ -72,7 +72,7 @@
             this.UpdateData_Button.HoverState.Parent = this.UpdateData_Button;
             this.UpdateData_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.UpdateData_Button.Location = new System.Drawing.Point(683, 39);
-            this.UpdateData_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UpdateData_Button.Margin = new System.Windows.Forms.Padding(4);
             this.UpdateData_Button.Name = "UpdateData_Button";
             this.UpdateData_Button.PressedDepth = 20;
             this.UpdateData_Button.ShadowDecoration.Parent = this.UpdateData_Button;
@@ -96,7 +96,7 @@
             this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
             this.DataGridViewExport_Button.Location = new System.Drawing.Point(1029, 39);
-            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(4);
             this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
             this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
             this.DataGridViewExport_Button.Size = new System.Drawing.Size(191, 44);
@@ -127,7 +127,7 @@
             "Mọi lớp"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Location = new System.Drawing.Point(13, 39);
-            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.Class_ComboBox.Name = "Class_ComboBox";
             this.Class_ComboBox.ShadowDecoration.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Size = new System.Drawing.Size(173, 36);
@@ -158,7 +158,7 @@
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
             this.Search_Box.Location = new System.Drawing.Point(197, 39);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(5);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập họ tên hoặc mã học sinh . . .";
@@ -184,7 +184,7 @@
             this.OralTest_GroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.OralTest_GroupBox.ForeColor = System.Drawing.Color.White;
             this.OralTest_GroupBox.Location = new System.Drawing.Point(19, 103);
-            this.OralTest_GroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OralTest_GroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.OralTest_GroupBox.Name = "OralTest_GroupBox";
             this.OralTest_GroupBox.ShadowDecoration.Parent = this.OralTest_GroupBox;
             this.OralTest_GroupBox.Size = new System.Drawing.Size(380, 123);
@@ -220,7 +220,7 @@
             "Lần 5"});
             this.OralTestScore_ComboBox.ItemsAppearance.Parent = this.OralTestScore_ComboBox;
             this.OralTestScore_ComboBox.Location = new System.Drawing.Point(45, 64);
-            this.OralTestScore_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OralTestScore_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.OralTestScore_ComboBox.Name = "OralTestScore_ComboBox";
             this.OralTestScore_ComboBox.ShadowDecoration.Parent = this.OralTestScore_ComboBox;
             this.OralTestScore_ComboBox.Size = new System.Drawing.Size(185, 36);
@@ -251,7 +251,7 @@
             this.OralTestScore_Box.HoverState.Parent = this.OralTestScore_Box;
             this.OralTestScore_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
             this.OralTestScore_Box.Location = new System.Drawing.Point(245, 63);
-            this.OralTestScore_Box.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.OralTestScore_Box.Margin = new System.Windows.Forms.Padding(5);
             this.OralTestScore_Box.Name = "OralTestScore_Box";
             this.OralTestScore_Box.PasswordChar = '\0';
             this.OralTestScore_Box.PlaceholderText = "";
@@ -276,7 +276,7 @@
             this.MidTermTest_GroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.MidTermTest_GroupBox.ForeColor = System.Drawing.Color.White;
             this.MidTermTest_GroupBox.Location = new System.Drawing.Point(833, 103);
-            this.MidTermTest_GroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MidTermTest_GroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.MidTermTest_GroupBox.Name = "MidTermTest_GroupBox";
             this.MidTermTest_GroupBox.ShadowDecoration.Parent = this.MidTermTest_GroupBox;
             this.MidTermTest_GroupBox.Size = new System.Drawing.Size(380, 123);
@@ -310,7 +310,7 @@
             "Lần 3"});
             this.MidTermTestScore_ComboBox.ItemsAppearance.Parent = this.MidTermTestScore_ComboBox;
             this.MidTermTestScore_ComboBox.Location = new System.Drawing.Point(45, 64);
-            this.MidTermTestScore_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MidTermTestScore_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.MidTermTestScore_ComboBox.Name = "MidTermTestScore_ComboBox";
             this.MidTermTestScore_ComboBox.ShadowDecoration.Parent = this.MidTermTestScore_ComboBox;
             this.MidTermTestScore_ComboBox.Size = new System.Drawing.Size(185, 36);
@@ -341,7 +341,7 @@
             this.MidTermTestScore_Box.HoverState.Parent = this.MidTermTestScore_Box;
             this.MidTermTestScore_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
             this.MidTermTestScore_Box.Location = new System.Drawing.Point(245, 63);
-            this.MidTermTestScore_Box.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.MidTermTestScore_Box.Margin = new System.Windows.Forms.Padding(5);
             this.MidTermTestScore_Box.Name = "MidTermTestScore_Box";
             this.MidTermTestScore_Box.PasswordChar = '\0';
             this.MidTermTestScore_Box.PlaceholderText = "";
@@ -366,7 +366,7 @@
             this.RegularTest_GroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.RegularTest_GroupBox.ForeColor = System.Drawing.Color.White;
             this.RegularTest_GroupBox.Location = new System.Drawing.Point(425, 103);
-            this.RegularTest_GroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegularTest_GroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.RegularTest_GroupBox.Name = "RegularTest_GroupBox";
             this.RegularTest_GroupBox.ShadowDecoration.Parent = this.RegularTest_GroupBox;
             this.RegularTest_GroupBox.Size = new System.Drawing.Size(380, 123);
@@ -402,7 +402,7 @@
             "Lần 5"});
             this.RegularTestScore_ComboBox.ItemsAppearance.Parent = this.RegularTestScore_ComboBox;
             this.RegularTestScore_ComboBox.Location = new System.Drawing.Point(45, 64);
-            this.RegularTestScore_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegularTestScore_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.RegularTestScore_ComboBox.Name = "RegularTestScore_ComboBox";
             this.RegularTestScore_ComboBox.ShadowDecoration.Parent = this.RegularTestScore_ComboBox;
             this.RegularTestScore_ComboBox.Size = new System.Drawing.Size(185, 36);
@@ -433,7 +433,7 @@
             this.RegularTestScore_Box.HoverState.Parent = this.RegularTestScore_Box;
             this.RegularTestScore_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
             this.RegularTestScore_Box.Location = new System.Drawing.Point(245, 63);
-            this.RegularTestScore_Box.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.RegularTestScore_Box.Margin = new System.Windows.Forms.Padding(5);
             this.RegularTestScore_Box.Name = "RegularTestScore_Box";
             this.RegularTestScore_Box.PasswordChar = '\0';
             this.RegularTestScore_Box.PlaceholderText = "";
@@ -461,7 +461,7 @@
             this.DataGridViewImport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.DataGridViewImport_Button.HoverState.Parent = this.DataGridViewImport_Button;
             this.DataGridViewImport_Button.Location = new System.Drawing.Point(832, 39);
-            this.DataGridViewImport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataGridViewImport_Button.Margin = new System.Windows.Forms.Padding(4);
             this.DataGridViewImport_Button.Name = "DataGridViewImport_Button";
             this.DataGridViewImport_Button.ShadowDecoration.Parent = this.DataGridViewImport_Button;
             this.DataGridViewImport_Button.Size = new System.Drawing.Size(191, 44);
@@ -493,6 +493,7 @@
             this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GridView.ColumnHeadersHeight = 25;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.GridView.ColumnHeadersVisible = false;
             this.GridView.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
@@ -506,7 +507,7 @@
             this.GridView.EnableHeadersVisualStyles = false;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.GridView.Location = new System.Drawing.Point(0, 245);
-            this.GridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridView.Margin = new System.Windows.Forms.Padding(4);
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -563,7 +564,7 @@
             this.FullGridView_Button.HoverState.Parent = this.FullGridView_Button;
             this.FullGridView_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.FullGridView_Button.Location = new System.Drawing.Point(532, 39);
-            this.FullGridView_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FullGridView_Button.Margin = new System.Windows.Forms.Padding(4);
             this.FullGridView_Button.Name = "FullGridView_Button";
             this.FullGridView_Button.PressedDepth = 20;
             this.FullGridView_Button.ShadowDecoration.Parent = this.FullGridView_Button;
@@ -589,7 +590,7 @@
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Class_ComboBox);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GradeModify_SubTab";
             this.Size = new System.Drawing.Size(1232, 847);
             this.OralTest_GroupBox.ResumeLayout(false);
