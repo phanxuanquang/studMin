@@ -149,6 +149,12 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.Designer.cs">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Timetable_ Base.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Timetable_ Base.Designer.cs">
+      <DependentUpon>Timetable_ Base.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.resx">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timetable_ Base.resx">
+      <DependentUpon>Timetable_ Base.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
