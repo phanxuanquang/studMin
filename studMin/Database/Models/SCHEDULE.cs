@@ -12,26 +12,19 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SUBJECT
+    public partial class SCHEDULE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SUBJECT()
+        public SCHEDULE()
         {
-            this.SCOREs = new HashSet<SCORE>();
-            this.TEACHes = new HashSet<TEACH>();
             this.LESSONs = new HashSet<LESSON>();
         }
     
-        public System.Guid Id { get; set; }
-        public string DisplayName { get; set; }
-        public Nullable<System.Guid> IDHEADTEACHER { get; set; }
-        public Nullable<int> PASSSCORE { get; set; }
+        public System.Guid ID { get; set; }
+        public Nullable<System.DateTime> DATEAPPLY { get; set; }
+        public Nullable<int> SCHOOLYEAR { get; set; }
+        public Nullable<int> SEMESTER { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SCORE> SCOREs { get; set; }
-        public virtual TEACHER TEACHER { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TEACH> TEACHes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LESSON> LESSONs { get; set; }
     }

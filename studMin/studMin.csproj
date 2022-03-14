@@ -112,6 +112,9 @@
     <Compile Include="Database\Models\INFOR.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Models\LESSON.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Models\LIMIT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -131,6 +134,9 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\ROLESUBJECT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\SCHEDULE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\SCORE.cs">

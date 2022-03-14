@@ -41,5 +41,7 @@ namespace studMin.Database.Models
         public virtual DbSet<TRANSCRIPT> TRANSCRIPTs { get; set; }
         public virtual DbSet<USERROLE> USERROLEs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
+        public virtual DbSet<LESSON> LESSONs { get; set; }
+        public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
     }
 }

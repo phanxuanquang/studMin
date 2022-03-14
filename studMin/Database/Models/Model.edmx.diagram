@@ -41,6 +41,12 @@
         <AssociationConnector Association="StudMinDBModel.FK__TEACHER__IDTEACH__0D7A0286" ManuallyRouted="false" />
         <AssociationConnector Association="StudMinDBModel.FK__TEACHER__IDUSER__0C85DE4D" ManuallyRouted="false" />
         <AssociationConnector Association="StudMinDBModel.FK__USERS__IDUSERROL__08B54D69" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StudMinDBModel.LESSON" Width="1.5" PointX="15.5" PointY="12.125" />
+        <EntityTypeShape EntityType="StudMinDBModel.SCHEDULE" Width="1.5" PointX="13.25" PointY="5.75" />
+        <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDCLASS__245D67DE" />
+        <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDSCHEDU__25518C17" />
+        <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDSUBJEC__236943A5" />
+        <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDTEACHE__22751F6C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
