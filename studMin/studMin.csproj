@@ -227,6 +227,24 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.Designer.cs">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.Designer.cs">
+      <DependentUpon>Timetable_Tab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\StudentTimetable_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\StudentTimetable_SubTab.Designer.cs">
+      <DependentUpon>StudentTimetable_SubTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\TeacherTimetable_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\TeacherTimetable_SubTab.Designer.cs">
+      <DependentUpon>TeacherTimetable_SubTab.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +276,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.resx">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.resx">
+      <DependentUpon>Timetable_Tab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\SubTab\StudentTimetable_SubTab.resx">
+      <DependentUpon>StudentTimetable_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\SubTab\TeacherTimetable_SubTab.resx">
+      <DependentUpon>TeacherTimetable_SubTab.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Database\Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

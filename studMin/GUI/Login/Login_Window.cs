@@ -64,7 +64,6 @@ namespace studMin
         #region Buttons
         private void Login_Button_Click(object sender, EventArgs e)
         {
-            
             if (Username_Box.Text == String.Empty || Password_Box.Text == String.Empty)
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

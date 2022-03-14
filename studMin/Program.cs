@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,5 +20,19 @@ namespace studMin
             Application.Run(login_Window);
         }
         public static Login_Window login_Window = new Login_Window();
+        public static void loadTab(UserControl tab, Panel container, Guna2GradientButton button, Panel Badge)
+        {
+            Badge.Left = button.Location.X;
+
+            if (container.Controls.Contains(tab))
+            {
+                tab.BringToFront();
+            }
+            else
+            {
+                container.Controls.Add(tab);
+                tab.BringToFront();
+            }
+        }
     }
 }
