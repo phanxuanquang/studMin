@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-
+using studMin.Database.LoginServices;
 namespace studMin
 {
     public partial class Login_Window : Form
@@ -68,11 +68,11 @@ namespace studMin
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if(isValidAccount(Username_Box.Text, Password_Box.Text))
+            else if(LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text))
             {
                 this.Hide();
                 this.ShowIcon = this.ShowInTaskbar = false;
-
+                // add check role here !
                 MainWinfow mainWinfow = new MainWinfow();
                 mainWinfow.ShowDialog();
             }
