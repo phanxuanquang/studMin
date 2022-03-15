@@ -158,6 +158,9 @@ namespace studMin
             {
                 try
                 {
+                    CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                    cm.SuspendBinding();
+
                     for (int i = 0; i < GridView.RowCount; i++)
                     {
                         if (GridView.Rows[i].Cells[0].Value != null && 
@@ -165,19 +168,17 @@ namespace studMin
                             GridView.Rows[i].Cells[0].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || 
                             GridView.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
                         {
-                            CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
-                            cm.SuspendBinding();
+                            
                             GridView.Rows[i].Visible = true;
-                            cm.ResumeBinding();
+                            
                         }
                         else
                         {
-                            CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
-                            cm.SuspendBinding();
                             GridView.Rows[i].Visible = false;
-                            cm.ResumeBinding();
                         }
                     }
+
+                    cm.ResumeBinding();
                 }
                 catch (Exception ex)
                 {
