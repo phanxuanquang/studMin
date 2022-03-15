@@ -122,7 +122,7 @@
             this.Username_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Username_Box.Name = "Username_Box";
             this.Username_Box.PasswordChar = '\0';
-            this.Username_Box.PlaceholderText = " Tên đăng nhập";
+            this.Username_Box.PlaceholderText = " Mã định danh";
             this.Username_Box.SelectedText = "";
             this.Username_Box.ShadowDecoration.BorderRadius = 12;
             this.Username_Box.ShadowDecoration.Depth = 5;

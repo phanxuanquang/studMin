@@ -29,7 +29,7 @@ namespace studMin
             }
         }
 
-        private void Login_Window_Load(object sender, EventArgs e)
+        bool isInternetAvailable()
         {
             try
             {
@@ -37,28 +37,22 @@ namespace studMin
                 {
                     using (client.OpenRead("http://google.com/generate_204"))
                     {
-                        return;
+                        return true;
                     }
                 }
             }
             catch
             {
-                MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Application.Exit();
+                return false;
             }
         }
 
-        bool isValidAccount(string username, string password)
+        private void Login_Window_Load(object sender, EventArgs e)
         {
-            try
+            if (!isInternetAvailable())
             {
-
+                MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi kết nối đến hệ thống.\nNội dung lỗi: " + ex.Message, "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            return true;
         }
 
         #region Buttons
@@ -68,13 +62,25 @@ namespace studMin
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if(LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text))
+            else if (isInternetAvailable())
             {
-                this.Hide();
-                this.ShowIcon = this.ShowInTaskbar = false;
-                // add check role here !
-                MainWinfow mainWinfow = new MainWinfow();
-                mainWinfow.ShowDialog();
+                if (LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text))
+                {
+                    this.Hide();
+                    this.ShowIcon = this.ShowInTaskbar = false;
+                    // add check role here !
+                    MainWinfow mainWinfow = new MainWinfow();
+                    mainWinfow.ShowDialog();
+                }
+                else
+                {
+                    Username_Box.Text = Password_Box.Text = String.Empty;
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác.\nVui lòng điền lại thông tin đăng nhập.", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
