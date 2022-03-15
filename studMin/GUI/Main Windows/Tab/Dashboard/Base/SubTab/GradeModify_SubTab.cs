@@ -93,7 +93,7 @@ namespace studMin
                                     int flagOralTest = 0, flagFifteenMinutes = 0;
                                     foreach (IXLCell cell in row.Cells())
                                     {
-                                        if (cell.Value.ToString() != String.Empty)
+                                        if (!cell.IsEmpty())
                                         {
                                             if (i == 0 || i == 1)
                                             {
@@ -101,9 +101,6 @@ namespace studMin
                                             }
                                             else if (i >= 2 && i <= 6)
                                             {
-                                                MessageBox.Show(i.ToString());
-                                                MessageBox.Show(cell.Value.ToString());
-
                                                 oralTest += Double.Parse(cell.Value.ToString());
                                                 flagOralTest++;
                                             }
@@ -155,7 +152,7 @@ namespace studMin
         {
             if (Class_ComboBox.Text != "Mọi lớp")
             {
-                MessageBox.Show("Bận phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Bạn phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -163,13 +160,22 @@ namespace studMin
                 {
                     for (int i = 0; i < GridView.RowCount; i++)
                     {
-                        if (GridView.Rows[i].Cells[0].Value != null && GridView.Rows[i].Cells[1].Value != null && GridView.Rows[i].Cells[0].Value.ToString().ToLower() == Search_Box.Text.ToLower() || GridView.Rows[i].Cells[1].Value.ToString().ToLower() == Search_Box.Text.ToLower())
+                        if (GridView.Rows[i].Cells[0].Value != null && 
+                            GridView.Rows[i].Cells[1].Value != null && 
+                            GridView.Rows[i].Cells[0].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || 
+                            GridView.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
                         {
+                            CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                            cm.SuspendBinding();
                             GridView.Rows[i].Visible = true;
+                            cm.ResumeBinding();
                         }
                         else
                         {
+                            CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                            cm.SuspendBinding();
                             GridView.Rows[i].Visible = false;
+                            cm.ResumeBinding();
                         }
                     }
                 }
