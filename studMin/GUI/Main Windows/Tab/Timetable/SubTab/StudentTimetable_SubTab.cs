@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -115,6 +116,67 @@ namespace studMin
             }
 
             scheduleStudent.Close(exportPath);
+        }
+
+        private void TimetableImport_Button_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image Files| *.xlsc; *.xls; *.xlsm; *.xlsx", Multiselect = false })
+            {
+                try
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+                        DataTable dt = new DataTable();
+
+                        dt.Columns.Add("Tiết học");
+                        dt.Columns.Add("Thứ hai");
+                        dt.Columns.Add("Thứ ba");
+                        dt.Columns.Add("Thứ tư");
+                        dt.Columns.Add("Thứ năm");
+                        dt.Columns.Add("Thứ sáu");
+                        dt.Columns.Add("Thứ bảy");
+
+                        using (XLWorkbook workBook = new XLWorkbook(ofd.FileName))
+                        {
+                            int flag = 0;
+                            var rows = workBook.Worksheet(1).RowsUsed();
+
+                            foreach (var row in rows)
+                            {
+                                if (flag >= 4)
+                                {
+                                    dt.Rows.Add();
+                                    int i = 0;
+
+                                    foreach (IXLCell cell in row.Cells())
+                                    {
+                                        if (!cell.IsEmpty())
+                                        {
+                                            if (i >= 1)
+                                            {
+                                                MessageBox.Show(cell.Value.ToString());
+                                                dt.Rows[dt.Rows.Count - 1][i-1] = cell.Value.ToString();
+                                            }
+                                        }
+
+                                        i++;
+                                    }
+                                }
+
+                                flag++;
+                            }
+
+                            Timetable_GridView.DataSource = dt.DefaultView;
+                            Cursor.Current = Cursors.Default;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
