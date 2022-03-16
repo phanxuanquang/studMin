@@ -27,10 +27,10 @@ namespace studMin
                 return;
             }
 
-            studMin.Action.Excel.ScheduleTeacher scheduleTeacher = new studMin.Action.Excel.ScheduleTeacher();
+            studMin.Action.Excel.ScheduleAllTeacher ScheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
 
 
-            Action.Excel.ScheduleTeacher.Info info = new Action.Excel.ScheduleTeacher.Info()
+            Action.Excel.ScheduleAllTeacher.Info info = new Action.Excel.ScheduleAllTeacher.Info()
             {
                 //Dữ liệu mẫu
                 BieuMauSo = 1,
@@ -40,12 +40,12 @@ namespace studMin
                 Truong = "Trường THPT Di Linh",
             };
 
-            scheduleTeacher.InsertInfo(info);
+            ScheduleAllTeacher.InsertInfo(info);
 
-            List<Action.Excel.ScheduleTeacher.Item> list = new List<Action.Excel.ScheduleTeacher.Item>()
+            List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>()
             {
                 //Dữ liệu mẫu
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Kim Phượng",
                     Buoi="M",
@@ -55,7 +55,7 @@ namespace studMin
                     MonHoc="Toán",
                     NgayHoc=DateTime.Parse("14/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Kim Liên",
                     Buoi="A",
@@ -65,7 +65,7 @@ namespace studMin
                     MonHoc="Văn",
                     NgayHoc=DateTime.Parse("15/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Hoàng Lân",
                     Buoi="M",
@@ -75,7 +75,7 @@ namespace studMin
                     MonHoc="Anh",
                     NgayHoc=DateTime.Parse("14/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Võ Thanh Minh",
                     Buoi="M",
@@ -85,7 +85,7 @@ namespace studMin
                     MonHoc="Địa",
                     NgayHoc=DateTime.Parse("15/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Trần Phan Anh Đức",
                     Buoi="A",
@@ -95,7 +95,7 @@ namespace studMin
                     MonHoc="Sinh",
                     NgayHoc=DateTime.Parse("16/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Lý Hoàng Phi",
                     Buoi="M",
@@ -105,7 +105,7 @@ namespace studMin
                     MonHoc="Lý",
                     NgayHoc=DateTime.Parse("14/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Cao Liên Thi",
                     Buoi="A",
@@ -115,7 +115,7 @@ namespace studMin
                     MonHoc="Toán",
                     NgayHoc=DateTime.Parse("15/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Phạm Võ Anh Thi",
                     Buoi="A",
@@ -127,12 +127,12 @@ namespace studMin
                 }
             };
 
-            foreach (Action.Excel.ScheduleTeacher.Item item in list)
+            foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
             {
-                scheduleTeacher.InsertItem(item);
+                ScheduleAllTeacher.InsertItem(item);
             }
 
-            scheduleTeacher.Close(exportPath);
+            ScheduleAllTeacher.Close(exportPath);
         }
     }
 }
