@@ -27,6 +27,10 @@ namespace studMin
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 exportPath = saveFileDialog.FileName;
+            } 
+            else
+            {
+                return;
             }
 
             studMin.Action.Excel.ScheduleStudent scheduleStudent = new studMin.Action.Excel.ScheduleStudent();

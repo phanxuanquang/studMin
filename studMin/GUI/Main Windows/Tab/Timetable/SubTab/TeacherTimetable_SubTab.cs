@@ -28,6 +28,10 @@ namespace studMin
             {
                 exportPath = saveFileDialog.FileName;
             }
+            else
+            {
+                return;
+            }
 
             studMin.Action.Excel.ScheduleTeacher scheduleTeacher = new studMin.Action.Excel.ScheduleTeacher();
 
