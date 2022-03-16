@@ -207,14 +207,23 @@ namespace studMin.Action.Excel
             Microsoft.Office.Interop.Excel.Range oRng = sheet.Range["D3"];
             oRng.EntireColumn.Insert(Microsoft.Office.Interop.Excel.XlInsertShiftDirection.xlShiftToRight, Microsoft.Office.Interop.Excel.XlInsertFormatOrigin.xlFormatFromRightOrBelow);
             sheet.get_Range("D3").Value = nameClass;
-            for (int index = StartRowClass; index <= EndRowClass; index++)
+            Range formatCell = sheet.get_Range("D" + StartRowClass + ":" + "D" + EndRowClass);
+            formatCell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+            formatCell.Borders.LineStyle = XlLineStyle.xlLineStyleNone;
+            formatCell.Borders[XlBordersIndex.xlEdgeRight].LineStyle = XlLineStyle.xlContinuous;
+
+            for (int index = StartRowClass; index <= EndRowClass; index += 10)
             {
-                sheet.Cells[index, StartColumnClass].Borders[XlBordersIndex.xlEdgeRight].LineStyle = XlLineStyle.xlContinuous;
-                if (index % 10 != 4)
+                if (index % 10 == 4)
                 {
-                    sheet.Cells[index, StartColumnClass].Borders[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlLineStyleNone;
+                    sheet.Cells[index, StartColumnClass].Borders[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlContinuous;
+                    sheet.Cells[index, StartColumnClass].Borders[XlBordersIndex.xlEdgeTop].Weight = XlBorderWeight.xlMedium;
                 }
             }
+
+            //Sửa không có border ở cuối bảng
+            sheet.Cells[EndRowClass, StartColumnClass].Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
+            sheet.Cells[EndRowClass, StartColumnClass].Borders[XlBordersIndex.xlEdgeBottom].Weight = XlBorderWeight.xlMedium;
         }
 
         private bool CheckExist(int startIndex, int offset, string lop)
@@ -329,12 +338,13 @@ namespace studMin.Action.Excel
                             sheet.get_Range(columnName + startIndexRow.ToString()).Borders[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlContinuous;
                         }
 
-                        sheet.get_Range(columnName + startIndexRow.ToString()).Value = newItem.MonHoc;
-                        sheet.get_Range(columnName + (startIndexRow + 1).ToString()).Value = newItem.GiaoVien;
+                        sheet.get_Range(columnName + startIndexRow.ToString() + ":" + columnName + (startIndexRow + offset - 1).ToString()).Merge();
+
+                        sheet.get_Range(columnName + startIndexRow.ToString()).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Transparent);
+                        sheet.get_Range(columnName + startIndexRow.ToString()).Value = newItem.MonHoc + "\n" + newItem.GiaoVien;
 
                         if (newItem.TietBatDau + newItem.TietKeoDai < MaxPeriod + 1)
                         {
-
                             sheet.get_Range(columnName + (startIndexRow + offset - 1).ToString()).Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
                         }
                         data.Add(newItem);

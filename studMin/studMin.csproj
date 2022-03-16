@@ -115,6 +115,7 @@
     <Compile Include="Action\Excel\ScheduleStudent.cs" />
     <Compile Include="Action\Excel\ScheduleTeacher.cs" />
     <Compile Include="Action\Excel\StoragePath.cs" />
+    <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
     <Compile Include="Database\DataProvider.cs" />
     <Compile Include="Database\LoginServices\Hash.cs" />
