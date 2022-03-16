@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -154,7 +155,19 @@ namespace studMin.Action.Excel
 
                 string columnName = GetExcelColumnName(startIndexColumn);
 
+                if (clone.TietBatDau != 1)
+                {
+                    sheet.get_Range(columnName + startIndexRow.ToString()).Borders[XlBordersIndex.xlEdgeTop].LineStyle = XlLineStyle.xlContinuous;
+                }
+
+                sheet.get_Range(columnName + startIndexRow.ToString() + ":" + columnName + (startIndexRow + clone.TietKeoDai - 1).ToString()).Merge();
+                sheet.get_Range(columnName + startIndexRow.ToString()).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Transparent);
                 sheet.get_Range(columnName + startIndexRow.ToString()).Value = clone.MonHoc;
+
+                if (clone.TietBatDau + clone.TietKeoDai < MaxPeriod + 1)
+                {
+                    sheet.get_Range(columnName + (startIndexRow + clone.TietKeoDai - 1).ToString()).Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
+                }
             }
             catch
             {
