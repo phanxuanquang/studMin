@@ -155,7 +155,6 @@ namespace studMin
                                         {
                                             if (i >= 1)
                                             {
-                                                MessageBox.Show(cell.Value.ToString());
                                                 dt.Rows[dt.Rows.Count - 1][i-1] = cell.Value.ToString();
                                             }
                                         }
