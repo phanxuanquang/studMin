@@ -66,8 +66,8 @@
             this.Username_Box.HoverState.Parent = this.Username_Box;
             this.Username_Box.IconLeft = ((System.Drawing.Image)(resources.GetObject("Username_Box.IconLeft")));
             this.Username_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Username_Box.Location = new System.Drawing.Point(50, 386);
-            this.Username_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Username_Box.Location = new System.Drawing.Point(100, 742);
+            this.Username_Box.Margin = new System.Windows.Forms.Padding(8);
             this.Username_Box.Name = "Username_Box";
             this.Username_Box.PasswordChar = '\0';
             this.Username_Box.PlaceholderText = " Mã định danh";
@@ -76,7 +76,7 @@
             this.Username_Box.ShadowDecoration.Depth = 5;
             this.Username_Box.ShadowDecoration.Parent = this.Username_Box;
             this.Username_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Username_Box.Size = new System.Drawing.Size(340, 47);
+            this.Username_Box.Size = new System.Drawing.Size(680, 90);
             this.Username_Box.TabIndex = 0;
             this.Username_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
@@ -104,8 +104,8 @@
             this.Password_Box.IconLeft = ((System.Drawing.Image)(resources.GetObject("Password_Box.IconLeft")));
             this.Password_Box.IconLeftOffset = new System.Drawing.Point(9, 0);
             this.Password_Box.IconLeftSize = new System.Drawing.Size(18, 18);
-            this.Password_Box.Location = new System.Drawing.Point(50, 456);
-            this.Password_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Password_Box.Location = new System.Drawing.Point(100, 877);
+            this.Password_Box.Margin = new System.Windows.Forms.Padding(8);
             this.Password_Box.Name = "Password_Box";
             this.Password_Box.PasswordChar = '\0';
             this.Password_Box.PlaceholderText = " Mật khẩu";
@@ -114,7 +114,7 @@
             this.Password_Box.ShadowDecoration.Depth = 5;
             this.Password_Box.ShadowDecoration.Parent = this.Password_Box;
             this.Password_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Password_Box.Size = new System.Drawing.Size(340, 47);
+            this.Password_Box.Size = new System.Drawing.Size(680, 90);
             this.Password_Box.TabIndex = 1;
             this.Password_Box.TextOffset = new System.Drawing.Point(3, 0);
             this.Password_Box.UseSystemPasswordChar = true;
@@ -131,10 +131,11 @@
             this.Login_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Login_Button.ForeColor = System.Drawing.Color.White;
             this.Login_Button.HoverState.Parent = this.Login_Button;
-            this.Login_Button.Location = new System.Drawing.Point(50, 540);
+            this.Login_Button.Location = new System.Drawing.Point(100, 1038);
+            this.Login_Button.Margin = new System.Windows.Forms.Padding(6);
             this.Login_Button.Name = "Login_Button";
             this.Login_Button.ShadowDecoration.Parent = this.Login_Button;
-            this.Login_Button.Size = new System.Drawing.Size(340, 47);
+            this.Login_Button.Size = new System.Drawing.Size(680, 90);
             this.Login_Button.TabIndex = 2;
             this.Login_Button.Text = "ĐĂNG NHẬP";
             this.Login_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -147,9 +148,10 @@
             this.ForgetPassword_LinkLabel.BackColor = System.Drawing.Color.Transparent;
             this.ForgetPassword_LinkLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ForgetPassword_LinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.ForgetPassword_LinkLabel.Location = new System.Drawing.Point(297, 510);
+            this.ForgetPassword_LinkLabel.Location = new System.Drawing.Point(594, 981);
+            this.ForgetPassword_LinkLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.ForgetPassword_LinkLabel.Name = "ForgetPassword_LinkLabel";
-            this.ForgetPassword_LinkLabel.Size = new System.Drawing.Size(94, 19);
+            this.ForgetPassword_LinkLabel.Size = new System.Drawing.Size(187, 34);
             this.ForgetPassword_LinkLabel.TabIndex = 4;
             this.ForgetPassword_LinkLabel.TabStop = true;
             this.ForgetPassword_LinkLabel.Text = "Quên mật khẩu";
@@ -171,10 +173,11 @@
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(50, 605);
+            this.Exit_Button.Location = new System.Drawing.Point(100, 1163);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(6);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(340, 47);
+            this.Exit_Button.Size = new System.Drawing.Size(680, 90);
             this.Exit_Button.TabIndex = 5;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -199,9 +202,10 @@
             this.RememberLogin_CheckBox.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.RememberLogin_CheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RememberLogin_CheckBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.RememberLogin_CheckBox.Location = new System.Drawing.Point(55, 509);
+            this.RememberLogin_CheckBox.Location = new System.Drawing.Point(110, 979);
+            this.RememberLogin_CheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.RememberLogin_CheckBox.Name = "RememberLogin_CheckBox";
-            this.RememberLogin_CheckBox.Size = new System.Drawing.Size(155, 18);
+            this.RememberLogin_CheckBox.Size = new System.Drawing.Size(310, 35);
             this.RememberLogin_CheckBox.TabIndex = 8;
             this.RememberLogin_CheckBox.Text = " Ghi nhớ đăng nhập";
             this.RememberLogin_CheckBox.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -238,18 +242,19 @@
             this.forgetPassword_UC1.BackColor = System.Drawing.Color.Transparent;
             this.forgetPassword_UC1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("forgetPassword_UC1.BackgroundImage")));
             this.forgetPassword_UC1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.forgetPassword_UC1.Location = new System.Drawing.Point(0, 659);
+            this.forgetPassword_UC1.Location = new System.Drawing.Point(0, 1267);
+            this.forgetPassword_UC1.Margin = new System.Windows.Forms.Padding(12);
             this.forgetPassword_UC1.Name = "forgetPassword_UC1";
-            this.forgetPassword_UC1.Size = new System.Drawing.Size(440, 351);
+            this.forgetPassword_UC1.Size = new System.Drawing.Size(880, 675);
             this.forgetPassword_UC1.TabIndex = 6;
             // 
             // Login_Window
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::studMin.Properties.Resources.Login_BG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(440, 720);
+            this.ClientSize = new System.Drawing.Size(880, 1385);
             this.Controls.Add(this.RememberLogin_CheckBox);
             this.Controls.Add(this.forgetPassword_UC1);
             this.Controls.Add(this.Exit_Button);
@@ -260,6 +265,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Login_Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "studMin - Đăng nhập";
@@ -284,4 +290,3 @@
         private ForgetPassword_UC forgetPassword_UC1;
     }
 }
-
