@@ -120,7 +120,7 @@ namespace studMin
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Image Files| *.xlsc; *.xls; *.xlsm; *.xlsx", Multiselect = false })
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel Files| *.xlsc; *.xls; *.xlsm; *.xlsx", Multiselect = false })
             {
                 try
                 {
@@ -161,6 +161,11 @@ namespace studMin
 
                                         i++;
                                     }
+                                }
+
+                                if (flag == 8)
+                                {
+                                    dt.Rows.Add();
                                 }
 
                                 flag++;
