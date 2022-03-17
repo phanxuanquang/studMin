@@ -238,6 +238,26 @@ namespace studMin.Action.Excel
             }
         }
 
+        private void InsertColumn(List<double> values, ref string columnName, ref int indexColumn, int lastRow, int MaxMark)
+        {
+            if (values != null)
+            {
+                int counts = values.Count;
+                for (int index = 0; index < MaxMark; index++)
+                {
+                    columnName = GetExcelColumnName(indexColumn++);
+                    if (counts > index)
+                    {
+                        sheet.get_Range(columnName + lastRow.ToString()).Value = values[index];
+                    }
+                    else
+                    {
+                        sheet.get_Range(columnName + lastRow.ToString()).Value = null;
+                    }
+                }
+            }
+        }
+
         public override void InsertItem(dynamic item)
         {
             Item clone = item as Item;
@@ -256,61 +276,13 @@ namespace studMin.Action.Excel
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.HoTen;
 
                 List<double> values = clone.DiemMieng;
-
-                if (values != null)
-                {
-                    int counts = values.Count;
-                    for (int index = 0; index < Item.MaxOralMark; index++)
-                    {
-                        columnName = GetExcelColumnName(indexColumn++);
-                        if (counts > index)
-                        {
-                            sheet.get_Range(columnName + lastRow.ToString()).Value = values[index];
-                        }
-                        else
-                        {
-                            sheet.get_Range(columnName + lastRow.ToString()).Value = null;
-                        }
-                    }
-                }
+                InsertColumn(values, ref columnName, ref indexColumn, lastRow, Item.MaxOralMark);
 
                 values = clone.Diem15Phut;
-
-                if (values != null)
-                {
-                    int counts = values.Count;
-                    for (int index = 0; index < Item.MaxRegularMark; index++)
-                    {
-                        columnName = GetExcelColumnName(indexColumn++);
-                        if (counts > index)
-                        {
-                            sheet.get_Range(columnName + lastRow.ToString()).Value = values[index];
-                        }
-                        else
-                        {
-                            sheet.get_Range(columnName + lastRow.ToString()).Value = null;
-                        }
-                    }
-                }
+                InsertColumn(values, ref columnName, ref indexColumn, lastRow, Item.MaxRegularMark);
 
                 values = clone.Diem1Tiet;
-
-                if (values != null)
-                {
-                    int counts = values.Count;
-                    for (int index = 0; index < Item.MaxMidTermMark; index++)
-                    {
-                        columnName = GetExcelColumnName(indexColumn++);
-                        if (counts > index)
-                        {
-                            sheet.get_Range(columnName + lastRow.ToString()).Value = values[index];
-                        }
-                        else
-                        {
-                            sheet.get_Range(columnName + lastRow.ToString()).Value = null;
-                        }
-                    }
-                }
+                InsertColumn(values, ref columnName, ref indexColumn, lastRow, Item.MaxMidTermMark);
 
                 columnName = GetExcelColumnName(indexColumn++);
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.DiemCuoiKy;
