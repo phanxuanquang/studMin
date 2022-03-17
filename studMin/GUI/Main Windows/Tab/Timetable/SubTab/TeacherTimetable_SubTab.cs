@@ -27,9 +27,6 @@ namespace studMin
                 return;
             }
 
-            studMin.Action.Excel.ScheduleAllTeacher ScheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
-
-
             Action.Excel.ScheduleAllTeacher.Info info = new Action.Excel.ScheduleAllTeacher.Info()
             {
                 //Dữ liệu mẫu
@@ -39,8 +36,6 @@ namespace studMin
                 NamHoc = "2022 - 2023",
                 Truong = "Trường THPT Di Linh",
             };
-
-            ScheduleAllTeacher.InsertInfo(info);
 
             List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>()
             {
@@ -127,12 +122,24 @@ namespace studMin
                 }
             };
 
-            foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
+            this.BeginInvoke(new System.Action(() =>
             {
-                ScheduleAllTeacher.InsertItem(item);
-            }
+                studMin.Action.Excel.ScheduleAllTeacher ScheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
 
-            ScheduleAllTeacher.Close(exportPath);
+                ScheduleAllTeacher.InsertInfo(info);
+
+                foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
+                {
+                    ScheduleAllTeacher.InsertItem(item);
+                }
+
+                ScheduleAllTeacher.ShowExcel();
+                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    ScheduleAllTeacher.ShowPrintPreview();
+                }
+                //ScheduleAllTeacher.Close(exportPath);
+            }));
         }
     }
 }
