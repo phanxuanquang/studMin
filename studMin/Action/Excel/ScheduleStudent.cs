@@ -61,7 +61,7 @@ namespace studMin.Action.Excel
             private DateTime dateApply;
             private string msg;
 
-            public Info(ScheduleTeacher.Info info = null)
+            public Info(ScheduleAllTeacher.Info info = null)
             {
                 if (info == null) return;
                 startYear = Convert.ToInt32(info.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0]);
@@ -107,12 +107,12 @@ namespace studMin.Action.Excel
             }
         }
 
-        List<ScheduleTeacher.Item> data;
+        List<ScheduleAllTeacher.Item> data;
 
         public ScheduleStudent()
         {
             this.template = StoragePath.TemplateScheduleStudent;
-            data = new List<ScheduleTeacher.Item>();
+            data = new List<ScheduleAllTeacher.Item>();
             InitExcel();
         }
 
@@ -144,7 +144,7 @@ namespace studMin.Action.Excel
 
         public override void InsertItem(dynamic item)
         {
-            ScheduleTeacher.Item clone = item as ScheduleTeacher.Item;
+            ScheduleAllTeacher.Item clone = item as ScheduleAllTeacher.Item;
 
             try
             {

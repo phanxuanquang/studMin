@@ -46,9 +46,9 @@ namespace studMin
             };
             scheduleStudent.InsertInfo(info);
 
-            List<Action.Excel.ScheduleTeacher.Item> list = new List<Action.Excel.ScheduleTeacher.Item>()
+            List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>()
             {
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Kim Phượng",
                     Buoi="M",
@@ -58,7 +58,7 @@ namespace studMin
                     MonHoc="Toán",
                     NgayHoc=DateTime.Parse("14/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Kim Liên",
                     Buoi="A",
@@ -68,7 +68,7 @@ namespace studMin
                     MonHoc="Văn",
                     NgayHoc=DateTime.Parse("15/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Lý Hoàng Phi",
                     Buoi="M",
@@ -78,7 +78,7 @@ namespace studMin
                     MonHoc="Lý",
                     NgayHoc=DateTime.Parse("14/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Kim Phượng",
                     Buoi="M",
@@ -88,7 +88,7 @@ namespace studMin
                     MonHoc="Toán",
                     NgayHoc=DateTime.Parse("17/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Nguyễn Kim Liên",
                     Buoi="A",
@@ -98,7 +98,7 @@ namespace studMin
                     MonHoc="Văn",
                     NgayHoc=DateTime.Parse("15/3/2022")
                 },
-                new Action.Excel.ScheduleTeacher.Item()
+                new Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien="Lý Hoàng Phi",
                     Buoi="M",
@@ -110,7 +110,7 @@ namespace studMin
                 },
             };
 
-            foreach (Action.Excel.ScheduleTeacher.Item item in list)
+            foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
             {
                 scheduleStudent.InsertItem(item);
             }

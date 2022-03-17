@@ -19,8 +19,6 @@ namespace studMin.Action.Excel
         protected void InitExcel()
         {
             excel = new Microsoft.Office.Interop.Excel.Application();
-            excel.Visible = true;
-            //excel.EditDirectlyInCell = false;
             workbook = excel.Workbooks.Open(template);
             sheet = excel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
         }
@@ -41,6 +39,27 @@ namespace studMin.Action.Excel
             }
 
             return columnName;
+        }
+
+        public void ShowExcel()
+        {
+            if (excel != null && sheet != null)
+            {
+                sheet.Protect("doanxempassword");
+                excel.Visible = true;
+                excel.EditDirectlyInCell = false;
+            }
+        }
+
+        public void ShowPrintPreview()
+        {
+            if (excel != null && sheet != null)
+            {
+                sheet.PageSetup.Zoom = false;
+                sheet.PageSetup.PaperSize = XlPaperSize.xlPaperA3;
+                sheet.PageSetup.FitToPagesTall = 1;
+                sheet.PrintPreview();
+            }
         }
 
         public void Close(string exportPath)

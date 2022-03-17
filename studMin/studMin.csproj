@@ -35,11 +35,13 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,6 +115,7 @@
     <Compile Include="Action\Excel\CommonExcel.cs" />
     <Compile Include="Action\Excel\ListStudent.cs" />
     <Compile Include="Action\Excel\ScheduleStudent.cs" />
+    <Compile Include="Action\Excel\ScheduleAllTeacher.cs" />
     <Compile Include="Action\Excel\ScheduleTeacher.cs" />
     <Compile Include="Action\Excel\StoragePath.cs" />
     <Compile Include="Action\Excel\Subject.cs" />
