@@ -12,6 +12,7 @@ namespace studMin
 {
     public partial class Login_Window : Form
     {
+        role personRole;
         public Login_Window()
         {
             InitializeComponent();
@@ -69,7 +70,9 @@ namespace studMin
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
                     // add check role here !
-                    MainWinfow mainWinfow = new MainWinfow();
+                    personRole = role.classHead; // example
+
+                    MainWinfow mainWinfow = new MainWinfow(personRole);
                     mainWinfow.ShowDialog();
                 }
                 else
@@ -96,5 +99,9 @@ namespace studMin
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
         #endregion
+    }
+    public enum role
+    {
+        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff
     }
 }

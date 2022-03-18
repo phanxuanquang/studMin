@@ -21,7 +21,7 @@ namespace studMin
 
         private void MoralQualify_Button_Click(object sender, EventArgs e)
         {
-            Program.loadTab(studentMoralQualify_SubTab, ContainerPanel, MoralQualify_Button, this.Badge);
+            Program.loadTab(studentMoralQualify_SubTab, ContainerPanel, Specialized_Button, this.Badge);
         }
     }
 }

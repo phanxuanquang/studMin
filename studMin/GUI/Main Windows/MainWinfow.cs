@@ -12,18 +12,38 @@ namespace studMin
 {
     public partial class MainWinfow : Form
     {
-        ClassHeadTeacherDashboard classHeadTeacherDashboard;
+        TeacherDashboard_Base Dashboard;
         Timetable_Tab timetable_Tab;
-        public MainWinfow()
+        public MainWinfow(role personRole)
         {
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
             this.Icon = Properties.Resources.studMin_Icon;
 
-            classHeadTeacherDashboard = new ClassHeadTeacherDashboard();
-            timetable_Tab = new Timetable_Tab();
-
-            LoadMainTab(classHeadTeacherDashboard);
+            switch (personRole)
+            {
+                case role.classHead:
+                    Dashboard = new ClassHeadTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.subjectHead:
+                    Dashboard = new SubjectHeadTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.principal:
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.vicePrincipal:
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.normalTeacher:
+                    Dashboard = new NormalTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                default: // office staff
+                    break;
+            }
+            LoadMainTab(Dashboard);
         }
 
         void LoadMainTab(UserControl tab)
@@ -75,7 +95,7 @@ namespace studMin
 
         private void Dashboard_MenuButton_Click(object sender, EventArgs e)
         {
-            LoadMainTab(classHeadTeacherDashboard);
+            LoadMainTab(Dashboard);
         }
     }
 }
