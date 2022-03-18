@@ -1,6 +1,6 @@
 ﻿namespace studMin
 {
-    partial class ClassHeadTeacherDashboard
+    partial class SubjectHeadTeacherDashboard
     {
         /// <summary> 
         /// Required designer variable.
@@ -87,7 +87,7 @@
             this.menuBar.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
             this.menuBar.ShadowDecoration.Parent = this.menuBar;
             // 
-            // MoralQualify_Button
+            // Specialized_Button
             // 
             this.Specialized_Button.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.DefaultButton;
             this.Specialized_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
@@ -102,15 +102,16 @@
             this.Specialized_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Specialized_Button.Location = new System.Drawing.Point(480, 0);
             this.Specialized_Button.ShadowDecoration.Parent = this.Specialized_Button;
+            this.Specialized_Button.Text = "HIỆU CHỈNH";
             this.Specialized_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Specialized_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
-            this.Specialized_Button.Click += new System.EventHandler(this.MoralQualify_Button_Click);
+            this.Specialized_Button.Click += new System.EventHandler(this.Other_Button_Click);
             // 
-            // ClassHeadTeacherDashboard
+            // SubjectHeadTeacherDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ClassHeadTeacherDashboard";
+            this.Name = "SubjectHeadTeacherDashboard";
             this.menuBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
