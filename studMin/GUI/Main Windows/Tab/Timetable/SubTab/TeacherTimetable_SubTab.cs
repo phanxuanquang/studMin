@@ -48,7 +48,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Toán",
-                    NgayHoc=DateTime.Parse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -58,7 +58,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Văn",
-                    NgayHoc=DateTime.Parse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -68,7 +68,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A3",
                     MonHoc="Anh",
-                    NgayHoc=DateTime.Parse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -78,7 +78,7 @@ namespace studMin
                     TietKeoDai=1,
                     Lop="10A3",
                     MonHoc="Địa",
-                    NgayHoc=DateTime.Parse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -88,7 +88,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A3",
                     MonHoc="Sinh",
-                    NgayHoc=DateTime.Parse("16/3/2022")
+                    NgayHoc=Methods.TryParse("16/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -98,7 +98,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Lý",
-                    NgayHoc=DateTime.Parse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -108,7 +108,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A3",
                     MonHoc="Toán",
-                    NgayHoc=DateTime.Parse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -118,27 +118,29 @@ namespace studMin
                     TietKeoDai=1,
                     Lop="10A3",
                     MonHoc="GDCN",
-                    NgayHoc=DateTime.Parse("16/3/2022")
+                    NgayHoc=Methods.TryParse("16/3/2022")
                 }
             };
 
             this.BeginInvoke(new System.Action(() =>
             {
-                studMin.Action.Excel.ScheduleAllTeacher ScheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
+                studMin.Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
 
-                ScheduleAllTeacher.InsertInfo(info);
+                scheduleAllTeacher.InsertInfo(info);
 
                 foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
                 {
-                    ScheduleAllTeacher.InsertItem(item);
+                    scheduleAllTeacher.InsertItem(item);
                 }
 
-                ScheduleAllTeacher.ShowExcel();
+                scheduleAllTeacher.ShowExcel();
+
                 if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    ScheduleAllTeacher.ShowPrintPreview();
+                    scheduleAllTeacher.ShowPrintPreview();
                 }
-                //ScheduleAllTeacher.Close(exportPath);
+
+                scheduleAllTeacher.Close(exportPath);
             }));
         }
     }

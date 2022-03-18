@@ -283,7 +283,7 @@ namespace studMin.Action.Excel
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.TheDuc;
 
                 columnName = GetExcelColumnName(indexColumn++);
-                sheet.get_Range(columnName + lastRow.ToString()).Formula = String.Format("=AVERAGE(C{0}:J{0})", lastRow);
+                sheet.get_Range(columnName + lastRow.ToString()).Formula = String.Format("=ROUNDUP(AVERAGE(C{0}:J{0}), 2)", lastRow);
 
                 columnName = GetExcelColumnName(indexColumn++);
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.HanhKiemString;

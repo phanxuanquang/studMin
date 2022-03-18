@@ -34,8 +34,6 @@ namespace studMin
                 return;
             }
 
-            studMin.Action.Excel.ScheduleStudent scheduleStudent = new studMin.Action.Excel.ScheduleStudent();
-
             Action.Excel.ScheduleStudent.Info info = new Action.Excel.ScheduleStudent.Info()
             {
                 GiaoVien = "Nguyễn Ngân Hà",
@@ -44,7 +42,6 @@ namespace studMin
                 Lop = "10A2",
                 NamHoc = "2022 - 2023"
             };
-            scheduleStudent.InsertInfo(info);
 
             List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>()
             {
@@ -56,7 +53,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Toán",
-                    NgayHoc=DateTime.Parse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -66,7 +63,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Văn",
-                    NgayHoc=DateTime.Parse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -76,7 +73,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Lý",
-                    NgayHoc=DateTime.Parse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -86,7 +83,7 @@ namespace studMin
                     TietKeoDai=1,
                     Lop="10A2",
                     MonHoc="Toán",
-                    NgayHoc=DateTime.Parse("17/3/2022")
+                    NgayHoc=Methods.TryParse("17/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -96,7 +93,7 @@ namespace studMin
                     TietKeoDai=1,
                     Lop="10A2",
                     MonHoc="Văn",
-                    NgayHoc=DateTime.Parse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/3/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -106,16 +103,30 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Lý",
-                    NgayHoc=DateTime.Parse("17/3/2022")
+                    NgayHoc=Methods.TryParse("17/3/2022")
                 },
             };
 
-            foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
+            this.BeginInvoke(new System.Action(() =>
             {
-                scheduleStudent.InsertItem(item);
-            }
+                studMin.Action.Excel.ScheduleStudent scheduleStudent = new studMin.Action.Excel.ScheduleStudent();
 
-            scheduleStudent.Close(exportPath);
+                scheduleStudent.InsertInfo(info);
+
+                foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
+                {
+                    scheduleStudent.InsertItem(item);
+                }
+
+                scheduleStudent.ShowExcel();
+
+                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    scheduleStudent.ShowPrintPreview();
+                }
+
+                scheduleStudent.Close(exportPath);
+            }));
         }
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)

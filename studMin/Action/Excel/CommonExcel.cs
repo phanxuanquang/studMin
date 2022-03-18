@@ -8,7 +8,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace studMin.Action.Excel
 {
-    internal abstract class CommonExcel:IDisposable
+    internal abstract class CommonExcel : IDisposable
     {
         protected Microsoft.Office.Interop.Excel.Application excel = null;
         protected Microsoft.Office.Interop.Excel.Workbook workbook = null;
