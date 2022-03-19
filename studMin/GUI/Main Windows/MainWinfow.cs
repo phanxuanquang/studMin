@@ -40,10 +40,8 @@ namespace studMin
                     Dashboard = new NormalTeacherDashboard();
                     timetable_Tab = new Timetable_Tab();
                     break;
-                case role.staff:
+                case role.manager:
                 // thêm role quản lý
-                case role.admin:
-                    // thêm role admin
                 default: // office staff
                     break;
             }
