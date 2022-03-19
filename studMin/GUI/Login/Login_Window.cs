@@ -70,7 +70,37 @@ namespace studMin
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
                     // add check role here !
-                    personRole = role.classHead; // example
+                    //personRole = role.classHead; // example
+
+                    string role = LoginServices.Instance.CheckUserRole(Username_Box.Text);
+                    switch (role)
+                    {
+                        case "Admin":
+                            personRole = studMin.role.admin;
+                            break;
+                        case "Giáo viên":
+                            personRole = studMin.role.normalTeacher;
+                            break;
+                        case "Nhân viên":
+                            personRole = studMin.role.officeStaff;
+                            break;
+                        case "Quản lí":
+                            personRole = studMin.role.staff;
+                            break;
+                        case "Chủ nhiệm":
+                            personRole = studMin.role.classHead;
+                            break;
+                        case "Trưởng bộ môn":
+                            personRole = studMin.role.subjectHead;
+                            break;
+                        case "Hiệu trưởng":
+                            personRole = studMin.role.principal;
+                            break;
+                        case "Phó hiệu trưởng":
+                            personRole = studMin.role.vicePrincipal;
+                            break;
+
+                    }    
 
                     MainWinfow mainWinfow = new MainWinfow(personRole);
                     mainWinfow.ShowDialog();
@@ -102,6 +132,6 @@ namespace studMin
     }
     public enum role
     {
-        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff
+        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff, staff, admin
     }
 }

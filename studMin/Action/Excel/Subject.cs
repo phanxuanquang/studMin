@@ -149,7 +149,7 @@ namespace studMin.Action.Excel
                 //{4} số cột tối đa của cột điểm miệng
                 //{5} số cột tối đa của cột điểm 15p
                 //{6} số cột tối đa của cột điểm 1 tiết
-                return String.Format("=(SUM(C{0}:G{0})*{1} + SUM(H{0}:L{0})*{1} + SUM(M{0}:O{0})*{2} + P{0}*{3}) / ({4} - COUNTIF(C{0}:G{0},\"\")*{1} + {5} - COUNTIF(H{0}:L{0},\"\")*{1} + ({6} - COUNTIF(M{0}:O{0},\"\"))*{2} + {3})", row, GetFactor(Factor.Oral), GetFactor(Factor.MidTerm), GetFactor(Factor.EndTerm), MaxOralMark, MaxRegularMark, MaxMidTermMark);
+                return String.Format("=ROUNDUP((SUM(C{0}:G{0})*{1} + SUM(H{0}:L{0})*{1} + SUM(M{0}:O{0})*{2} + P{0}*{3}) / ({4} - COUNTIF(C{0}:G{0},\"\")*{1} + {5} - COUNTIF(H{0}:L{0},\"\")*{1} + ({6} - COUNTIF(M{0}:O{0},\"\"))*{2} + {3}), 2)", row, GetFactor(Factor.Oral), GetFactor(Factor.MidTerm), GetFactor(Factor.EndTerm), MaxOralMark, MaxRegularMark, MaxMidTermMark);
             }
 
             public void AddOral(List<double> marks)

@@ -28,7 +28,6 @@ namespace studMin.Database.Models
         public Nullable<int> SEX { get; set; }
         public Nullable<System.DateTime> DAYOFBIRTH { get; set; }
         public string ADDRESS { get; set; }
-        public string EMAIL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STAFF> STAFFs { get; set; }

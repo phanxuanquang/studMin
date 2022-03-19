@@ -26,7 +26,6 @@ namespace studMin.Database.Models
         }
     
         public virtual DbSet<CLASS> CLASSes { get; set; }
-        public virtual DbSet<INFOR> INFORs { get; set; }
         public virtual DbSet<LIMIT> LIMITs { get; set; }
         public virtual DbSet<ROLESUBJECT> ROLESUBJECTs { get; set; }
         public virtual DbSet<SCORE> SCOREs { get; set; }
@@ -41,7 +40,8 @@ namespace studMin.Database.Models
         public virtual DbSet<TRANSCRIPT> TRANSCRIPTs { get; set; }
         public virtual DbSet<USERROLE> USERROLEs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
-        public virtual DbSet<LESSON> LESSONs { get; set; }
         public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
+        public virtual DbSet<INFOR> INFORs { get; set; }
+        public virtual DbSet<LESSON> LESSONs { get; set; }
     }
 }

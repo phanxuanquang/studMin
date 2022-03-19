@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace studMin.Action.Excel
 {
-    internal class ListStudent:CommonExcel
+    internal class ListStudent : CommonExcel
     {
         private const int StartColumnIndex = 1;
         private const int StartRowIndex = 6;

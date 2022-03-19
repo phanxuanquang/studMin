@@ -180,8 +180,6 @@ namespace studMin
                 return;
             }
 
-            studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject();
-
             Action.Excel.Subject.Info info = new Action.Excel.Subject.Info()
             {
                 GiaoVien = "Nguyễn Ngân Hà",
@@ -190,7 +188,6 @@ namespace studMin
                 NamHoc = "2022 - 2023",
                 MonHoc = "Toán",
             };
-            subject.InsertInfo(info);
 
             List<Action.Excel.Subject.Item> list = new List<Action.Excel.Subject.Item>()
             {
@@ -244,12 +241,28 @@ namespace studMin
                 }
             };
 
-            foreach (Action.Excel.Subject.Item item in list)
+            this.BeginInvoke(new System.Action(() =>
             {
-                subject.InsertItem(item);
-            }
+                studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject();
 
-            //subject.Close(exportPath);
+                subject.InsertInfo(info);
+
+                foreach (Action.Excel.Subject.Item item in list)
+                {
+                    subject.InsertItem(item);
+                }
+
+                subject.ShowExcel();
+
+                subject.Save(exportPath);
+
+                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    subject.ShowPrintPreview();
+                }
+
+                subject.Dispose();
+            }));
         }
     }
 }

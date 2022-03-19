@@ -44,7 +44,7 @@ namespace studMin.Action.Excel
 
         private (string, string) NgayApDung(DateTime dateTime)
         {
-            return ("E3", String.Format("Áp dụng từ: {0}", dateTime.ToString("dd//MM/yyyy")));
+            return ("E3", String.Format("Áp dụng từ: {0}", dateTime.ToString("dd/MM/yyyy")));
         }
 
         private const int StartColumn = 3;

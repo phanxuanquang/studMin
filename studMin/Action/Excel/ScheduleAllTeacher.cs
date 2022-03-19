@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace studMin.Action.Excel
 {
@@ -13,15 +14,18 @@ namespace studMin.Action.Excel
         private const string title = "A2";
 
         private const int StartColumnClass = 4;
-        private const int StartRowClass = 4;
-        private const int EndRowClass = 123;
+        private const int StartRowOfClass = 4;
+        private const int RowClass = 3;
+        private const int EndRowOfClass = 123;
         private const int MaxPeriod = 5;
+        private const int RowOfPeriod = 2;
 
         List<Item> data = new List<Item>();
 
-        public ScheduleAllTeacher()
+        public ScheduleAllTeacher(bool isReadOnly = false)
         {
-            this.template = StoragePath.TemplateScheduleAllTeacher;
+            this.template = isReadOnly ? StoragePath.DataSample : StoragePath.TemplateScheduleAllTeacher;
+            this.isReadOnly = isReadOnly;
             InitExcel();
         }
 
@@ -117,6 +121,34 @@ namespace studMin.Action.Excel
                 }
                 return String.Format("THỜI KHÓA BIỂU SỐ {0} - HỌC KỲ {1} - NĂM HỌC {2}, ÁP DỤNG TỪ {3}, {4}", BieuMauSo, GetHocKy(), NamHoc, dateOfWeekVNese, NgayApDung.ToString("dd/MM/yyyy"));
             }
+
+            public static Info Parse(string value)
+            {
+                Info info = new Info();
+
+                string[] split = value.Split(new string[] { " - " }, StringSplitOptions.None);
+
+                try
+                {
+                    string[] bieumauso = split[0].Split(' ');
+                    info.BieuMauSo = int.Parse(bieumauso[bieumauso.Length - 1]);
+
+                    string[] hocky = split[1].Split(' ');
+                    info.HocKy = int.Parse(hocky[hocky.Length - 1]);
+
+                    string[] namhoc = split[2].Split(' ');
+                    info.NamHoc = namhoc[namhoc.Length - 1];
+
+                    string[] apdung = split[3].Split(' ');
+                    info.NgayApDung = Methods.TryParse(apdung[apdung.Length - 1]);
+
+                    return info;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
         }
 
         public class Item
@@ -204,15 +236,15 @@ namespace studMin.Action.Excel
 
         private void NewClass(string nameClass)
         {
-            Microsoft.Office.Interop.Excel.Range oRng = sheet.Range["D3"];
+            Microsoft.Office.Interop.Excel.Range oRng = sheet.Range["D" + RowClass.ToString()];
             oRng.EntireColumn.Insert(Microsoft.Office.Interop.Excel.XlInsertShiftDirection.xlShiftToRight, Microsoft.Office.Interop.Excel.XlInsertFormatOrigin.xlFormatFromRightOrBelow);
-            sheet.get_Range("D3").Value = nameClass;
-            Range formatCell = sheet.get_Range("D" + StartRowClass + ":" + "D" + EndRowClass);
+            sheet.get_Range("D" + RowClass.ToString()).Value = nameClass;
+            Range formatCell = sheet.get_Range("D" + StartRowOfClass + ":" + "D" + EndRowOfClass);
             formatCell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
             formatCell.Borders.LineStyle = XlLineStyle.xlLineStyleNone;
             formatCell.Borders[XlBordersIndex.xlEdgeRight].LineStyle = XlLineStyle.xlContinuous;
 
-            for (int index = StartRowClass; index <= EndRowClass; index += 10)
+            for (int index = StartRowOfClass; index <= EndRowOfClass; index += 10)
             {
                 if (index % 10 == 4)
                 {
@@ -222,8 +254,8 @@ namespace studMin.Action.Excel
             }
 
             //Sửa không có border ở cuối bảng
-            sheet.Cells[EndRowClass, StartColumnClass].Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
-            sheet.Cells[EndRowClass, StartColumnClass].Borders[XlBordersIndex.xlEdgeBottom].Weight = XlBorderWeight.xlMedium;
+            sheet.Cells[EndRowOfClass, StartColumnClass].Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
+            sheet.Cells[EndRowOfClass, StartColumnClass].Borders[XlBordersIndex.xlEdgeBottom].Weight = XlBorderWeight.xlMedium;
         }
 
         private bool CheckExist(int startIndex, int offset, string lop)
@@ -247,7 +279,7 @@ namespace studMin.Action.Excel
         private bool Condition(Item item, int startIndex, int offset, string lop)
         {
             if (item != null && item.Lop != lop) return false;
-            int startIndexRow = ((int)item.NgayHoc.DayOfWeek - 1) * 20 + StartRowClass;
+            int startIndexRow = ((int)item.NgayHoc.DayOfWeek - 1) * 20 + StartRowOfClass;
             startIndexRow += item.Buoi == "Afternoon" ? 10 : 0;
             startIndexRow += (item.TietBatDau - 1) * 2;
 
@@ -301,11 +333,11 @@ namespace studMin.Action.Excel
                     return;
                 }
 
-                int startIndexRow = ((int)newItem.NgayHoc.DayOfWeek - 1) * 20 + 4;
-                startIndexRow += newItem.Buoi == "Afternoon" ? 10 : 0;
-                startIndexRow += (newItem.TietBatDau - 1) * 2;
+                int startIndexRow = ((int)newItem.NgayHoc.DayOfWeek - 1) * RowOfPeriod * MaxPeriod * 2 + StartRowOfClass;
+                startIndexRow += newItem.Buoi == "Afternoon" ? RowOfPeriod * MaxPeriod : 0;
+                startIndexRow += (newItem.TietBatDau - 1) * RowOfPeriod;
 
-                int offset = newItem.TietKeoDai * 2;
+                int offset = newItem.TietKeoDai * RowOfPeriod;
 
                 string columnName = string.Empty;
                 (bool, int) checkClass = FindClass(newItem.Lop);
@@ -390,6 +422,84 @@ namespace studMin.Action.Excel
                 }
             }
             return false;
+        }
+
+        public Info SelecteInfo()
+        {
+            Info info = Info.Parse(sheet.get_Range(title).Value.ToString());
+            info.Truong = sheet.get_Range(nameSchool).Value.ToString();
+            return info;
+        }
+
+        private DateTime FindDayNearly(DateTime dateTime, DayOfWeek dayOfWeek)
+        {
+            for (int index = 0; index < 7; index++)
+            {
+                //7 là số ngày trong tuần
+
+                if (dateTime.Add(TimeSpan.FromDays(index)).DayOfWeek == dayOfWeek)
+                {
+                    return dateTime.Add(TimeSpan.FromDays(index));
+                }
+            }
+            return DateTime.Now;
+        }
+
+        public List<Item> SelectItem(DateTime dateTime)
+        {
+            List<Item> list = new List<Item>();
+            Item item = null;
+
+            dateTime = FindDayNearly(dateTime, DayOfWeek.Monday);
+
+            int endColumn = FindLastColumnUsed();
+
+            for (int column = StartColumnClass; column <= endColumn; column++)
+            {
+                if (sheet.get_Range(GetExcelColumnName(column) + RowClass.ToString()).Value == null) break;
+                string _class = sheet.get_Range(GetExcelColumnName(column) + RowClass.ToString()).Value.ToString();
+
+                for (int row = StartRowOfClass; row <= EndRowOfClass; row++)
+                {
+                    Range cell = sheet.Cells[row, column];
+                    if (cell != null && cell.Value != null)
+                    {
+                        item = new Item();
+                        item.Lop = _class;
+
+                        bool isMerged = false;
+                        int merge = cell.MergeArea.Count;
+                        if (merge > RowOfPeriod)
+                        {
+                            isMerged = true;
+                        }
+
+                        item.TietKeoDai = merge / RowOfPeriod;
+
+                        int calculation = row - StartRowOfClass;
+                        item.NgayHoc = FindDayNearly(dateTime, (DayOfWeek)((int)((calculation / (RowOfPeriod * MaxPeriod * 2)) + 1)));
+
+                        calculation = calculation % (RowOfPeriod * MaxPeriod * 2);
+                        item.Buoi = ((int)calculation / 10) == 0 ? "M" : "A";
+
+                        calculation = calculation % (RowOfPeriod * MaxPeriod);
+                        item.TietBatDau = ((int)(calculation / RowOfPeriod)) + 1;
+
+                        string[] value = cell.Value.ToString().Split('\n');
+                        item.MonHoc = value[0];
+                        item.GiaoVien = value[1];
+
+                        if (isMerged)
+                        {
+                            row += merge - 1;
+                        }
+
+                        list.Add(item);
+                    }
+                }
+            }
+
+            return list;
         }
     }
 }

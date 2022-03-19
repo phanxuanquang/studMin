@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="Action\Excel\CommonExcel.cs" />
     <Compile Include="Action\Excel\ListStudent.cs" />
+    <Compile Include="Action\Excel\Methods.cs" />
     <Compile Include="Action\Excel\ScheduleStudent.cs" />
     <Compile Include="Action\Excel\ScheduleAllTeacher.cs" />
     <Compile Include="Action\Excel\ScheduleTeacher.cs" />
