@@ -83,7 +83,7 @@
             this.Specialized_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.Specialized_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.Specialized_Button.HoverState.Parent = this.Specialized_Button;
-            this.Specialized_Button.Location = new System.Drawing.Point(480, -1);
+            this.Specialized_Button.Location = new System.Drawing.Point(480, 0);
             this.Specialized_Button.Name = "Specialized_Button";
             this.Specialized_Button.ShadowDecoration.Parent = this.Specialized_Button;
             this.Specialized_Button.Size = new System.Drawing.Size(160, 42);
