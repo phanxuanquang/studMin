@@ -363,7 +363,7 @@ namespace studMin
 
                     for (int tietkeodai = 0; tietkeodai < data[index].TietKeoDai; tietkeodai++)
                     {
-                        dataSource.Rows[data[index].TietBatDau + tietkeodai - 1][(int)data[index].NgayHoc.DayOfWeek] = data[index].Lop;
+                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc.DayOfWeek] = data[index].Lop;
                     }
                 }
             }
