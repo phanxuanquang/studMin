@@ -358,9 +358,12 @@ namespace studMin
                 if (data[index].GiaoVien == teacher)
                 {
                     //Chỗ này chưa tìm hiểu cách merge trong DataGridView
+
+                    int offset = data[index].Buoi == "Afternoon" ? 6 : 0;
+
                     for (int tietkeodai = 0; tietkeodai < data[index].TietKeoDai; tietkeodai++)
                     {
-                        dataSource.Rows[data[index].TietBatDau + tietkeodai - 1][(int)data[index].NgayHoc.DayOfWeek] = data[index].Lop;
+                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc.DayOfWeek] = data[index].Lop;
                     }
                 }
             }
