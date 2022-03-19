@@ -214,23 +214,50 @@ namespace studMin
 
             using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.TemplateScheduleAllTeacher))
             {
-                int count = 0;
+                int flag = 0;
                 var rows = workBook.Worksheet(1).RowsUsed();
 
                 foreach (var row in rows)
                 {
-                    count++;
-
-                    foreach (IXLCell cell in row.Cells())
+                    if (flag >= 3 && flag <= 12)
                     {
-                        if (!cell.IsEmpty())
+                        dt.Rows.Add();
+                        int i = 0;
+
+                        foreach (IXLCell cell in row.Cells())
                         {
-                            MessageBox.Show(cell.Value.ToString());
+                            if (i == 2 || i == 3)
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString();
+                            }
+
+                            i++;
                         }
                     }
+
+                    if (flag >= 13 && flag <= 22)
+                    {
+                        int i = 0;
+                        int j = 0;
+
+                        foreach (IXLCell cell in row.Cells())
+                        {
+                            if (i == 3)
+                            {
+                                MessageBox.Show(cell.Value.ToString());
+                                dt.Rows[j][i - 1] = cell.Value.ToString();
+                            }
+
+                            j++;
+                            i++;
+                        }
+                    }
+
+                    flag++;
                 }
 
-                MessageBox.Show(count.ToString());
+                Timetable_GridView.DataSource = dt.DefaultView;
+                Cursor.Current = Cursors.Default;
             }
         }
     }
