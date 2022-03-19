@@ -19,7 +19,8 @@ namespace studMin.Database.Models
         public System.Guid IDSUBJECT { get; set; }
         public System.Guid IDCLASS { get; set; }
         public System.Guid IDSCHEDULE { get; set; }
-        public Nullable<byte> TIMESTUDY { get; set; }
+        public Nullable<byte> TIMESTART { get; set; }
+        public Nullable<byte> TIMEEND { get; set; }
         public Nullable<byte> DAYOFW { get; set; }
     
         public virtual CLASS CLASS { get; set; }

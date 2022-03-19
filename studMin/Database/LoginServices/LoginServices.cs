@@ -16,10 +16,9 @@ namespace studMin.Database.LoginServices
         public bool CheckAccount(string userName, string passWord)
         {
             string passHashed = Hash.Encrypt(passWord);
-            //int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed).Count();
+            int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed).Count();
 
-            // return accCount > 0;
-            return true;
+            return accCount > 0;
         }
     }
 }
