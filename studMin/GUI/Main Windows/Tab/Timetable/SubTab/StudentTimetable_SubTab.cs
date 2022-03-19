@@ -53,7 +53,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/03/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -63,7 +63,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Văn",
-                    NgayHoc=Methods.TryParse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/03/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -73,7 +73,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Lý",
-                    NgayHoc=Methods.TryParse("14/3/2022")
+                    NgayHoc=Methods.TryParse("14/03/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -83,7 +83,7 @@ namespace studMin
                     TietKeoDai=1,
                     Lop="10A2",
                     MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("17/3/2022")
+                    NgayHoc=Methods.TryParse("17/03/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -93,7 +93,7 @@ namespace studMin
                     TietKeoDai=1,
                     Lop="10A2",
                     MonHoc="Văn",
-                    NgayHoc=Methods.TryParse("15/3/2022")
+                    NgayHoc=Methods.TryParse("15/03/2022")
                 },
                 new Action.Excel.ScheduleAllTeacher.Item()
                 {
@@ -103,7 +103,7 @@ namespace studMin
                     TietKeoDai=2,
                     Lop="10A2",
                     MonHoc="Lý",
-                    NgayHoc=Methods.TryParse("17/3/2022")
+                    NgayHoc=Methods.TryParse("17/03/2022")
                 },
             };
 
@@ -120,12 +120,14 @@ namespace studMin
 
                 scheduleStudent.ShowExcel();
 
+                scheduleStudent.Save(exportPath);
+
                 if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     scheduleStudent.ShowPrintPreview();
                 }
 
-                scheduleStudent.Close(exportPath);
+                scheduleStudent.Dispose();
             }));
         }
 
