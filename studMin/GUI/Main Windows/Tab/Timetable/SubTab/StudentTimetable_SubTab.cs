@@ -233,9 +233,8 @@ namespace studMin
 
                             i++;
                         }
-                    }
-
-                    if (flag >= 13 && flag <= 22)
+                    } 
+                    else if (flag >= 13 && flag <= 22)
                     {
                         int i = 0;
                         int j = 0;
@@ -244,11 +243,12 @@ namespace studMin
                         {
                             if (i == 3)
                             {
-                                MessageBox.Show(cell.Value.ToString());
-                                dt.Rows[j][i - 1] = cell.Value.ToString();
+                                dt.Rows[j][2] = cell.Value.ToString();
+                                MessageBox.Show(dt.Rows[j][2].ToString());
+                                j++;
                             }
 
-                            j++;
+                            
                             i++;
                         }
                     }
@@ -259,6 +259,11 @@ namespace studMin
                 Timetable_GridView.DataSource = dt.DefaultView;
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private void Timetable_GridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
