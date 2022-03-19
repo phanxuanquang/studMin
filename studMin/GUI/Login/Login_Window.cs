@@ -70,7 +70,7 @@ namespace studMin
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
                     // add check role here !
-                    personRole = role.classHead; // example
+                    //personRole = role.classHead; // example
 
                     MainWinfow mainWinfow = new MainWinfow(personRole);
                     mainWinfow.ShowDialog();
