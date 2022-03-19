@@ -16,6 +16,7 @@ namespace studMin.Action.Excel
         private static string student = "student.xlsx";
         private static string summary = "summary.xlsx";
         private static string subject = "subject.xlsx";
+        private static string data_sample = "data_sample.xlsx";
 
         public static string TemplateScheduleAllTeacher
         {
@@ -45,6 +46,11 @@ namespace studMin.Action.Excel
         public static string TemplateSubject
         {
             get { return Path.Combine(folderFile, subject); }
+        }
+
+        public static string DataSample
+        {
+            get { return Path.Combine(folderFile, data_sample); }
         }
     }
 }

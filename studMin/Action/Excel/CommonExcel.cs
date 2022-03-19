@@ -10,11 +10,14 @@ namespace studMin.Action.Excel
 {
     internal abstract class CommonExcel : IDisposable
     {
+        private bool isSaved = false;
+
         protected Microsoft.Office.Interop.Excel.Application excel = null;
         protected Microsoft.Office.Interop.Excel.Workbook workbook = null;
         protected Microsoft.Office.Interop.Excel.Worksheet sheet = null;
         protected string template = null;
         protected string export = null;
+        protected bool isReadOnly = false;
 
         protected void InitExcel()
         {
@@ -45,9 +48,16 @@ namespace studMin.Action.Excel
         {
             if (excel != null && sheet != null)
             {
-                sheet.Protect("doanxempassword");
-                excel.Visible = true;
-                excel.EditDirectlyInCell = false;
+                try
+                {
+                    sheet.Protect("doanxempassword");
+                    excel.Visible = true;
+                    excel.EditDirectlyInCell = false;
+                }
+                catch
+                {
+
+                }
             }
         }
 
@@ -55,31 +65,57 @@ namespace studMin.Action.Excel
         {
             if (excel != null && sheet != null)
             {
-                sheet.PageSetup.Zoom = false;
-                sheet.PageSetup.PaperSize = XlPaperSize.xlPaperA3;
-                sheet.PageSetup.FitToPagesTall = 1;
-                sheet.PrintPreview();
+                try
+                {
+                    sheet.PageSetup.Zoom = false;
+                    sheet.PageSetup.PaperSize = XlPaperSize.xlPaperA3;
+                    sheet.PageSetup.FitToPagesTall = 1;
+                    sheet.PrintPreview();
+                }
+                catch
+                {
+
+                }
             }
         }
 
-        public void Close(string exportPath)
+        public void Save(string exportPath)
         {
-            export = exportPath;
-            Dispose();
+            export = exportPath == string.Empty ? export : exportPath;
+            if (isReadOnly) return;
+            if (export == null) throw new Exception();
+            try
+            {
+                if (File.Exists(export))
+                {
+                    File.Delete(export);
+                }
+
+                workbook.SaveAs(export);
+
+                isSaved = true;
+            }
+            catch
+            {
+
+            }
         }
 
         public void Dispose()
         {
-            if (export == null) throw new Exception();
-
-            if (File.Exists(export))
+            try
             {
-                File.Delete(export);
+                if (!isSaved && !isReadOnly)
+                {
+                    Save(string.Empty);
+                }
+                workbook.Close();
+                excel.Quit();
             }
+            catch
+            {
 
-            workbook.SaveAs(export);
-            workbook.Close();
-            excel.Quit();
+            }
 
             GC.SuppressFinalize(this);
         }

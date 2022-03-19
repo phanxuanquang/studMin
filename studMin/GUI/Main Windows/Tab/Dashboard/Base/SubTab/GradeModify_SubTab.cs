@@ -254,12 +254,14 @@ namespace studMin
 
                 subject.ShowExcel();
 
+                subject.Save(exportPath);
+
                 if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     subject.ShowPrintPreview();
                 }
 
-                subject.Close(exportPath);
+                subject.Dispose();
             }));
         }
     }
