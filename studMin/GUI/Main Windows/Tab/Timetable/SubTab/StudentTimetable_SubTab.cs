@@ -193,5 +193,45 @@ namespace studMin
                 }
             }
         }
+
+        /*private DataView FilterTimetableByClass(string className)
+        {
+
+        }*/
+
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Tiết học");
+            dt.Columns.Add("Thứ hai");
+            dt.Columns.Add("Thứ ba");
+            dt.Columns.Add("Thứ tư");
+            dt.Columns.Add("Thứ năm");
+            dt.Columns.Add("Thứ sáu");
+            dt.Columns.Add("Thứ bảy");
+
+            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.TemplateScheduleAllTeacher))
+            {
+                int count = 0;
+                var rows = workBook.Worksheet(1).RowsUsed();
+
+                foreach (var row in rows)
+                {
+                    count++;
+
+                    foreach (IXLCell cell in row.Cells())
+                    {
+                        if (!cell.IsEmpty())
+                        {
+                            MessageBox.Show(cell.Value.ToString());
+                        }
+                    }
+                }
+
+                MessageBox.Show(count.ToString());
+            }
+        }
     }
 }
