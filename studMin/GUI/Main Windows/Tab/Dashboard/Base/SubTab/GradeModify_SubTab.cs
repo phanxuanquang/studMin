@@ -194,5 +194,106 @@ namespace studMin
                 GridView.Rows[i].Visible = true;
             }
         }
+
+        private void DataGridViewExport_Button_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Excel | *.xlsx";
+
+            string exportPath = string.Empty;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = saveFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
+
+            Action.Excel.Subject.Info info = new Action.Excel.Subject.Info()
+            {
+                GiaoVien = "Nguyễn Ngân Hà",
+                HocKy = 1,
+                Lop = "10A2",
+                NamHoc = "2022 - 2023",
+                MonHoc = "Toán",
+            };
+
+            List<Action.Excel.Subject.Item> list = new List<Action.Excel.Subject.Item>()
+            {
+                new studMin.Action.Excel.Subject.Item()
+                {
+                    HoTen = "Nguyễn Văn Tèo",
+                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
+                    Diem1Tiet = new List<double>() { 7, 9 },
+                    DiemCuoiKy = 8.5,
+                    DiemMieng = new List<double>() { 9, 8 }
+                },
+                new studMin.Action.Excel.Subject.Item()
+                {
+                    HoTen = "Trần Xuân Tài",
+                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
+                    Diem1Tiet = new List<double>() { 7, 6 },
+                    DiemCuoiKy = 8.5,
+                    DiemMieng = new List<double>() { 9, 8 }
+                },
+                new studMin.Action.Excel.Subject.Item()
+                {
+                    HoTen = "Ngô Xuân Yến",
+                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
+                    Diem1Tiet = new List<double>() { 7, 7 },
+                    DiemCuoiKy = 8.5,
+                    DiemMieng = new List<double>() { 9, 8 }
+                },
+                new studMin.Action.Excel.Subject.Item()
+                {
+                    HoTen = "Trần Thị Thanh Hiền",
+                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
+                    Diem1Tiet = new List<double>() { 7, 8 },
+                    DiemCuoiKy = 8,
+                    DiemMieng = new List<double>() { 8, 8 }
+                },
+                new studMin.Action.Excel.Subject.Item()
+                {
+                    HoTen = "Phạm Nguyễn Vi Trân",
+                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
+                    Diem1Tiet = new List<double>() { 7, 9 },
+                    DiemCuoiKy = 8.5,
+                    DiemMieng = new List<double>() { 9, 8 }
+                },
+                new studMin.Action.Excel.Subject.Item()
+                {
+                    HoTen = "Đỗ Minh Thanh",
+                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
+                    Diem1Tiet = new List<double>() { 7, 9 },
+                    DiemCuoiKy = 10,
+                    DiemMieng = new List<double>() { 9, 8 }
+                }
+            };
+
+            this.BeginInvoke(new System.Action(() =>
+            {
+                studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject();
+
+                subject.InsertInfo(info);
+
+                foreach (Action.Excel.Subject.Item item in list)
+                {
+                    subject.InsertItem(item);
+                }
+
+                subject.ShowExcel();
+
+                subject.Save(exportPath);
+
+                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    subject.ShowPrintPreview();
+                }
+
+                subject.Dispose();
+            }));
+        }
     }
 }

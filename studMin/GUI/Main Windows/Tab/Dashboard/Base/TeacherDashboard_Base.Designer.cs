@@ -30,7 +30,7 @@
         {
             this.TopBanner = new System.Windows.Forms.Panel();
             this.menuBar = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.MoralQualify_Button = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.Specialized_Button = new Guna.UI2.WinForms.Guna2GradientButton();
             this.Badge = new System.Windows.Forms.Panel();
             this.StudentInfor_Button = new Guna.UI2.WinForms.Guna2GradientButton();
             this.ClassInfor_Button = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -52,7 +52,7 @@
             // 
             // menuBar
             // 
-            this.menuBar.Controls.Add(this.MoralQualify_Button);
+            this.menuBar.Controls.Add(this.Specialized_Button);
             this.menuBar.Controls.Add(this.Badge);
             this.menuBar.Controls.Add(this.StudentInfor_Button);
             this.menuBar.Controls.Add(this.ClassInfor_Button);
@@ -65,31 +65,31 @@
             this.menuBar.Size = new System.Drawing.Size(640, 47);
             this.menuBar.TabIndex = 0;
             // 
-            // MoralQualify_Button
+            // Specialized_Button
             // 
-            this.MoralQualify_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.MoralQualify_Button.Animated = true;
-            this.MoralQualify_Button.BackColor = System.Drawing.Color.White;
-            this.MoralQualify_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.CheckedState.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MoralQualify_Button.CustomImages.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.FillColor = System.Drawing.Color.White;
-            this.MoralQualify_Button.FillColor2 = System.Drawing.Color.White;
-            this.MoralQualify_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.MoralQualify_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MoralQualify_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.HoverState.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.Location = new System.Drawing.Point(480, -1);
-            this.MoralQualify_Button.Name = "MoralQualify_Button";
-            this.MoralQualify_Button.ShadowDecoration.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.Size = new System.Drawing.Size(160, 42);
-            this.MoralQualify_Button.TabIndex = 25;
-            this.MoralQualify_Button.Text = "HẠNH KIỂM";
-            this.MoralQualify_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Specialized_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Specialized_Button.Animated = true;
+            this.Specialized_Button.BackColor = System.Drawing.Color.White;
+            this.Specialized_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.CheckedState.Parent = this.Specialized_Button;
+            this.Specialized_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Specialized_Button.CustomImages.Parent = this.Specialized_Button;
+            this.Specialized_Button.FillColor = System.Drawing.Color.White;
+            this.Specialized_Button.FillColor2 = System.Drawing.Color.White;
+            this.Specialized_Button.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Specialized_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Specialized_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.HoverState.Parent = this.Specialized_Button;
+            this.Specialized_Button.Location = new System.Drawing.Point(480, 0);
+            this.Specialized_Button.Name = "Specialized_Button";
+            this.Specialized_Button.ShadowDecoration.Parent = this.Specialized_Button;
+            this.Specialized_Button.Size = new System.Drawing.Size(160, 42);
+            this.Specialized_Button.TabIndex = 25;
+            this.Specialized_Button.Text = "HẠNH KIỂM";
+            this.Specialized_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
             // Badge
             // 
@@ -213,6 +213,6 @@
         protected Guna.UI2.WinForms.Guna2GradientButton StudentInfor_Button;
         protected Guna.UI2.WinForms.Guna2GradientPanel menuBar;
         protected System.Windows.Forms.Panel Badge;
-        protected Guna.UI2.WinForms.Guna2GradientButton MoralQualify_Button;
+        protected Guna.UI2.WinForms.Guna2GradientButton Specialized_Button;
     }
 }

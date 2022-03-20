@@ -119,6 +119,7 @@
             this.Dashboard_MenuButton.ShadowDecoration.Parent = this.Dashboard_MenuButton;
             this.Dashboard_MenuButton.Size = new System.Drawing.Size(44, 44);
             this.Dashboard_MenuButton.TabIndex = 16;
+            this.Dashboard_MenuButton.Click += new System.EventHandler(this.Dashboard_MenuButton_Click);
             // 
             // Statistic_MenuButton
             // 
@@ -209,6 +210,7 @@
             this.Timetable_MenuButton.ShadowDecoration.Parent = this.Timetable_MenuButton;
             this.Timetable_MenuButton.Size = new System.Drawing.Size(44, 44);
             this.Timetable_MenuButton.TabIndex = 19;
+            this.Timetable_MenuButton.Click += new System.EventHandler(this.Timetable_MenuButton_Click);
             // 
             // ContainerPanel
             // 

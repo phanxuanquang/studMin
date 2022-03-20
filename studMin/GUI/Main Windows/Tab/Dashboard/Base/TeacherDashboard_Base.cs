@@ -24,41 +24,24 @@ namespace studMin
             classInfor_SubTab = new ClassInfor_SubTab();
             studentInfor_SubTab = new StudentInfor_SubTab();
 
-            moveBadgeAndLoadTab(ClassInfor_Button, classInfor_SubTab);
-        }
-        protected void moveBadgeAndLoadTab(Guna2GradientButton button, UserControl SubTab)
-        {
-            Badge.Left = button.Location.X;
-            
-            if(SubTab != null)
-            {
-                if (!ContainerPanel.Controls.Contains(SubTab))
-                {
-                    ContainerPanel.Controls.Add(SubTab);
-                    SubTab.BringToFront();
-                }
-                else
-                {
-                    SubTab.BringToFront();
-                }
-            }
+            Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
         }
 
 
         #region Buttons
         private void GradeModify_Button_Click(object sender, EventArgs e)
         {
-            moveBadgeAndLoadTab(GradeModify_Button, gradeModify_SubTab);
+            Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
         }
 
         private void StudentInfor_Button_Click(object sender, EventArgs e)
         {
-            moveBadgeAndLoadTab(StudentInfor_Button, studentInfor_SubTab);
+            Program.loadTab(studentInfor_SubTab, ContainerPanel, StudentInfor_Button, this.Badge);
         }
 
         private void ClassInfor_Button_Click(object sender, EventArgs e)
         {
-            moveBadgeAndLoadTab(ClassInfor_Button, classInfor_SubTab);
+            Program.loadTab(classInfor_SubTab, ContainerPanel, ClassInfor_Button, this.Badge);
         }
         #endregion
     }

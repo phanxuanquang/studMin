@@ -89,22 +89,22 @@
             // 
             // MoralQualify_Button
             // 
-            this.MoralQualify_Button.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.DefaultButton;
-            this.MoralQualify_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.CheckedState.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.CustomImages.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.MoralQualify_Button.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
-            this.MoralQualify_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MoralQualify_Button.HoverState.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MoralQualify_Button.Location = new System.Drawing.Point(480, 0);
-            this.MoralQualify_Button.ShadowDecoration.Parent = this.MoralQualify_Button;
-            this.MoralQualify_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MoralQualify_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
-            this.MoralQualify_Button.Click += new System.EventHandler(this.MoralQualify_Button_Click);
+            this.Specialized_Button.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.DefaultButton;
+            this.Specialized_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.CheckedState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.CheckedState.Parent = this.Specialized_Button;
+            this.Specialized_Button.CustomImages.Parent = this.Specialized_Button;
+            this.Specialized_Button.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.Specialized_Button.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.Specialized_Button.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Specialized_Button.HoverState.Parent = this.Specialized_Button;
+            this.Specialized_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Specialized_Button.Location = new System.Drawing.Point(480, 0);
+            this.Specialized_Button.ShadowDecoration.Parent = this.Specialized_Button;
+            this.Specialized_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Specialized_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
+            this.Specialized_Button.Click += new System.EventHandler(this.MoralQualify_Button_Click);
             // 
             // ClassHeadTeacherDashboard
             // 

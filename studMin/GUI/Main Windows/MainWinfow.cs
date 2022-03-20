@@ -12,13 +12,53 @@ namespace studMin
 {
     public partial class MainWinfow : Form
     {
-        public MainWinfow()
+        TeacherDashboard_Base Dashboard;
+        Timetable_Tab timetable_Tab;
+        public MainWinfow(role personRole)
         {
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
             this.Icon = Properties.Resources.studMin_Icon;
 
-            ContainerPanel.Controls.Add(new ClassHeadTeacherDashboard());
+            switch (personRole)
+            {
+                case role.classHead:
+                    Dashboard = new ClassHeadTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.subjectHead:
+                    Dashboard = new SubjectHeadTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.principal:
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.vicePrincipal:
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.normalTeacher:
+                    Dashboard = new NormalTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    break;
+                case role.manager:
+                // thêm role quản lý
+                default: // office staff
+                    break;
+            }
+            LoadMainTab(Dashboard);
+        }
+
+        void LoadMainTab(UserControl tab)
+        {
+            if (ContainerPanel.Controls.Contains(tab))
+            {
+                tab.BringToFront();
+            }
+            else
+            {
+                ContainerPanel.Controls.Add(tab);
+                tab.BringToFront();
+            }
         }
 
         protected override CreateParams CreateParams
@@ -48,6 +88,16 @@ namespace studMin
             Program.login_Window = new Login_Window();
             Program.login_Window.ShowIcon = Program.login_Window.ShowInTaskbar = true;
             Program.login_Window.Show();
+        }
+
+        private void Timetable_MenuButton_Click(object sender, EventArgs e)
+        {
+            LoadMainTab(timetable_Tab);
+        }
+
+        private void Dashboard_MenuButton_Click(object sender, EventArgs e)
+        {
+            LoadMainTab(Dashboard);
         }
     }
 }

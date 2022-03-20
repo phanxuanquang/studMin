@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -27,16 +28,20 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,6 +62,12 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
@@ -66,8 +77,14 @@
     <Reference Include="Guna.UI2">
       <HintPath>C:\Users\XPS 9500\Downloads\Compressed\For Winform Designing\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
@@ -78,6 +95,8 @@
       <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,6 +112,89 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\Excel\CommonExcel.cs" />
+    <Compile Include="Action\Excel\ListStudent.cs" />
+    <Compile Include="Action\Excel\Methods.cs" />
+    <Compile Include="Action\Excel\ScheduleStudent.cs" />
+    <Compile Include="Action\Excel\ScheduleAllTeacher.cs" />
+    <Compile Include="Action\Excel\ScheduleTeacher.cs" />
+    <Compile Include="Action\Excel\StoragePath.cs" />
+    <Compile Include="Action\Excel\Subject.cs" />
+    <Compile Include="Action\Excel\Summary.cs" />
+    <Compile Include="Database\DataProvider.cs" />
+    <Compile Include="Database\LoginServices\Hash.cs" />
+    <Compile Include="Database\LoginServices\LoginServices.cs" />
+    <Compile Include="Database\Models\CLASS.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\INFOR.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\LESSON.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\LIMIT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\ROLESUBJECT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\SCHEDULE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\SCORE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\STAFF.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\STAFFROLE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\STUDENT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\STUDYING.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\SUBJECT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\TEACH.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\TEACHER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\TEACHERROLE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\TRANSCRIPT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\USER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\USERROLE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\StudentServices.cs" />
+    <Compile Include="Database\TeacherServices.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,6 +237,18 @@
     <Compile Include="GUI\Main Windows\MainWinfow.Designer.cs">
       <DependentUpon>MainWinfow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubjectHeadTeacherDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubjectHeadTeacherDashboard.Designer.cs">
+      <DependentUpon>SubjectHeadTeacherDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.Designer.cs">
+      <DependentUpon>NormalTeacherDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.cs">
@@ -149,11 +263,29 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.Designer.cs">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="Timetable_ Base.cs">
+    <Compile Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Timetable_ Base.Designer.cs">
-      <DependentUpon>Timetable_ Base.cs</DependentUpon>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.Designer.cs">
+      <DependentUpon>Timetable_Tab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\StudentTimetable_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\StudentTimetable_SubTab.Designer.cs">
+      <DependentUpon>StudentTimetable_SubTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\TeacherTimetable_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\SubTab\TeacherTimetable_SubTab.Designer.cs">
+      <DependentUpon>TeacherTimetable_SubTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.Designer.cs">
+      <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
@@ -176,6 +308,9 @@
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.resx">
       <DependentUpon>ClassHeadTeacherDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.resx">
+      <DependentUpon>NormalTeacherDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -187,9 +322,28 @@
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.resx">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Timetable_ Base.resx">
-      <DependentUpon>Timetable_ Base.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.resx">
+      <DependentUpon>Timetable_Tab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\SubTab\StudentTimetable_SubTab.resx">
+      <DependentUpon>StudentTimetable_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\SubTab\TeacherTimetable_SubTab.resx">
+      <DependentUpon>TeacherTimetable_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubjectHeadTeacherDashboard.resx">
+      <DependentUpon>SubjectHeadTeacherDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.resx">
+      <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Database\Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -214,10 +368,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Bottom_SlideBG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Action\" />
-    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icons\Main Windows\Menu Bar\Timetable.png" />
@@ -274,6 +424,16 @@
     <None Include="Resources\Icons\Login\Account.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Logo.ico" />
     <None Include="Resources\Icons\studMin_Icon.ico" />
   </ItemGroup>
@@ -289,5 +449,28 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>
