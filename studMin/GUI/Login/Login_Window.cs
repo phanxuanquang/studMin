@@ -83,7 +83,6 @@ namespace studMin
                     waitForm.ShowDialog(this);
                     this.Show();
                 }
-
                 if (isValidAccount)
                 {
                     this.Hide();

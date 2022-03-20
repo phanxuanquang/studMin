@@ -16,6 +16,8 @@ namespace studMin
         public WaitForm(System.Action worker)
         {
             InitializeComponent();
+            
+            clock.Start();
             ShadowForm.SetShadowForm(this);
             if (worker == null)
             {
@@ -36,6 +38,15 @@ namespace studMin
                 CreateParams handleParam = base.CreateParams;
                 handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
                 return handleParam;
+            }
+        }
+
+        private void clock_Tick(object sender, EventArgs e)
+        {
+            progressBar.Value++;
+            if(progressBar.Value >= 100)
+            {
+                progressBar.Value = 0;
             }
         }
     }
