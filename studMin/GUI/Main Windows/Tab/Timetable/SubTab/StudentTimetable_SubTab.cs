@@ -198,20 +198,20 @@ namespace studMin
 
         private void FilterTimeTableByClass(string className)
         {
-            int coloumOfEachClass = 0;
+            int columnOfEachClass = 0;
             switch (className)
             {
                 case "10A5":
-                    coloumOfEachClass = 3;
+                    columnOfEachClass = 3;
                     break;
                 case "10A4":
-                    coloumOfEachClass = 4;
+                    columnOfEachClass = 4;
                     break;
                 case "10A3":
-                    coloumOfEachClass = 5;
+                    columnOfEachClass = 5;
                     break;
                 case "10A2":
-                    coloumOfEachClass = 6;
+                    columnOfEachClass = 6;
                     break;
             }
 
@@ -248,9 +248,14 @@ namespace studMin
 
                         foreach (IXLCell cell in row.Cells())
                         {
-                            if (i == 2 || i == 3)
+                            if (i == 2)
                             {
-                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString();
+                                dt.Rows[dt.Rows.Count - 1][0] = cell.Value.ToString();
+                            }
+
+                            if (i == columnOfEachClass)
+                            {
+                                dt.Rows[dt.Rows.Count - 1][1] = cell.Value.ToString();
                             }
 
                             i++;
@@ -262,7 +267,7 @@ namespace studMin
 
                         foreach (IXLCell cell in row.Cells())
                         {
-                            if (t == coloumOfEachClass)
+                            if (t == columnOfEachClass)
                             {
                                 dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString();
                             }
