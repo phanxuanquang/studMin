@@ -57,7 +57,7 @@ namespace studMin
         }
 
         #region Buttons
-        private void Login_Button_Click(object sender, EventArgs e)
+        private async void Login_Button_Click(object sender, EventArgs e)
         {
             if (Username_Box.Text == String.Empty || Password_Box.Text == String.Empty)
             {
@@ -68,21 +68,21 @@ namespace studMin
                 bool isValidAccount = false;
                 string accountRole = String.Empty;
 
-                System.Action action = () =>
+                GUI.WaitControl wait = new GUI.WaitControl(this);
+                wait.Start();
+
+                await System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
                     if (isValidAccount)
                     {
                         accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
                     }
-                };
+                });
 
-                using (var waitForm = new WaitForm(action))
-                {
-                    this.Hide();
-                    waitForm.ShowDialog(this);
-                    this.Show();
-                }
+                wait.Stop();
+                wait.Dispose();
+
                 if (isValidAccount)
                 {
                     this.Hide();
