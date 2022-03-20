@@ -196,13 +196,25 @@ namespace studMin
             }
         }
 
-        /*private DataView FilterTimetableByClass(string className)
+        private void FilterTimeTableByClass(string className)
         {
+            int coloumOfEachClass = 0;
+            switch (className)
+            {
+                case "10A5":
+                    coloumOfEachClass = 3;
+                    break;
+                case "10A4":
+                    coloumOfEachClass = 4;
+                    break;
+                case "10A3":
+                    coloumOfEachClass = 5;
+                    break;
+                case "10A2":
+                    coloumOfEachClass = 6;
+                    break;
+            }
 
-        }*/
-
-        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
             Cursor.Current = Cursors.WaitCursor;
             DataTable dt = new DataTable();
 
@@ -214,13 +226,21 @@ namespace studMin
             dt.Columns.Add("Thứ sáu");
             dt.Columns.Add("Thứ bảy");
 
-            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.TemplateScheduleAllTeacher))
+            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.DataSample))
             {
                 int flag = 0;
+                int rowOfEachDay = 0;
+                int columnIndex = 1;
                 var rows = workBook.Worksheet(1).RowsUsed();
 
                 foreach (var row in rows)
                 {
+                    if (flag > 3 && flag % 10 == 3)
+                    {
+                        rowOfEachDay = 0;
+                        columnIndex++;
+                    }
+
                     if (flag >= 3 && flag <= 12)
                     {
                         dt.Rows.Add();
@@ -235,26 +255,24 @@ namespace studMin
 
                             i++;
                         }
-                    } 
-                    else if (flag >= 13 && flag <= 22)
+                    }
+                    else if (flag >= 13 && flag <= 63)
                     {
-                        int i = 0;
-                        int j = 0;
+                        int t = 0;
 
                         foreach (IXLCell cell in row.Cells())
                         {
-                            if (i == 3)
+                            if (t == coloumOfEachClass)
                             {
-                                dt.Rows[j][2] = cell.Value.ToString();
-                                MessageBox.Show(dt.Rows[j][2].ToString());
-                                j++;
+                                dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString();
                             }
 
-                            
-                            i++;
+
+                            t++;
                         }
                     }
 
+                    rowOfEachDay++;
                     flag++;
                 }
 
@@ -263,9 +281,12 @@ namespace studMin
             }
         }
 
-        private void Timetable_GridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Class_ComboBox.SelectedIndex == 0) return;
 
+            string className = Class_ComboBox.SelectedItem.ToString();
+            FilterTimeTableByClass(className);
         }
     }
 }

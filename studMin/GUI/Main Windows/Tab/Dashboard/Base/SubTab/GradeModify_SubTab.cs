@@ -70,46 +70,67 @@ namespace studMin
                     {
                         Cursor.Current = Cursors.WaitCursor;
                         DataTable dt = new DataTable();
+
+                        dt.Columns.Add("Mã học sinh");
+                        dt.Columns.Add("Họ tên");
+                        dt.Columns.Add("Kiểm tra miệng");
+                        dt.Columns.Add("Kiểm tra 15 phút");
+                        dt.Columns.Add("Kiểm tra 1 tiết");
+                        dt.Columns.Add("Kiểm tra học kỳ");
+                        dt.Columns.Add("Trung bình chung");
+
                         using (XLWorkbook workBook = new XLWorkbook(ofd.FileName))
                         {
                             int flag = 0;
                             var rows = workBook.Worksheet(1).RowsUsed();
                             foreach (var row in rows)
                             {
-                                if (flag > 0)
+                                if (flag >= 2)
                                 {
-                                    if (flag == 1)
+                                    dt.Rows.Add();
+                                    int i = 0;
+                                    double oralTest = 0, fifteenMinutes = 0, fortyMinutes = 0, semesterTest = 0, overallAverage = 0;
+                                    int flagOralTest = 0, flagFifteenMinutes = 0;
+                                    foreach (IXLCell cell in row.Cells())
                                     {
-                                        foreach (IXLCell cell in row.Cells())
+                                        if (!cell.IsEmpty())
                                         {
-                                            dt.Columns.Add(cell.Value.ToString());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        dt.Rows.Add();
-                                        int i = 0;
-                                        foreach (IXLCell cell in row.Cells())
-                                        {
-                                            if (i >= 0 && i<= 2 || i == 15 || i == 16)
+                                            if (i == 0 || i == 1)
                                             {
                                                 dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
                                             }
-                                            else if (i >= 3 && i <= 6)
+                                            else if (i >= 2 && i <= 6)
                                             {
-                                                dt.Rows[dt.Rows.Count - 1][2] += " " + cell.Value.ToString();
+                                                oralTest += Double.Parse(cell.Value.ToString());
+                                                flagOralTest++;
                                             }
                                             else if (i >= 7 && i <= 11)
                                             {
-                                                dt.Rows[dt.Rows.Count - 1][3] += " " + cell.Value.ToString();
+                                                fifteenMinutes += Double.Parse(cell.Value.ToString());
+                                                flagFifteenMinutes++;
                                             }
                                             else if (i >= 12 && i <= 14)
                                             {
-                                                dt.Rows[dt.Rows.Count - 1][4] += " " + cell.Value.ToString();
+                                                fortyMinutes += Double.Parse(cell.Value.ToString());
                                             }
-                                            i++;
+                                            else if (i == 15)
+                                            {
+                                                semesterTest = Double.Parse(cell.Value.ToString());
+                                            }
+                                            else
+                                            {
+                                                overallAverage = Double.Parse(cell.Value.ToString());
+                                            }
                                         }
+
+                                        i++;
                                     }
+
+                                    dt.Rows[dt.Rows.Count - 1][2] = (oralTest / flagOralTest).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][3] = (fifteenMinutes / flagFifteenMinutes).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][4] = (fortyMinutes / 3).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][5] = semesterTest.ToString();
+                                    dt.Rows[dt.Rows.Count - 1][6] = overallAverage.ToString();
                                 }
 
                                 flag++;
@@ -131,23 +152,33 @@ namespace studMin
         {
             if (Class_ComboBox.Text != "Mọi lớp")
             {
-                MessageBox.Show("Bận phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Bạn phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
                 try
                 {
+                    CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                    cm.SuspendBinding();
+
                     for (int i = 0; i < GridView.RowCount; i++)
                     {
-                        if (GridView.Rows[i].Cells[0].Value != null && GridView.Rows[i].Cells[1].Value != null && GridView.Rows[i].Cells[0].Value.ToString().ToLower() == Search_Box.Text.ToLower() || GridView.Rows[i].Cells[1].Value.ToString().ToLower() == Search_Box.Text.ToLower())
+                        if (GridView.Rows[i].Cells[0].Value != null && 
+                            GridView.Rows[i].Cells[1].Value != null && 
+                            GridView.Rows[i].Cells[0].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || 
+                            GridView.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
                         {
+                            
                             GridView.Rows[i].Visible = true;
+                            
                         }
                         else
                         {
                             GridView.Rows[i].Visible = false;
                         }
                     }
+
+                    cm.ResumeBinding();
                 }
                 catch (Exception ex)
                 {
