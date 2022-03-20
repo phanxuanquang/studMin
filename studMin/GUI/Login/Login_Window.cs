@@ -65,13 +65,31 @@ namespace studMin
             }
             else if (isInternetAvailable())
             {
-                if (LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text))
+                bool isValidAccount = false;
+                string accountRole = String.Empty;
+
+                System.Action action = () =>
+                {
+                    isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
+                    if (isValidAccount)
+                    {
+                        accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
+                    }
+                };
+
+                using (var waitForm = new WaitForm(action))
+                {
+                    this.Hide();
+                    waitForm.ShowDialog(this);
+                    this.Show();
+                }
+
+                if (isValidAccount)
                 {
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
-
-                    string role = LoginServices.Instance.CheckUserRole(Username_Box.Text);
-                    switch (role)
+                    
+                    switch (accountRole)
                     {
                         case "Nhân viên":
                             personRole = studMin.role.officeStaff;

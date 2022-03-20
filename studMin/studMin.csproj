@@ -287,6 +287,12 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.Designer.cs">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\WaitForm.Designer.cs">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.resx">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\WaitForm.resx">
+      <DependentUpon>WaitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Database\Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
