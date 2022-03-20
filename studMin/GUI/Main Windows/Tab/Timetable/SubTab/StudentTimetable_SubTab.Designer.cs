@@ -105,7 +105,6 @@
             this.Timetable_GridView.ThemeStyle.RowsStyle.Height = 22;
             this.Timetable_GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.Timetable_GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.Timetable_GridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.Timetable_GridView_CellValueChanged);
             // 
             // Class_ComboBox
             // 
@@ -127,10 +126,11 @@
             this.Class_ComboBox.HoverState.Parent = this.Class_ComboBox;
             this.Class_ComboBox.ItemHeight = 30;
             this.Class_ComboBox.Items.AddRange(new object[] {
-            "Mọi lớp",
-            "10A1",
-            "10A2",
-            "10A3"});
+            "Chọn lớp",
+            "10A5",
+            "10A4",
+            "10A3",
+            "10A2"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Location = new System.Drawing.Point(469, 740);
             this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(4);

@@ -196,8 +196,25 @@ namespace studMin
             }
         }
 
-        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FilterTimeTableByClass(string className)
         {
+            int coloumOfEachClass = 0;
+            switch (className)
+            {
+                case "10A5":
+                    coloumOfEachClass = 3;
+                    break;
+                case "10A4":
+                    coloumOfEachClass = 4;
+                    break;
+                case "10A3":
+                    coloumOfEachClass = 5;
+                    break;
+                case "10A2":
+                    coloumOfEachClass = 6;
+                    break;
+            }
+
             Cursor.Current = Cursors.WaitCursor;
             DataTable dt = new DataTable();
 
@@ -233,24 +250,24 @@ namespace studMin
                         {
                             if (i == 2 || i == 3)
                             {
-                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString() + "\n";
+                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString();
                             }
 
                             i++;
                         }
-                    } 
+                    }
                     else if (flag >= 13 && flag <= 63)
                     {
                         int t = 0;
 
                         foreach (IXLCell cell in row.Cells())
                         {
-                            if (t == 3)
+                            if (t == coloumOfEachClass)
                             {
-                                dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString() + "\n";
+                                dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString();
                             }
 
-                            
+
                             t++;
                         }
                     }
@@ -260,14 +277,16 @@ namespace studMin
                 }
 
                 Timetable_GridView.DataSource = dt.DefaultView;
-                Timetable_GridView.Refresh();
                 Cursor.Current = Cursors.Default;
             }
         }
 
-        private void Timetable_GridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Class_ComboBox.SelectedIndex == 0) return;
 
+            string className = Class_ComboBox.SelectedItem.ToString();
+            FilterTimeTableByClass(className);
         }
     }
 }
