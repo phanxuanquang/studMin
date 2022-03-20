@@ -196,11 +196,6 @@ namespace studMin
             }
         }
 
-        /*private DataView FilterTimetableByClass(string className)
-        {
-
-        }*/
-
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -214,13 +209,21 @@ namespace studMin
             dt.Columns.Add("Thứ sáu");
             dt.Columns.Add("Thứ bảy");
 
-            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.TemplateScheduleAllTeacher))
+            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.DataSample))
             {
                 int flag = 0;
+                int rowOfEachDay = 0;
+                int columnIndex = 1;
                 var rows = workBook.Worksheet(1).RowsUsed();
 
                 foreach (var row in rows)
                 {
+                    if (flag > 3 && flag % 10 == 3)
+                    {
+                        rowOfEachDay = 0;
+                        columnIndex++;
+                    }
+
                     if (flag >= 3 && flag <= 12)
                     {
                         dt.Rows.Add();
@@ -230,35 +233,34 @@ namespace studMin
                         {
                             if (i == 2 || i == 3)
                             {
-                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString();
+                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString() + "\n";
                             }
 
                             i++;
                         }
                     } 
-                    else if (flag >= 13 && flag <= 22)
+                    else if (flag >= 13 && flag <= 63)
                     {
-                        int i = 0;
-                        int j = 0;
+                        int t = 0;
 
                         foreach (IXLCell cell in row.Cells())
                         {
-                            if (i == 3)
+                            if (t == 3)
                             {
-                                dt.Rows[j][2] = cell.Value.ToString();
-                                MessageBox.Show(dt.Rows[j][2].ToString());
-                                j++;
+                                dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString() + "\n";
                             }
 
                             
-                            i++;
+                            t++;
                         }
                     }
 
+                    rowOfEachDay++;
                     flag++;
                 }
 
                 Timetable_GridView.DataSource = dt.DefaultView;
+                Timetable_GridView.Refresh();
                 Cursor.Current = Cursors.Default;
             }
         }

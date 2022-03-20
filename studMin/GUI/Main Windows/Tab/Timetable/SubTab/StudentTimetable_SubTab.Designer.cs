@@ -75,7 +75,7 @@
             this.Timetable_GridView.EnableHeadersVisualStyles = false;
             this.Timetable_GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.Timetable_GridView.Location = new System.Drawing.Point(0, 106);
-            this.Timetable_GridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Timetable_GridView.Margin = new System.Windows.Forms.Padding(4);
             this.Timetable_GridView.Name = "Timetable_GridView";
             this.Timetable_GridView.ReadOnly = true;
             this.Timetable_GridView.RowHeadersVisible = false;
@@ -133,7 +133,7 @@
             "10A3"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Location = new System.Drawing.Point(469, 740);
-            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.Class_ComboBox.Name = "Class_ComboBox";
             this.Class_ComboBox.ShadowDecoration.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Size = new System.Drawing.Size(240, 36);
@@ -157,7 +157,7 @@
             this.TimetableExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.TimetableExport_Button.HoverState.Parent = this.TimetableExport_Button;
             this.TimetableExport_Button.Location = new System.Drawing.Point(967, 740);
-            this.TimetableExport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TimetableExport_Button.Margin = new System.Windows.Forms.Padding(4);
             this.TimetableExport_Button.Name = "TimetableExport_Button";
             this.TimetableExport_Button.ShadowDecoration.Parent = this.TimetableExport_Button;
             this.TimetableExport_Button.Size = new System.Drawing.Size(241, 44);
@@ -196,7 +196,7 @@
             this.TimetableImport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.TimetableImport_Button.HoverState.Parent = this.TimetableImport_Button;
             this.TimetableImport_Button.Location = new System.Drawing.Point(717, 740);
-            this.TimetableImport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TimetableImport_Button.Margin = new System.Windows.Forms.Padding(4);
             this.TimetableImport_Button.Name = "TimetableImport_Button";
             this.TimetableImport_Button.ShadowDecoration.Parent = this.TimetableImport_Button;
             this.TimetableImport_Button.Size = new System.Drawing.Size(241, 44);
@@ -215,7 +215,7 @@
             this.Controls.Add(this.TimetableExport_Button);
             this.Controls.Add(this.Class_ComboBox);
             this.Controls.Add(this.Timetable_GridView);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StudentTimetable_SubTab";
             this.Size = new System.Drawing.Size(1232, 847);
             ((System.ComponentModel.ISupportInitialize)(this.Timetable_GridView)).EndInit();
