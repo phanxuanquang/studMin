@@ -69,20 +69,12 @@ namespace studMin
                 {
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
-                    // add check role here !
-                    //personRole = role.classHead; // example
 
                     string role = LoginServices.Instance.CheckUserRole(Username_Box.Text);
                     switch (role)
                     {
-                        case "Giáo viên":
-                            personRole = studMin.role.normalTeacher;
-                            break;
                         case "Nhân viên":
                             personRole = studMin.role.officeStaff;
-                            break;
-                        case "Quản lí":
-                            personRole = studMin.role.manager;
                             break;
                         case "Chủ nhiệm":
                             personRole = studMin.role.classHead;
@@ -95,6 +87,9 @@ namespace studMin
                             break;
                         case "Phó hiệu trưởng":
                             personRole = studMin.role.vicePrincipal;
+                            break;
+                        default:
+                            personRole = studMin.role.normalTeacher;
                             break;
                     }    
 
@@ -112,6 +107,13 @@ namespace studMin
                 MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+        private void EnterAccountComplete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                Login_Button_Click(sender, e);
+            }
+        }
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
@@ -124,10 +126,12 @@ namespace studMin
             ForgetPasswordUC_MoverUp.Activate();
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
+
         #endregion
+
     }
     public enum role
     {
-        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff, manager
+        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff
     }
 }
