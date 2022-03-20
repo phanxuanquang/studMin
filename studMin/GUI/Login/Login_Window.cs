@@ -99,7 +99,6 @@ namespace studMin
                         case "Phó hiệu trưởng":
                             personRole = studMin.role.vicePrincipal;
                             break;
-
                     }    
 
                     MainWinfow mainWinfow = new MainWinfow(personRole);
