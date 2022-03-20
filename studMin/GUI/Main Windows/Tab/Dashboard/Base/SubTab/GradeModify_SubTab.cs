@@ -126,11 +126,11 @@ namespace studMin
                                         i++;
                                     }
 
-                                    dt.Rows[dt.Rows.Count - 1][2] = (oralTest / flagOralTest).ToString();
-                                    dt.Rows[dt.Rows.Count - 1][3] = (fifteenMinutes / flagFifteenMinutes).ToString();
-                                    dt.Rows[dt.Rows.Count - 1][4] = (fortyMinutes / 3).ToString();
-                                    dt.Rows[dt.Rows.Count - 1][5] = semesterTest.ToString();
-                                    dt.Rows[dt.Rows.Count - 1][6] = overallAverage.ToString();
+                                    dt.Rows[dt.Rows.Count - 1][2] = Math.Round((oralTest / flagOralTest), 2).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][3] = Math.Round((fifteenMinutes / flagFifteenMinutes), 2).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][4] = Math.Round((fortyMinutes / 3), 2).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][5] = Math.Round(semesterTest, 2).ToString();
+                                    dt.Rows[dt.Rows.Count - 1][6] = Math.Round(overallAverage, 2).ToString();
                                 }
 
                                 flag++;
