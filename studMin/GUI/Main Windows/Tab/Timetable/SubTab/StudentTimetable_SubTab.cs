@@ -29,7 +29,7 @@ namespace studMin
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 exportPath = saveFileDialog.FileName;
-            } 
+            }
             else
             {
                 return;
@@ -201,7 +201,7 @@ namespace studMin
                                         {
                                             if (i >= 1)
                                             {
-                                                dt.Rows[dt.Rows.Count - 1][i-1] = cell.Value.ToString();
+                                                dt.Rows[dt.Rows.Count - 1][i - 1] = cell.Value.ToString();
                                             }
                                         }
 
@@ -326,5 +326,76 @@ namespace studMin
             string className = Class_ComboBox.SelectedItem.ToString();
             FilterTimeTableByClass(className);
         }
+
+        /*bool IsInTheSameMergedRange(IXLCell cell1, IXLCell cell2)
+        {
+            if (cell1.MergedRange() == null || cell2.MergedRange() == null) return false;
+
+            if (cell1.MergedRange().ToString() == cell2.MergedRange().ToString())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void Timetable_GridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+
+            if (e.RowIndex < 1 || e.ColumnIndex < 0)
+                return;
+
+            int columnOfEachClass = 0;
+            switch (Class_ComboBox.SelectedItem.ToString())
+            {
+                case "10A5":
+                    columnOfEachClass = 3;
+                    break;
+                case "10A4":
+                    columnOfEachClass = 4;
+                    break;
+                case "10A3":
+                    columnOfEachClass = 5;
+                    break;
+                case "10A2":
+                    columnOfEachClass = 6;
+                    break;
+            }
+
+            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.DataSample))
+            {
+                int flag = 0;
+                var rows = workBook.Worksheet(1).RowsUsed();
+
+                foreach (var row in rows)
+                {
+                    if (flag >= 3)
+                    {
+                        int i = 0;
+
+                        foreach (IXLCell cell in row.Cells())
+                        {
+                            if (i == columnOfEachClass)
+                            {
+                                if (IsInTheSameMergedRange(cell, cell.CellAbove()))
+                                {
+                                    e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+                                }
+                                else
+                                {
+                                    e.AdvancedBorderStyle.Top = Timetable_GridView.AdvancedCellBorderStyle.Top;
+                                }
+                            }
+
+                            i++;
+                        }
+                    }
+                    
+
+                    flag++;
+                }
+            }
+        }*/
     }
 }
