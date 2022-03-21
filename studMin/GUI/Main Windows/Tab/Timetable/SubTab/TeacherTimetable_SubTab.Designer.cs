@@ -188,10 +188,7 @@
             this.Class_ComboBox.HoverState.Parent = this.Class_ComboBox;
             this.Class_ComboBox.ItemHeight = 30;
             this.Class_ComboBox.Items.AddRange(new object[] {
-            "Mọi lớp",
-            "10A1",
-            "10A2",
-            "10A3"});
+            "Chọn giáo viên"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Location = new System.Drawing.Point(704, 1156);
             this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(6);

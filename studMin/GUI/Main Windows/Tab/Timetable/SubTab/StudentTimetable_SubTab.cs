@@ -229,13 +229,25 @@ namespace studMin
             }
         }
 
-        /*private DataView FilterTimetableByClass(string className)
+        private void FilterTimeTableByClass(string className)
         {
+            int columnOfEachClass = 0;
+            switch (className)
+            {
+                case "10A5":
+                    columnOfEachClass = 3;
+                    break;
+                case "10A4":
+                    columnOfEachClass = 4;
+                    break;
+                case "10A3":
+                    columnOfEachClass = 5;
+                    break;
+                case "10A2":
+                    columnOfEachClass = 6;
+                    break;
+            }
 
-        }*/
-
-        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
             Cursor.Current = Cursors.WaitCursor;
             DataTable dt = new DataTable();
 
@@ -247,13 +259,21 @@ namespace studMin
             dt.Columns.Add("Thứ sáu");
             dt.Columns.Add("Thứ bảy");
 
-            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.TemplateScheduleAllTeacher))
+            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.DataSample))
             {
                 int flag = 0;
+                int rowOfEachDay = 0;
+                int columnIndex = 1;
                 var rows = workBook.Worksheet(1).RowsUsed();
 
                 foreach (var row in rows)
                 {
+                    if (flag > 3 && flag % 10 == 3)
+                    {
+                        rowOfEachDay = 0;
+                        columnIndex++;
+                    }
+
                     if (flag >= 3 && flag <= 12)
                     {
                         dt.Rows.Add();
@@ -261,33 +281,36 @@ namespace studMin
 
                         foreach (IXLCell cell in row.Cells())
                         {
-                            if (i == 2 || i == 3)
+                            if (i == 2)
                             {
-                                dt.Rows[dt.Rows.Count - 1][i - 2] = cell.Value.ToString();
+                                dt.Rows[dt.Rows.Count - 1][0] = cell.Value.ToString();
                             }
 
-                            i++;
-                        }
-                    } 
-                    else if (flag >= 13 && flag <= 22)
-                    {
-                        int i = 0;
-                        int j = 0;
-
-                        foreach (IXLCell cell in row.Cells())
-                        {
-                            if (i == 3)
+                            if (i == columnOfEachClass)
                             {
-                                dt.Rows[j][2] = cell.Value.ToString();
-                                MessageBox.Show(dt.Rows[j][2].ToString());
-                                j++;
+                                dt.Rows[dt.Rows.Count - 1][1] = cell.Value.ToString();
                             }
 
-                            
                             i++;
                         }
                     }
+                    else if (flag >= 13 && flag <= 63)
+                    {
+                        int t = 0;
 
+                        foreach (IXLCell cell in row.Cells())
+                        {
+                            if (t == columnOfEachClass)
+                            {
+                                dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString();
+                            }
+
+
+                            t++;
+                        }
+                    }
+
+                    rowOfEachDay++;
                     flag++;
                 }
 
@@ -296,9 +319,12 @@ namespace studMin
             }
         }
 
-        private void Timetable_GridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Class_ComboBox.SelectedIndex == 0) return;
 
+            string className = Class_ComboBox.SelectedItem.ToString();
+            FilterTimeTableByClass(className);
         }
     }
 }

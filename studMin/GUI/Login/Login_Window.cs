@@ -57,7 +57,7 @@ namespace studMin
         }
 
         #region Buttons
-        private void Login_Button_Click(object sender, EventArgs e)
+        private async void Login_Button_Click(object sender, EventArgs e)
         {
             if (Username_Box.Text == String.Empty || Password_Box.Text == String.Empty)
             {
@@ -65,24 +65,33 @@ namespace studMin
             }
             else if (isInternetAvailable())
             {
-                if (LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text))
+                bool isValidAccount = false;
+                string accountRole = String.Empty;
+
+                GUI.WaitControl wait = new GUI.WaitControl(this);
+                wait.Start();
+
+                await System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
+                    if (isValidAccount)
+                    {
+                        accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
+                    }
+                });
+
+                wait.Stop();
+                wait.Dispose();
+
+                if (isValidAccount)
                 {
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
-                    // add check role here !
-                    //personRole = role.classHead; // example
-
-                    string role = LoginServices.Instance.CheckUserRole(Username_Box.Text);
-                    switch (role)
+                    
+                    switch (accountRole)
                     {
-                        case "Giáo viên":
-                            personRole = studMin.role.normalTeacher;
-                            break;
                         case "Nhân viên":
                             personRole = studMin.role.officeStaff;
-                            break;
-                        case "Quản lí":
-                            personRole = studMin.role.manager;
                             break;
                         case "Chủ nhiệm":
                             personRole = studMin.role.classHead;
@@ -96,7 +105,9 @@ namespace studMin
                         case "Phó hiệu trưởng":
                             personRole = studMin.role.vicePrincipal;
                             break;
-
+                        default:
+                            personRole = studMin.role.normalTeacher;
+                            break;
                     }    
 
                     MainWinfow mainWinfow = new MainWinfow(personRole);
@@ -113,6 +124,13 @@ namespace studMin
                 MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+        private void EnterAccountComplete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                Login_Button_Click(sender, e);
+            }
+        }
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
@@ -125,10 +143,12 @@ namespace studMin
             ForgetPasswordUC_MoverUp.Activate();
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
+
         #endregion
+
     }
     public enum role
     {
-        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff, manager
+        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff
     }
 }

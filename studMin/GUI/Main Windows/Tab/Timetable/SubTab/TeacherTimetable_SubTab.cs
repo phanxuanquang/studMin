@@ -359,6 +359,8 @@ namespace studMin
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (data == null) return;
+
             string teacher = Class_ComboBox.SelectedItem.ToString();
 
             DataTable dataSource = new DataTable();

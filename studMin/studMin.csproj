@@ -249,6 +249,7 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.Designer.cs">
       <DependentUpon>NormalTeacherDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WaitControl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.cs">
