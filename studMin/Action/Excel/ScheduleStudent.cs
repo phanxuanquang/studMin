@@ -150,7 +150,7 @@ namespace studMin.Action.Excel
             {
                 if (clone == null) return;
 
-                int startIndexColumn = ((int)clone.NgayHoc.DayOfWeek - 1) + StartColumn;
+                int startIndexColumn = ((int)clone.NgayHoc - 1) + StartColumn;
                 int startIndexRow = StartRowClass + clone.TietBatDau + (clone.Buoi == "Afternoon" ? MaxPeriod + offset : 0) - 1;
 
                 string columnName = GetExcelColumnName(startIndexColumn);

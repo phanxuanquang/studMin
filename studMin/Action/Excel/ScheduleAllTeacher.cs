@@ -156,7 +156,7 @@ namespace studMin.Action.Excel
             private string _teacher;
             private int _start;
             private int _duration;
-            private DateTime _date;
+            private int _date;
             private enum _session
             {
                 Morning,
@@ -172,7 +172,7 @@ namespace studMin.Action.Excel
                 set { _class = value; }
             }
 
-            public DateTime NgayHoc
+            public int NgayHoc
             {
                 get { return _date; }
                 set { _date = value; }
@@ -279,7 +279,7 @@ namespace studMin.Action.Excel
         private bool Condition(Item item, int startIndex, int offset, string lop)
         {
             if (item != null && item.Lop != lop) return false;
-            int startIndexRow = ((int)item.NgayHoc.DayOfWeek - 1) * 20 + StartRowOfClass;
+            int startIndexRow = ((int)item.NgayHoc - 1) * 20 + StartRowOfClass;
             startIndexRow += item.Buoi == "Afternoon" ? 10 : 0;
             startIndexRow += (item.TietBatDau - 1) * 2;
 
@@ -333,7 +333,7 @@ namespace studMin.Action.Excel
                     return;
                 }
 
-                int startIndexRow = ((int)newItem.NgayHoc.DayOfWeek - 1) * RowOfPeriod * MaxPeriod * 2 + StartRowOfClass;
+                int startIndexRow = ((int)newItem.NgayHoc - 1) * RowOfPeriod * MaxPeriod * 2 + StartRowOfClass;
                 startIndexRow += newItem.Buoi == "Afternoon" ? RowOfPeriod * MaxPeriod : 0;
                 startIndexRow += (newItem.TietBatDau - 1) * RowOfPeriod;
 
@@ -409,7 +409,7 @@ namespace studMin.Action.Excel
             if (itemCheck == null) return false;
             for (int index = 0; index < data.Count; index++)
             {
-                if (itemCheck.Buoi == data[index].Buoi && itemCheck.NgayHoc.DayOfWeek == data[index].NgayHoc.DayOfWeek && itemCheck.GiaoVien == data[index].GiaoVien)
+                if (itemCheck.Buoi == data[index].Buoi && itemCheck.NgayHoc == data[index].NgayHoc && itemCheck.GiaoVien == data[index].GiaoVien)
                 {
                     if (itemCheck.TietBatDau >= data[index].TietBatDau && itemCheck.TietBatDau < data[index].TietBatDau + data[index].TietKeoDai)
                     {
@@ -477,7 +477,7 @@ namespace studMin.Action.Excel
                         item.TietKeoDai = merge / RowOfPeriod;
 
                         int calculation = row - StartRowOfClass;
-                        item.NgayHoc = FindDayNearly(dateTime, (DayOfWeek)((int)((calculation / (RowOfPeriod * MaxPeriod * 2)) + 1)));
+                        item.NgayHoc = ((int)((calculation / (RowOfPeriod * MaxPeriod * 2)) + 1));
 
                         calculation = calculation % (RowOfPeriod * MaxPeriod * 2);
                         item.Buoi = ((int)calculation / 10) == 0 ? "M" : "A";

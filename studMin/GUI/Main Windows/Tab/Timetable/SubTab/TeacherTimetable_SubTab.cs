@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-
+using System.Linq;
 namespace studMin
 {
     public partial class TeacherTimetable_SubTab : UserControl
@@ -40,240 +40,273 @@ namespace studMin
                 Truong = "Trường THPT Di Linh",
             };
 
-            List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>()
+            // lấy dữ liệu thời khóa biểu từ database
+
+            List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>();
+
+            var classLesson = studMin.Database.DataProvider.Instance.Database.CLASSes.ToList();
+            foreach (var classes in classLesson)
             {
-                //Dữ liệu mẫu
-                new Action.Excel.ScheduleAllTeacher.Item()
+                var lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDCLASS == classes.ID).ToList();
+
+                foreach (var item in lesson)
                 {
-                    GiaoVien="Nguyễn Kim Phượng",
-                    Buoi="M",
-                    TietBatDau=1,
-                    TietKeoDai=2,
-                    Lop="10A2",
-                    MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("14/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Kim Liên",
-                    Buoi="A",
-                    TietBatDau=2,
-                    TietKeoDai=2,
-                    Lop="10A2",
-                    MonHoc="Văn",
-                    NgayHoc=Methods.TryParse("15/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Hoàng Lân",
-                    Buoi="M",
-                    TietBatDau=1,
-                    TietKeoDai=2,
-                    Lop="10A3",
-                    MonHoc="Anh",
-                    NgayHoc=Methods.TryParse("14/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Võ Thanh Minh",
-                    Buoi="M",
-                    TietBatDau=1,
-                    TietKeoDai=1,
-                    Lop="10A3",
-                    MonHoc="Địa",
-                    NgayHoc=Methods.TryParse("15/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Trần Phan Anh Đức",
-                    Buoi="A",
-                    TietBatDau=1,
-                    TietKeoDai=2,
-                    Lop="10A3",
-                    MonHoc="Sinh",
-                    NgayHoc=Methods.TryParse("16/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Lý Hoàng Phi",
-                    Buoi="M",
-                    TietBatDau=4,
-                    TietKeoDai=2,
-                    Lop="10A2",
-                    MonHoc="Lý",
-                    NgayHoc=Methods.TryParse("14/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Cao Liên Thi",
-                    Buoi="A",
-                    TietBatDau=1,
-                    TietKeoDai=2,
-                    Lop="10A3",
-                    MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("15/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Phạm Võ Anh Thi",
-                    Buoi="A",
-                    TietBatDau=5,
-                    TietKeoDai=1,
-                    Lop="10A3",
-                    MonHoc="GDCN",
-                    NgayHoc=Methods.TryParse("16/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Kim Phượng",
-                    Buoi="M",
-                    TietBatDau=3,
-                    TietKeoDai=2,
-                    Lop="10A4",
-                    MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("14/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Kim Liên",
-                    Buoi="A",
-                    TietBatDau=4,
-                    TietKeoDai=2,
-                    Lop="10A4",
-                    MonHoc="Văn",
-                    NgayHoc=Methods.TryParse("15/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Hoàng Lân",
-                    Buoi="M",
-                    TietBatDau=3,
-                    TietKeoDai=2,
-                    Lop="10A4",
-                    MonHoc="Anh",
-                    NgayHoc=Methods.TryParse("17/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Võ Thanh Minh",
-                    Buoi="M",
-                    TietBatDau=2,
-                    TietKeoDai=1,
-                    Lop="10A4",
-                    MonHoc="Địa",
-                    NgayHoc=Methods.TryParse("15/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Trần Phan Anh Đức",
-                    Buoi="A",
-                    TietBatDau=3,
-                    TietKeoDai=2,
-                    Lop="10A4",
-                    MonHoc="Sinh",
-                    NgayHoc=Methods.TryParse("16/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Lý Hoàng Phi",
-                    Buoi="M",
-                    TietBatDau=4,
-                    TietKeoDai=2,
-                    Lop="10A4",
-                    MonHoc="Lý",
-                    NgayHoc=Methods.TryParse("18/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Cao Liên Thi",
-                    Buoi="A",
-                    TietBatDau=4,
-                    TietKeoDai=2,
-                    Lop="10A5",
-                    MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("17/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Phạm Võ Anh Thi",
-                    Buoi="A",
-                    TietBatDau=5,
-                    TietKeoDai=1,
-                    Lop="10A5",
-                    MonHoc="GDCN",
-                    NgayHoc=Methods.TryParse("18/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Kim Phượng",
-                    Buoi="M",
-                    TietBatDau=3,
-                    TietKeoDai=2,
-                    Lop="10A5",
-                    MonHoc="Toán",
-                    NgayHoc=Methods.TryParse("18/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Kim Liên",
-                    Buoi="A",
-                    TietBatDau=4,
-                    TietKeoDai=2,
-                    Lop="10A5",
-                    MonHoc="Văn",
-                    NgayHoc=Methods.TryParse("16/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Hoàng Lân",
-                    Buoi="M",
-                    TietBatDau=3,
-                    TietKeoDai=2,
-                    Lop="10A5",
-                    MonHoc="Anh",
-                    NgayHoc=Methods.TryParse("14/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Nguyễn Võ Thanh Minh",
-                    Buoi="M",
-                    TietBatDau=2,
-                    TietKeoDai=1,
-                    Lop="10A5",
-                    MonHoc="Địa",
-                    NgayHoc=Methods.TryParse("17/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Trần Phan Anh Đức",
-                    Buoi="A",
-                    TietBatDau=3,
-                    TietKeoDai=2,
-                    Lop="10A5",
-                    MonHoc="Sinh",
-                    NgayHoc=Methods.TryParse("19/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Lý Hoàng Phi",
-                    Buoi="M",
-                    TietBatDau=4,
-                    TietKeoDai=2,
-                    Lop="10A5",
-                    MonHoc="Lý",
-                    NgayHoc=Methods.TryParse("16/03/2022")
-                },
-                new Action.Excel.ScheduleAllTeacher.Item()
-                {
-                    GiaoVien="Phạm Võ Anh Thi",
-                    Buoi="A",
-                    TietBatDau=5,
-                    TietKeoDai=1,
-                    Lop="10A5",
-                    MonHoc="GDCN",
-                    NgayHoc=Methods.TryParse("19/03/2022")
+                    var teacher = studMin.Database.DataProvider.Instance.Database.TEACHERs.Where(itemTeacher => itemTeacher.ID == item.IDTEACHER).FirstOrDefault();
+
+                    var infoteacher = studMin.Database.DataProvider.Instance.Database.INFORs.Where(iteminfo => iteminfo.ID == teacher.IDINFOR).FirstOrDefault();
+
+                    var subject = studMin.Database.DataProvider.Instance.Database.SUBJECTs.Where(itemsubject => itemsubject.Id == item.IDSUBJECT).FirstOrDefault();
+
+                    Action.Excel.ScheduleAllTeacher.Item temp = new studMin.Action.Excel.ScheduleAllTeacher.Item()
+                    {
+                        GiaoVien = infoteacher.FIRSTNAME + " " + infoteacher.LASTNAME,
+                        Buoi = "M",
+                        TietBatDau = (int)(item.TIMESTART),
+                        TietKeoDai = (int)(item.TIMEEND) - (int)(item.TIMESTART) + 1,
+                        Lop = classes.CLASSNAME,
+                        MonHoc = subject.DisplayName,
+                        NgayHoc = (int)item.DAYOFW - 1,
+
+                    };
+                    list.Add(temp);
                 }
-            };
+            }
+
+
+
+            //{
+            //    //Dữ liệu mẫu
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Kim Phượng",
+            //        Buoi="M",
+            //        TietBatDau=1,
+            //        TietKeoDai=2,
+            //        Lop="10A2",
+            //        MonHoc="Toán",
+            //        NgayHoc=Methods.TryParse("14/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Kim Liên",
+            //        Buoi="A",
+            //        TietBatDau=2,
+            //        TietKeoDai=2,
+            //        Lop="10A2",
+            //        MonHoc="Văn",
+            //        NgayHoc=Methods.TryParse("15/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Hoàng Lân",
+            //        Buoi="M",
+            //        TietBatDau=1,
+            //        TietKeoDai=2,
+            //        Lop="10A3",
+            //        MonHoc="Anh",
+            //        NgayHoc=Methods.TryParse("14/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Võ Thanh Minh",
+            //        Buoi="M",
+            //        TietBatDau=1,
+            //        TietKeoDai=1,
+            //        Lop="10A3",
+            //        MonHoc="Địa",
+            //        NgayHoc=Methods.TryParse("15/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Trần Phan Anh Đức",
+            //        Buoi="A",
+            //        TietBatDau=1,
+            //        TietKeoDai=2,
+            //        Lop="10A3",
+            //        MonHoc="Sinh",
+            //        NgayHoc=Methods.TryParse("16/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Lý Hoàng Phi",
+            //        Buoi="M",
+            //        TietBatDau=4,
+            //        TietKeoDai=2,
+            //        Lop="10A2",
+            //        MonHoc="Lý",
+            //        NgayHoc=Methods.TryParse("14/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Cao Liên Thi",
+            //        Buoi="A",
+            //        TietBatDau=1,
+            //        TietKeoDai=2,
+            //        Lop="10A3",
+            //        MonHoc="Toán",
+            //        NgayHoc=Methods.TryParse("15/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Phạm Võ Anh Thi",
+            //        Buoi="A",
+            //        TietBatDau=5,
+            //        TietKeoDai=1,
+            //        Lop="10A3",
+            //        MonHoc="GDCN",
+            //        NgayHoc=Methods.TryParse("16/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Kim Phượng",
+            //        Buoi="M",
+            //        TietBatDau=3,
+            //        TietKeoDai=2,
+            //        Lop="10A4",
+            //        MonHoc="Toán",
+            //        NgayHoc=Methods.TryParse("14/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Kim Liên",
+            //        Buoi="A",
+            //        TietBatDau=4,
+            //        TietKeoDai=2,
+            //        Lop="10A4",
+            //        MonHoc="Văn",
+            //        NgayHoc=Methods.TryParse("15/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Hoàng Lân",
+            //        Buoi="M",
+            //        TietBatDau=3,
+            //        TietKeoDai=2,
+            //        Lop="10A4",
+            //        MonHoc="Anh",
+            //        NgayHoc=Methods.TryParse("17/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Võ Thanh Minh",
+            //        Buoi="M",
+            //        TietBatDau=2,
+            //        TietKeoDai=1,
+            //        Lop="10A4",
+            //        MonHoc="Địa",
+            //        NgayHoc=Methods.TryParse("15/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Trần Phan Anh Đức",
+            //        Buoi="A",
+            //        TietBatDau=3,
+            //        TietKeoDai=2,
+            //        Lop="10A4",
+            //        MonHoc="Sinh",
+            //        NgayHoc=Methods.TryParse("16/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Lý Hoàng Phi",
+            //        Buoi="M",
+            //        TietBatDau=4,
+            //        TietKeoDai=2,
+            //        Lop="10A4",
+            //        MonHoc="Lý",
+            //        NgayHoc=Methods.TryParse("18/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Cao Liên Thi",
+            //        Buoi="A",
+            //        TietBatDau=4,
+            //        TietKeoDai=2,
+            //        Lop="10A5",
+            //        MonHoc="Toán",
+            //        NgayHoc=Methods.TryParse("17/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Phạm Võ Anh Thi",
+            //        Buoi="A",
+            //        TietBatDau=5,
+            //        TietKeoDai=1,
+            //        Lop="10A5",
+            //        MonHoc="GDCN",
+            //        NgayHoc=Methods.TryParse("18/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Kim Phượng",
+            //        Buoi="M",
+            //        TietBatDau=3,
+            //        TietKeoDai=2,
+            //        Lop="10A5",
+            //        MonHoc="Toán",
+            //        NgayHoc=Methods.TryParse("18/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Kim Liên",
+            //        Buoi="A",
+            //        TietBatDau=4,
+            //        TietKeoDai=2,
+            //        Lop="10A5",
+            //        MonHoc="Văn",
+            //        NgayHoc=Methods.TryParse("16/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Hoàng Lân",
+            //        Buoi="M",
+            //        TietBatDau=3,
+            //        TietKeoDai=2,
+            //        Lop="10A5",
+            //        MonHoc="Anh",
+            //        NgayHoc=Methods.TryParse("14/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Nguyễn Võ Thanh Minh",
+            //        Buoi="M",
+            //        TietBatDau=2,
+            //        TietKeoDai=1,
+            //        Lop="10A5",
+            //        MonHoc="Địa",
+            //        NgayHoc=Methods.TryParse("17/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Trần Phan Anh Đức",
+            //        Buoi="A",
+            //        TietBatDau=3,
+            //        TietKeoDai=2,
+            //        Lop="10A5",
+            //        MonHoc="Sinh",
+            //        NgayHoc=Methods.TryParse("19/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Lý Hoàng Phi",
+            //        Buoi="M",
+            //        TietBatDau=4,
+            //        TietKeoDai=2,
+            //        Lop="10A5",
+            //        MonHoc="Lý",
+            //        NgayHoc=Methods.TryParse("16/03/2022")
+            //    },
+            //    new Action.Excel.ScheduleAllTeacher.Item()
+            //    {
+            //        GiaoVien="Phạm Võ Anh Thi",
+            //        Buoi="A",
+            //        TietBatDau=5,
+            //        TietKeoDai=1,
+            //        Lop="10A5",
+            //        MonHoc="GDCN",
+            //        NgayHoc=Methods.TryParse("19/03/2022")
+            //    }
+            //};
 
             this.BeginInvoke(new System.Action(() =>
             {
@@ -363,7 +396,7 @@ namespace studMin
 
                     for (int tietkeodai = 0; tietkeodai < data[index].TietKeoDai; tietkeodai++)
                     {
-                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc.DayOfWeek] = data[index].Lop;
+                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc] = data[index].Lop;
                     }
                 }
             }
