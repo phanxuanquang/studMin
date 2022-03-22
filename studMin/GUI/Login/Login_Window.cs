@@ -57,13 +57,14 @@ namespace studMin
             else
             {
                 // đọc trạng thái của RememberLogin_CheckBox ở file lưu trong máy
-                bool isRememberLogin = false;
+                bool isRememberLogin = RememberLogin_CheckBox.Checked = true;
                 if (isRememberLogin)
                 {
-                    string usename = "account từ máy"; // nhớ sửa
-                    string accountRole = LoginServices.Instance.CheckUserRole(usename);
+ 
+                    Username_Box.Text = LoginServices.Instance.GetRememberAccount().Item1;
+                    Password_Box.Text = LoginServices.Instance.GetRememberAccount().Item2;
 
-                    Login_Button_Click(sender, e);
+                    
                 }
             }
         }
@@ -89,6 +90,10 @@ namespace studMin
                     if (isValidAccount)
                     {
                         accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
+                        if (RememberLogin_CheckBox.Checked)
+                        {
+                            LoginServices.Instance.RememberAccount(Username_Box.Text, Password_Box.Text);
+                        }
                     }
                 });
 

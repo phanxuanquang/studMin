@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace studMin.Database.LoginServices
 {
@@ -10,6 +12,8 @@ namespace studMin.Database.LoginServices
     {
         private static LoginServices instance;
         public static LoginServices Instance => instance ?? (instance = new LoginServices());
+
+        private static string FilePathRememberAccount = Application.StartupPath + @"/Document/accRe.studMin";
 
         private LoginServices() { }
 
@@ -23,8 +27,8 @@ namespace studMin.Database.LoginServices
 
         public bool CheckUser(string userName)
         {
-            int countUser = DataProvider.Instance.Database.USERS.Where((user) => user.USERNAME == userName).Count(); 
-            return countUser > 0;   
+            int countUser = DataProvider.Instance.Database.USERS.Where((user) => user.USERNAME == userName).Count();
+            return countUser > 0;
         }
 
         public string CheckUserRole(string userName)
@@ -45,8 +49,74 @@ namespace studMin.Database.LoginServices
                     return staff.STAFFROLE.ROLE;
                 }
                 return user.USERROLE.ROLE;
-            } 
-                
+            }
+        }
+
+        public string GetFilePathRememberAccount()
+        {
+            try
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(FilePathRememberAccount)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(FilePathRememberAccount));
+                    if (!File.Exists(FilePathRememberAccount))
+                    {
+                        File.Create(FilePathRememberAccount);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return FilePathRememberAccount;
+        }
+
+        public (string, string) GetRememberAccount()
+        {
+            string filePath = LoginServices.Instance.GetFilePathRememberAccount();
+            if (File.Exists(filePath))
+            {
+                string fileContent = "";
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    fileContent = sr.ReadToEnd();
+                    string accountRow = fileContent.Split('\n')[0];
+                    if (accountRow == "")
+                        return (null, null);
+                    string[] account = accountRow.Split('\t');
+                    return (account[0], Hash.Decrypt(account[1].ToString()));
+                }
+            }
+            return (null, null);
+        }
+
+        public void RememberAccount(string userName, string passWord)
+        {
+            try
+            {
+                if (LoginServices.Instance.CheckAccount(userName, passWord))
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(LoginServices.Instance.GetFilePathRememberAccount()))
+                        {
+                            sw.Write(userName + '\t' + Hash.Encrypt(passWord));
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Đã có lỗi trong việc ghi nhớ tài khoản", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
