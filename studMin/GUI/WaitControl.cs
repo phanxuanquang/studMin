@@ -96,7 +96,7 @@ namespace studMin.GUI
             this.InitializeComponent();
 
             this.progressBar.Left = (this.form.ClientSize.Width - this.progressBar.Width) / 2;
-            this.progressBar.Top = (this.form.ClientSize.Height - this.progressBar.Height) / 2;
+            this.progressBar.Top = (this.form.ClientSize.Height - this.progressBar.Height) / 2 + 120;
             this.progressBar.Visible = false;
 
             this.form.Controls.Add(this.progressBar);

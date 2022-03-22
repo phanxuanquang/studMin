@@ -163,14 +163,14 @@
             this.ForgetPasswordUC_MoverDown.AnimationType = Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide;
             this.ForgetPasswordUC_MoverDown.Control = this;
             this.ForgetPasswordUC_MoverDown.CordinateEnd_X = 0F;
-            this.ForgetPasswordUC_MoverDown.CordinateEnd_Y = 350F;
+            this.ForgetPasswordUC_MoverDown.CordinateEnd_Y = 450F;
             this.ForgetPasswordUC_MoverDown.CordinateStart_X = 0F;
             this.ForgetPasswordUC_MoverDown.CordinateStart_Y = 670F;
             this.ForgetPasswordUC_MoverDown.Duration = 800;
             this.ForgetPasswordUC_MoverDown.EasingEnd = 1F;
             this.ForgetPasswordUC_MoverDown.EasingNames = Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.easingNames.BackEaseIn;
             this.ForgetPasswordUC_MoverDown.EasingStart = 0.2F;
-            this.ForgetPasswordUC_MoverDown.Editor = new Zeroit.Framework.Transitions.AnimationEditors.ZeroitPizaroAnimatorInput(Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide, 0F, 670F, 0F, 350F, true, this, 800, 0.7F, 0.2F, 1F);
+            this.ForgetPasswordUC_MoverDown.Editor = new Zeroit.Framework.Transitions.AnimationEditors.ZeroitPizaroAnimatorInput(Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide, 0F, 670F, 0F, 450F, true, this, 800, 0.7F, 0.2F, 1F);
             this.ForgetPasswordUC_MoverDown.Fade_Begin = 0F;
             this.ForgetPasswordUC_MoverDown.Fade_Limit = 1F;
             this.ForgetPasswordUC_MoverDown.ResizeHeight_Begin = 10F;

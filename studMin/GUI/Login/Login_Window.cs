@@ -124,11 +124,15 @@ namespace studMin
                 MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void EnterAccountComplete_KeyPress(object sender, KeyPressEventArgs e)
+        private void EnterAccountComplete_KeyPress(dynamic sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)13)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 Login_Button_Click(sender, e);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                sender.Text = String.Empty;
             }
         }
 
