@@ -54,6 +54,18 @@ namespace studMin
             {
                 MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            else
+            {
+                // đọc trạng thái của RememberLogin_CheckBox ở file lưu trong máy
+                bool isRememberLogin = false;
+                if (isRememberLogin)
+                {
+                    string usename = "account từ máy"; // nhớ sửa
+                    string accountRole = LoginServices.Instance.CheckUserRole(usename);
+
+                    Login_Button_Click(sender, e);
+                }
+            }
         }
 
         #region Buttons
