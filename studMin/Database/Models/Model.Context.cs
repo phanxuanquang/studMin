@@ -43,5 +43,6 @@ namespace studMin.Database.Models
         public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
         public virtual DbSet<INFOR> INFORs { get; set; }
         public virtual DbSet<LESSON> LESSONs { get; set; }
+        public virtual DbSet<OTP> OTPs { get; set; }
     }
 }

@@ -89,6 +89,7 @@ namespace studMin
                     isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
                     if (isValidAccount)
                     {
+                        LoginServices.Instance.Login(Username_Box.Text);
                         accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
                         if (RememberLogin_CheckBox.Checked)
                         {

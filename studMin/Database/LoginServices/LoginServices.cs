@@ -8,9 +8,13 @@ using System.Windows.Forms;
 
 namespace studMin.Database.LoginServices
 {
+    using Models;
     internal class LoginServices
     {
+        private USER currentUser; 
+
         private static LoginServices instance;
+        
         public static LoginServices Instance => instance ?? (instance = new LoginServices());
 
         private static string FilePathRememberAccount = Application.StartupPath + @"/Document/accRe.studMin";
@@ -117,6 +121,11 @@ namespace studMin.Database.LoginServices
 
                 MessageBox.Show("Đã có lỗi trong việc ghi nhớ tài khoản", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void Login(string userName)
+        {
+            currentUser = UserServices.Instance.GetUserByUserName(userName);
         }
     }
 }

@@ -152,6 +152,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Database\Models\OTP.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Models\ROLESUBJECT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -194,8 +197,16 @@
     <Compile Include="Database\Models\USERROLE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\OTPServices.cs" />
     <Compile Include="Database\StudentServices.cs" />
     <Compile Include="Database\TeacherServices.cs" />
+    <Compile Include="Database\UserServices.cs" />
+    <Compile Include="GUI\Login\OTPexample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Login\OTPexample.Designer.cs">
+      <DependentUpon>OTPexample.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -289,6 +300,9 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.Designer.cs">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Login\OTPexample.resx">
+      <DependentUpon>OTPexample.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -437,6 +451,7 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Logo.ico" />
+    <None Include="Resources\mail.html" />
     <None Include="Resources\Icons\studMin_Icon.ico" />
   </ItemGroup>
   <ItemGroup>

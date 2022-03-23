@@ -47,6 +47,14 @@
           <Property Name="MIN" Type="int" />
           <Property Name="MAX" Type="int" />
         </EntityType>
+        <EntityType Name="OTP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar(max)" />
+          <Property Name="Time" Type="datetime" />
+        </EntityType>
         <EntityType Name="ROLESUBJECT">
           <Key>
             <PropertyRef Name="ID" />
@@ -54,15 +62,6 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ROLE" Type="nvarchar(max)" />
           <Property Name="COE" Type="int" />
-        </EntityType>
-        <EntityType Name="SCHEDULE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DATEAPPLY" Type="smalldatetime" />
-          <Property Name="SCHOOLYEAR" Type="int" />
-          <Property Name="SEMESTER" Type="int" />
         </EntityType>
         <EntityType Name="SCORE">
           <Key>
@@ -75,6 +74,15 @@
           <Property Name="SCHOOLYEAR" Type="int" />
           <Property Name="SEMESTER" Type="int" />
           <Property Name="IDROLESUBJECT" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SCHEDULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DATEAPPLY" Type="smalldatetime" />
+          <Property Name="SCHOOLYEAR" Type="int" />
+          <Property Name="SEMESTER" Type="int" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
@@ -189,6 +197,7 @@
           <Property Name="IDUSERROLE" Type="uniqueidentifier" />
           <Property Name="IDINFOR" Type="uniqueidentifier" />
           <Property Name="ISDELETED" Type="bit" />
+          <Property Name="IDOTP" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK__CLASS__IDTEACHER__10566F31">
           <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
@@ -466,6 +475,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__USERS__IDOTP__3E1D39E1">
+          <End Role="OTP" Type="Self.OTP" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OTP">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="IDOTP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__USERS__IDUSERROL__22751F6C">
           <End Role="USERROLE" Type="Self.USERROLE" Multiplicity="0..1" />
           <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
@@ -483,9 +504,10 @@
           <EntitySet Name="INFOR" EntityType="Self.INFOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LESSON" EntityType="Self.LESSON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LIMIT" EntityType="Self.LIMIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTP" EntityType="Self.OTP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLESUBJECT" EntityType="Self.ROLESUBJECT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SCORE" EntityType="Self.SCORE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFFROLE" EntityType="Self.STAFFROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
@@ -587,6 +609,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__USERS__IDINFOR__2180FB33" Association="Self.FK__USERS__IDINFOR__2180FB33">
             <End Role="INFOR" EntitySet="INFOR" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__IDOTP__3E1D39E1" Association="Self.FK__USERS__IDOTP__3E1D39E1">
+            <End Role="OTP" EntitySet="OTP" />
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
           <AssociationSet Name="FK__USERS__IDUSERROL__22751F6C" Association="Self.FK__USERS__IDUSERROL__22751F6C">
@@ -789,6 +815,8 @@
           <NavigationProperty Name="TEACHERs" Relationship="Self.FK__TEACHER__IDUSER__0C85DE4D" FromRole="USERS" ToRole="TEACHER" />
           <NavigationProperty Name="USERROLE" Relationship="Self.FK__USERS__IDUSERROL__08B54D69" FromRole="USERS" ToRole="USERROLE" />
           <NavigationProperty Name="INFOR" Relationship="StudMinDBModel.FK__USERS__IDINFOR__2180FB33" FromRole="USER" ToRole="INFOR" />
+          <Property Name="IDOTP" Type="Guid" />
+          <NavigationProperty Name="OTP" Relationship="StudMinDBModel.FK__USERS__IDOTP__3E1D39E1" FromRole="USER" ToRole="OTP" />
         </EntityType>
         <Association Name="FK__CLASS__IDTEACHER__14270015">
           <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
@@ -1109,6 +1137,11 @@
             <End Role="TEACHER" EntitySet="TEACHERs" />
             <End Role="LESSON" EntitySet="LESSONs" />
           </AssociationSet>
+          <EntitySet Name="OTPs" EntityType="StudMinDBModel.OTP" />
+          <AssociationSet Name="FK__USERS__IDOTP__3E1D39E1" Association="StudMinDBModel.FK__USERS__IDOTP__3E1D39E1">
+            <End Role="OTP" EntitySet="OTPs" />
+            <End Role="USER" EntitySet="USERS" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="SCHEDULE">
           <Key>
@@ -1232,6 +1265,27 @@
             </Principal>
             <Dependent Role="LESSON">
               <PropertyRef Name="IDTEACHER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OTP">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="USERS" Relationship="StudMinDBModel.FK__USERS__IDOTP__3E1D39E1" FromRole="OTP" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK__USERS__IDOTP__3E1D39E1">
+          <End Type="StudMinDBModel.OTP" Role="OTP" Multiplicity="0..1" />
+          <End Type="StudMinDBModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OTP">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="IDOTP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1392,6 +1446,7 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="StudMinDBModel.USER">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="IDOTP" ColumnName="IDOTP" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
@@ -1435,6 +1490,15 @@
                 <ScalarProperty Name="IDCLASS" ColumnName="IDCLASS" />
                 <ScalarProperty Name="IDSUBJECT" ColumnName="IDSUBJECT" />
                 <ScalarProperty Name="IDTEACHER" ColumnName="IDTEACHER" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTPs">
+            <EntityTypeMapping TypeName="StudMinDBModel.OTP">
+              <MappingFragment StoreEntitySet="OTP">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

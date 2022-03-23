@@ -47,6 +47,8 @@
         <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDSCHEDU__2645B050" />
         <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDSUBJEC__245D67DE" />
         <AssociationConnector Association="StudMinDBModel.FK__LESSON__IDTEACHE__236943A5" />
+        <EntityTypeShape EntityType="StudMinDBModel.OTP" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="StudMinDBModel.FK__USERS__IDOTP__3E1D39E1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

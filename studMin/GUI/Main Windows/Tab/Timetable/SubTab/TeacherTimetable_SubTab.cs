@@ -8,7 +8,7 @@ namespace studMin
     public partial class TeacherTimetable_SubTab : UserControl
     {
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
-
+        
         public TeacherTimetable_SubTab()
         {
             InitializeComponent();
@@ -51,24 +51,20 @@ namespace studMin
 
                 foreach (var item in lesson)
                 {
-                    var teacher = studMin.Database.DataProvider.Instance.Database.TEACHERs.Where(itemTeacher => itemTeacher.ID == item.IDTEACHER).FirstOrDefault();
-
-                    var infoteacher = studMin.Database.DataProvider.Instance.Database.INFORs.Where(iteminfo => iteminfo.ID == teacher.IDINFOR).FirstOrDefault();
-
-                    var subject = studMin.Database.DataProvider.Instance.Database.SUBJECTs.Where(itemsubject => itemsubject.Id == item.IDSUBJECT).FirstOrDefault();
-
+                    
                     Action.Excel.ScheduleAllTeacher.Item temp = new studMin.Action.Excel.ScheduleAllTeacher.Item()
                     {
-                        GiaoVien = infoteacher.FIRSTNAME + " " + infoteacher.LASTNAME,
+                        GiaoVien = item.TEACHER.INFOR.FIRSTNAME + " " + item.TEACHER.INFOR.LASTNAME,
                         Buoi = "M",
                         TietBatDau = (int)(item.TIMESTART),
                         TietKeoDai = (int)(item.TIMEEND) - (int)(item.TIMESTART) + 1,
-                        Lop = classes.CLASSNAME,
-                        MonHoc = subject.DisplayName,
+                        Lop = item.CLASS.CLASSNAME,
+                        MonHoc = item.SUBJECT.DisplayName,
                         NgayHoc = (int)item.DAYOFW - 1,
 
                     };
                     list.Add(temp);
+
                 }
             }
 
