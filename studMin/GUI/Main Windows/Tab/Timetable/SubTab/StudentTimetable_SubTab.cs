@@ -308,6 +308,9 @@ namespace studMin
                     flag++;
                 }
 
+                DataRow emptyRow = dt.NewRow();
+                dt.Rows.InsertAt(emptyRow, 5);
+
                 Timetable_GridView.DataSource = dt.DefaultView;
                 Cursor.Current = Cursors.Default;
             }
@@ -321,9 +324,9 @@ namespace studMin
             FilterTimeTableByClass(className);
         }
 
-        /*bool IsInTheSameMergedRange(IXLCell cell1, IXLCell cell2)
+        bool IsInTheSameMergedRange(IXLCell cell1, IXLCell cell2)
         {
-            if (cell1.MergedRange() == null || cell2.MergedRange() == null) return false;
+            if (cell1.MergedRange() == null && cell2.MergedRange() == null) return false;
 
             if (cell1.MergedRange().ToString() == cell2.MergedRange().ToString())
             {
@@ -385,11 +388,11 @@ namespace studMin
                             i++;
                         }
                     }
-                    
+
 
                     flag++;
                 }
             }
-        }*/
+        }
     }
 }
