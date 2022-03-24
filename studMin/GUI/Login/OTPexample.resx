@@ -117,4 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="NewPassword_Box.IconLeft" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAaFJREFUSEu9
+        lc1Kw0AUhbPxp/mhCBVREbEvI/ocWhV1oW2S4qorfR1B1IcpiIpUrQgiThrpYrxTTzJjmjo2jn5wIJx7
+        z2lI0sTSMdfgjhtEe67PTt2AtUnPUHvghWzXanEb68WwQ7ZGhY8krtGDE76tIjYets/WqaCfKfxOfZFB
+        /GdUgiePgvdJiROwK89nG+VGb6XcfJkZiI69kG2KWbJH6sy2uIsaPRTYVsK39hGbx2gIr/5aoZ2bdD9k
+        Oxjp8QJ2qQS3YI+E9mvJPh1fwNZDgfSyiUsEeyTlZlxN9unE7mDrocB7EqRHdxL2aPb5VPpDAYvh6lFC
+        HJaWIpk/psYnHD86oZt5rZ5dEYkO0SU60S4Rg7zQb0T/sWPUS2jQyS4aUAf1kpwlI0K9JG/JhFAvyVsy
+        IdRL1CHdxLPPF2hcpSfovKgvhHqJOiwdRkuwrel6b7moLwRbog5LB9EibEuUFPWFYEvUobgUdsAWREH2
+        Eo3jC6Feog5NCvWSvCUTQr0kb8mEUC8hM/3YGdTwK+jfXqrJZ4IWutlAAXW/fiYs6wNCFe6tqa9roAAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="OTP_Box.IconLeft" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAWJJREFUSEvt
+        lb1KxEAUhYPiz5rJurZqqQ8hPoboI/iDiC6YGcuttPXndbRWFF20FwtRQSGCZMZ048lyLQw3smRGV3A/
+        OKS551ySuXMT9PmbtOywkHo1kvoCzyRXFOtzofRKsGyHqMovtaaZQqMryJbockzqSSr3RMuOIvi60IhT
+        O9iwI+RyJ4xNk2nCCrWbZHOHzpRtVFSo9BnZ3AmlTrkmvMwb2dzhG5SLbO707I07d5VtwuqUbO5gQawz
+        DXgpvUY2D+BuIrS7e4ztRi4/9GZzffJ1V2e5fnxX9/kdFu1gFJt5/AD2RGxOcLaPUOd/DD1gaRxjyexG
+        22YOczBArurUpJlG8BH0AnGTzOlZyPSg0oQ3tl4bmNRDhOSTy4V3o3eh0v0JlYxT7PfU42wWn+2OCaqq
+        2/pONkPx5aDwpmD0oTbFl4Oip4LJh+4pvhyhzBIK82nlAqoowU1YoPg+/4Yg+AAN0o6AVQ248gAAAABJ
+        RU5ErkJggg==
+</value>
+  </data>
+  <data name="ConfirmNewPassword_Box.IconLeft" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAaFJREFUSEu9
+        lc1Kw0AUhbPxp/mhCBVREbEvI/ocWhV1oW2S4qorfR1B1IcpiIpUrQgiThrpYrxTTzJjmjo2jn5wIJx7
+        z2lI0sTSMdfgjhtEe67PTt2AtUnPUHvghWzXanEb68WwQ7ZGhY8krtGDE76tIjYets/WqaCfKfxOfZFB
+        /GdUgiePgvdJiROwK89nG+VGb6XcfJkZiI69kG2KWbJH6sy2uIsaPRTYVsK39hGbx2gIr/5aoZ2bdD9k
+        Oxjp8QJ2qQS3YI+E9mvJPh1fwNZDgfSyiUsEeyTlZlxN9unE7mDrocB7EqRHdxL2aPb5VPpDAYvh6lFC
+        HJaWIpk/psYnHD86oZt5rZ5dEYkO0SU60S4Rg7zQb0T/sWPUS2jQyS4aUAf1kpwlI0K9JG/JhFAvyVsy
+        IdRL1CHdxLPPF2hcpSfovKgvhHqJOiwdRkuwrel6b7moLwRbog5LB9EibEuUFPWFYEvUobgUdsAWREH2
+        Eo3jC6Feog5NCvWSvCUTQr0kb8mEUC8hM/3YGdTwK+jfXqrJZ4IWutlAAXW/fiYs6wNCFe6tqa9roAAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
 </root>

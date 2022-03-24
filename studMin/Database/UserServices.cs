@@ -64,7 +64,7 @@ namespace studMin.Database
                 DataProvider.Instance.Database.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
             }

@@ -20,25 +20,32 @@ namespace studMin.GUI.Login
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Confirm_Button_Click(object sender, EventArgs e)
         {
+            if(NewPassword_Box.Text == ConfirmNewPassword_Box.Text)
             {
                 try
                 {
                     OTPServices.Instance.DeleteOTPOverTime();
-                    if (!OTPServices.Instance.CheckOTPGetFromEmail(this.userName, textBox1.Text))
+                    if (!OTPServices.Instance.CheckOTPGetFromEmail(this.userName, OTP_Box.Text))
                     {
-                        MessageBox.Show("Mã xác nhận không chính xác", "Thông báo");
+                        MessageBox.Show("Mã xác thực không chính xác. Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        OTP_Box.Text = String.Empty;
                         return;
                     }
-                    UserServices.Instance.ChangePassWord(textBox2.Text, this.userName);
+                    UserServices.Instance.ChangePassWord(NewPassword_Box.Text, this.userName);
                     this.Close();
                 }
                 catch
                 {
-                    MessageBox.Show("Có lỗi trong việc cập nhật mật khẩu mới");
+                    MessageBox.Show("Không thể thay đổi mật khẩu vào lúc này. Vui lòng thử lại sau.", "Đổi mật khẩu thất bại", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    this.Close();
                 }
-
+            }
+            else
+            {
+                MessageBox.Show("Mật khẩu xác nhập lại không trùng khớp. Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ConfirmNewPassword_Box.Text = String.Empty;
             }
         }
     }
