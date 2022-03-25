@@ -11,7 +11,17 @@ namespace studMin.Database.LoginServices
     using Models;
     internal class LoginServices
     {
-        private USER currentUser; 
+        private USER currentUser;
+
+        public  USER CurrentUser => currentUser;
+
+        private TEACHER currentTeacher;
+
+        public TEACHER CurrentTeacher => currentTeacher;
+
+        private STAFF currentStaff;
+
+        public STAFF CurrentStaff => currentStaff;
 
         private static LoginServices instance;
         
@@ -126,6 +136,16 @@ namespace studMin.Database.LoginServices
         public void Login(string userName)
         {
             currentUser = UserServices.Instance.GetUserByUserName(userName);
+
+            if (currentUser.USERROLE.ROLE == "Giáo viên")
+            {
+                currentTeacher = TeacherServices.Instance.GetTeacherByUsername(userName);
+            }
+            if (currentUser.USERROLE.ROLE == "Nhân viên")
+            {
+                currentStaff = StaffServices.Instance.GetStaffByUsername(userName);
+            }
         }
+
     }
 }

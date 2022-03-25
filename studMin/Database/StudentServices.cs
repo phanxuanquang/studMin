@@ -29,5 +29,47 @@ namespace studMin.Database
             return DataProvider.Instance.Database.STUDENTs.FirstOrDefault();
         }
 
+        public bool SaveStudentToDB(STUDENT saveStudent)
+        {
+            try
+            {
+                if (saveStudent == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    DataProvider.Instance.Database.STUDENTs.Add(saveStudent);
+                }
+                DataProvider.Instance.Database.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        public bool SaveStudentToDB(string firstName, string lastName, int sex, DateTime dayOfBirth, string address, string email, Guid idClass, string emailParent, int grade, string telephone, int status, string bloodLine)
+        {
+            STUDENT student = new STUDENT()
+            {
+                ID = Guid.NewGuid(),
+                FIRSTNAME = firstName,
+                LASTNAME = lastName,
+                SEX = sex,
+                DAYOFBIRTH = dayOfBirth,
+                ADDRESS = address,
+                EMAIL = email,
+                IDCLASS = idClass,
+                EMAILPARENT = emailParent,
+                GRADE = grade,
+                TEL = telephone,
+                Status = status,
+                BLOODLINE = bloodLine,
+            };
+            return SaveStudentToDB(student);
+        }
+
     }
 }

@@ -31,12 +31,12 @@ namespace studMin.Database.Models
         public Nullable<bool> ISDELETED { get; set; }
         public Nullable<System.Guid> IDOTP { get; set; }
     
+        public virtual INFOR INFOR { get; set; }
+        public virtual OTP OTP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STAFF> STAFFs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEACHER> TEACHERs { get; set; }
         public virtual USERROLE USERROLE { get; set; }
-        public virtual INFOR INFOR { get; set; }
-        public virtual OTP OTP { get; set; }
     }
 }

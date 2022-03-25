@@ -26,12 +26,15 @@ namespace studMin.Database.Models
         }
     
         public virtual DbSet<CLASS> CLASSes { get; set; }
+        public virtual DbSet<INFOR> INFORs { get; set; }
+        public virtual DbSet<LESSON> LESSONs { get; set; }
         public virtual DbSet<LIMIT> LIMITs { get; set; }
+        public virtual DbSet<OTP> OTPs { get; set; }
         public virtual DbSet<ROLESUBJECT> ROLESUBJECTs { get; set; }
+        public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
         public virtual DbSet<SCORE> SCOREs { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
         public virtual DbSet<STAFFROLE> STAFFROLEs { get; set; }
-        public virtual DbSet<STUDENT> STUDENTs { get; set; }
         public virtual DbSet<STUDYING> STUDYINGs { get; set; }
         public virtual DbSet<SUBJECT> SUBJECTs { get; set; }
         public virtual DbSet<TEACH> TEACHes { get; set; }
@@ -40,9 +43,6 @@ namespace studMin.Database.Models
         public virtual DbSet<TRANSCRIPT> TRANSCRIPTs { get; set; }
         public virtual DbSet<USERROLE> USERROLEs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
-        public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
-        public virtual DbSet<INFOR> INFORs { get; set; }
-        public virtual DbSet<LESSON> LESSONs { get; set; }
-        public virtual DbSet<OTP> OTPs { get; set; }
+        public virtual DbSet<STUDENT> STUDENTs { get; set; }
     }
 }

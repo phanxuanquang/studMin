@@ -28,5 +28,11 @@ namespace studMin.Database
         {
             return DataProvider.Instance.Database.TEACHERs.FirstOrDefault();
         }
+
+        public TEACHER GetTeacherByUsername(string userName)
+        {
+            USER user = UserServices.Instance.GetUserByUserName(userName);
+            return DataProvider.Instance.Database.TEACHERs.Where(item => item.IDUSER == user.ID).FirstOrDefault();
+        }
     }
 }
