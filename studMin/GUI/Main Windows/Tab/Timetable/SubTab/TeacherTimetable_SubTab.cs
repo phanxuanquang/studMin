@@ -394,10 +394,19 @@ namespace studMin
 
                     for (int tietkeodai = 0; tietkeodai < data[index].TietKeoDai; tietkeodai++)
                     {
-                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc] = data[index].Lop;
+                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc] = data[index].Lop + "\n" + data[index].MonHoc;
                     }
                 }
             }
+        }
+
+        private void Timetable_GridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex > 0 && e.ColumnIndex >= 0 && e.Value != System.DBNull.Value && Timetable_GridView.Rows[e.RowIndex - 1].Cells[e.ColumnIndex].Value.ToString() == e.Value.ToString())
+            {
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+            }
+            else e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
         }
     }
 }
