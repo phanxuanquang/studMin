@@ -266,8 +266,6 @@ namespace studMin
 
         private void StudentTimetable_SubTab_Load(object sender, EventArgs e)
         {
-            Timetable_GridView.AutoGenerateColumns = true;
-
             this.BeginInvoke((System.Action)(() =>
             {
                 Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
