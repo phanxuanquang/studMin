@@ -23,6 +23,10 @@ namespace studMin.Database.LoginServices
 
         public STAFF CurrentStaff => currentStaff;
 
+        private CLASS classOfHeadTeacher;
+
+        public CLASS ClassOfHeadTeacher => classOfHeadTeacher;
+
         private static LoginServices instance;
         
         public static LoginServices Instance => instance ?? (instance = new LoginServices());
@@ -140,6 +144,10 @@ namespace studMin.Database.LoginServices
             if (currentUser.USERROLE.ROLE == "Giáo viên")
             {
                 currentTeacher = TeacherServices.Instance.GetTeacherByUsername(userName);
+                if (currentTeacher.TEACHERROLE.ROLE == "Chủ nhiệm")
+                {
+                    classOfHeadTeacher = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.IDTEACHER == currentTeacher.ID).FirstOrDefault();
+                }    
             }
             if (currentUser.USERROLE.ROLE == "Nhân viên")
             {

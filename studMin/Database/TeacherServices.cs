@@ -34,5 +34,21 @@ namespace studMin.Database
             USER user = UserServices.Instance.GetUserByUserName(userName);
             return DataProvider.Instance.Database.TEACHERs.Where(item => item.IDUSER == user.ID).FirstOrDefault();
         }
+
+        public SUBJECT GetSubjectOfTeacher()
+        {
+            return DataProvider.Instance.Database.SUBJECTs.Where(item => item.Id == LoginServices.LoginServices.Instance.CurrentTeacher.IDSUBJECT).FirstOrDefault();
+        }
+
+        public List<CLASS> GetAllClassTeaching()
+        {
+            List<CLASS> list = new List<CLASS>();
+            var teaching = DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == LoginServices.LoginServices.Instance.CurrentTeacher.ID).ToList();
+            foreach (var item in teaching)
+            {
+                list.Add(item.CLASS);
+            }    
+            return list;
+        }
     }
 }

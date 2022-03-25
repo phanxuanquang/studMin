@@ -81,25 +81,25 @@ namespace studMin
                 bool isValidAccount = false;
                 string accountRole = String.Empty;
 
-                GUI.WaitControl wait = new GUI.WaitControl(this);
-                wait.Start();
+                //GUI.WaitControl wait = new GUI.WaitControl(this);
+                //wait.Start();
 
-                await System.Threading.Tasks.Task.Factory.StartNew(() =>
-                {
-                    isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
-                    if (isValidAccount)
-                    {
-                        LoginServices.Instance.Login(Username_Box.Text);
-                        accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
-                        if (RememberLogin_CheckBox.Checked)
-                        {
-                            LoginServices.Instance.RememberAccount(Username_Box.Text, Password_Box.Text);
-                        }
-                    }
-                });
+                //await System.Threading.Tasks.Task.Factory.StartNew(() =>
+                //{
+                //    isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
+                //    if (isValidAccount)
+                //    {
+                //        LoginServices.Instance.Login(Username_Box.Text);
+                //        accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
+                //        if (RememberLogin_CheckBox.Checked)
+                //        {
+                //            LoginServices.Instance.RememberAccount(Username_Box.Text, Password_Box.Text);
+                //        }
+                //    }
+                //});
 
-                wait.Stop();
-                wait.Dispose();
+                //wait.Stop();
+                //wait.Dispose();
                 isValidAccount = true;
 
                 if (isValidAccount)
