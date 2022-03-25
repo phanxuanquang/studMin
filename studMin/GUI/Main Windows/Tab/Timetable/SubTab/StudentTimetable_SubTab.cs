@@ -14,6 +14,8 @@ namespace studMin
 {
     public partial class StudentTimetable_SubTab : UserControl
     {
+        private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
+
         public StudentTimetable_SubTab()
         {
             InitializeComponent();
@@ -160,159 +162,71 @@ namespace studMin
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel Files| *.xlsc; *.xls; *.xlsm; *.xlsx", Multiselect = false })
+            this.BeginInvoke((System.Action)(() =>
             {
-                try
+                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
+
+                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
+
+                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
+
+                scheduleAllTeacher.Dispose();
+
+                List<string> ListTeacher = new List<string>();
+                for (int index = 0; index < data.Count; index++)
                 {
-                    if (ofd.ShowDialog() == DialogResult.OK)
+                    if (!ListTeacher.Contains(data[index].GiaoVien))
                     {
-                        Cursor.Current = Cursors.WaitCursor;
-                        DataTable dt = new DataTable();
-
-                        dt.Columns.Add("Tiết học");
-                        dt.Columns.Add("Thứ hai");
-                        dt.Columns.Add("Thứ ba");
-                        dt.Columns.Add("Thứ tư");
-                        dt.Columns.Add("Thứ năm");
-                        dt.Columns.Add("Thứ sáu");
-                        dt.Columns.Add("Thứ bảy");
-
-                        using (XLWorkbook workBook = new XLWorkbook(ofd.FileName))
-                        {
-                            int flag = 0;
-                            var rows = workBook.Worksheet(1).RowsUsed();
-
-                            foreach (var row in rows)
-                            {
-                                if (flag >= 4)
-                                {
-                                    dt.Rows.Add();
-                                    int i = 0;
-
-                                    foreach (IXLCell cell in row.Cells())
-                                    {
-                                        if (!cell.IsEmpty())
-                                        {
-                                            if (i >= 1)
-                                            {
-                                                dt.Rows[dt.Rows.Count - 1][i - 1] = cell.Value.ToString();
-                                            }
-                                        }
-
-                                        i++;
-                                    }
-                                }
-
-                                if (flag == 8)
-                                {
-                                    dt.Rows.Add();
-                                }
-
-                                flag++;
-                            }
-
-                            Timetable_GridView.DataSource = dt.DefaultView;
-                            Cursor.Current = Cursors.Default;
-                        }
+                        ListTeacher.Add(data[index].GiaoVien);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+
+                Class_ComboBox.DataSource = ListTeacher;
+            }));
         }
 
         private void FilterTimeTableByClass(string className)
         {
-            int columnOfEachClass = 0;
-            switch (className)
+            
+
+            if (data == null) return;
+
+            DataTable dataSource = new DataTable();
+
+            dataSource.Columns.Add("TIẾT");
+            dataSource.Columns.Add("THỨ HAI");
+            dataSource.Columns.Add("THỨ BA");
+            dataSource.Columns.Add("THỨ TƯ");
+            dataSource.Columns.Add("THỨ NĂM");
+            dataSource.Columns.Add("THỨ SÁU");
+            dataSource.Columns.Add("THỨ BẢY");
+
+            for (int index = 0; index < 11; index++)
             {
-                case "10A5":
-                    columnOfEachClass = 3;
-                    break;
-                case "10A4":
-                    columnOfEachClass = 4;
-                    break;
-                case "10A3":
-                    columnOfEachClass = 5;
-                    break;
-                case "10A2":
-                    columnOfEachClass = 6;
-                    break;
+                if (index < 5)
+                {
+                    dataSource.Rows.Add(index + 1);
+                }
+                else if (index > 5)
+                {
+                    dataSource.Rows.Add(index - 5);
+                }
+                else dataSource.Rows.Add();
             }
 
-            Cursor.Current = Cursors.WaitCursor;
-            DataTable dt = new DataTable();
+            Timetable_GridView.DataSource = dataSource;
 
-            dt.Columns.Add("Tiết học");
-            dt.Columns.Add("Thứ hai");
-            dt.Columns.Add("Thứ ba");
-            dt.Columns.Add("Thứ tư");
-            dt.Columns.Add("Thứ năm");
-            dt.Columns.Add("Thứ sáu");
-            dt.Columns.Add("Thứ bảy");
-
-            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.DataSample))
+            for (int index = 0; index < data.Count; index++)
             {
-                int flag = 0;
-                int rowOfEachDay = 0;
-                int columnIndex = 1;
-                var rows = workBook.Worksheet(1).RowsUsed();
-
-                foreach (var row in rows)
+                if (data[index].Lop == className)
                 {
-                    if (flag > 3 && flag % 10 == 3)
+                    int offset = data[index].Buoi == "Afternoon" ? 6 : 0;
+
+                    for (int tietkeodai = 0; tietkeodai < data[index].TietKeoDai; tietkeodai++)
                     {
-                        rowOfEachDay = 0;
-                        columnIndex++;
+                        dataSource.Rows[data[index].TietBatDau + tietkeodai + offset - 1][(int)data[index].NgayHoc] = data[index].MonHoc + "\n" + data[index].GiaoVien;
                     }
-
-                    if (flag >= 3 && flag <= 12)
-                    {
-                        dt.Rows.Add();
-                        int i = 0;
-
-                        foreach (IXLCell cell in row.Cells())
-                        {
-                            if (i == 2)
-                            {
-                                dt.Rows[dt.Rows.Count - 1][0] = cell.Value.ToString();
-                            }
-
-                            if (i == columnOfEachClass)
-                            {
-                                dt.Rows[dt.Rows.Count - 1][1] = cell.Value.ToString();
-                            }
-
-                            i++;
-                        }
-                    }
-                    else if (flag >= 13 && flag <= 63)
-                    {
-                        int t = 0;
-
-                        foreach (IXLCell cell in row.Cells())
-                        {
-                            if (t == columnOfEachClass)
-                            {
-                                dt.Rows[rowOfEachDay][columnIndex] = cell.Value.ToString();
-                            }
-
-
-                            t++;
-                        }
-                    }
-
-                    rowOfEachDay++;
-                    flag++;
                 }
-
-                DataRow emptyRow = dt.NewRow();
-                dt.Rows.InsertAt(emptyRow, 5);
-
-                Timetable_GridView.DataSource = dt.DefaultView;
-                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -324,74 +238,56 @@ namespace studMin
             FilterTimeTableByClass(className);
         }
 
-        bool IsInTheSameMergedRange(IXLCell cell1, IXLCell cell2)
+        bool IsTheSameCellValue(int column, int row)
         {
-            if (cell1.MergedRange() == null && cell2.MergedRange() == null) return false;
-
-            if (cell1.MergedRange().ToString() == cell2.MergedRange().ToString())
+            DataGridViewCell cell1 = Timetable_GridView[column, row];
+            DataGridViewCell cell2 = Timetable_GridView[column, row - 1];
+            if (cell1.Value == null || cell2.Value == null)
             {
-                return true;
+                return false;
             }
-
-            return false;
+            return cell1.Value.ToString() == cell2.Value.ToString();
         }
 
         private void Timetable_GridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
-
             if (e.RowIndex < 1 || e.ColumnIndex < 0)
                 return;
-
-            int columnOfEachClass = 0;
-            switch (Class_ComboBox.SelectedItem.ToString())
+            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
             {
-                case "10A5":
-                    columnOfEachClass = 3;
-                    break;
-                case "10A4":
-                    columnOfEachClass = 4;
-                    break;
-                case "10A3":
-                    columnOfEachClass = 5;
-                    break;
-                case "10A2":
-                    columnOfEachClass = 6;
-                    break;
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
             }
-
-            using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.DataSample))
+            else
             {
-                int flag = 0;
-                var rows = workBook.Worksheet(1).RowsUsed();
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
+            }
+        }
 
-                foreach (var row in rows)
-                {
-                    if (flag >= 3)
-                    {
-                        int i = 0;
+        private void StudentTimetable_SubTab_Load(object sender, EventArgs e)
+        {
+            Timetable_GridView.AutoGenerateColumns = true;
 
-                        foreach (IXLCell cell in row.Cells())
-                        {
-                            if (i == columnOfEachClass)
-                            {
-                                if (IsInTheSameMergedRange(cell, cell.CellAbove()))
-                                {
-                                    e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
-                                }
-                                else
-                                {
-                                    e.AdvancedBorderStyle.Top = Timetable_GridView.AdvancedCellBorderStyle.Top;
-                                }
-                            }
+            this.BeginInvoke((System.Action)(() =>
+            {
+                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
 
-                            i++;
-                        }
-                    }
+                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
 
+                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
 
-                    flag++;
-                }
+                scheduleAllTeacher.Dispose();
+            }));
+        }
+
+        private void Timetable_GridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex == 0)
+                return;
+            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.Value = "";
+                e.FormattingApplied = true;
             }
         }
     }

@@ -105,6 +105,8 @@
             this.Timetable_GridView.ThemeStyle.RowsStyle.Height = 22;
             this.Timetable_GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.Timetable_GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.Timetable_GridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.Timetable_GridView_CellFormatting);
+            this.Timetable_GridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.Timetable_GridView_CellPainting);
             // 
             // Class_ComboBox
             // 
@@ -218,6 +220,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StudentTimetable_SubTab";
             this.Size = new System.Drawing.Size(1232, 847);
+            this.Load += new System.EventHandler(this.StudentTimetable_SubTab_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Timetable_GridView)).EndInit();
             this.ResumeLayout(false);
 
