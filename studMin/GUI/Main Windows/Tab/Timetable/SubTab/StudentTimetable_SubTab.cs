@@ -175,9 +175,9 @@ namespace studMin
                 List<string> ListTeacher = new List<string>();
                 for (int index = 0; index < data.Count; index++)
                 {
-                    if (!ListTeacher.Contains(data[index].GiaoVien))
+                    if (!ListTeacher.Contains(data[index].Lop))
                     {
-                        ListTeacher.Add(data[index].GiaoVien);
+                        ListTeacher.Add(data[index].Lop);
                     }
                 }
 
@@ -232,7 +232,7 @@ namespace studMin
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Class_ComboBox.SelectedIndex == 0) return;
+            // if (Class_ComboBox.SelectedIndex == 0) return;
 
             string className = Class_ComboBox.SelectedItem.ToString();
             FilterTimeTableByClass(className);
