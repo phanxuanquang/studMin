@@ -31,7 +31,6 @@ namespace studMin.Database.Models
         public virtual DbSet<LIMIT> LIMITs { get; set; }
         public virtual DbSet<OTP> OTPs { get; set; }
         public virtual DbSet<ROLESUBJECT> ROLESUBJECTs { get; set; }
-        public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
         public virtual DbSet<SCORE> SCOREs { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
         public virtual DbSet<STAFFROLE> STAFFROLEs { get; set; }
@@ -44,5 +43,6 @@ namespace studMin.Database.Models
         public virtual DbSet<USERROLE> USERROLEs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
         public virtual DbSet<STUDENT> STUDENTs { get; set; }
+        public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
     }
 }

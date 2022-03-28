@@ -50,5 +50,10 @@ namespace studMin.Database
             }    
             return list;
         }
+
+        public TEACHER GetTeacherByName(string teacherName)
+        {
+            return DataProvider.Instance.Database.TEACHERs.Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME) == teacherName).FirstOrDefault();
+        }
     }
 }

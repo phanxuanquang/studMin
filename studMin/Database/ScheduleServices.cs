@@ -29,7 +29,8 @@ namespace studMin.Database
             return DataProvider.Instance.Database.SCHEDULEs.FirstOrDefault();
         }
 
-        public bool CreateASchedule(DateTime dayApply, int schoolYear, int semester)
+
+        public SCHEDULE CreateASchedule(DateTime dayApply, int schoolYear, int semester)
         {
             try
             {
@@ -39,8 +40,36 @@ namespace studMin.Database
                     DATEAPPLY = dayApply,
                     SCHOOLYEAR = schoolYear,
                     SEMESTER = semester,
+                    SCHEDULENAME = "TKB tao ngay 28/3",
                 };
                 DataProvider.Instance.Database.SaveChanges();
+                return schedule;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public bool SaveLessonToDB(string teacherName,string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday)
+        {
+            SCHEDULE schedule = CreateASchedule(new DateTime(2022, 3, 28), 2022, 2);
+            try
+            {
+                if (schedule != null)
+                {
+                    LESSON lesson = new LESSON()
+                    {
+                        IDTEACHER = TeacherServices.Instance.GetTeacherByName(teacherName).ID,
+                        IDSUBJECT = SubjectServices.Instance.GetSubjectByName(subjectName).Id,
+                        IDCLASS = ClassServices.Instance.GetClassByClassName(className).ID,
+                        IDSCHEDULE = schedule.ID,
+                        TIMESTART = timeStart,
+                        TIMEEND = timeEnd,
+                        DAYOFW = dayofweek,
+                        TIMEOFDAY = timeofday,
+                    };
+                    DataProvider.Instance.Database.SaveChanges();
+                }
                 return true;
             }
             catch
@@ -48,14 +77,6 @@ namespace studMin.Database
                 return false;
             }
         }
-        //public bool SaveScheduleToDB(string teacherName, string className, int timeStart, int timeEnd, int dayofweek, string timeofday)
-        //{
-           
-        //   if (CreateASchedule())
-
-            
-        //    return true;
-        //}
 
     }
 }

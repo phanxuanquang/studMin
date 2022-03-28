@@ -24,6 +24,7 @@ namespace studMin.Database.Models
         public Nullable<System.DateTime> DATEAPPLY { get; set; }
         public Nullable<int> SCHOOLYEAR { get; set; }
         public Nullable<int> SEMESTER { get; set; }
+        public string SCHEDULENAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LESSON> LESSONs { get; set; }
