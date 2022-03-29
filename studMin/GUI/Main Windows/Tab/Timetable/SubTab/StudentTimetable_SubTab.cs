@@ -172,16 +172,16 @@ namespace studMin
 
                 scheduleAllTeacher.Dispose();
 
-                List<string> ListTeacher = new List<string>();
+                List<string> ListClass = new List<string>();
                 for (int index = 0; index < data.Count; index++)
                 {
-                    if (!ListTeacher.Contains(data[index].Lop))
+                    if (!ListClass.Contains(data[index].Lop))
                     {
-                        ListTeacher.Add(data[index].Lop);
+                        ListClass.Add(data[index].Lop);
                     }
                 }
 
-                Class_ComboBox.DataSource = ListTeacher;
+                Class_ComboBox.DataSource = ListClass;
             }));
         }
 

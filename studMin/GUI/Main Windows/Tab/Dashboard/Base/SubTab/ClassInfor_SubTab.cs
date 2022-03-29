@@ -12,6 +12,8 @@ namespace studMin
 {
     public partial class ClassInfor_SubTab : UserControl
     {
+        private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
+
         public ClassInfor_SubTab()
         {
             InitializeComponent();
@@ -46,6 +48,32 @@ namespace studMin
                 MessageBox.Show("Xuất dữ liệu không thành công.", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
         #endregion
+
+        private void ClassInfor_SubTab_Load(object sender, EventArgs e)
+        {
+            this.BeginInvoke((System.Action)(() =>
+            {
+                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
+
+                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
+
+                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
+
+                scheduleAllTeacher.Dispose();
+
+                List<string> ListClass = new List<string>();
+                for (int index = 0; index < data.Count; index++)
+                {
+                    if (!ListClass.Contains(data[index].Lop))
+                    {
+                        ListClass.Add(data[index].Lop);
+                    }
+                }
+
+                Class_ComboBox.DataSource = ListClass;
+            }));
+        }
     }
 }
