@@ -94,7 +94,8 @@ namespace studMin
                 }
                 else
                 {
-                    var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item =>item.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && item.SCHOOLYEAR == int.Parse(schoolYear)).ToList();
+                    int temp = int.Parse(schoolYear);
+                    var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item =>item.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && item.SCHOOLYEAR == temp).ToList();
                     foreach (var aClass in allClass)
                     {
                         var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
