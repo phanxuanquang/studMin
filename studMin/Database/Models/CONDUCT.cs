@@ -12,16 +12,18 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TRANSCRIPT
+    public partial class CONDUCT
     {
-        public System.Guid ID { get; set; }
-        public string SCHOOLYEAR { get; set; }
-        public Nullable<int> SEMESTER { get; set; }
-        public Nullable<System.Guid> IDSTUDENT { get; set; }
-        public string RANK { get; set; }
-        public Nullable<System.Guid> IDCONDUCT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CONDUCT()
+        {
+            this.TRANSCRIPTs = new HashSet<TRANSCRIPT>();
+        }
     
-        public virtual CONDUCT CONDUCT { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
+        public System.Guid ID { get; set; }
+        public string NAME { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TRANSCRIPT> TRANSCRIPTs { get; set; }
     }
 }
