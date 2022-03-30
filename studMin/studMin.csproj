@@ -129,6 +129,9 @@
     <Compile Include="Database\Models\CLASS.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Models\CONDUCT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Models\INFOR.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

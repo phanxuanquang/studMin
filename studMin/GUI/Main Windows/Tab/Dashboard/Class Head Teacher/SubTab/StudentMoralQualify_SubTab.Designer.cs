@@ -33,8 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Search_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.FullGridView_Button = new Guna.UI2.WinForms.Guna2Button();
             this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
@@ -100,9 +98,6 @@
             this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.FullName});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
@@ -144,19 +139,6 @@
             this.DataTable.ThemeStyle.RowsStyle.Height = 22;
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            // 
-            // ID
-            // 
-            this.ID.FillWeight = 120F;
-            this.ID.HeaderText = "Mã học sinh";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            // 
-            // FullName
-            // 
-            this.FullName.HeaderText = "Họ và tên";
-            this.FullName.MinimumWidth = 6;
-            this.FullName.Name = "FullName";
             // 
             // DataGridViewExport_Button
             // 
@@ -256,7 +238,5 @@
         private Guna.UI2.WinForms.Guna2Button DataGridViewExport_Button;
         private Guna.UI2.WinForms.Guna2Button FullGridView_Button;
         private Guna.UI2.WinForms.Guna2Button UpdateData_Button;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
     }
 }

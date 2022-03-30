@@ -23,14 +23,10 @@ namespace studMin
         private void StudentMoralQualify_SubTab_Load(object sender, EventArgs e)
         {
             var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME);
-            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
-            dgvCmb.HeaderText = "Hạnh kiểm";
-            dgvCmb.Items.Add("Tốt");
-            dgvCmb.Items.Add("Khá");
-            dgvCmb.Items.Add("Trung bình");
-            dgvCmb.Name = "cmbName";
-            DataTable.Columns.Add(dgvCmb);
-            LoadToDT(listStudent);
+            
+            tRANSCRIPTBindingSource.DataSource = Database.DataProvider.Instance.Database.TRANSCRIPTs.ToList();
+            cONDUCTBindingSource.DataSource = Database.DataProvider.Instance.Database.CONDUCTs.ToList();
+            //LoadToDT(listStudent);
         }
 
         private void LoadToDT(List<STUDENT> students)
