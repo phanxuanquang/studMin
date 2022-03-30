@@ -75,7 +75,7 @@ namespace studMin.Database
         }
 
         // Nhập điểm cho một học sinh
-        public bool SaveScoreToDB(Guid idStudent, float score, int schoolYear, int semester, string role)
+        public bool SaveScoreToDB(Guid idStudent, float score, string schoolYear, int semester, string role)
         {
             SCORE scoreofstudent = new SCORE()
             {
@@ -101,7 +101,7 @@ namespace studMin.Database
         public void SaveScoreOfClass()
         {
             string role = "15M";
-            int schoolYear = 2022;
+            string schoolYear = "2022";
             int semester = 2;
             float score = 10;
             List<CLASS> listClass = TeacherServices.Instance.GetAllClassTeaching();

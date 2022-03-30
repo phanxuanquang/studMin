@@ -25,8 +25,8 @@ namespace studMin.Database.Models
         public string TIMEOFDAY { get; set; }
     
         public virtual CLASS CLASS { get; set; }
+        public virtual SCHEDULE SCHEDULE { get; set; }
         public virtual SUBJECT SUBJECT { get; set; }
         public virtual TEACHER TEACHER { get; set; }
-        public virtual SCHEDULE SCHEDULE { get; set; }
     }
 }

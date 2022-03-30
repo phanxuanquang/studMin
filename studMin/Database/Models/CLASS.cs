@@ -26,7 +26,7 @@ namespace studMin.Database.Models
         public System.Guid ID { get; set; }
         public string CLASSNAME { get; set; }
         public Nullable<System.Guid> IDTEACHER { get; set; }
-        public Nullable<int> SCHOOLYEAR { get; set; }
+        public string SCHOOLYEAR { get; set; }
     
         public virtual TEACHER TEACHER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

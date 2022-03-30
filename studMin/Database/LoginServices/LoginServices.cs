@@ -77,16 +77,15 @@ namespace studMin.Database.LoginServices
                 if (!Directory.Exists(Path.GetDirectoryName(FilePathRememberAccount)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(FilePathRememberAccount));
-                    if (!File.Exists(FilePathRememberAccount))
-                    {
-                        File.Create(FilePathRememberAccount);
-                    }
+                }
+                if (!File.Exists(FilePathRememberAccount))
+                {
+                    File.Create(FilePathRememberAccount);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                MessageBox.Show($"Lỗi truy cập , mã lỗi: {e}");
             }
             return FilePathRememberAccount;
         }

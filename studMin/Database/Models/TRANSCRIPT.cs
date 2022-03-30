@@ -15,7 +15,7 @@ namespace studMin.Database.Models
     public partial class TRANSCRIPT
     {
         public System.Guid ID { get; set; }
-        public Nullable<int> SCHOOLYEAR { get; set; }
+        public string SCHOOLYEAR { get; set; }
         public Nullable<int> SEMESTER { get; set; }
         public Nullable<System.Guid> IDSTUDENT { get; set; }
         public string CONDUCT { get; set; }

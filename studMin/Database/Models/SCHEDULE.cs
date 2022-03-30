@@ -22,7 +22,7 @@ namespace studMin.Database.Models
     
         public System.Guid ID { get; set; }
         public Nullable<System.DateTime> DATEAPPLY { get; set; }
-        public Nullable<int> SCHOOLYEAR { get; set; }
+        public string SCHOOLYEAR { get; set; }
         public Nullable<int> SEMESTER { get; set; }
         public string SCHEDULENAME { get; set; }
     

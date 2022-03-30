@@ -18,7 +18,7 @@ namespace studMin.Database.Models
         public Nullable<System.Guid> IDSUBJECT { get; set; }
         public Nullable<System.Guid> IDSTUDENT { get; set; }
         public Nullable<double> SCORE1 { get; set; }
-        public Nullable<int> SCHOOLYEAR { get; set; }
+        public string SCHOOLYEAR { get; set; }
         public Nullable<int> SEMESTER { get; set; }
         public Nullable<System.Guid> IDROLESUBJECT { get; set; }
     

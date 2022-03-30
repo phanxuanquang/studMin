@@ -30,7 +30,7 @@ namespace studMin.Database
         }
 
 
-        public SCHEDULE CreateASchedule(DateTime dayApply, int schoolYear, int semester)
+        public SCHEDULE CreateASchedule(DateTime dayApply, string schoolYear, int semester)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace studMin.Database
         }
         public bool SaveLessonToDB(string teacherName,string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday)
         {
-            SCHEDULE schedule = CreateASchedule(new DateTime(2022, 3, 28), 2022, 2);
+            SCHEDULE schedule = CreateASchedule(new DateTime(2022, 3, 28), "2022", 2);
             try
             {
                 if (schedule != null)
