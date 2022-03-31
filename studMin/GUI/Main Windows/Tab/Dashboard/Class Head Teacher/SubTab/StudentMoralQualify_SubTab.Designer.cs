@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,7 +37,16 @@
             this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.FullGridView_Button = new Guna.UI2.WinForms.Guna2Button();
             this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sEMESTERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sCHOOLYEARDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rANKDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDCONDUCTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Search_Box
@@ -82,6 +92,7 @@
             this.DataTable.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataTable.AutoGenerateColumns = false;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
@@ -98,7 +109,14 @@
             this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.sEMESTERDataGridViewTextBoxColumn,
+            this.sCHOOLYEARDataGridViewTextBoxColumn,
+            this.rANKDataGridViewTextBoxColumn,
+            this.iDCONDUCTDataGridViewTextBoxColumn});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DataTable.DataSource = this.tRANSCRIPTBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -214,6 +232,53 @@
             this.UpdateData_Button.TabIndex = 83;
             this.UpdateData_Button.Text = "CẬP NHẬT";
             this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.UpdateData_Button.Click += new System.EventHandler(this.UpdateData_Button_Click);
+            // 
+            // cONDUCTBindingSource
+            // 
+            this.cONDUCTBindingSource.DataSource = typeof(studMin.Database.Models.CONDUCT);
+            // 
+            // tRANSCRIPTBindingSource
+            // 
+            this.tRANSCRIPTBindingSource.DataSource = typeof(studMin.Database.Models.TRANSCRIPT);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sEMESTERDataGridViewTextBoxColumn
+            // 
+            this.sEMESTERDataGridViewTextBoxColumn.DataPropertyName = "SEMESTER";
+            this.sEMESTERDataGridViewTextBoxColumn.HeaderText = "Học kỳ";
+            this.sEMESTERDataGridViewTextBoxColumn.Name = "sEMESTERDataGridViewTextBoxColumn";
+            this.sEMESTERDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sCHOOLYEARDataGridViewTextBoxColumn
+            // 
+            this.sCHOOLYEARDataGridViewTextBoxColumn.DataPropertyName = "SCHOOLYEAR";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.HeaderText = "Năm học";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.Name = "sCHOOLYEARDataGridViewTextBoxColumn";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rANKDataGridViewTextBoxColumn
+            // 
+            this.rANKDataGridViewTextBoxColumn.DataPropertyName = "RANK";
+            this.rANKDataGridViewTextBoxColumn.HeaderText = "Xếp loại";
+            this.rANKDataGridViewTextBoxColumn.Name = "rANKDataGridViewTextBoxColumn";
+            this.rANKDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDCONDUCTDataGridViewTextBoxColumn
+            // 
+            this.iDCONDUCTDataGridViewTextBoxColumn.DataPropertyName = "IDCONDUCT";
+            this.iDCONDUCTDataGridViewTextBoxColumn.DataSource = this.cONDUCTBindingSource;
+            this.iDCONDUCTDataGridViewTextBoxColumn.DisplayMember = "NAME";
+            this.iDCONDUCTDataGridViewTextBoxColumn.HeaderText = "Hạnh kiểm";
+            this.iDCONDUCTDataGridViewTextBoxColumn.Name = "iDCONDUCTDataGridViewTextBoxColumn";
+            this.iDCONDUCTDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.iDCONDUCTDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.iDCONDUCTDataGridViewTextBoxColumn.ValueMember = "ID";
             // 
             // StudentMoralQualify_SubTab
             // 
@@ -228,6 +293,8 @@
             this.Name = "StudentMoralQualify_SubTab";
             this.Size = new System.Drawing.Size(924, 688);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,5 +305,12 @@
         private Guna.UI2.WinForms.Guna2Button DataGridViewExport_Button;
         private Guna.UI2.WinForms.Guna2Button FullGridView_Button;
         private Guna.UI2.WinForms.Guna2Button UpdateData_Button;
+        private System.Windows.Forms.BindingSource tRANSCRIPTBindingSource;
+        private System.Windows.Forms.BindingSource cONDUCTBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sEMESTERDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sCHOOLYEARDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rANKDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn iDCONDUCTDataGridViewTextBoxColumn;
     }
 }

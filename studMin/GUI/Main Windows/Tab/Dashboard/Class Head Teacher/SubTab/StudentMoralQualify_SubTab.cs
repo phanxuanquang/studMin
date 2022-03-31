@@ -23,9 +23,17 @@ namespace studMin
         private void StudentMoralQualify_SubTab_Load(object sender, EventArgs e)
         {
             var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME);
-            
-            tRANSCRIPTBindingSource.DataSource = Database.DataProvider.Instance.Database.TRANSCRIPTs.ToList();
             cONDUCTBindingSource.DataSource = Database.DataProvider.Instance.Database.CONDUCTs.ToList();
+            tRANSCRIPTBindingSource.DataSource = Database.DataProvider.Instance.Database.TRANSCRIPTs.ToList();
+            foreach (DataGridViewRow row in DataTable.Rows)
+            {
+                TRANSCRIPT selected = row.DataBoundItem as TRANSCRIPT;
+                if (selected != null)
+                {
+                    
+                    row.Cells["nameDataGridViewTextBoxColumn"].Value = selected.STUDENT.FIRSTNAME + " " + selected.STUDENT.LASTNAME;
+                }    
+            }
             //LoadToDT(listStudent);
         }
 
@@ -50,5 +58,9 @@ namespace studMin
             
         }
 
+        private void UpdateData_Button_Click(object sender, EventArgs e)
+        {
+            Database.DataProvider.Instance.Database.SaveChanges();
+        }
     }
 }
