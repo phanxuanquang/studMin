@@ -123,7 +123,7 @@ namespace studMin
         private void Search_Button_Click(object sender, EventArgs e)
         {
             DataTable.Rows.Clear();
-            if (Search_Box.Text == "")
+            if (string.IsNullOrWhiteSpace(Search_Box.Text))
             {
                 LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             }    
