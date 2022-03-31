@@ -25,13 +25,15 @@ namespace studMin
             var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME);
             cONDUCTBindingSource.DataSource = Database.DataProvider.Instance.Database.CONDUCTs.ToList();
             tRANSCRIPTBindingSource.DataSource = Database.DataProvider.Instance.Database.TRANSCRIPTs.ToList();
+            int count = 1;
             foreach (DataGridViewRow row in DataTable.Rows)
             {
                 TRANSCRIPT selected = row.DataBoundItem as TRANSCRIPT;
                 if (selected != null)
                 {
-                    
+                    row.Cells["sttDataGridViewTextBoxColumn"].Value = count++;
                     row.Cells["nameDataGridViewTextBoxColumn"].Value = selected.STUDENT.FIRSTNAME + " " + selected.STUDENT.LASTNAME;
+                    row.Cells["semesterDataGridViewTextBoxColumn"].Value = selected.SEMESTER.NAME;
                 }    
             }
             //LoadToDT(listStudent);

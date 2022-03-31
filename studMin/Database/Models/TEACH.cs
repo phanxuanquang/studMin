@@ -18,9 +18,10 @@ namespace studMin.Database.Models
         public System.Guid IDTEACHER { get; set; }
         public System.Guid IDCLASS { get; set; }
         public string SCHOOLYEAR { get; set; }
-        public int SEMESTER { get; set; }
+        public System.Guid IDSEMESTER { get; set; }
     
         public virtual CLASS CLASS { get; set; }
+        public virtual SEMESTER SEMESTER { get; set; }
         public virtual SUBJECT SUBJECT { get; set; }
         public virtual TEACHER TEACHER { get; set; }
     }

@@ -11,27 +11,18 @@ namespace studMin.Database.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-
-    public partial class TRANSCRIPT : INotifyPropertyChanged
+    
+    public partial class TRANSCRIPT
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         public System.Guid ID { get; set; }
         public string SCHOOLYEAR { get; set; }
-        public Nullable<int> SEMESTER { get; set; }
         public Nullable<System.Guid> IDSTUDENT { get; set; }
         public string RANK { get; set; }
-
-        private Nullable<System.Guid> _idConduct { get; set; }
-        public Nullable<System.Guid> IDCONDUCT { get => _idConduct; set { _idConduct = value; OnPropertyChanged(); } }
+        public Nullable<System.Guid> IDCONDUCT { get; set; }
+        public Nullable<System.Guid> IDSEMESTER { get; set; }
     
         public virtual CONDUCT CONDUCT { get; set; }
+        public virtual SEMESTER SEMESTER { get; set; }
         public virtual STUDENT STUDENT { get; set; }
     }
 }

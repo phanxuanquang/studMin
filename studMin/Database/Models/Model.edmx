@@ -13,8 +13,16 @@
           <Property Name="CLASSNAME" Type="varchar(max)" />
           <Property Name="IDTEACHER" Type="uniqueidentifier" />
           <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
+          <Property Name="IDGRADE" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="CONDUCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GRADE">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -71,16 +79,6 @@
           <Property Name="ROLE" Type="nvarchar(max)" />
           <Property Name="COE" Type="int" />
         </EntityType>
-        <EntityType Name="SCHEDULE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DATEAPPLY" Type="smalldatetime" />
-          <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
-          <Property Name="SEMESTER" Type="int" />
-          <Property Name="SCHEDULENAME" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="SCORE">
           <Key>
             <PropertyRef Name="ID" />
@@ -90,8 +88,25 @@
           <Property Name="IDSTUDENT" Type="uniqueidentifier" />
           <Property Name="SCORE" Type="float" />
           <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
-          <Property Name="SEMESTER" Type="int" />
           <Property Name="IDROLESUBJECT" Type="uniqueidentifier" />
+          <Property Name="IDSEMESTER" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SCHEDULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DATEAPPLY" Type="smalldatetime" />
+          <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
+          <Property Name="SCHEDULENAME" Type="nvarchar(max)" />
+          <Property Name="IDSEMESTER" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SEMESTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
@@ -121,7 +136,6 @@
           <Property Name="ADDRESS" Type="nvarchar(max)" />
           <Property Name="EMAIL" Type="varchar(max)" />
           <Property Name="IDCLASS" Type="uniqueidentifier" />
-          <Property Name="GRADE" Type="int" />
           <Property Name="EMAILPARENT" Type="varchar(max)" />
           <Property Name="TEL" Type="varchar" MaxLength="20" />
           <Property Name="Status" Type="int" />
@@ -131,12 +145,12 @@
           <Key>
             <PropertyRef Name="IDCLASS" />
             <PropertyRef Name="IDSTUDENT" />
-            <PropertyRef Name="SEMESTER" />
+            <PropertyRef Name="IDSEMESTER" />
           </Key>
           <Property Name="IDCLASS" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IDSTUDENT" Type="uniqueidentifier" Nullable="false" />
           <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
-          <Property Name="SEMESTER" Type="int" Nullable="false" />
+          <Property Name="IDSEMESTER" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="SUBJECT">
           <Key>
@@ -152,13 +166,13 @@
             <PropertyRef Name="IDSUBJECT" />
             <PropertyRef Name="IDTEACHER" />
             <PropertyRef Name="IDCLASS" />
-            <PropertyRef Name="SEMESTER" />
+            <PropertyRef Name="IDSEMESTER" />
           </Key>
           <Property Name="IDSUBJECT" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IDTEACHER" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IDCLASS" Type="uniqueidentifier" Nullable="false" />
           <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
-          <Property Name="SEMESTER" Type="int" Nullable="false" />
+          <Property Name="IDSEMESTER" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="TEACHER">
           <Key>
@@ -183,10 +197,10 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
-          <Property Name="SEMESTER" Type="int" />
           <Property Name="IDSTUDENT" Type="uniqueidentifier" />
           <Property Name="RANK" Type="nvarchar(max)" />
           <Property Name="IDCONDUCT" Type="uniqueidentifier" />
+          <Property Name="IDSEMESTER" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="USERROLE">
           <Key>
@@ -209,6 +223,18 @@
           <Property Name="ISDELETED" Type="bit" />
           <Property Name="IDOTP" Type="uniqueidentifier" />
         </EntityType>
+        <Association Name="FK__CLASS__IDGRADE__3864608B">
+          <End Role="GRADE" Type="Self.GRADE" Multiplicity="0..1" />
+          <End Role="CLASS" Type="Self.CLASS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRADE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASS">
+              <PropertyRef Name="IDGRADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CLASS__IDTEACHER__114A936A">
           <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="0..1" />
           <End Role="CLASS" Type="Self.CLASS" Multiplicity="*" />
@@ -281,6 +307,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__SCORE__IDSEMESTE__3B40CD36">
+          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="0..1" />
+          <End Role="SCORE" Type="Self.SCORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SCORE">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__SCORE__IDSTUDENT__17036CC0">
           <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
           <End Role="SCORE" Type="Self.SCORE" Multiplicity="*" />
@@ -302,6 +340,18 @@
             </Principal>
             <Dependent Role="SCORE">
               <PropertyRef Name="IDSUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SCHEDULE__IDSEME__3A4CA8FD">
+          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="0..1" />
+          <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SCHEDULE">
+              <PropertyRef Name="IDSEMESTER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -353,7 +403,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__STUDYING__IDCLAS__1CBC4616">
+        <Association Name="FK__STUDYING__IDCLAS__40F9A68C">
           <End Role="CLASS" Type="Self.CLASS" Multiplicity="1" />
           <End Role="STUDYING" Type="Self.STUDYING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -365,7 +415,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__STUDYING__IDSTUD__1DB06A4F">
+        <Association Name="FK__STUDYING__IDSEME__42E1EEFE">
+          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="1" />
+          <End Role="STUDYING" Type="Self.STUDYING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDYING">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STUDYING__IDSTUD__41EDCAC5">
           <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
           <End Role="STUDYING" Type="Self.STUDYING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -389,7 +451,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACH__IDCLASS__1F98B2C1">
+        <Association Name="FK__TEACH__IDCLASS__43D61337">
           <End Role="CLASS" Type="Self.CLASS" Multiplicity="1" />
           <End Role="TEACH" Type="Self.TEACH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -401,7 +463,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACH__IDSUBJECT__208CD6FA">
+        <Association Name="FK__TEACH__IDSEMESTE__46B27FE2">
+          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="1" />
+          <End Role="TEACH" Type="Self.TEACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TEACH">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACH__IDSUBJECT__44CA3770">
           <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="1" />
           <End Role="TEACH" Type="Self.TEACH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -413,7 +487,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACH__IDTEACHER__2180FB33">
+        <Association Name="FK__TEACH__IDTEACHER__45BE5BA9">
           <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="1" />
           <End Role="TEACH" Type="Self.TEACH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -473,6 +547,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TRANSCRIP__IDSEM__3C34F16F">
+          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="0..1" />
+          <End Role="TRANSCRIPT" Type="Self.TRANSCRIPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRANSCRIPT">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TRANSCRIP__IDSTU__25518C17">
           <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
           <End Role="TRANSCRIPT" Type="Self.TRANSCRIPT" Multiplicity="*" />
@@ -524,13 +610,15 @@
         <EntityContainer Name="StudMinDBModelStoreContainer">
           <EntitySet Name="CLASS" EntityType="Self.CLASS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONDUCT" EntityType="Self.CONDUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRADE" EntityType="Self.GRADE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INFOR" EntityType="Self.INFOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LESSON" EntityType="Self.LESSON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LIMIT" EntityType="Self.LIMIT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTP" EntityType="Self.OTP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLESUBJECT" EntityType="Self.ROLESUBJECT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SCORE" EntityType="Self.SCORE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEMESTER" EntityType="Self.SEMESTER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFFROLE" EntityType="Self.STAFFROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
@@ -542,6 +630,10 @@
           <EntitySet Name="TRANSCRIPT" EntityType="Self.TRANSCRIPT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERROLE" EntityType="Self.USERROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLASS__IDGRADE__3864608B" Association="Self.FK__CLASS__IDGRADE__3864608B">
+            <End Role="GRADE" EntitySet="GRADE" />
+            <End Role="CLASS" EntitySet="CLASS" />
+          </AssociationSet>
           <AssociationSet Name="FK__CLASS__IDTEACHER__114A936A" Association="Self.FK__CLASS__IDTEACHER__114A936A">
             <End Role="TEACHER" EntitySet="TEACHER" />
             <End Role="CLASS" EntitySet="CLASS" />
@@ -566,6 +658,10 @@
             <End Role="ROLESUBJECT" EntitySet="ROLESUBJECT" />
             <End Role="SCORE" EntitySet="SCORE" />
           </AssociationSet>
+          <AssociationSet Name="FK__SCORE__IDSEMESTE__3B40CD36" Association="Self.FK__SCORE__IDSEMESTE__3B40CD36">
+            <End Role="SEMESTER" EntitySet="SEMESTER" />
+            <End Role="SCORE" EntitySet="SCORE" />
+          </AssociationSet>
           <AssociationSet Name="FK__SCORE__IDSTUDENT__17036CC0" Association="Self.FK__SCORE__IDSTUDENT__17036CC0">
             <End Role="STUDENT" EntitySet="STUDENT" />
             <End Role="SCORE" EntitySet="SCORE" />
@@ -573,6 +669,10 @@
           <AssociationSet Name="FK__SCORE__IDSUBJECT__17F790F9" Association="Self.FK__SCORE__IDSUBJECT__17F790F9">
             <End Role="SUBJECT" EntitySet="SUBJECT" />
             <End Role="SCORE" EntitySet="SCORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SCHEDULE__IDSEME__3A4CA8FD" Association="Self.FK__SCHEDULE__IDSEME__3A4CA8FD">
+            <End Role="SEMESTER" EntitySet="SEMESTER" />
+            <End Role="SCHEDULE" EntitySet="SCHEDULE" />
           </AssociationSet>
           <AssociationSet Name="FK__STAFF__IDINFOR__18EBB532" Association="Self.FK__STAFF__IDINFOR__18EBB532">
             <End Role="INFOR" EntitySet="INFOR" />
@@ -590,11 +690,15 @@
             <End Role="CLASS" EntitySet="CLASS" />
             <End Role="STUDENT" EntitySet="STUDENT" />
           </AssociationSet>
-          <AssociationSet Name="FK__STUDYING__IDCLAS__1CBC4616" Association="Self.FK__STUDYING__IDCLAS__1CBC4616">
+          <AssociationSet Name="FK__STUDYING__IDCLAS__40F9A68C" Association="Self.FK__STUDYING__IDCLAS__40F9A68C">
             <End Role="CLASS" EntitySet="CLASS" />
             <End Role="STUDYING" EntitySet="STUDYING" />
           </AssociationSet>
-          <AssociationSet Name="FK__STUDYING__IDSTUD__1DB06A4F" Association="Self.FK__STUDYING__IDSTUD__1DB06A4F">
+          <AssociationSet Name="FK__STUDYING__IDSEME__42E1EEFE" Association="Self.FK__STUDYING__IDSEME__42E1EEFE">
+            <End Role="SEMESTER" EntitySet="SEMESTER" />
+            <End Role="STUDYING" EntitySet="STUDYING" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STUDYING__IDSTUD__41EDCAC5" Association="Self.FK__STUDYING__IDSTUD__41EDCAC5">
             <End Role="STUDENT" EntitySet="STUDENT" />
             <End Role="STUDYING" EntitySet="STUDYING" />
           </AssociationSet>
@@ -602,15 +706,19 @@
             <End Role="TEACHER" EntitySet="TEACHER" />
             <End Role="SUBJECT" EntitySet="SUBJECT" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACH__IDCLASS__1F98B2C1" Association="Self.FK__TEACH__IDCLASS__1F98B2C1">
+          <AssociationSet Name="FK__TEACH__IDCLASS__43D61337" Association="Self.FK__TEACH__IDCLASS__43D61337">
             <End Role="CLASS" EntitySet="CLASS" />
             <End Role="TEACH" EntitySet="TEACH" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACH__IDSUBJECT__208CD6FA" Association="Self.FK__TEACH__IDSUBJECT__208CD6FA">
+          <AssociationSet Name="FK__TEACH__IDSEMESTE__46B27FE2" Association="Self.FK__TEACH__IDSEMESTE__46B27FE2">
+            <End Role="SEMESTER" EntitySet="SEMESTER" />
+            <End Role="TEACH" EntitySet="TEACH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACH__IDSUBJECT__44CA3770" Association="Self.FK__TEACH__IDSUBJECT__44CA3770">
             <End Role="SUBJECT" EntitySet="SUBJECT" />
             <End Role="TEACH" EntitySet="TEACH" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACH__IDTEACHER__2180FB33" Association="Self.FK__TEACH__IDTEACHER__2180FB33">
+          <AssociationSet Name="FK__TEACH__IDTEACHER__45BE5BA9" Association="Self.FK__TEACH__IDTEACHER__45BE5BA9">
             <End Role="TEACHER" EntitySet="TEACHER" />
             <End Role="TEACH" EntitySet="TEACH" />
           </AssociationSet>
@@ -628,6 +736,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__TRANSCRIP__IDCON__31B762FC" Association="Self.FK__TRANSCRIP__IDCON__31B762FC">
             <End Role="CONDUCT" EntitySet="CONDUCT" />
+            <End Role="TRANSCRIPT" EntitySet="TRANSCRIPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRANSCRIP__IDSEM__3C34F16F" Association="Self.FK__TRANSCRIP__IDSEM__3C34F16F">
+            <End Role="SEMESTER" EntitySet="SEMESTER" />
             <End Role="TRANSCRIPT" EntitySet="TRANSCRIPT" />
           </AssociationSet>
           <AssociationSet Name="FK__TRANSCRIP__IDSTU__25518C17" Association="Self.FK__TRANSCRIP__IDSTU__25518C17">
@@ -654,13 +766,15 @@
         <EntityContainer Name="StudMinDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CLASSes" EntityType="StudMinDBModel.CLASS" />
           <EntitySet Name="CONDUCTs" EntityType="StudMinDBModel.CONDUCT" />
+          <EntitySet Name="GRADEs" EntityType="StudMinDBModel.GRADE" />
           <EntitySet Name="INFORs" EntityType="StudMinDBModel.INFOR" />
           <EntitySet Name="LESSONs" EntityType="StudMinDBModel.LESSON" />
           <EntitySet Name="LIMITs" EntityType="StudMinDBModel.LIMIT" />
           <EntitySet Name="OTPs" EntityType="StudMinDBModel.OTP" />
           <EntitySet Name="ROLESUBJECTs" EntityType="StudMinDBModel.ROLESUBJECT" />
-          <EntitySet Name="SCHEDULEs" EntityType="StudMinDBModel.SCHEDULE" />
           <EntitySet Name="SCOREs" EntityType="StudMinDBModel.SCORE" />
+          <EntitySet Name="SCHEDULEs" EntityType="StudMinDBModel.SCHEDULE" />
+          <EntitySet Name="SEMESTERs" EntityType="StudMinDBModel.SEMESTER" />
           <EntitySet Name="STAFFs" EntityType="StudMinDBModel.STAFF" />
           <EntitySet Name="STAFFROLEs" EntityType="StudMinDBModel.STAFFROLE" />
           <EntitySet Name="STUDENTs" EntityType="StudMinDBModel.STUDENT" />
@@ -672,6 +786,10 @@
           <EntitySet Name="TRANSCRIPTs" EntityType="StudMinDBModel.TRANSCRIPT" />
           <EntitySet Name="USERROLEs" EntityType="StudMinDBModel.USERROLE" />
           <EntitySet Name="USERS" EntityType="StudMinDBModel.USER" />
+          <AssociationSet Name="FK__CLASS__IDGRADE__3864608B" Association="StudMinDBModel.FK__CLASS__IDGRADE__3864608B">
+            <End Role="GRADE" EntitySet="GRADEs" />
+            <End Role="CLASS" EntitySet="CLASSes" />
+          </AssociationSet>
           <AssociationSet Name="FK__CLASS__IDTEACHER__114A936A" Association="StudMinDBModel.FK__CLASS__IDTEACHER__114A936A">
             <End Role="TEACHER" EntitySet="TEACHERs" />
             <End Role="CLASS" EntitySet="CLASSes" />
@@ -684,11 +802,11 @@
             <End Role="CLASS" EntitySet="CLASSes" />
             <End Role="STUDENT" EntitySet="STUDENTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__STUDYING__IDCLAS__1CBC4616" Association="StudMinDBModel.FK__STUDYING__IDCLAS__1CBC4616">
+          <AssociationSet Name="FK__STUDYING__IDCLAS__40F9A68C" Association="StudMinDBModel.FK__STUDYING__IDCLAS__40F9A68C">
             <End Role="CLASS" EntitySet="CLASSes" />
             <End Role="STUDYING" EntitySet="STUDYINGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACH__IDCLASS__1F98B2C1" Association="StudMinDBModel.FK__TEACH__IDCLASS__1F98B2C1">
+          <AssociationSet Name="FK__TEACH__IDCLASS__43D61337" Association="StudMinDBModel.FK__TEACH__IDCLASS__43D61337">
             <End Role="CLASS" EntitySet="CLASSes" />
             <End Role="TEACH" EntitySet="TEACHes" />
           </AssociationSet>
@@ -728,6 +846,10 @@
             <End Role="ROLESUBJECT" EntitySet="ROLESUBJECTs" />
             <End Role="SCORE" EntitySet="SCOREs" />
           </AssociationSet>
+          <AssociationSet Name="FK__SCORE__IDSEMESTE__3B40CD36" Association="StudMinDBModel.FK__SCORE__IDSEMESTE__3B40CD36">
+            <End Role="SEMESTER" EntitySet="SEMESTERs" />
+            <End Role="SCORE" EntitySet="SCOREs" />
+          </AssociationSet>
           <AssociationSet Name="FK__SCORE__IDSTUDENT__17036CC0" Association="StudMinDBModel.FK__SCORE__IDSTUDENT__17036CC0">
             <End Role="STUDENT" EntitySet="STUDENTs" />
             <End Role="SCORE" EntitySet="SCOREs" />
@@ -735,6 +857,22 @@
           <AssociationSet Name="FK__SCORE__IDSUBJECT__17F790F9" Association="StudMinDBModel.FK__SCORE__IDSUBJECT__17F790F9">
             <End Role="SUBJECT" EntitySet="SUBJECTs" />
             <End Role="SCORE" EntitySet="SCOREs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SCHEDULE__IDSEME__3A4CA8FD" Association="StudMinDBModel.FK__SCHEDULE__IDSEME__3A4CA8FD">
+            <End Role="SEMESTER" EntitySet="SEMESTERs" />
+            <End Role="SCHEDULE" EntitySet="SCHEDULEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STUDYING__IDSEME__42E1EEFE" Association="StudMinDBModel.FK__STUDYING__IDSEME__42E1EEFE">
+            <End Role="SEMESTER" EntitySet="SEMESTERs" />
+            <End Role="STUDYING" EntitySet="STUDYINGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACH__IDSEMESTE__46B27FE2" Association="StudMinDBModel.FK__TEACH__IDSEMESTE__46B27FE2">
+            <End Role="SEMESTER" EntitySet="SEMESTERs" />
+            <End Role="TEACH" EntitySet="TEACHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRANSCRIP__IDSEM__3C34F16F" Association="StudMinDBModel.FK__TRANSCRIP__IDSEM__3C34F16F">
+            <End Role="SEMESTER" EntitySet="SEMESTERs" />
+            <End Role="TRANSCRIPT" EntitySet="TRANSCRIPTs" />
           </AssociationSet>
           <AssociationSet Name="FK__STAFF__IDSTAFFRO__19DFD96B" Association="StudMinDBModel.FK__STAFF__IDSTAFFRO__19DFD96B">
             <End Role="STAFFROLE" EntitySet="STAFFROLEs" />
@@ -744,7 +882,7 @@
             <End Role="USER" EntitySet="USERS" />
             <End Role="STAFF" EntitySet="STAFFs" />
           </AssociationSet>
-          <AssociationSet Name="FK__STUDYING__IDSTUD__1DB06A4F" Association="StudMinDBModel.FK__STUDYING__IDSTUD__1DB06A4F">
+          <AssociationSet Name="FK__STUDYING__IDSTUD__41EDCAC5" Association="StudMinDBModel.FK__STUDYING__IDSTUD__41EDCAC5">
             <End Role="STUDENT" EntitySet="STUDENTs" />
             <End Role="STUDYING" EntitySet="STUDYINGs" />
           </AssociationSet>
@@ -756,11 +894,11 @@
             <End Role="TEACHER" EntitySet="TEACHERs" />
             <End Role="SUBJECT" EntitySet="SUBJECTs" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACH__IDSUBJECT__208CD6FA" Association="StudMinDBModel.FK__TEACH__IDSUBJECT__208CD6FA">
+          <AssociationSet Name="FK__TEACH__IDSUBJECT__44CA3770" Association="StudMinDBModel.FK__TEACH__IDSUBJECT__44CA3770">
             <End Role="SUBJECT" EntitySet="SUBJECTs" />
             <End Role="TEACH" EntitySet="TEACHes" />
           </AssociationSet>
-          <AssociationSet Name="FK__TEACH__IDTEACHER__2180FB33" Association="StudMinDBModel.FK__TEACH__IDTEACHER__2180FB33">
+          <AssociationSet Name="FK__TEACH__IDTEACHER__45BE5BA9" Association="StudMinDBModel.FK__TEACH__IDTEACHER__45BE5BA9">
             <End Role="TEACHER" EntitySet="TEACHERs" />
             <End Role="TEACH" EntitySet="TEACHes" />
           </AssociationSet>
@@ -785,11 +923,13 @@
           <Property Name="CLASSNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDTEACHER" Type="Guid" />
           <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDGRADE" Type="Guid" />
+          <NavigationProperty Name="GRADE" Relationship="StudMinDBModel.FK__CLASS__IDGRADE__3864608B" FromRole="CLASS" ToRole="GRADE" />
           <NavigationProperty Name="TEACHER" Relationship="StudMinDBModel.FK__CLASS__IDTEACHER__114A936A" FromRole="CLASS" ToRole="TEACHER" />
           <NavigationProperty Name="LESSONs" Relationship="StudMinDBModel.FK__LESSON__IDCLASS__123EB7A3" FromRole="CLASS" ToRole="LESSON" />
           <NavigationProperty Name="STUDENTs" Relationship="StudMinDBModel.FK__STUDENT__IDCLASS__1BC821DD" FromRole="CLASS" ToRole="STUDENT" />
-          <NavigationProperty Name="STUDYINGs" Relationship="StudMinDBModel.FK__STUDYING__IDCLAS__1CBC4616" FromRole="CLASS" ToRole="STUDYING" />
-          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDCLASS__1F98B2C1" FromRole="CLASS" ToRole="TEACH" />
+          <NavigationProperty Name="STUDYINGs" Relationship="StudMinDBModel.FK__STUDYING__IDCLAS__40F9A68C" FromRole="CLASS" ToRole="STUDYING" />
+          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDCLASS__43D61337" FromRole="CLASS" ToRole="TEACH" />
         </EntityType>
         <EntityType Name="CONDUCT">
           <Key>
@@ -798,6 +938,14 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TRANSCRIPTs" Relationship="StudMinDBModel.FK__TRANSCRIP__IDCON__31B762FC" FromRole="CONDUCT" ToRole="TRANSCRIPT" />
+        </EntityType>
+        <EntityType Name="GRADE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CLASSes" Relationship="StudMinDBModel.FK__CLASS__IDGRADE__3864608B" FromRole="GRADE" ToRole="CLASS" />
         </EntityType>
         <EntityType Name="INFOR">
           <Key>
@@ -858,17 +1006,6 @@
           <Property Name="COE" Type="Int32" />
           <NavigationProperty Name="SCOREs" Relationship="StudMinDBModel.FK__SCORE__IDROLESUB__160F4887" FromRole="ROLESUBJECT" ToRole="SCORE" />
         </EntityType>
-        <EntityType Name="SCHEDULE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="DATEAPPLY" Type="DateTime" Precision="0" />
-          <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEMESTER" Type="Int32" />
-          <Property Name="SCHEDULENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LESSONs" Relationship="StudMinDBModel.FK__LESSON__IDSCHEDU__1332DBDC" FromRole="SCHEDULE" ToRole="LESSON" />
-        </EntityType>
         <EntityType Name="SCORE">
           <Key>
             <PropertyRef Name="ID" />
@@ -878,11 +1015,36 @@
           <Property Name="IDSTUDENT" Type="Guid" />
           <Property Name="SCORE1" Type="Double" />
           <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEMESTER" Type="Int32" />
           <Property Name="IDROLESUBJECT" Type="Guid" />
+          <Property Name="IDSEMESTER" Type="Guid" />
           <NavigationProperty Name="ROLESUBJECT" Relationship="StudMinDBModel.FK__SCORE__IDROLESUB__160F4887" FromRole="SCORE" ToRole="ROLESUBJECT" />
+          <NavigationProperty Name="SEMESTER" Relationship="StudMinDBModel.FK__SCORE__IDSEMESTE__3B40CD36" FromRole="SCORE" ToRole="SEMESTER" />
           <NavigationProperty Name="STUDENT" Relationship="StudMinDBModel.FK__SCORE__IDSTUDENT__17036CC0" FromRole="SCORE" ToRole="STUDENT" />
           <NavigationProperty Name="SUBJECT" Relationship="StudMinDBModel.FK__SCORE__IDSUBJECT__17F790F9" FromRole="SCORE" ToRole="SUBJECT" />
+        </EntityType>
+        <EntityType Name="SCHEDULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="DATEAPPLY" Type="DateTime" Precision="0" />
+          <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SCHEDULENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDSEMESTER" Type="Guid" />
+          <NavigationProperty Name="LESSONs" Relationship="StudMinDBModel.FK__LESSON__IDSCHEDU__1332DBDC" FromRole="SCHEDULE" ToRole="LESSON" />
+          <NavigationProperty Name="SEMESTER" Relationship="StudMinDBModel.FK__SCHEDULE__IDSEME__3A4CA8FD" FromRole="SCHEDULE" ToRole="SEMESTER" />
+        </EntityType>
+        <EntityType Name="SEMESTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SCOREs" Relationship="StudMinDBModel.FK__SCORE__IDSEMESTE__3B40CD36" FromRole="SEMESTER" ToRole="SCORE" />
+          <NavigationProperty Name="SCHEDULEs" Relationship="StudMinDBModel.FK__SCHEDULE__IDSEME__3A4CA8FD" FromRole="SEMESTER" ToRole="SCHEDULE" />
+          <NavigationProperty Name="STUDYINGs" Relationship="StudMinDBModel.FK__STUDYING__IDSEME__42E1EEFE" FromRole="SEMESTER" ToRole="STUDYING" />
+          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDSEMESTE__46B27FE2" FromRole="SEMESTER" ToRole="TEACH" />
+          <NavigationProperty Name="TRANSCRIPTs" Relationship="StudMinDBModel.FK__TRANSCRIP__IDSEM__3C34F16F" FromRole="SEMESTER" ToRole="TRANSCRIPT" />
         </EntityType>
         <EntityType Name="STAFF">
           <Key>
@@ -916,28 +1078,28 @@
           <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDCLASS" Type="Guid" />
-          <Property Name="GRADE" Type="Int32" />
           <Property Name="EMAILPARENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Int32" />
           <Property Name="BLOODLINE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CLASS" Relationship="StudMinDBModel.FK__STUDENT__IDCLASS__1BC821DD" FromRole="STUDENT" ToRole="CLASS" />
           <NavigationProperty Name="SCOREs" Relationship="StudMinDBModel.FK__SCORE__IDSTUDENT__17036CC0" FromRole="STUDENT" ToRole="SCORE" />
-          <NavigationProperty Name="STUDYINGs" Relationship="StudMinDBModel.FK__STUDYING__IDSTUD__1DB06A4F" FromRole="STUDENT" ToRole="STUDYING" />
+          <NavigationProperty Name="STUDYINGs" Relationship="StudMinDBModel.FK__STUDYING__IDSTUD__41EDCAC5" FromRole="STUDENT" ToRole="STUDYING" />
           <NavigationProperty Name="TRANSCRIPTs" Relationship="StudMinDBModel.FK__TRANSCRIP__IDSTU__25518C17" FromRole="STUDENT" ToRole="TRANSCRIPT" />
         </EntityType>
         <EntityType Name="STUDYING">
           <Key>
             <PropertyRef Name="IDCLASS" />
             <PropertyRef Name="IDSTUDENT" />
-            <PropertyRef Name="SEMESTER" />
+            <PropertyRef Name="IDSEMESTER" />
           </Key>
           <Property Name="IDCLASS" Type="Guid" Nullable="false" />
           <Property Name="IDSTUDENT" Type="Guid" Nullable="false" />
           <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEMESTER" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CLASS" Relationship="StudMinDBModel.FK__STUDYING__IDCLAS__1CBC4616" FromRole="STUDYING" ToRole="CLASS" />
-          <NavigationProperty Name="STUDENT" Relationship="StudMinDBModel.FK__STUDYING__IDSTUD__1DB06A4F" FromRole="STUDYING" ToRole="STUDENT" />
+          <Property Name="IDSEMESTER" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CLASS" Relationship="StudMinDBModel.FK__STUDYING__IDCLAS__40F9A68C" FromRole="STUDYING" ToRole="CLASS" />
+          <NavigationProperty Name="SEMESTER" Relationship="StudMinDBModel.FK__STUDYING__IDSEME__42E1EEFE" FromRole="STUDYING" ToRole="SEMESTER" />
+          <NavigationProperty Name="STUDENT" Relationship="StudMinDBModel.FK__STUDYING__IDSTUD__41EDCAC5" FromRole="STUDYING" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="SUBJECT">
           <Key>
@@ -950,23 +1112,24 @@
           <NavigationProperty Name="LESSONs" Relationship="StudMinDBModel.FK__LESSON__IDSUBJEC__14270015" FromRole="SUBJECT" ToRole="LESSON" />
           <NavigationProperty Name="SCOREs" Relationship="StudMinDBModel.FK__SCORE__IDSUBJECT__17F790F9" FromRole="SUBJECT" ToRole="SCORE" />
           <NavigationProperty Name="TEACHER" Relationship="StudMinDBModel.FK__SUBJECT__IDHEADT__1EA48E88" FromRole="SUBJECT" ToRole="TEACHER" />
-          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDSUBJECT__208CD6FA" FromRole="SUBJECT" ToRole="TEACH" />
+          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDSUBJECT__44CA3770" FromRole="SUBJECT" ToRole="TEACH" />
         </EntityType>
         <EntityType Name="TEACH">
           <Key>
             <PropertyRef Name="IDSUBJECT" />
             <PropertyRef Name="IDTEACHER" />
             <PropertyRef Name="IDCLASS" />
-            <PropertyRef Name="SEMESTER" />
+            <PropertyRef Name="IDSEMESTER" />
           </Key>
           <Property Name="IDSUBJECT" Type="Guid" Nullable="false" />
           <Property Name="IDTEACHER" Type="Guid" Nullable="false" />
           <Property Name="IDCLASS" Type="Guid" Nullable="false" />
           <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEMESTER" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CLASS" Relationship="StudMinDBModel.FK__TEACH__IDCLASS__1F98B2C1" FromRole="TEACH" ToRole="CLASS" />
-          <NavigationProperty Name="SUBJECT" Relationship="StudMinDBModel.FK__TEACH__IDSUBJECT__208CD6FA" FromRole="TEACH" ToRole="SUBJECT" />
-          <NavigationProperty Name="TEACHER" Relationship="StudMinDBModel.FK__TEACH__IDTEACHER__2180FB33" FromRole="TEACH" ToRole="TEACHER" />
+          <Property Name="IDSEMESTER" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CLASS" Relationship="StudMinDBModel.FK__TEACH__IDCLASS__43D61337" FromRole="TEACH" ToRole="CLASS" />
+          <NavigationProperty Name="SEMESTER" Relationship="StudMinDBModel.FK__TEACH__IDSEMESTE__46B27FE2" FromRole="TEACH" ToRole="SEMESTER" />
+          <NavigationProperty Name="SUBJECT" Relationship="StudMinDBModel.FK__TEACH__IDSUBJECT__44CA3770" FromRole="TEACH" ToRole="SUBJECT" />
+          <NavigationProperty Name="TEACHER" Relationship="StudMinDBModel.FK__TEACH__IDTEACHER__45BE5BA9" FromRole="TEACH" ToRole="TEACHER" />
         </EntityType>
         <EntityType Name="TEACHER">
           <Key>
@@ -981,7 +1144,7 @@
           <NavigationProperty Name="INFOR" Relationship="StudMinDBModel.FK__TEACHER__IDINFOR__22751F6C" FromRole="TEACHER" ToRole="INFOR" />
           <NavigationProperty Name="LESSONs" Relationship="StudMinDBModel.FK__LESSON__IDTEACHE__151B244E" FromRole="TEACHER" ToRole="LESSON" />
           <NavigationProperty Name="SUBJECTs" Relationship="StudMinDBModel.FK__SUBJECT__IDHEADT__1EA48E88" FromRole="TEACHER" ToRole="SUBJECT" />
-          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDTEACHER__2180FB33" FromRole="TEACHER" ToRole="TEACH" />
+          <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDTEACHER__45BE5BA9" FromRole="TEACHER" ToRole="TEACH" />
           <NavigationProperty Name="TEACHERROLE" Relationship="StudMinDBModel.FK__TEACHER__IDTEACH__236943A5" FromRole="TEACHER" ToRole="TEACHERROLE" />
           <NavigationProperty Name="USER" Relationship="StudMinDBModel.FK__TEACHER__IDUSER__245D67DE" FromRole="TEACHER" ToRole="USER" />
         </EntityType>
@@ -999,11 +1162,12 @@
           </Key>
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="SCHOOLYEAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SEMESTER" Type="Int32" />
           <Property Name="IDSTUDENT" Type="Guid" />
           <Property Name="RANK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDCONDUCT" Type="Guid" />
+          <Property Name="IDSEMESTER" Type="Guid" />
           <NavigationProperty Name="CONDUCT" Relationship="StudMinDBModel.FK__TRANSCRIP__IDCON__31B762FC" FromRole="TRANSCRIPT" ToRole="CONDUCT" />
+          <NavigationProperty Name="SEMESTER" Relationship="StudMinDBModel.FK__TRANSCRIP__IDSEM__3C34F16F" FromRole="TRANSCRIPT" ToRole="SEMESTER" />
           <NavigationProperty Name="STUDENT" Relationship="StudMinDBModel.FK__TRANSCRIP__IDSTU__25518C17" FromRole="TRANSCRIPT" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="USERROLE">
@@ -1033,6 +1197,18 @@
           <NavigationProperty Name="TEACHERs" Relationship="StudMinDBModel.FK__TEACHER__IDUSER__245D67DE" FromRole="USER" ToRole="TEACHER" />
           <NavigationProperty Name="USERROLE" Relationship="StudMinDBModel.FK__USERS__IDUSERROL__282DF8C2" FromRole="USER" ToRole="USERROLE" />
         </EntityType>
+        <Association Name="FK__CLASS__IDGRADE__3864608B">
+          <End Type="StudMinDBModel.GRADE" Role="GRADE" Multiplicity="0..1" />
+          <End Type="StudMinDBModel.CLASS" Role="CLASS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GRADE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASS">
+              <PropertyRef Name="IDGRADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CLASS__IDTEACHER__114A936A">
           <End Type="StudMinDBModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
           <End Type="StudMinDBModel.CLASS" Role="CLASS" Multiplicity="*" />
@@ -1069,7 +1245,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__STUDYING__IDCLAS__1CBC4616">
+        <Association Name="FK__STUDYING__IDCLAS__40F9A68C">
           <End Type="StudMinDBModel.CLASS" Role="CLASS" Multiplicity="1" />
           <End Type="StudMinDBModel.STUDYING" Role="STUDYING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1081,7 +1257,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACH__IDCLASS__1F98B2C1">
+        <Association Name="FK__TEACH__IDCLASS__43D61337">
           <End Type="StudMinDBModel.CLASS" Role="CLASS" Multiplicity="1" />
           <End Type="StudMinDBModel.TEACH" Role="TEACH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1201,6 +1377,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__SCORE__IDSEMESTE__3B40CD36">
+          <End Type="StudMinDBModel.SEMESTER" Role="SEMESTER" Multiplicity="0..1" />
+          <End Type="StudMinDBModel.SCORE" Role="SCORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SCORE">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__SCORE__IDSTUDENT__17036CC0">
           <End Type="StudMinDBModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
           <End Type="StudMinDBModel.SCORE" Role="SCORE" Multiplicity="*" />
@@ -1222,6 +1410,54 @@
             </Principal>
             <Dependent Role="SCORE">
               <PropertyRef Name="IDSUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SCHEDULE__IDSEME__3A4CA8FD">
+          <End Type="StudMinDBModel.SEMESTER" Role="SEMESTER" Multiplicity="0..1" />
+          <End Type="StudMinDBModel.SCHEDULE" Role="SCHEDULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SCHEDULE">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STUDYING__IDSEME__42E1EEFE">
+          <End Type="StudMinDBModel.SEMESTER" Role="SEMESTER" Multiplicity="1" />
+          <End Type="StudMinDBModel.STUDYING" Role="STUDYING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDYING">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACH__IDSEMESTE__46B27FE2">
+          <End Type="StudMinDBModel.SEMESTER" Role="SEMESTER" Multiplicity="1" />
+          <End Type="StudMinDBModel.TEACH" Role="TEACH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TEACH">
+              <PropertyRef Name="IDSEMESTER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRANSCRIP__IDSEM__3C34F16F">
+          <End Type="StudMinDBModel.SEMESTER" Role="SEMESTER" Multiplicity="0..1" />
+          <End Type="StudMinDBModel.TRANSCRIPT" Role="TRANSCRIPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRANSCRIPT">
+              <PropertyRef Name="IDSEMESTER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1249,7 +1485,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__STUDYING__IDSTUD__1DB06A4F">
+        <Association Name="FK__STUDYING__IDSTUD__41EDCAC5">
           <End Type="StudMinDBModel.STUDENT" Role="STUDENT" Multiplicity="1" />
           <End Type="StudMinDBModel.STUDYING" Role="STUDYING" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1285,7 +1521,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACH__IDSUBJECT__208CD6FA">
+        <Association Name="FK__TEACH__IDSUBJECT__44CA3770">
           <End Type="StudMinDBModel.SUBJECT" Role="SUBJECT" Multiplicity="1" />
           <End Type="StudMinDBModel.TEACH" Role="TEACH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1297,7 +1533,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TEACH__IDTEACHER__2180FB33">
+        <Association Name="FK__TEACH__IDTEACHER__45BE5BA9">
           <End Type="StudMinDBModel.TEACHER" Role="TEACHER" Multiplicity="1" />
           <End Type="StudMinDBModel.TEACH" Role="TEACH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1354,6 +1590,7 @@
           <EntitySetMapping Name="CLASSes">
             <EntityTypeMapping TypeName="StudMinDBModel.CLASS">
               <MappingFragment StoreEntitySet="CLASS">
+                <ScalarProperty Name="IDGRADE" ColumnName="IDGRADE" />
                 <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
                 <ScalarProperty Name="IDTEACHER" ColumnName="IDTEACHER" />
                 <ScalarProperty Name="CLASSNAME" ColumnName="CLASSNAME" />
@@ -1364,6 +1601,14 @@
           <EntitySetMapping Name="CONDUCTs">
             <EntityTypeMapping TypeName="StudMinDBModel.CONDUCT">
               <MappingFragment StoreEntitySet="CONDUCT">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRADEs">
+            <EntityTypeMapping TypeName="StudMinDBModel.GRADE">
+              <MappingFragment StoreEntitySet="GRADE">
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -1424,26 +1669,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SCOREs">
+            <EntityTypeMapping TypeName="StudMinDBModel.SCORE">
+              <MappingFragment StoreEntitySet="SCORE">
+                <ScalarProperty Name="IDSEMESTER" ColumnName="IDSEMESTER" />
+                <ScalarProperty Name="IDROLESUBJECT" ColumnName="IDROLESUBJECT" />
+                <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
+                <ScalarProperty Name="SCORE1" ColumnName="SCORE" />
+                <ScalarProperty Name="IDSTUDENT" ColumnName="IDSTUDENT" />
+                <ScalarProperty Name="IDSUBJECT" ColumnName="IDSUBJECT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SCHEDULEs">
             <EntityTypeMapping TypeName="StudMinDBModel.SCHEDULE">
               <MappingFragment StoreEntitySet="SCHEDULE">
+                <ScalarProperty Name="IDSEMESTER" ColumnName="IDSEMESTER" />
                 <ScalarProperty Name="SCHEDULENAME" ColumnName="SCHEDULENAME" />
-                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
                 <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
                 <ScalarProperty Name="DATEAPPLY" ColumnName="DATEAPPLY" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SCOREs">
-            <EntityTypeMapping TypeName="StudMinDBModel.SCORE">
-              <MappingFragment StoreEntitySet="SCORE">
-                <ScalarProperty Name="IDROLESUBJECT" ColumnName="IDROLESUBJECT" />
-                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
-                <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
-                <ScalarProperty Name="SCORE1" ColumnName="SCORE" />
-                <ScalarProperty Name="IDSTUDENT" ColumnName="IDSTUDENT" />
-                <ScalarProperty Name="IDSUBJECT" ColumnName="IDSUBJECT" />
+          <EntitySetMapping Name="SEMESTERs">
+            <EntityTypeMapping TypeName="StudMinDBModel.SEMESTER">
+              <MappingFragment StoreEntitySet="SEMESTER">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1473,7 +1726,6 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="TEL" ColumnName="TEL" />
                 <ScalarProperty Name="EMAILPARENT" ColumnName="EMAILPARENT" />
-                <ScalarProperty Name="GRADE" ColumnName="GRADE" />
                 <ScalarProperty Name="IDCLASS" ColumnName="IDCLASS" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
@@ -1488,7 +1740,7 @@
           <EntitySetMapping Name="STUDYINGs">
             <EntityTypeMapping TypeName="StudMinDBModel.STUDYING">
               <MappingFragment StoreEntitySet="STUDYING">
-                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="IDSEMESTER" ColumnName="IDSEMESTER" />
                 <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
                 <ScalarProperty Name="IDSTUDENT" ColumnName="IDSTUDENT" />
                 <ScalarProperty Name="IDCLASS" ColumnName="IDCLASS" />
@@ -1508,7 +1760,7 @@
           <EntitySetMapping Name="TEACHes">
             <EntityTypeMapping TypeName="StudMinDBModel.TEACH">
               <MappingFragment StoreEntitySet="TEACH">
-                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="IDSEMESTER" ColumnName="IDSEMESTER" />
                 <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
                 <ScalarProperty Name="IDCLASS" ColumnName="IDCLASS" />
                 <ScalarProperty Name="IDTEACHER" ColumnName="IDTEACHER" />
@@ -1538,10 +1790,10 @@
           <EntitySetMapping Name="TRANSCRIPTs">
             <EntityTypeMapping TypeName="StudMinDBModel.TRANSCRIPT">
               <MappingFragment StoreEntitySet="TRANSCRIPT">
+                <ScalarProperty Name="IDSEMESTER" ColumnName="IDSEMESTER" />
                 <ScalarProperty Name="IDCONDUCT" ColumnName="IDCONDUCT" />
                 <ScalarProperty Name="RANK" ColumnName="RANK" />
                 <ScalarProperty Name="IDSTUDENT" ColumnName="IDSTUDENT" />
-                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
                 <ScalarProperty Name="SCHOOLYEAR" ColumnName="SCHOOLYEAR" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

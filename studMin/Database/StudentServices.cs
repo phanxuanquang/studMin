@@ -66,7 +66,6 @@ namespace studMin.Database
                 EMAIL = email,
                 IDCLASS = LoginServices.LoginServices.Instance.ClassOfHeadTeacher.ID,
                 EMAILPARENT = emailParent,
-                GRADE = grade,
                 TEL = telephone,
                 Status = status,
                 BLOODLINE = bloodLine,
@@ -75,7 +74,7 @@ namespace studMin.Database
         }
 
         // Nhập điểm cho một học sinh
-        public bool SaveScoreToDB(Guid idStudent, float score, string schoolYear, int semester, string role)
+        public bool SaveScoreToDB(Guid idStudent, float score, string schoolYear, string semester, string role)
         {
             SCORE scoreofstudent = new SCORE()
             {
@@ -84,7 +83,7 @@ namespace studMin.Database
                 IDSUBJECT = TeacherServices.Instance.GetSubjectOfTeacher().Id,
                 SCORE1 = score,
                 SCHOOLYEAR = schoolYear,
-                SEMESTER = semester,
+                SEMESTER = DataProvider.Instance.Database.SEMESTERs.Where(item => item.NAME == semester).FirstOrDefault(),
                 /*
                  * có 4 role 
                  * M -> miệng
@@ -102,7 +101,7 @@ namespace studMin.Database
         {
             string role = "15M";
             string schoolYear = "2022";
-            int semester = 2;
+            string semester = "2";
             float score = 10;
             List<CLASS> listClass = TeacherServices.Instance.GetAllClassTeaching();
             foreach (var item in listClass)

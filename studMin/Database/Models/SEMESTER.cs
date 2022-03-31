@@ -12,34 +12,29 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class STUDENT
+    public partial class SEMESTER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public STUDENT()
+        public SEMESTER()
         {
             this.SCOREs = new HashSet<SCORE>();
+            this.SCHEDULEs = new HashSet<SCHEDULE>();
             this.STUDYINGs = new HashSet<STUDYING>();
+            this.TEACHes = new HashSet<TEACH>();
             this.TRANSCRIPTs = new HashSet<TRANSCRIPT>();
         }
     
         public System.Guid ID { get; set; }
-        public string FIRSTNAME { get; set; }
-        public string LASTNAME { get; set; }
-        public Nullable<int> SEX { get; set; }
-        public Nullable<System.DateTime> DAYOFBIRTH { get; set; }
-        public string ADDRESS { get; set; }
-        public string EMAIL { get; set; }
-        public Nullable<System.Guid> IDCLASS { get; set; }
-        public string EMAILPARENT { get; set; }
-        public string TEL { get; set; }
-        public Nullable<int> Status { get; set; }
-        public string BLOODLINE { get; set; }
+        public string NAME { get; set; }
     
-        public virtual CLASS CLASS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCORE> SCOREs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SCHEDULE> SCHEDULEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STUDYING> STUDYINGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEACH> TEACHes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRANSCRIPT> TRANSCRIPTs { get; set; }
     }

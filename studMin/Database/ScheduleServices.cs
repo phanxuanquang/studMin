@@ -30,7 +30,7 @@ namespace studMin.Database
         }
 
 
-        public SCHEDULE CreateASchedule(DateTime dayApply, string schoolYear, int semester)
+        public SCHEDULE CreateASchedule(DateTime dayApply, string schoolYear,string semester)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace studMin.Database
                     ID = Guid.NewGuid(),
                     DATEAPPLY = dayApply,
                     SCHOOLYEAR = schoolYear,
-                    SEMESTER = semester,
+                    SEMESTER = DataProvider.Instance.Database.SEMESTERs.Where(item => item.NAME == semester).FirstOrDefault(),
                     SCHEDULENAME = "TKB tao ngay 28/3",
                 };
                 DataProvider.Instance.Database.SaveChanges();
@@ -50,9 +50,9 @@ namespace studMin.Database
                 return null;
             }
         }
-        public bool SaveLessonToDB(string teacherName,string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday)
+        public bool SaveLessonToDB(string teacherName,string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday, string semester)
         {
-            SCHEDULE schedule = CreateASchedule(new DateTime(2022, 3, 28), "2022", 2);
+            SCHEDULE schedule = CreateASchedule(new DateTime(2022, 3, 28), "2022", semester);
             try
             {
                 if (schedule != null)

@@ -12,15 +12,18 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class STUDYING
+    public partial class GRADE
     {
-        public System.Guid IDCLASS { get; set; }
-        public System.Guid IDSTUDENT { get; set; }
-        public string SCHOOLYEAR { get; set; }
-        public System.Guid IDSEMESTER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GRADE()
+        {
+            this.CLASSes = new HashSet<CLASS>();
+        }
     
-        public virtual CLASS CLASS { get; set; }
-        public virtual SEMESTER SEMESTER { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
+        public System.Guid ID { get; set; }
+        public string NAME { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLASS> CLASSes { get; set; }
     }
 }
