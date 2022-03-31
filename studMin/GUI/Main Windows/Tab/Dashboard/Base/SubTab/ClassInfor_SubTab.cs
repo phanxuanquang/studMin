@@ -1,4 +1,6 @@
-﻿using System;
+﻿using studMin.Database;
+using studMin.Database.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,6 +66,10 @@ namespace studMin
                 scheduleAllTeacher.Dispose();
 
                 List<string> ListClass = new List<string>();
+
+                /*List<SCHEDULE> listSchedule = ScheduleServices.Instance.GetSchedules();
+                List<string> ListSchoolYear = new List<string>();*/
+
                 for (int index = 0; index < data.Count; index++)
                 {
                     if (!ListClass.Contains(data[index].Lop))
@@ -72,7 +78,16 @@ namespace studMin
                     }
                 }
 
+                /*for (int index = 0; index < listSchedule.Count; index++)
+                {
+                    if (!ListSchoolYear.Contains(listSchedule[index].SCHOOLYEAR))
+                    {
+                        ListSchoolYear.Add(listSchedule[index].SCHOOLYEAR);
+                    }
+                }*/
+
                 Class_ComboBox.DataSource = ListClass;
+                // SchoolYear_ComboBox.DataSource = ListSchoolYear;
             }));
         }
     }
