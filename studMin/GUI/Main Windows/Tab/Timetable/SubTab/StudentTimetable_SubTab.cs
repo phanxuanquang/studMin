@@ -164,14 +164,6 @@ namespace studMin
         {
             this.BeginInvoke((System.Action)(() =>
             {
-                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
-
-                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
-
-                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
-
-                scheduleAllTeacher.Dispose();
-
                 List<string> ListClass = new List<string>();
                 for (int index = 0; index < data.Count; index++)
                 {
