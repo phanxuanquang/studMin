@@ -14,7 +14,6 @@ namespace studMin
 {
     public partial class ClassInfor_SubTab : UserControl
     {
-        private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
 
         public ClassInfor_SubTab()
         {
@@ -33,36 +32,68 @@ namespace studMin
             try
             {
                 DataTable dataSource = new DataTable();
+                List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
 
-                if (Filter_ComboBox.SelectedIndex == 1)
+                switch (Filter_ComboBox.SelectedIndex)
                 {
-                    dataSource.Columns.Add("Mã học sinh");
-                    dataSource.Columns.Add("Họ tên");
-                    dataSource.Columns.Add("Giới tính");
-                    dataSource.Columns.Add("Ngày sinh");
-                    dataSource.Columns.Add("Địa chỉ");
+                    case 0:
+                        dataSource.Columns.Add("Mã lớp");
+                        dataSource.Columns.Add("Tên lớp");
+                        dataSource.Columns.Add("Khối");
+                        dataSource.Columns.Add("Giáo viên");
+                        dataSource.Columns.Add("Năm học");
+                        
+                        foreach (var classItem in listClasses)
+                        {
+                            dataSource.Rows.Add(classItem.ID, classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                        }
+                        break;
+                     case 1:
+                        dataSource.Columns.Add("Mã học sinh");
+                        dataSource.Columns.Add("Họ tên");
+                        dataSource.Columns.Add("Giới tính");
+                        dataSource.Columns.Add("Ngày sinh");
+                        dataSource.Columns.Add("Địa chỉ");
+                        dataSource.Columns.Add("Số điện thoại");
+                        dataSource.Columns.Add("Email");
 
-                    List<STUDENT> listStudents = Database.ClassServices.Instance.GetListStudentOfClass("10A1");
-                    foreach (var student in listStudents)
-                    {
-                        string sex = student.SEX == 0 ? "Nam" : "Nữ";
-                        string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.DAYOFBIRTH);
-                        dataSource.Rows.Add(student.ID, student.FIRSTNAME + " " + student.LASTNAME, sex, dayOfBirth, student.ADDRESS);
-                    }
-                }
-                else if (Filter_ComboBox.SelectedIndex == 0)
-                {
-                    dataSource.Columns.Add("Mã lớp");
-                    dataSource.Columns.Add("Tên lớp");
-                    dataSource.Columns.Add("Khối");
-                    dataSource.Columns.Add("Giáo viên");
-                    dataSource.Columns.Add("Năm học");
+                        List<STUDENT> listStudents = new List<STUDENT>();
 
-                    List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
-                    foreach (var classItem in listClasses)
-                    {
-                        dataSource.Rows.Add(classItem.ID, classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
-                    }
+                        foreach (var classItem in listClasses)
+                        {
+                            if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                            {
+                                listStudents = classItem.STUDENTs.ToList();
+                            }
+                        }
+
+                        
+                        foreach (var student in listStudents)
+                        {
+                            string sex = student.SEX == 0 ? "Nam" : "Nữ";
+                            string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.DAYOFBIRTH);
+                            dataSource.Rows.Add(student.ID, student.FIRSTNAME + " " + student.LASTNAME, sex, dayOfBirth, student.ADDRESS, student.TEL, student.EMAIL);
+                        }
+                        break;
+                    case 4:
+                        dataSource.Columns.Add("Mã giáo viên");
+                        dataSource.Columns.Add("Họ tên");
+                        dataSource.Columns.Add("Giới tính");
+                        dataSource.Columns.Add("Ngày sinh");
+                        dataSource.Columns.Add("Địa chỉ");
+
+                        foreach (var classItem in listClasses)
+                        {
+                            if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                            {
+                                INFOR inforTeacher = classItem.TEACHER.INFOR;
+
+                                string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
+                                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
+                                dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                            }
+                        }
+                        break;
                 }
 
                 DataTable_Info.DataSource = dataSource;
@@ -91,32 +122,22 @@ namespace studMin
         {
             this.BeginInvoke((System.Action)(() =>
             {
-                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
 
-                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
-
-                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
-
-                scheduleAllTeacher.Dispose();
+                List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
 
                 List<string> ListClass = new List<string>();
-
-                List<SCHEDULE> listSchedule = ScheduleServices.Instance.GetSchedules();
                 List<string> ListSchoolYear = new List<string>();
 
-                for (int index = 0; index < data.Count; index++)
+                for (int index = 0; index < listClasses.Count; index++)
                 {
-                    if (!ListClass.Contains(data[index].Lop))
+                    if (!ListClass.Contains(listClasses[index].CLASSNAME))
                     {
-                        ListClass.Add(data[index].Lop);
+                        ListClass.Add(listClasses[index].CLASSNAME);
                     }
-                }
 
-                for (int index = 0; index < listSchedule.Count; index++)
-                {
-                    if (!ListSchoolYear.Contains(listSchedule[index].SCHOOLYEAR))
+                    if (!ListSchoolYear.Contains(listClasses[index].SCHOOLYEAR))
                     {
-                        ListSchoolYear.Add(listSchedule[index].SCHOOLYEAR);
+                        ListSchoolYear.Add(listClasses[index].SCHOOLYEAR);
                     }
                 }
 
