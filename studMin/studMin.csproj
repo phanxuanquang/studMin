@@ -375,6 +375,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\studMin.Database.Models.CONDUCT.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.SCORE.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.TRANSCRIPT.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

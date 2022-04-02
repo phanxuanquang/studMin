@@ -11,11 +11,19 @@ using System.Windows.Forms;
 
 namespace studMin
 {
+    using Database.Models;
     public partial class GradeModify_SubTab : UserControl
     {
         public GradeModify_SubTab()
         {
+            this.Load += GradeModify_SubTab_Load;
             InitializeComponent();
+        }
+
+        private void GradeModify_SubTab_Load(object sender, EventArgs e)
+        {
+            sTUDENTBindingSource.DataSource = Database.DataProvider.Instance.Database.STUDENTs.ToList();
+            
         }
 
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
@@ -288,6 +296,24 @@ namespace studMin
 
                 subject.Dispose();
             }));
+        }
+
+
+        private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            mDataGridView.Rows.Clear();
+            m15DataGridView.Rows.Clear();
+            m45DataGridView.Rows.Clear();
+            finalDataGridView.Rows.Clear();
+            if (e.RowIndex > 0)
+            {
+                STUDENT student = sTUDENTBindingSource.Current as STUDENT;
+                List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
+                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "M");
+                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "15M");
+                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "45M");
+                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "FINAL");
+            }
         }
     }
 }
