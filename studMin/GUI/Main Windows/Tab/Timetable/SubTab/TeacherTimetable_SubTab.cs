@@ -8,6 +8,7 @@ namespace studMin
     public partial class TeacherTimetable_SubTab : UserControl
     {
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
+        bool isLoaded = false;
         
         public TeacherTimetable_SubTab()
         {
@@ -400,13 +401,58 @@ namespace studMin
             }
         }
 
+        bool IsTheSameCellValue(int column, int row)
+        {
+            DataGridViewCell cell1 = Timetable_GridView[column, row];
+            DataGridViewCell cell2 = Timetable_GridView[column, row - 1];
+            if (cell1.Value == null || cell2.Value == null)
+            {
+                return false;
+            }
+            return cell1.Value.ToString() == cell2.Value.ToString();
+        }
+
         private void Timetable_GridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex > 0 && e.ColumnIndex >= 0 && e.Value != System.DBNull.Value && Timetable_GridView.Rows[e.RowIndex - 1].Cells[e.ColumnIndex].Value.ToString() == e.Value.ToString())
+            e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+            if (e.RowIndex < 1 || e.ColumnIndex < 0)
+                return;
+            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
             {
                 e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
             }
-            else e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
+            else
+            {
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
+            }
+        }
+
+        private void TeacherTimetable_SubTab_Load(object sender, EventArgs e)
+        {
+            if (isLoaded) return;
+
+            this.BeginInvoke((System.Action)(() =>
+            {
+                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
+
+                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
+
+                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
+
+                scheduleAllTeacher.Dispose();
+                isLoaded = true;
+            }));
+        }
+
+        private void Timetable_GridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex == 0)
+                return;
+            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.Value = "";
+                e.FormattingApplied = true;
+            }
         }
     }
 }
