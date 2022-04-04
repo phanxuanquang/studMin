@@ -96,14 +96,22 @@ namespace studMin.Database.LoginServices
             if (File.Exists(filePath))
             {
                 string fileContent = "";
-                using (StreamReader sr = new StreamReader(filePath))
+                try
                 {
-                    fileContent = sr.ReadToEnd();
-                    string accountRow = fileContent.Split('\n')[0];
-                    if (accountRow == "")
-                        return (null, null);
-                    string[] account = accountRow.Split('\t');
-                    return (account[0], Hash.Decrypt(account[1].ToString()));
+                    using (StreamReader sr = new StreamReader(filePath))
+                    {
+                        fileContent = sr.ReadToEnd();
+                        string accountRow = fileContent.Split('\n')[0];
+                        if (accountRow == "")
+                            return (null, null);
+                        string[] account = accountRow.Split('\t');
+                        return (account[0], Hash.Decrypt(account[1].ToString()));
+                    }
+                }
+                catch
+                {
+                    Application.Exit();
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
                 }
             }
             return (null, null);
