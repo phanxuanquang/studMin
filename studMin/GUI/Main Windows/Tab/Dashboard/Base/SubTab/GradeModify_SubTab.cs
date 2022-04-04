@@ -166,17 +166,18 @@ namespace studMin
                     for (int i = 0; i < GridView.RowCount; i++)
                     {
                         if (GridView.Rows[i].Cells[0].Value != null && 
-                            GridView.Rows[i].Cells[1].Value != null && 
-                            GridView.Rows[i].Cells[0].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || 
-                            GridView.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
+                            GridView.Rows[i].Cells[1].Value != null)
                         {
-                            
-                            GridView.Rows[i].Visible = true;
-                            
-                        }
-                        else
-                        {
-                            GridView.Rows[i].Visible = false;
+                            string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
+
+                            if (fullName.Contains(Search_Box.Text.ToLower()))
+                            {
+                                GridView.Rows[i].Visible = true;
+                            }
+                            else
+                            {
+                                GridView.Rows[i].Visible = false;
+                            }
                         }
                     }
 

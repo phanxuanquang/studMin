@@ -65,7 +65,7 @@ namespace studMin
             }
             else
             {
-                listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME).Where(item => (item.FIRSTNAME + " " + item.LASTNAME).Contains(Search_Box.Text) || item.ID.ToString().Contains(Search_Box.Text)).ToList();
+                listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME).Where(item => ((item.FIRSTNAME + " " + item.LASTNAME)).ToLower().Contains(Search_Box.Text.ToLower()) || item.ID.ToString().Contains(Search_Box.Text)).ToList();
             }
             tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(listStudent);
             LoadGridView();

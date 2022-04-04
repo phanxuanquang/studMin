@@ -34,11 +34,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Search_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.FullGridView_Button = new Guna.UI2.WinForms.Guna2Button();
             this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sttDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCHOOLYEARDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -159,6 +159,14 @@
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             // 
+            // cONDUCTBindingSource
+            // 
+            this.cONDUCTBindingSource.DataSource = typeof(studMin.Database.Models.CONDUCT);
+            // 
+            // tRANSCRIPTBindingSource
+            // 
+            this.tRANSCRIPTBindingSource.DataSource = typeof(studMin.Database.Models.TRANSCRIPT);
+            // 
             // DataGridViewExport_Button
             // 
             this.DataGridViewExport_Button.Animated = true;
@@ -238,14 +246,6 @@
             this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.UpdateData_Button.Click += new System.EventHandler(this.UpdateData_Button_Click);
             // 
-            // cONDUCTBindingSource
-            // 
-            this.cONDUCTBindingSource.DataSource = typeof(studMin.Database.Models.CONDUCT);
-            // 
-            // tRANSCRIPTBindingSource
-            // 
-            this.tRANSCRIPTBindingSource.DataSource = typeof(studMin.Database.Models.TRANSCRIPT);
-            // 
             // sttDataGridViewTextBoxColumn
             // 
             this.sttDataGridViewTextBoxColumn.HeaderText = "STT";
@@ -263,7 +263,7 @@
             // sCHOOLYEARDataGridViewTextBoxColumn
             // 
             this.sCHOOLYEARDataGridViewTextBoxColumn.DataPropertyName = "SCHOOLYEAR";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.HeaderText = "SCHOOLYEAR";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.HeaderText = "Niên khóa";
             this.sCHOOLYEARDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.sCHOOLYEARDataGridViewTextBoxColumn.Name = "sCHOOLYEARDataGridViewTextBoxColumn";
             this.sCHOOLYEARDataGridViewTextBoxColumn.ReadOnly = true;
