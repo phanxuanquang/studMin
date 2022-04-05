@@ -73,7 +73,15 @@ namespace studMin
 
         private void UpdateData_Button_Click(object sender, EventArgs e)
         {
-            Database.DataProvider.Instance.Database.SaveChanges();
+            try
+            {
+                Database.DataProvider.Instance.Database.SaveChanges();
+                MessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Đã có lỗi xảy ra, vui lòng thử lại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
