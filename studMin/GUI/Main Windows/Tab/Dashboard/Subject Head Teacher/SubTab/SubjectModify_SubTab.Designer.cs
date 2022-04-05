@@ -444,6 +444,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SubjectModify_SubTab";
             this.Size = new System.Drawing.Size(1232, 847);
+            this.Load += new System.EventHandler(this.SubjectModify_SubTab_Load);
             this.OralTest_GroupBox.ResumeLayout(false);
             this.guna2GroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();

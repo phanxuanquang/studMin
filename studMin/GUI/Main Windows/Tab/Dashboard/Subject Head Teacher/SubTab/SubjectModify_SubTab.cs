@@ -1,4 +1,5 @@
-﻿using studMin.Database.Models;
+﻿using studMin.Database;
+using studMin.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,17 +21,38 @@ namespace studMin
 
         private void PassGrade_SaveButton_Click(object sender, EventArgs e)
         {
-            if (!Double.TryParse(PassGrade_Box.Text, out _))
+            if (PassGrade_Box.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Điểm chỉ có thể là số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Điểm không được bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (Double.Parse(PassGrade_Box.Text) < 0)
+            else if (!int.TryParse(PassGrade_Box.Text, out _))
             {
-                MessageBox.Show("Điểm không được là một số âm", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Điểm chỉ có thể là số nguyên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (Double.Parse(PassGrade_Box.Text) <= 0)
+            {
+                MessageBox.Show("Điểm không được là một số âm hoặc bằng 0", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                SUBJECT subject = Database.TeacherServices.Instance.GetSubjectOfTeacher();
+                SUBJECT subject = TeacherServices.Instance.GetSubjectOfTeacher();
+                subject.PASSSCORE = int.Parse(PassGrade_Box.Text);
+
+                MessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void SubjectModify_SubTab_Load(object sender, EventArgs e)
+        {
+            SUBJECT subject = TeacherServices.Instance.GetSubjectOfTeacher();
+            List<TEACHER> listTeachers = TeacherServices.Instance.GetTeachers();
+
+            for (int i = 0; i < listTeachers.Count; i++)
+            {
+                if (listTeachers[i].IDSUBJECT == subject.Id)
+                {
+                    GridView.Rows.Add(listTeachers[i].ID, listTeachers[i].INFOR.FIRSTNAME + " " + listTeachers[i].INFOR.LASTNAME, listTeachers[i].INFOR.DAYOFBIRTH, listTeachers[i].USER.EMAIL, "1/1/2022");
+                }
             }
         }
     }
