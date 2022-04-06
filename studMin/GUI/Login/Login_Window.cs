@@ -63,8 +63,6 @@ namespace studMin
  
                     Username_Box.Text = LoginServices.Instance.GetRememberAccount().Item1;
                     Password_Box.Text = LoginServices.Instance.GetRememberAccount().Item2;
-
-                    
                 }
             }
         }
