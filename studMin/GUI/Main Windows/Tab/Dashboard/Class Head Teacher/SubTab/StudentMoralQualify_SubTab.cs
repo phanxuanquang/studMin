@@ -65,7 +65,7 @@ namespace studMin
             }
             else
             {
-                listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME).Where(item => (item.FIRSTNAME + " " + item.LASTNAME).Contains(Search_Box.Text) || item.ID.ToString().Contains(Search_Box.Text)).ToList();
+                listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME).Where(item => ((item.FIRSTNAME + " " + item.LASTNAME)).ToLower().Contains(Search_Box.Text.ToLower()) || item.ID.ToString().Contains(Search_Box.Text)).ToList();
             }
             tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(listStudent);
             LoadGridView();
@@ -73,7 +73,15 @@ namespace studMin
 
         private void UpdateData_Button_Click(object sender, EventArgs e)
         {
-            Database.DataProvider.Instance.Database.SaveChanges();
+            try
+            {
+                Database.DataProvider.Instance.Database.SaveChanges();
+                MessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Đã có lỗi xảy ra, vui lòng thử lại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

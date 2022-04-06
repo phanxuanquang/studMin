@@ -11,11 +11,19 @@ using System.Windows.Forms;
 
 namespace studMin
 {
+    using Database.Models;
     public partial class GradeModify_SubTab : UserControl
     {
         public GradeModify_SubTab()
         {
+            this.Load += GradeModify_SubTab_Load;
             InitializeComponent();
+        }
+
+        private void GradeModify_SubTab_Load(object sender, EventArgs e)
+        {
+            sTUDENTBindingSource.DataSource = Database.DataProvider.Instance.Database.STUDENTs.ToList();
+            
         }
 
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
@@ -158,17 +166,18 @@ namespace studMin
                     for (int i = 0; i < GridView.RowCount; i++)
                     {
                         if (GridView.Rows[i].Cells[0].Value != null && 
-                            GridView.Rows[i].Cells[1].Value != null && 
-                            GridView.Rows[i].Cells[0].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || 
-                            GridView.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
+                            GridView.Rows[i].Cells[1].Value != null)
                         {
-                            
-                            GridView.Rows[i].Visible = true;
-                            
-                        }
-                        else
-                        {
-                            GridView.Rows[i].Visible = false;
+                            string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
+
+                            if (fullName.Contains(Search_Box.Text.ToLower()))
+                            {
+                                GridView.Rows[i].Visible = true;
+                            }
+                            else
+                            {
+                                GridView.Rows[i].Visible = false;
+                            }
                         }
                     }
 
@@ -288,6 +297,24 @@ namespace studMin
 
                 subject.Dispose();
             }));
+        }
+
+
+        private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            mDataGridView.Rows.Clear();
+            m15DataGridView.Rows.Clear();
+            m45DataGridView.Rows.Clear();
+            finalDataGridView.Rows.Clear();
+            if (e.RowIndex > 0)
+            {
+                STUDENT student = sTUDENTBindingSource.Current as STUDENT;
+                List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
+                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "M");
+                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "15M");
+                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "45M");
+                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "FINAL");
+            }
         }
     }
 }

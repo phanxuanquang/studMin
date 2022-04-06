@@ -15,6 +15,8 @@ namespace studMin
     public partial class StudentTimetable_SubTab : UserControl
     {
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
+        bool isImported = false;
+        bool isLoaded = false;
 
         public StudentTimetable_SubTab()
         {
@@ -162,6 +164,8 @@ namespace studMin
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
+            if (isImported) return;
+
             this.BeginInvoke((System.Action)(() =>
             {
                 List<string> ListClass = new List<string>();
@@ -174,6 +178,7 @@ namespace studMin
                 }
 
                 Class_ComboBox.DataSource = ListClass;
+                isImported = true;
             }));
         }
 
@@ -258,6 +263,8 @@ namespace studMin
 
         private void StudentTimetable_SubTab_Load(object sender, EventArgs e)
         {
+            if (isLoaded) return;
+
             this.BeginInvoke((System.Action)(() =>
             {
                 Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
@@ -267,6 +274,7 @@ namespace studMin
                 data = scheduleAllTeacher.SelectItem(info.NgayApDung);
 
                 scheduleAllTeacher.Dispose();
+                isLoaded = true;
             }));
         }
 

@@ -98,7 +98,6 @@ namespace studMin
 
                 wait.Stop();
                 wait.Dispose();
-                isValidAccount = true;
 
                 if (isValidAccount)
                 {
