@@ -23,19 +23,16 @@ namespace studMin.Database.Models
         }
     
         public System.Guid ID { get; set; }
-        public string FIRSTNAME { get; set; }
-        public string LASTNAME { get; set; }
-        public Nullable<int> SEX { get; set; }
-        public Nullable<System.DateTime> DAYOFBIRTH { get; set; }
-        public string ADDRESS { get; set; }
         public string EMAIL { get; set; }
         public Nullable<System.Guid> IDCLASS { get; set; }
         public string EMAILPARENT { get; set; }
         public string TEL { get; set; }
         public Nullable<int> Status { get; set; }
         public string BLOODLINE { get; set; }
+        public Nullable<System.Guid> IDINFOR { get; set; }
     
         public virtual CLASS CLASS { get; set; }
+        public virtual INFOR INFOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCORE> SCOREs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

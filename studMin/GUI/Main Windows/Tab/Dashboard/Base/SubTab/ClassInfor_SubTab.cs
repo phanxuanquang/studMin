@@ -70,9 +70,9 @@ namespace studMin
                         
                         foreach (var student in listStudents)
                         {
-                            string sex = student.SEX == 0 ? "Nam" : "Nữ";
-                            string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.DAYOFBIRTH);
-                            dataSource.Rows.Add(student.ID, student.FIRSTNAME + " " + student.LASTNAME, sex, dayOfBirth, student.ADDRESS, student.TEL, student.EMAIL);
+                            string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
+                            string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.INFOR.DAYOFBIRTH);
+                            dataSource.Rows.Add(student.ID, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
                         }
                         break;
                     case 4:

@@ -58,11 +58,7 @@ namespace studMin.Database
             STUDENT student = new STUDENT()
             {
                 ID = Guid.NewGuid(),
-                FIRSTNAME = firstName,
-                LASTNAME = lastName,
-                SEX = sex,
-                DAYOFBIRTH = dayOfBirth,
-                ADDRESS = address,
+                
                 EMAIL = email,
                 IDCLASS = LoginServices.LoginServices.Instance.ClassOfHeadTeacher.ID,
                 EMAILPARENT = emailParent,
@@ -70,6 +66,16 @@ namespace studMin.Database
                 Status = status,
                 BLOODLINE = bloodLine,
             };
+            INFOR infor = new INFOR()
+            {
+                ID = Guid.NewGuid(),
+                FIRSTNAME = firstName,
+                LASTNAME = lastName,
+                SEX = sex,
+                DAYOFBIRTH = dayOfBirth,
+                ADDRESS = address,
+            };
+            student.ID = infor.ID; 
             return SaveStudentToDB(student);
         }
 
@@ -91,7 +97,7 @@ namespace studMin.Database
                  * 45M -> 45 phút
                  * FINAL -> cuối kỳ
                  */
-                IDROLESUBJECT = SubjectServices.Instance.GetRoleSubject(role).ID,
+                IDROLESCORE = SubjectServices.Instance.GetRoleSubject(role).ID,
             };
             return SaveScoreToDB(scoreofstudent);
         }

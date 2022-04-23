@@ -12,19 +12,16 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SCORE
+    public partial class REPORTSUBJECT
     {
-        public System.Guid ID { get; set; }
-        public Nullable<System.Guid> IDSUBJECT { get; set; }
-        public Nullable<System.Guid> IDSTUDENT { get; set; }
-        public Nullable<double> SCORE1 { get; set; }
-        public string SCHOOLYEAR { get; set; }
-        public Nullable<System.Guid> IDROLESCORE { get; set; }
-        public Nullable<System.Guid> IDSEMESTER { get; set; }
+        public System.Guid IDCLASS { get; set; }
+        public System.Guid IDSEMESTER { get; set; }
+        public System.Guid IDSUBJECT { get; set; }
+        public Nullable<int> PASSQUANTITY { get; set; }
+        public Nullable<double> RATIO { get; set; }
     
-        public virtual ROLESCORE ROLESCORE { get; set; }
+        public virtual CLASS CLASS { get; set; }
         public virtual SEMESTER SEMESTER { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual SUBJECT SUBJECT { get; set; }
     }
 }

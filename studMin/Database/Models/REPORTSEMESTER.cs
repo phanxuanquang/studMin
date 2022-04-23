@@ -12,11 +12,14 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LIMIT
+    public partial class REPORTSEMESTER
     {
-        public System.Guid ID { get; set; }
-        public string NAME { get; set; }
-        public Nullable<int> MIN { get; set; }
-        public Nullable<int> MAX { get; set; }
+        public System.Guid IDCLASS { get; set; }
+        public System.Guid IDSEMESTER { get; set; }
+        public Nullable<int> PASSQUANTITY { get; set; }
+        public Nullable<double> RATIO { get; set; }
+    
+        public virtual CLASS CLASS { get; set; }
+        public virtual SEMESTER SEMESTER { get; set; }
     }
 }

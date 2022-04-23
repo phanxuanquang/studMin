@@ -310,10 +310,10 @@ namespace studMin
             {
                 STUDENT student = sTUDENTBindingSource.Current as STUDENT;
                 List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
-                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "M");
-                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "15M");
-                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "45M");
-                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESUBJECT.ROLE == "FINAL");
+                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M");
+                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M");
+                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M");
+                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL");
             }
         }
     }

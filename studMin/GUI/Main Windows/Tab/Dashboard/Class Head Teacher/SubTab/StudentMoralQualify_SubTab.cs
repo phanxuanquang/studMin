@@ -37,7 +37,7 @@ namespace studMin
                 if (selected != null)
                 {
                     row.Cells["sttDataGridViewTextBoxColumn"].Value = count++;
-                    row.Cells["nameDataGridViewTextBoxColumn"].Value = selected.STUDENT.FIRSTNAME + " " + selected.STUDENT.LASTNAME;
+                    row.Cells["nameDataGridViewTextBoxColumn"].Value = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
                     row.Cells["semesterDataGridViewTextBoxColumn"].Value = selected.SEMESTER.NAME;
                 }
             }
@@ -65,7 +65,7 @@ namespace studMin
             }
             else
             {
-                listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME).Where(item => ((item.FIRSTNAME + " " + item.LASTNAME)).ToLower().Contains(Search_Box.Text.ToLower()) || item.ID.ToString().Contains(Search_Box.Text)).ToList();
+                listStudent = Database.ClassServices.Instance.GetListStudentOfClass(LoginServices.Instance.ClassOfHeadTeacher.CLASSNAME).Where(item => ((item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME)).ToLower().Contains(Search_Box.Text.ToLower()) || item.ID.ToString().Contains(Search_Box.Text)).ToList();
             }
             tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(listStudent);
             LoadGridView();

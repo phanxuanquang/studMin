@@ -18,6 +18,7 @@ namespace studMin.Database.Models
         public INFOR()
         {
             this.STAFFs = new HashSet<STAFF>();
+            this.STUDENTs = new HashSet<STUDENT>();
             this.TEACHERs = new HashSet<TEACHER>();
             this.USERS = new HashSet<USER>();
         }
@@ -31,6 +32,8 @@ namespace studMin.Database.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STAFF> STAFFs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STUDENT> STUDENTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEACHER> TEACHERs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

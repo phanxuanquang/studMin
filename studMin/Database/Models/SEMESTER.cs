@@ -17,8 +17,10 @@ namespace studMin.Database.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SEMESTER()
         {
-            this.SCOREs = new HashSet<SCORE>();
+            this.REPORTSEMESTERs = new HashSet<REPORTSEMESTER>();
+            this.REPORTSUBJECTs = new HashSet<REPORTSUBJECT>();
             this.SCHEDULEs = new HashSet<SCHEDULE>();
+            this.SCOREs = new HashSet<SCORE>();
             this.STUDYINGs = new HashSet<STUDYING>();
             this.TEACHes = new HashSet<TEACH>();
             this.TRANSCRIPTs = new HashSet<TRANSCRIPT>();
@@ -28,9 +30,13 @@ namespace studMin.Database.Models
         public string NAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SCORE> SCOREs { get; set; }
+        public virtual ICollection<REPORTSEMESTER> REPORTSEMESTERs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REPORTSUBJECT> REPORTSUBJECTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCHEDULE> SCHEDULEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SCORE> SCOREs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STUDYING> STUDYINGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

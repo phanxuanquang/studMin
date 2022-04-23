@@ -18,6 +18,8 @@ namespace studMin.Database.Models
         public CLASS()
         {
             this.LESSONs = new HashSet<LESSON>();
+            this.REPORTSEMESTERs = new HashSet<REPORTSEMESTER>();
+            this.REPORTSUBJECTs = new HashSet<REPORTSUBJECT>();
             this.STUDENTs = new HashSet<STUDENT>();
             this.STUDYINGs = new HashSet<STUDYING>();
             this.TEACHes = new HashSet<TEACH>();
@@ -33,6 +35,10 @@ namespace studMin.Database.Models
         public virtual TEACHER TEACHER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LESSON> LESSONs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REPORTSEMESTER> REPORTSEMESTERs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REPORTSUBJECT> REPORTSUBJECTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STUDENT> STUDENTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

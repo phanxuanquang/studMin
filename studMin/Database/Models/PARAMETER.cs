@@ -12,19 +12,11 @@ namespace studMin.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ROLESUBJECT
+    public partial class PARAMETER
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ROLESUBJECT()
-        {
-            this.SCOREs = new HashSet<SCORE>();
-        }
-    
         public System.Guid ID { get; set; }
-        public string ROLE { get; set; }
-        public Nullable<int> COE { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SCORE> SCOREs { get; set; }
+        public string NAME { get; set; }
+        public Nullable<int> MIN { get; set; }
+        public Nullable<int> MAX { get; set; }
     }
 }

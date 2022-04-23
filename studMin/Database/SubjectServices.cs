@@ -30,9 +30,9 @@ namespace studMin.Database
             return DataProvider.Instance.Database.SUBJECTs.Where(item => item.DisplayName == subjectName).FirstOrDefault();
         }
 
-        public ROLESUBJECT GetRoleSubject(string role)
+        public ROLESCORE GetRoleSubject(string role)
         {
-            return DataProvider.Instance.Database.ROLESUBJECTs.Where(item => item.ROLE == role).FirstOrDefault();
+            return DataProvider.Instance.Database.ROLESCOREs.Where(item => item.ROLE == role).FirstOrDefault();
         }
     }
 }

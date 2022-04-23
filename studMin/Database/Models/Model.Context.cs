@@ -30,11 +30,13 @@ namespace studMin.Database.Models
         public virtual DbSet<GRADE> GRADEs { get; set; }
         public virtual DbSet<INFOR> INFORs { get; set; }
         public virtual DbSet<LESSON> LESSONs { get; set; }
-        public virtual DbSet<LIMIT> LIMITs { get; set; }
         public virtual DbSet<OTP> OTPs { get; set; }
-        public virtual DbSet<ROLESUBJECT> ROLESUBJECTs { get; set; }
-        public virtual DbSet<SCORE> SCOREs { get; set; }
+        public virtual DbSet<PARAMETER> PARAMETERs { get; set; }
+        public virtual DbSet<REPORTSEMESTER> REPORTSEMESTERs { get; set; }
+        public virtual DbSet<REPORTSUBJECT> REPORTSUBJECTs { get; set; }
+        public virtual DbSet<ROLESCORE> ROLESCOREs { get; set; }
         public virtual DbSet<SCHEDULE> SCHEDULEs { get; set; }
+        public virtual DbSet<SCORE> SCOREs { get; set; }
         public virtual DbSet<SEMESTER> SEMESTERs { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
         public virtual DbSet<STAFFROLE> STAFFROLEs { get; set; }
