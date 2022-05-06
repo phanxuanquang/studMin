@@ -34,15 +34,14 @@
             this.DragForm = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.RoundCornerForm = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.menuBar = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.Setting_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Dashboard_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Statistic_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Logout_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.Notification_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.Timetable_MenuButton = new Guna.UI2.WinForms.Guna2Button();
             this.ContainerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.Minimize_Button = new Guna.UI2.WinForms.Guna2ImageButton();
             this.Exit_Button = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,11 +59,9 @@
             this.menuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.menuBar.BackColor = System.Drawing.Color.Transparent;
-            this.menuBar.Controls.Add(this.Setting_MenuButton);
             this.menuBar.Controls.Add(this.Dashboard_MenuButton);
             this.menuBar.Controls.Add(this.Statistic_MenuButton);
             this.menuBar.Controls.Add(this.Logout_Button);
-            this.menuBar.Controls.Add(this.Notification_MenuButton);
             this.menuBar.Controls.Add(this.Timetable_MenuButton);
             this.menuBar.FillColor = System.Drawing.Color.White;
             this.menuBar.Location = new System.Drawing.Point(19, 25);
@@ -75,28 +72,6 @@
             this.menuBar.ShadowShift = 0;
             this.menuBar.Size = new System.Drawing.Size(60, 750);
             this.menuBar.TabIndex = 0;
-            // 
-            // Setting_MenuButton
-            // 
-            this.Setting_MenuButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.Setting_MenuButton.Animated = true;
-            this.Setting_MenuButton.AutoRoundedCorners = true;
-            this.Setting_MenuButton.BorderRadius = 21;
-            this.Setting_MenuButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.Setting_MenuButton.CheckedState.Parent = this.Setting_MenuButton;
-            this.Setting_MenuButton.CustomImages.Parent = this.Setting_MenuButton;
-            this.Setting_MenuButton.FillColor = System.Drawing.Color.White;
-            this.Setting_MenuButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Setting_MenuButton.ForeColor = System.Drawing.Color.White;
-            this.Setting_MenuButton.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.Setting_MenuButton.HoverState.Parent = this.Setting_MenuButton;
-            this.Setting_MenuButton.Image = ((System.Drawing.Image)(resources.GetObject("Setting_MenuButton.Image")));
-            this.Setting_MenuButton.ImageSize = new System.Drawing.Size(21, 21);
-            this.Setting_MenuButton.Location = new System.Drawing.Point(8, 271);
-            this.Setting_MenuButton.Name = "Setting_MenuButton";
-            this.Setting_MenuButton.ShadowDecoration.Parent = this.Setting_MenuButton;
-            this.Setting_MenuButton.Size = new System.Drawing.Size(44, 44);
-            this.Setting_MenuButton.TabIndex = 22;
             // 
             // Dashboard_MenuButton
             // 
@@ -119,6 +94,8 @@
             this.Dashboard_MenuButton.ShadowDecoration.Parent = this.Dashboard_MenuButton;
             this.Dashboard_MenuButton.Size = new System.Drawing.Size(44, 44);
             this.Dashboard_MenuButton.TabIndex = 16;
+            this.Dashboard_MenuButton.Tag = "1";
+            this.toolTip.SetToolTip(this.Dashboard_MenuButton, "Bảng điều khiển");
             this.Dashboard_MenuButton.Click += new System.EventHandler(this.Dashboard_MenuButton_Click);
             // 
             // Statistic_MenuButton
@@ -137,11 +114,14 @@
             this.Statistic_MenuButton.HoverState.Parent = this.Statistic_MenuButton;
             this.Statistic_MenuButton.Image = ((System.Drawing.Image)(resources.GetObject("Statistic_MenuButton.Image")));
             this.Statistic_MenuButton.ImageSize = new System.Drawing.Size(21, 21);
-            this.Statistic_MenuButton.Location = new System.Drawing.Point(8, 206);
+            this.Statistic_MenuButton.Location = new System.Drawing.Point(8, 145);
             this.Statistic_MenuButton.Name = "Statistic_MenuButton";
             this.Statistic_MenuButton.ShadowDecoration.Parent = this.Statistic_MenuButton;
             this.Statistic_MenuButton.Size = new System.Drawing.Size(44, 44);
             this.Statistic_MenuButton.TabIndex = 17;
+            this.Statistic_MenuButton.Tag = "3";
+            this.toolTip.SetToolTip(this.Statistic_MenuButton, "Tổng kết");
+            this.Statistic_MenuButton.Click += new System.EventHandler(this.Statistic_MenuButton_Click);
             // 
             // Logout_Button
             // 
@@ -167,28 +147,6 @@
             this.Logout_Button.TabIndex = 18;
             this.Logout_Button.Click += new System.EventHandler(this.Logout_Button_Click);
             // 
-            // Notification_MenuButton
-            // 
-            this.Notification_MenuButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.Notification_MenuButton.Animated = true;
-            this.Notification_MenuButton.AutoRoundedCorners = true;
-            this.Notification_MenuButton.BorderRadius = 21;
-            this.Notification_MenuButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.Notification_MenuButton.CheckedState.Parent = this.Notification_MenuButton;
-            this.Notification_MenuButton.CustomImages.Parent = this.Notification_MenuButton;
-            this.Notification_MenuButton.FillColor = System.Drawing.Color.White;
-            this.Notification_MenuButton.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Notification_MenuButton.ForeColor = System.Drawing.Color.White;
-            this.Notification_MenuButton.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.Notification_MenuButton.HoverState.Parent = this.Notification_MenuButton;
-            this.Notification_MenuButton.Image = ((System.Drawing.Image)(resources.GetObject("Notification_MenuButton.Image")));
-            this.Notification_MenuButton.ImageSize = new System.Drawing.Size(21, 21);
-            this.Notification_MenuButton.Location = new System.Drawing.Point(8, 141);
-            this.Notification_MenuButton.Name = "Notification_MenuButton";
-            this.Notification_MenuButton.ShadowDecoration.Parent = this.Notification_MenuButton;
-            this.Notification_MenuButton.Size = new System.Drawing.Size(44, 44);
-            this.Notification_MenuButton.TabIndex = 20;
-            // 
             // Timetable_MenuButton
             // 
             this.Timetable_MenuButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -205,11 +163,13 @@
             this.Timetable_MenuButton.HoverState.Parent = this.Timetable_MenuButton;
             this.Timetable_MenuButton.Image = ((System.Drawing.Image)(resources.GetObject("Timetable_MenuButton.Image")));
             this.Timetable_MenuButton.ImageSize = new System.Drawing.Size(21, 21);
-            this.Timetable_MenuButton.Location = new System.Drawing.Point(8, 76);
+            this.Timetable_MenuButton.Location = new System.Drawing.Point(8, 78);
             this.Timetable_MenuButton.Name = "Timetable_MenuButton";
             this.Timetable_MenuButton.ShadowDecoration.Parent = this.Timetable_MenuButton;
             this.Timetable_MenuButton.Size = new System.Drawing.Size(44, 44);
             this.Timetable_MenuButton.TabIndex = 19;
+            this.Timetable_MenuButton.Tag = "2";
+            this.toolTip.SetToolTip(this.Timetable_MenuButton, "Thời khóa biểu");
             this.Timetable_MenuButton.Click += new System.EventHandler(this.Timetable_MenuButton_Click);
             // 
             // ContainerPanel
@@ -281,14 +241,13 @@
         private Guna.UI2.WinForms.Guna2DragControl DragForm;
         private Guna.UI2.WinForms.Guna2Elipse RoundCornerForm;
         private Guna.UI2.WinForms.Guna2ShadowPanel menuBar;
-        private Guna.UI2.WinForms.Guna2Button Setting_MenuButton;
         private Guna.UI2.WinForms.Guna2Button Dashboard_MenuButton;
         private Guna.UI2.WinForms.Guna2Button Statistic_MenuButton;
         private Guna.UI2.WinForms.Guna2Button Logout_Button;
-        private Guna.UI2.WinForms.Guna2Button Notification_MenuButton;
         private Guna.UI2.WinForms.Guna2Button Timetable_MenuButton;
         private Guna.UI2.WinForms.Guna2ImageButton Exit_Button;
         private Guna.UI2.WinForms.Guna2ImageButton Minimize_Button;
         private Guna.UI2.WinForms.Guna2GradientPanel ContainerPanel;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

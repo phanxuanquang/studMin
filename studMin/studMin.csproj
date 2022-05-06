@@ -322,6 +322,18 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.Designer.cs">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.Designer.cs">
+      <DependentUpon>StatisticTab_Headteacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab.Designer.cs">
+      <DependentUpon>StatisticTab.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Login\OTPexample.resx">
       <DependentUpon>OTPexample.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +386,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.resx">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.resx">
+      <DependentUpon>StatisticTab_Headteacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab.resx">
+      <DependentUpon>StatisticTab.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Database\Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

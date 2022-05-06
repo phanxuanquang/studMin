@@ -1,6 +1,6 @@
 ﻿namespace studMin
 {
-    partial class StudentMoralQualify_SubTab
+    partial class StatisticTab_Headteacher
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,25 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Search_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.sttDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sCHOOLYEARDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.semesterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDCONDUCTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Result = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tittleLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // DataGridViewExport_Button
+            // 
+            this.DataGridViewExport_Button.Animated = true;
+            this.DataGridViewExport_Button.BackColor = System.Drawing.Color.Transparent;
+            this.DataGridViewExport_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.DataGridViewExport_Button.BorderRadius = 5;
+            this.DataGridViewExport_Button.CheckedState.Parent = this.DataGridViewExport_Button;
+            this.DataGridViewExport_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DataGridViewExport_Button.CustomImages.Parent = this.DataGridViewExport_Button;
+            this.DataGridViewExport_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.DataGridViewExport_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.DataGridViewExport_Button.ForeColor = System.Drawing.Color.White;
+            this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
+            this.DataGridViewExport_Button.Location = new System.Drawing.Point(772, 66);
+            this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
+            this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
+            this.DataGridViewExport_Button.Size = new System.Drawing.Size(143, 36);
+            this.DataGridViewExport_Button.TabIndex = 108;
+            this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
+            this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
             // Search_Box
             // 
@@ -70,18 +86,18 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(10, 32);
+            this.Search_Box.Location = new System.Drawing.Point(10, 66);
             this.Search_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
-            this.Search_Box.PlaceholderText = "Nhập họ tên hoặc mã học sinh . . .";
+            this.Search_Box.PlaceholderText = "Nhập họ tên hoặc mã học sinh để tìm kiếm . . .";
             this.Search_Box.SelectedText = "";
             this.Search_Box.ShadowDecoration.BorderRadius = 12;
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(643, 36);
-            this.Search_Box.TabIndex = 81;
+            this.Search_Box.Size = new System.Drawing.Size(755, 36);
+            this.Search_Box.TabIndex = 107;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             // 
             // DataTable
@@ -91,7 +107,6 @@
             this.DataTable.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataTable.AutoGenerateColumns = false;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
@@ -109,13 +124,11 @@
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.sttDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.sCHOOLYEARDataGridViewTextBoxColumn,
-            this.semesterDataGridViewTextBoxColumn,
-            this.iDCONDUCTDataGridViewTextBoxColumn});
+            this.Order,
+            this.ID,
+            this.FullName,
+            this.Result});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DataTable.DataSource = this.tRANSCRIPTBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -127,13 +140,14 @@
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 86);
+            this.DataTable.Location = new System.Drawing.Point(0, 117);
             this.DataTable.Name = "DataTable";
+            this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(924, 602);
-            this.DataTable.TabIndex = 78;
+            this.DataTable.Size = new System.Drawing.Size(924, 623);
+            this.DataTable.TabIndex = 106;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -148,7 +162,7 @@
             this.DataTable.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.DataTable.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.ThemeStyle.HeaderStyle.Height = 25;
-            this.DataTable.ThemeStyle.ReadOnly = false;
+            this.DataTable.ThemeStyle.ReadOnly = true;
             this.DataTable.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.DataTable.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -157,133 +171,73 @@
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             // 
-            // sttDataGridViewTextBoxColumn
+            // Order
             // 
-            this.sttDataGridViewTextBoxColumn.HeaderText = "STT";
-            this.sttDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sttDataGridViewTextBoxColumn.Name = "sttDataGridViewTextBoxColumn";
-            this.sttDataGridViewTextBoxColumn.ReadOnly = true;
+            this.Order.HeaderText = "Thứ tự";
+            this.Order.MinimumWidth = 6;
+            this.Order.Name = "Order";
+            this.Order.ReadOnly = true;
             // 
-            // nameDataGridViewTextBoxColumn
+            // ID
             // 
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ID.FillWeight = 120F;
+            this.ID.HeaderText = "Mã học sinh";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
-            // sCHOOLYEARDataGridViewTextBoxColumn
+            // FullName
             // 
-            this.sCHOOLYEARDataGridViewTextBoxColumn.DataPropertyName = "SCHOOLYEAR";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.HeaderText = "Niên khóa";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sCHOOLYEARDataGridViewTextBoxColumn.Name = "sCHOOLYEARDataGridViewTextBoxColumn";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.ReadOnly = true;
+            this.FullName.HeaderText = "Họ và tên";
+            this.FullName.MinimumWidth = 6;
+            this.FullName.Name = "FullName";
+            this.FullName.ReadOnly = true;
             // 
-            // semesterDataGridViewTextBoxColumn
+            // Result
             // 
-            this.semesterDataGridViewTextBoxColumn.HeaderText = "Học kỳ";
-            this.semesterDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.semesterDataGridViewTextBoxColumn.Name = "semesterDataGridViewTextBoxColumn";
-            this.semesterDataGridViewTextBoxColumn.ReadOnly = true;
+            this.Result.HeaderText = "Xếp loại";
+            this.Result.MinimumWidth = 6;
+            this.Result.Name = "Result";
+            this.Result.ReadOnly = true;
             // 
-            // iDCONDUCTDataGridViewTextBoxColumn
+            // tittleLabel
             // 
-            this.iDCONDUCTDataGridViewTextBoxColumn.DataPropertyName = "IDCONDUCT";
-            this.iDCONDUCTDataGridViewTextBoxColumn.DataSource = this.cONDUCTBindingSource;
-            this.iDCONDUCTDataGridViewTextBoxColumn.DisplayMember = "NAME";
-            this.iDCONDUCTDataGridViewTextBoxColumn.HeaderText = "Hạnh kiểm";
-            this.iDCONDUCTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDCONDUCTDataGridViewTextBoxColumn.Name = "iDCONDUCTDataGridViewTextBoxColumn";
-            this.iDCONDUCTDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.iDCONDUCTDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.iDCONDUCTDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.tittleLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.tittleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tittleLabel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
+            this.tittleLabel.ForeColor = System.Drawing.Color.White;
+            this.tittleLabel.Location = new System.Drawing.Point(0, 0);
+            this.tittleLabel.Name = "tittleLabel";
+            this.tittleLabel.Size = new System.Drawing.Size(924, 52);
+            this.tittleLabel.TabIndex = 105;
+            this.tittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ 1 NĂM HỌC 2021-2022 CỦA LỚP 10A1";
+            this.tittleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cONDUCTBindingSource
-            // 
-            this.cONDUCTBindingSource.DataSource = typeof(studMin.Database.Models.CONDUCT);
-            // 
-            // tRANSCRIPTBindingSource
-            // 
-            this.tRANSCRIPTBindingSource.DataSource = typeof(studMin.Database.Models.TRANSCRIPT);
-            // 
-            // DataGridViewExport_Button
-            // 
-            this.DataGridViewExport_Button.Animated = true;
-            this.DataGridViewExport_Button.BackColor = System.Drawing.Color.Transparent;
-            this.DataGridViewExport_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.DataGridViewExport_Button.BorderRadius = 5;
-            this.DataGridViewExport_Button.CheckedState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DataGridViewExport_Button.CustomImages.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.DataGridViewExport_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.DataGridViewExport_Button.ForeColor = System.Drawing.Color.White;
-            this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Location = new System.Drawing.Point(772, 32);
-            this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
-            this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Size = new System.Drawing.Size(143, 36);
-            this.DataGridViewExport_Button.TabIndex = 82;
-            this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
-            this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            // 
-            // UpdateData_Button
-            // 
-            this.UpdateData_Button.Animated = true;
-            this.UpdateData_Button.BackColor = System.Drawing.Color.White;
-            this.UpdateData_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.UpdateData_Button.BorderRadius = 5;
-            this.UpdateData_Button.BorderThickness = 2;
-            this.UpdateData_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.UpdateData_Button.CheckedState.Parent = this.UpdateData_Button;
-            this.UpdateData_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.UpdateData_Button.CustomImages.Parent = this.UpdateData_Button;
-            this.UpdateData_Button.FillColor = System.Drawing.Color.White;
-            this.UpdateData_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.UpdateData_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.UpdateData_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.UpdateData_Button.HoverState.Parent = this.UpdateData_Button;
-            this.UpdateData_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.UpdateData_Button.Location = new System.Drawing.Point(660, 32);
-            this.UpdateData_Button.Name = "UpdateData_Button";
-            this.UpdateData_Button.PressedDepth = 20;
-            this.UpdateData_Button.ShadowDecoration.Parent = this.UpdateData_Button;
-            this.UpdateData_Button.Size = new System.Drawing.Size(107, 36);
-            this.UpdateData_Button.TabIndex = 83;
-            this.UpdateData_Button.Text = "CẬP NHẬT";
-            this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.UpdateData_Button.Click += new System.EventHandler(this.UpdateData_Button_Click);
-            // 
-            // StudentMoralQualify_SubTab
+            // StatisticTab_Headteacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.UpdateData_Button);
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.DataTable);
-            this.Name = "StudentMoralQualify_SubTab";
-            this.Size = new System.Drawing.Size(924, 688);
+            this.Controls.Add(this.tittleLabel);
+            this.Name = "StatisticTab_Headteacher";
+            this.Size = new System.Drawing.Size(924, 740);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Guna.UI2.WinForms.Guna2Button DataGridViewExport_Button;
         protected Guna.UI2.WinForms.Guna2TextBox Search_Box;
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
-        private Guna.UI2.WinForms.Guna2Button DataGridViewExport_Button;
-        private Guna.UI2.WinForms.Guna2Button UpdateData_Button;
-        private System.Windows.Forms.BindingSource cONDUCTBindingSource;
-        private System.Windows.Forms.BindingSource tRANSCRIPTBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sttDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sCHOOLYEARDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn semesterDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn iDCONDUCTDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Order;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Result;
+        private System.Windows.Forms.Label tittleLabel;
     }
 }
