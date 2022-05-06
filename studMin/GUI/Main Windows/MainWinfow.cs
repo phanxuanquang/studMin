@@ -36,10 +36,12 @@ namespace studMin
                     Statistic_MenuButton.Visible = false;
                     break;
                 case role.principal:
+                    Dashboard = new NormalTeacherDashboard();
                     timetable_Tab = new Timetable_Tab();
                     statisticTab = new StatisticTab();
                     break;
                 case role.vicePrincipal:
+                    Dashboard = new NormalTeacherDashboard();
                     timetable_Tab = new Timetable_Tab();
                     statisticTab = new StatisticTab();
                     break;
