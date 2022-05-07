@@ -215,7 +215,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TeacherTimetable_SubTab";
             this.Size = new System.Drawing.Size(1232, 847);
-            this.Load += new System.EventHandler(this.TeacherTimetable_SubTab_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Timetable_GridView)).EndInit();
             this.ResumeLayout(false);
 

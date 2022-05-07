@@ -23,9 +23,10 @@ namespace studMin.Action.Excel
 
         List<Item> data = new List<Item>();
 
-        public ScheduleAllTeacher(bool isReadOnly = false)
+        public ScheduleAllTeacher(bool isReadOnly = false, string pathFile = "")
         {
-            this.template = isReadOnly ? StoragePath.DataSample : StoragePath.TemplateScheduleAllTeacher;
+            if (isReadOnly && String.IsNullOrEmpty(pathFile)) throw new Exception("Path file unavailable");
+            this.template = isReadOnly ? pathFile : StoragePath.TemplateScheduleAllTeacher;
             this.isReadOnly = isReadOnly;
             InitExcel();
         }
@@ -75,7 +76,7 @@ namespace studMin.Action.Excel
                 set { msg = value; }
             }
 
-            private string GetHocKy()
+            public string GetHocKy()
             {
                 string temp = string.Empty;
                 switch (HocKy)

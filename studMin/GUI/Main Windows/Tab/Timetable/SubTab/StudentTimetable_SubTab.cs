@@ -39,8 +39,6 @@ namespace studMin
                 return;
             }
 
-
-
             Action.Excel.ScheduleStudent.Info info = new Action.Excel.ScheduleStudent.Info()
             {
                 GiaoVien = "Nguyễn Ngân Hà",
@@ -72,71 +70,6 @@ namespace studMin
                 };
                 list.Add(temp);
             }
-
-
-            //List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>()
-            //{
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Phượng",
-            //        Buoi="M",
-            //        TietBatDau=1,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Liên",
-            //        Buoi="A",
-            //        TietBatDau=2,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Văn",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Lý Hoàng Phi",
-            //        Buoi="M",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Lý",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Phượng",
-            //        Buoi="M",
-            //        TietBatDau=3,
-            //        TietKeoDai=1,
-            //        Lop="10A2",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("17/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Liên",
-            //        Buoi="A",
-            //        TietBatDau=5,
-            //        TietKeoDai=1,
-            //        Lop="10A2",
-            //        MonHoc="Văn",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Lý Hoàng Phi",
-            //        Buoi="M",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Lý",
-            //        NgayHoc=Methods.TryParse("17/03/2022")
-            //    },
-            //};
 
             this.BeginInvoke(new System.Action(() =>
             {
@@ -265,7 +198,8 @@ namespace studMin
         {
             if (isLoaded) return;
 
-            this.BeginInvoke((System.Action)(() =>
+            //Cái này mới sửa lại nha. người dùng bấm mới load dữ liệu lên
+            /*this.BeginInvoke((System.Action)(() =>
             {
                 Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
 
@@ -275,7 +209,7 @@ namespace studMin
 
                 scheduleAllTeacher.Dispose();
                 isLoaded = true;
-            }));
+            }));*/
         }
 
         private void Timetable_GridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
