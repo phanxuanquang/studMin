@@ -80,7 +80,7 @@ namespace studMin
                     Action.Excel.ScheduleAllTeacher.Item temp = new studMin.Action.Excel.ScheduleAllTeacher.Item()
                     {
                         GiaoVien = item.TEACHER.INFOR.FIRSTNAME + " " + item.TEACHER.INFOR.LASTNAME,
-                        Buoi = "M",
+                        Buoi = item.TIMEOFDAY,
                         TietBatDau = (int)(item.TIMESTART),
                         TietKeoDai = (int)(item.TIMEEND) - (int)(item.TIMESTART) + 1,
                         Lop = item.CLASS.CLASSNAME,

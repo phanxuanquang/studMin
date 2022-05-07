@@ -15,8 +15,9 @@ namespace studMin
     public partial class StudentTimetable_SubTab : UserControl
     {
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
-        bool isImported = false;
-        bool isLoaded = false;
+        private BackgroundWorker backgroundWorker = null;
+        Action.Excel.ScheduleAllTeacher.Info importInfo = null;
+        List<string> ListClass = null;
 
         public StudentTimetable_SubTab()
         {
@@ -39,20 +40,40 @@ namespace studMin
                 return;
             }
 
+            if (backgroundWorker == null)
+            {
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
+                return;
+            }
+            backgroundWorker.DoWork += ExportExcel_DoWork;
+            backgroundWorker.RunWorkerAsync(exportPath);
+        }
+
+        private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
             Action.Excel.ScheduleStudent.Info info = new Action.Excel.ScheduleStudent.Info()
             {
                 GiaoVien = "Nguyễn Ngân Hà",
                 HocKy = 1,
                 NgayApDung = DateTime.Now,
-                Lop = "10A2",
+                Lop = "12A1",
                 NamHoc = "2022 - 2023"
             };
-            
+
             // lấy dữ liệu thời khóa biểu từ database
-            
+
             List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>();
-           
-            var classLesson = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == "10A1").FirstOrDefault();
+
+            var classLesson = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == "12A1").FirstOrDefault();
             var lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDCLASS == classLesson.ID).ToList();
 
             foreach (var item in lesson)
@@ -60,7 +81,7 @@ namespace studMin
                 Action.Excel.ScheduleAllTeacher.Item temp = new studMin.Action.Excel.ScheduleAllTeacher.Item()
                 {
                     GiaoVien = item.TEACHER.INFOR.FIRSTNAME + " " + item.TEACHER.INFOR.LASTNAME,
-                    Buoi = "M",
+                    Buoi = item.TIMEOFDAY,
                     TietBatDau = (int)(item.TIMESTART),
                     TietKeoDai = (int)(item.TIMEEND) - (int)(item.TIMESTART) + 1,
                     Lop = item.CLASS.CLASSNAME,
@@ -71,54 +92,146 @@ namespace studMin
                 list.Add(temp);
             }
 
-            this.BeginInvoke(new System.Action(() =>
+            studMin.Action.Excel.ScheduleStudent scheduleStudent = new studMin.Action.Excel.ScheduleStudent();
+
+            scheduleStudent.InsertInfo(info);
+
+            foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
             {
-                studMin.Action.Excel.ScheduleStudent scheduleStudent = new studMin.Action.Excel.ScheduleStudent();
+                scheduleStudent.InsertItem(item);
+            }
 
-                scheduleStudent.InsertInfo(info);
+            scheduleStudent.ShowExcel();
 
-                foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
-                {
-                    scheduleStudent.InsertItem(item);
-                }
+            scheduleStudent.Save((string)e.Argument);
 
-                scheduleStudent.ShowExcel();
+            if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                scheduleStudent.ShowPrintPreview();
+            }
 
-                scheduleStudent.Save(exportPath);
-
-                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    scheduleStudent.ShowPrintPreview();
-                }
-
-                scheduleStudent.Dispose();
-            }));
+            scheduleStudent.Dispose();
         }
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
-            if (isImported) return;
-
-            this.BeginInvoke((System.Action)(() =>
+            if (backgroundWorker == null)
             {
-                List<string> ListClass = new List<string>();
-                for (int index = 0; index < data.Count; index++)
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                return;
+            }
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Excel | *.xlsx";
+
+            string importPath = string.Empty;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                importPath = openFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
+            backgroundWorker.DoWork += ImportExcel_DoWork;
+            backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
+            backgroundWorker.RunWorkerAsync(importPath);
+        }
+
+        private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Class_ComboBox.DataSource = ListClass;
+
+            if (MessageBox.Show("Bạn có muốn đưa dữ liệu lên cơ sở dữ liệu không?", "Đưa TKB lên CSDL", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (backgroundWorker == null)
                 {
-                    if (!ListClass.Contains(data[index].Lop))
-                    {
-                        ListClass.Add(data[index].Lop);
-                    }
+                    backgroundWorker = new BackgroundWorker();
+                }
+                else if (!backgroundWorker.IsBusy)
+                {
+                    backgroundWorker.Dispose();
+                    backgroundWorker = new BackgroundWorker();
+                }
+                else
+                {
+                    MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                    return;
                 }
 
-                Class_ComboBox.DataSource = ListClass;
-                isImported = true;
-            }));
+                backgroundWorker.DoWork += UploadScheduleToDatabase_DoWork;
+                backgroundWorker.RunWorkerCompleted += UploadScheduleToDatabase_RunrWorkerCompleted;
+                backgroundWorker.RunWorkerAsync();
+            }
+        }
+
+        private void UploadScheduleToDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Đã đưa dữ liệu TKB lên CSDL");
+        }
+
+        private void UploadScheduleToDatabase_DoWork(object sender, DoWorkEventArgs e)
+        {
+            studMin.Database.Models.SCHEDULE newSchedule = studMin.Database.ScheduleServices.Instance.CreateSchedule(
+                importInfo.NgayApDung,
+                importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0],
+                importInfo.GetHocKy()
+                );
+
+            for (int index = 0; index < data.Count; index++)
+            {
+                studMin.Database.ScheduleServices.Instance.SaveLessonToDB(
+                    newSchedule,
+                    data[index].GiaoVien,
+                    data[index].MonHoc,
+                    data[index].Lop,
+                    (byte)data[index].TietBatDau,
+                    (byte)(data[index].TietKeoDai + data[index].TietBatDau - 1),
+                    (byte)(data[index].NgayHoc + 1),
+                    data[index].Buoi.Substring(0, 1)
+                    );
+            }
+        }
+
+        private void ImportExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true, (string)e.Argument);
+
+            importInfo = scheduleAllTeacher.SelecteInfo();
+
+            data = scheduleAllTeacher.SelectItem(importInfo.NgayApDung);
+
+            scheduleAllTeacher.Dispose();
+
+            if (ListClass == null)
+            {
+                ListClass = new List<string>();
+            }
+            else
+            {
+                ListClass.Clear();
+            }
+            for (int index = 0; index < data.Count; index++)
+            {
+                if (!ListClass.Contains(data[index].Lop))
+                {
+                    ListClass.Add(data[index].Lop);
+                }
+            }
         }
 
         private void FilterTimeTableByClass(string className)
         {
-            
-
             if (data == null) return;
 
             DataTable dataSource = new DataTable();
@@ -192,24 +305,6 @@ namespace studMin
             {
                 e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
             }
-        }
-
-        private void StudentTimetable_SubTab_Load(object sender, EventArgs e)
-        {
-            if (isLoaded) return;
-
-            //Cái này mới sửa lại nha. người dùng bấm mới load dữ liệu lên
-            /*this.BeginInvoke((System.Action)(() =>
-            {
-                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
-
-                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
-
-                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
-
-                scheduleAllTeacher.Dispose();
-                isLoaded = true;
-            }));*/
         }
 
         private void Timetable_GridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
