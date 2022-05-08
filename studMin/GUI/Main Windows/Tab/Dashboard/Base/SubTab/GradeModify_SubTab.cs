@@ -277,7 +277,7 @@ namespace studMin
 
             this.BeginInvoke(new System.Action(() =>
             {
-                studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject();
+                studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject(false);
 
                 subject.InsertInfo(info);
 

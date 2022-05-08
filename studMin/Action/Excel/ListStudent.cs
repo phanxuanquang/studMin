@@ -237,5 +237,17 @@ namespace studMin.Action.Excel
                 throw new Exception();
             }
         }
+
+        public override object SelectInfo()
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
+
+        public override object SelectItem(object argument)
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
     }
 }

@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System.Linq;
+using System.ComponentModel;
+
 namespace studMin
 {
     public partial class TeacherTimetable_SubTab : UserControl
     {
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
-        bool isLoaded = false;
-        
+        private BackgroundWorker backgroundWorker = null;
+        Action.Excel.ScheduleAllTeacher.Info importInfo = null;
+        List<string> ListTeacher = null;
+
         public TeacherTimetable_SubTab()
         {
             InitializeComponent();
@@ -31,6 +35,26 @@ namespace studMin
                 return;
             }
 
+            if (backgroundWorker == null)
+            {
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
+                return;
+            }
+            backgroundWorker.DoWork += ExportExcel_DoWork;
+            backgroundWorker.RunWorkerAsync(exportPath);
+        }
+
+        private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
             Action.Excel.ScheduleAllTeacher.Info info = new Action.Excel.ScheduleAllTeacher.Info()
             {
                 //Dữ liệu mẫu
@@ -52,11 +76,11 @@ namespace studMin
 
                 foreach (var item in lesson)
                 {
-                    
+
                     Action.Excel.ScheduleAllTeacher.Item temp = new studMin.Action.Excel.ScheduleAllTeacher.Item()
                     {
                         GiaoVien = item.TEACHER.INFOR.FIRSTNAME + " " + item.TEACHER.INFOR.LASTNAME,
-                        Buoi = "M",
+                        Buoi = item.TIMEOFDAY,
                         TietBatDau = (int)(item.TIMESTART),
                         TietKeoDai = (int)(item.TIMEEND) - (int)(item.TIMESTART) + 1,
                         Lop = item.CLASS.CLASSNAME,
@@ -69,289 +93,142 @@ namespace studMin
                 }
             }
 
+            studMin.Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
 
+            scheduleAllTeacher.InsertInfo(info);
 
-            //{
-            //    //Dữ liệu mẫu
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Phượng",
-            //        Buoi="M",
-            //        TietBatDau=1,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Liên",
-            //        Buoi="A",
-            //        TietBatDau=2,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Văn",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Hoàng Lân",
-            //        Buoi="M",
-            //        TietBatDau=1,
-            //        TietKeoDai=2,
-            //        Lop="10A3",
-            //        MonHoc="Anh",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Võ Thanh Minh",
-            //        Buoi="M",
-            //        TietBatDau=1,
-            //        TietKeoDai=1,
-            //        Lop="10A3",
-            //        MonHoc="Địa",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Trần Phan Anh Đức",
-            //        Buoi="A",
-            //        TietBatDau=1,
-            //        TietKeoDai=2,
-            //        Lop="10A3",
-            //        MonHoc="Sinh",
-            //        NgayHoc=Methods.TryParse("16/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Lý Hoàng Phi",
-            //        Buoi="M",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A2",
-            //        MonHoc="Lý",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Cao Liên Thi",
-            //        Buoi="A",
-            //        TietBatDau=1,
-            //        TietKeoDai=2,
-            //        Lop="10A3",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Phạm Võ Anh Thi",
-            //        Buoi="A",
-            //        TietBatDau=5,
-            //        TietKeoDai=1,
-            //        Lop="10A3",
-            //        MonHoc="GDCN",
-            //        NgayHoc=Methods.TryParse("16/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Phượng",
-            //        Buoi="M",
-            //        TietBatDau=3,
-            //        TietKeoDai=2,
-            //        Lop="10A4",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Liên",
-            //        Buoi="A",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A4",
-            //        MonHoc="Văn",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Hoàng Lân",
-            //        Buoi="M",
-            //        TietBatDau=3,
-            //        TietKeoDai=2,
-            //        Lop="10A4",
-            //        MonHoc="Anh",
-            //        NgayHoc=Methods.TryParse("17/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Võ Thanh Minh",
-            //        Buoi="M",
-            //        TietBatDau=2,
-            //        TietKeoDai=1,
-            //        Lop="10A4",
-            //        MonHoc="Địa",
-            //        NgayHoc=Methods.TryParse("15/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Trần Phan Anh Đức",
-            //        Buoi="A",
-            //        TietBatDau=3,
-            //        TietKeoDai=2,
-            //        Lop="10A4",
-            //        MonHoc="Sinh",
-            //        NgayHoc=Methods.TryParse("16/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Lý Hoàng Phi",
-            //        Buoi="M",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A4",
-            //        MonHoc="Lý",
-            //        NgayHoc=Methods.TryParse("18/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Cao Liên Thi",
-            //        Buoi="A",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A5",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("17/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Phạm Võ Anh Thi",
-            //        Buoi="A",
-            //        TietBatDau=5,
-            //        TietKeoDai=1,
-            //        Lop="10A5",
-            //        MonHoc="GDCN",
-            //        NgayHoc=Methods.TryParse("18/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Phượng",
-            //        Buoi="M",
-            //        TietBatDau=3,
-            //        TietKeoDai=2,
-            //        Lop="10A5",
-            //        MonHoc="Toán",
-            //        NgayHoc=Methods.TryParse("18/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Kim Liên",
-            //        Buoi="A",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A5",
-            //        MonHoc="Văn",
-            //        NgayHoc=Methods.TryParse("16/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Hoàng Lân",
-            //        Buoi="M",
-            //        TietBatDau=3,
-            //        TietKeoDai=2,
-            //        Lop="10A5",
-            //        MonHoc="Anh",
-            //        NgayHoc=Methods.TryParse("14/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Nguyễn Võ Thanh Minh",
-            //        Buoi="M",
-            //        TietBatDau=2,
-            //        TietKeoDai=1,
-            //        Lop="10A5",
-            //        MonHoc="Địa",
-            //        NgayHoc=Methods.TryParse("17/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Trần Phan Anh Đức",
-            //        Buoi="A",
-            //        TietBatDau=3,
-            //        TietKeoDai=2,
-            //        Lop="10A5",
-            //        MonHoc="Sinh",
-            //        NgayHoc=Methods.TryParse("19/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Lý Hoàng Phi",
-            //        Buoi="M",
-            //        TietBatDau=4,
-            //        TietKeoDai=2,
-            //        Lop="10A5",
-            //        MonHoc="Lý",
-            //        NgayHoc=Methods.TryParse("16/03/2022")
-            //    },
-            //    new Action.Excel.ScheduleAllTeacher.Item()
-            //    {
-            //        GiaoVien="Phạm Võ Anh Thi",
-            //        Buoi="A",
-            //        TietBatDau=5,
-            //        TietKeoDai=1,
-            //        Lop="10A5",
-            //        MonHoc="GDCN",
-            //        NgayHoc=Methods.TryParse("19/03/2022")
-            //    }
-            //};
-
-            this.BeginInvoke(new System.Action(() =>
+            foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
             {
-                studMin.Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new studMin.Action.Excel.ScheduleAllTeacher();
+                scheduleAllTeacher.InsertItem(item);
+            }
 
-                scheduleAllTeacher.InsertInfo(info);
+            scheduleAllTeacher.ShowExcel();
 
-                foreach (Action.Excel.ScheduleAllTeacher.Item item in list)
-                {
-                    scheduleAllTeacher.InsertItem(item);
-                }
+            scheduleAllTeacher.Save((string)e.Argument);
 
-                scheduleAllTeacher.ShowExcel();
+            if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                scheduleAllTeacher.ShowPrintPreview();
+            }
 
-                scheduleAllTeacher.Save(exportPath);
-
-                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    scheduleAllTeacher.ShowPrintPreview();
-                }
-
-                scheduleAllTeacher.Dispose();
-            }));
+            scheduleAllTeacher.Dispose();
         }
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
-            this.BeginInvoke((System.Action)(() =>
+            if (backgroundWorker == null)
             {
-                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                return;
+            }
 
-                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
+            openFileDialog.Filter = "Excel | *.xlsx";
 
-                scheduleAllTeacher.Dispose();
+            string importPath = string.Empty;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                importPath = openFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
+            backgroundWorker.DoWork += ImportExcel_DoWork;
+            backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
+            backgroundWorker.RunWorkerAsync(importPath);
+        }
 
-                List<string> ListTeacher = new List<string>();
-                for (int index = 0; index < data.Count; index++)
+        private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Class_ComboBox.DataSource = ListTeacher;
+
+            if (MessageBox.Show("Bạn có muốn đưa dữ liệu lên cơ sở dữ liệu không?", "Đưa TKB lên CSDL", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (backgroundWorker == null)
                 {
-                    if (!ListTeacher.Contains(data[index].GiaoVien))
-                    {
-                        ListTeacher.Add(data[index].GiaoVien);
-                    }
+                    backgroundWorker = new BackgroundWorker();
+                }
+                else if (!backgroundWorker.IsBusy)
+                {
+                    backgroundWorker.Dispose();
+                    backgroundWorker = new BackgroundWorker();
+                }
+                else
+                {
+                    MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                    return;
                 }
 
-                Class_ComboBox.DataSource = ListTeacher;
-            }));
+                backgroundWorker.DoWork += UploadScheduleToDatabase_DoWork;
+                backgroundWorker.RunWorkerCompleted += UploadScheduleToDatabase_RunrWorkerCompleted;
+                backgroundWorker.RunWorkerAsync();
+            }
+        }
+
+        private void UploadScheduleToDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Đã đưa dữ liệu TKB lên CSDL");
+        }
+
+        private void UploadScheduleToDatabase_DoWork(object sender, DoWorkEventArgs e)
+        {
+            studMin.Database.Models.SCHEDULE newSchedule = studMin.Database.ScheduleServices.Instance.CreateSchedule(
+                importInfo.NgayApDung,
+                importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0],
+                importInfo.GetHocKy()
+                );
+
+            for (int index = 0; index < data.Count; index++)
+            {
+                studMin.Database.ScheduleServices.Instance.SaveLessonToDB(
+                    newSchedule,
+                    data[index].GiaoVien,
+                    data[index].MonHoc,
+                    data[index].Lop,
+                    (byte)data[index].TietBatDau,
+                    (byte)(data[index].TietKeoDai + data[index].TietBatDau - 1),
+                    (byte)(data[index].NgayHoc + 1),
+                    data[index].Buoi.Substring(0, 1)
+                    );
+            }
+        }
+
+        private void ImportExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true, (string)e.Argument);
+
+            importInfo = (Action.Excel.ScheduleAllTeacher.Info)scheduleAllTeacher.SelectInfo();
+
+            data = (List<Action.Excel.ScheduleAllTeacher.Item>)scheduleAllTeacher.SelectItem(importInfo.NgayApDung);
+
+            scheduleAllTeacher.Dispose();
+
+            if (ListTeacher == null)
+            {
+                ListTeacher = new List<string>();
+            }
+            else
+            {
+                ListTeacher.Clear();
+            }
+            for (int index = 0; index < data.Count; index++)
+            {
+                if (!ListTeacher.Contains(data[index].GiaoVien))
+                {
+                    ListTeacher.Add(data[index].GiaoVien);
+                }
+            }
         }
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -425,23 +302,6 @@ namespace studMin
             {
                 e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
             }
-        }
-
-        private void TeacherTimetable_SubTab_Load(object sender, EventArgs e)
-        {
-            if (isLoaded) return;
-
-            this.BeginInvoke((System.Action)(() =>
-            {
-                Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true);
-
-                Action.Excel.ScheduleAllTeacher.Info info = scheduleAllTeacher.SelecteInfo();
-
-                data = scheduleAllTeacher.SelectItem(info.NgayApDung);
-
-                scheduleAllTeacher.Dispose();
-                isLoaded = true;
-            }));
         }
 
         private void Timetable_GridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

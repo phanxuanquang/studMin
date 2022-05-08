@@ -29,8 +29,7 @@ namespace studMin.Database
             return DataProvider.Instance.Database.SCHEDULEs.FirstOrDefault();
         }
 
-
-        public SCHEDULE CreateASchedule(DateTime dayApply, string schoolYear,string semester)
+        public SCHEDULE CreateSchedule(DateTime dayApply, string schoolYear, string semester)
         {
             try
             {
@@ -40,8 +39,9 @@ namespace studMin.Database
                     DATEAPPLY = dayApply,
                     SCHOOLYEAR = schoolYear,
                     SEMESTER = DataProvider.Instance.Database.SEMESTERs.Where(item => item.NAME == semester).FirstOrDefault(),
-                    SCHEDULENAME = "TKB tao ngay 28/3",
+                    SCHEDULENAME = "TKB tao ngay 28/3"
                 };
+                DataProvider.Instance.Database.Set<SCHEDULE>().Add(schedule);
                 DataProvider.Instance.Database.SaveChanges();
                 return schedule;
             }
@@ -50,24 +50,26 @@ namespace studMin.Database
                 return null;
             }
         }
-        public bool SaveLessonToDB(string teacherName,string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday, string semester)
+
+        public bool SaveLessonToDB(SCHEDULE infoSchedule, string teacherName, string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday)
         {
-            SCHEDULE schedule = CreateASchedule(new DateTime(2022, 3, 28), "2022", semester);
             try
             {
-                if (schedule != null)
+                if (infoSchedule != null)
                 {
                     LESSON lesson = new LESSON()
                     {
+                        ID = Guid.NewGuid(),
                         IDTEACHER = TeacherServices.Instance.GetTeacherByName(teacherName).ID,
                         IDSUBJECT = SubjectServices.Instance.GetSubjectByName(subjectName).Id,
                         IDCLASS = ClassServices.Instance.GetClassByClassName(className).ID,
-                        IDSCHEDULE = schedule.ID,
+                        IDSCHEDULE = infoSchedule.ID,
                         TIMESTART = timeStart,
                         TIMEEND = timeEnd,
                         DAYOFW = dayofweek,
-                        TIMEOFDAY = timeofday,
+                        TIMEOFDAY = timeofday
                     };
+                    DataProvider.Instance.Database.Set<LESSON>().Add(lesson);
                     DataProvider.Instance.Database.SaveChanges();
                 }
                 return true;
@@ -77,6 +79,5 @@ namespace studMin.Database
                 return false;
             }
         }
-
     }
 }

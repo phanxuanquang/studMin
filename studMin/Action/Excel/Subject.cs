@@ -11,43 +11,11 @@ namespace studMin.Action.Excel
         private const int StartColumnIndex = 1;
         private const int StartRowIndex = 6;
 
-        private (string, string) Lop(string msg)
-        {
-            return ("B2", String.Format("Lớp: {0}", msg));
-        }
-
-        private (string, string) GVBM(string msg)
-        {
-            return ("C2", String.Format("Giáo viên bộ môn: {0}", msg));
-        }
-
-        private (string, string) NamHoc(string msg)
-        {
-            return ("C3", String.Format("Năm học: {0}", msg));
-        }
-
-        private (string, string) HocKy(int msg)
-        {
-            string convert = null;
-            switch (msg)
-            {
-                case 0:
-                    convert = "I";
-                    break;
-                case 1:
-                    convert = "II";
-                    break;
-                case 2:
-                    convert = "Hè";
-                    break;
-            }
-            return ("B3", String.Format("Học kỳ: {0}", convert));
-        }
-
-        private (string, string) MonHoc(string msg)
-        {
-            return ("A1", String.Format("BẢNG ĐIỂM MÔN {0}", msg.ToUpper()));
-        }
+        private const string locationClass = "B2";
+        private const string locationTeacher = "C2";
+        private const string locationYear = "C3";
+        private const string locationSemester = "B3";
+        private const string locationSubject = "A1";
 
         public class Item
         {
@@ -205,9 +173,11 @@ namespace studMin.Action.Excel
 
         List<Item> data;
 
-        public Subject()
+        public Subject(bool isReadOnly, string pathFile = "")
         {
-            template = StoragePath.TemplateSubject;
+            if (isReadOnly && String.IsNullOrEmpty(pathFile)) throw new Exception("Path file unavailable");
+            this.template = isReadOnly ? pathFile : StoragePath.TemplateSubject;
+            this.isReadOnly = isReadOnly;
             data = new List<Item>();
             InitExcel();
         }
@@ -219,23 +189,61 @@ namespace studMin.Action.Excel
                 if (info == null) return;
                 Info clone = info as Info;
 
-                (string, string) Info_Lop = Lop(clone.Lop);
-                (string, string) Info_GVCN = GVBM(clone.GiaoVien);
-                (string, string) Info_HocKy = HocKy(clone.HocKy);
-                (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
-                (string, string) Info_MonHoc = MonHoc(clone.MonHoc);
+                string convert = string.Empty;
+                switch (clone.HocKy)
+                {
+                    case 0:
+                        convert = "I";
+                        break;
+                    case 1:
+                        convert = "II";
+                        break;
+                    case 2:
+                        convert = "Hè";
+                        break;
+                }
 
-                sheet.get_Range(Info_Lop.Item1).Value = Info_Lop.Item2;
-                sheet.get_Range(Info_GVCN.Item1).Value = Info_GVCN.Item2;
-                sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
-                sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
-                sheet.get_Range(Info_MonHoc.Item1).Value = Info_MonHoc.Item2;
+                sheet.get_Range(locationClass).Value = String.Format("Lớp: {0}", clone.Lop);
+                sheet.get_Range(locationTeacher).Value = String.Format("Giáo viên bộ môn: {0}", clone.GiaoVien);
+                sheet.get_Range(locationSemester).Value = String.Format("Học kỳ: {0}", convert);
+                sheet.get_Range(locationYear).Value = String.Format("Năm học: {0}", clone.NamHoc);
+                sheet.get_Range(locationSubject).Value = String.Format("BẢNG ĐIỂM MÔN {0}", clone.MonHoc.ToUpper());
             }
             catch
             {
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectInfo()
+        {
+            Info info = new Info();
+
+            info.Lop = ((string)sheet.get_Range(locationClass).Value).Split(new string[] { "Lớp: " }, StringSplitOptions.None)[1];
+            info.GiaoVien = ((string)sheet.get_Range(locationTeacher).Value).Split(new string[] { "Giáo viên bộ môn: " }, StringSplitOptions.None)[1];
+
+            string convert = ((string)sheet.get_Range(locationSemester).Value).Split(new string[] { "Học kỳ: " }, StringSplitOptions.None)[1];
+            switch (convert)
+            {
+                case "I":
+                    info.HocKy = 0;
+                    break;
+                case "II":
+                    info.HocKy = 1;
+                    break;
+                case "Hè":
+                    info.HocKy = 2;
+                    break;
+            }
+
+            info.NamHoc = ((string)sheet.get_Range(locationYear).Value).Split(new string[] { "Năm học: " }, StringSplitOptions.None)[1];
+
+            string subject = ((string)sheet.get_Range(locationSubject).Value).Split(new string[] { "BẢNG ĐIỂM MÔN " }, StringSplitOptions.None)[1].ToLower();
+            subject = Char.ToUpper(subject[0]) + subject.Substring(1);
+            info.MonHoc = subject;
+
+            return info;
         }
 
         private void InsertColumn(List<double> values, ref string columnName, ref int indexColumn, int lastRow, int MaxMark)
@@ -295,6 +303,69 @@ namespace studMin.Action.Excel
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectItem(object argument)
+        {
+            List<Item> list = new List<Item>();
+
+            Item item = null;
+            List<double> oralMark = null;
+            List<double> regularMark = null;
+            List<double> midTermMark = null;
+
+            int endRow = FindLastRowUsed();
+            int endColumn = FindLastColumnUsed();
+
+            for (int row = StartRowIndex; row <= endRow; row++)
+            {
+                item = new Item();
+                oralMark = new List<double>();
+                regularMark = new List<double>();
+                midTermMark = new List<double>();
+
+                for (int column = StartColumnIndex + 1; column <= endColumn; column++)
+                {
+                    object cell = sheet.get_Range(GetExcelColumnName(column) + row.ToString()).Value;
+                    if (cell == null) continue;
+                    switch (column)
+                    {
+                        case 2:
+                            item.HoTen = cell.ToString();
+                            break;
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                            oralMark.Add(Convert.ToDouble(cell));
+                            break;
+                        case 8:
+                        case 9:
+                        case 10:
+                        case 11:
+                        case 12:
+                            regularMark.Add(Convert.ToDouble(cell));
+                            break;
+                        case 13:
+                        case 14:
+                        case 15:
+                            midTermMark.Add(Convert.ToDouble(cell));
+                            break;
+                        case 16:
+                            item.DiemCuoiKy = Convert.ToDouble(cell);
+                            break;
+                    }
+                }
+
+                item.AddOral(oralMark);
+                item.AddRegular(regularMark);
+                item.AddMidTearm(midTermMark);
+
+                list.Add(item);
+            }
+
+            return list;
         }
     }
 }
