@@ -12,7 +12,7 @@ namespace studMin.Database
         private static ReportSemesterServices instance;
         public static ReportSemesterServices Instance => instance ?? (instance = new ReportSemesterServices());
 
-        public List<REPORTSEMESTER> GetSemesters()
+        public List<REPORTSEMESTER> GetReports()
         {
             return DataProvider.Instance.Database.REPORTSEMESTERs.Select(Report => Report).ToList();
         }

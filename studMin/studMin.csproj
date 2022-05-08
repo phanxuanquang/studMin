@@ -125,6 +125,7 @@
     <Compile Include="Action\Excel\StoragePath.cs" />
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
+    <Compile Include="Action\Excel\SummarySemester.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\AddStudent_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -370,6 +371,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\ClassInfor_SubTab.resx">
       <DependentUpon>ClassInfor_SubTab.cs</DependentUpon>
@@ -399,9 +401,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.resx">
       <DependentUpon>StudentInfor_SubTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.resx">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.resx">
       <DependentUpon>Timetable_Tab.cs</DependentUpon>
@@ -420,15 +424,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.resx">
       <DependentUpon>StatisticTab_Headteacher.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab.resx">
       <DependentUpon>StatisticTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StaffDashboard.resx">
       <DependentUpon>StaffDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StudentInforTab_Staff.resx">
       <DependentUpon>StudentInforTab_Staff.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EntityDeploy Include="Database\Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

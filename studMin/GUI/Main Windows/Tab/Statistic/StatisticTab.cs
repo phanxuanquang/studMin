@@ -33,7 +33,17 @@ namespace studMin
                 return;
             }
 
-            List<REPORTSEMESTER> listSemesters = ReportSemesterServices.Instance.GetSemesters();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel | *.xlsx";
+
+            string exportPath;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = saveFileDialog.FileName;
+            }
+            else return;
+
+            List<REPORTSEMESTER> listReports = ReportSemesterServices.Instance.GetReports();
 
             string semesterName = Semester_ComboBox.SelectedIndex == 1 ? "1" : "2";
             SEMESTER selectedSemester = GetSelectedSemester(semesterName);
@@ -41,13 +51,40 @@ namespace studMin
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             List<CLASS> listClassesOfSchoolYear = ClassServices.Instance.GetClassBySchoolYear(schoolYear);
 
-            foreach (var report in listSemesters)
-            {
-                if (report.IDSEMESTER == selectedSemester.ID && listClassesOfSchoolYear.Find(item => item.ID == report.IDCLASS) != null)
-                {
+            List<Action.Excel.SummarySemester.Item> list = new List<Action.Excel.SummarySemester.Item>();
 
+            foreach (var report in listReports)
+            {
+                CLASS currentClass = listClassesOfSchoolYear.Find(item => item.ID == report.IDCLASS);
+                if (report.IDSEMESTER == selectedSemester.ID && currentClass != null)
+                {
+                    Action.Excel.SummarySemester.Item item = new Action.Excel.SummarySemester.Item()
+                    {
+                        Lop = currentClass.CLASSNAME,
+                        SiSo = currentClass.STUDENTs.Count,
+                        SoLuongDat = (int)report.PASSQUANTITY
+                    };
+                    list.Add(item);
                 }
             }
+
+            string formattedSchoolYear = int.Parse(schoolYear) + " - " + (int.Parse(schoolYear) + 1);
+            Action.Excel.SummarySemester.SummaryInfo info = new Action.Excel.SummarySemester.SummaryInfo()
+            {
+                HocKy = int.Parse(semesterName),
+                NamHoc = formattedSchoolYear
+            };
+
+            Action.Excel.SummarySemester summarySemester = new Action.Excel.SummarySemester();
+            summarySemester.InsertInfo(info);
+
+            foreach (Action.Excel.SummarySemester.Item item in list)
+            {
+                summarySemester.InsertItem(item);
+            }
+
+            summarySemester.ShowExcel();
+            summarySemester.Save(exportPath);
         }
 
         private SEMESTER GetSelectedSemester(string semester)

@@ -22,6 +22,18 @@ namespace studMin
 
         void DataExport_toExcel()
         {
+            if (Filter_ComboBox.SelectedIndex != 1)
+            {
+                MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (Semester_ComboBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Vui lòng chọn học kỳ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             string className = Class_ComboBox.SelectedItem.ToString();
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
@@ -29,7 +41,7 @@ namespace studMin
             if (currentClass == null)
             {
                 string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
-                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -68,7 +80,7 @@ namespace studMin
                 list.Add(temp);
             }
 
-            if (Semester_ComboBox.SelectedIndex == 0) return;
+            
 
             INFOR inforTeacher = currentClass.TEACHER.INFOR;
             string startYear = currentClass.SCHOOLYEAR;
@@ -83,26 +95,16 @@ namespace studMin
                 ThongTinThem = "Danh sách lớp"
             };
 
-            this.BeginInvoke(new System.Action(() =>
+            studMin.Action.Excel.ListStudent students = new studMin.Action.Excel.ListStudent();
+
+            students.InsertInfo(info);
+            foreach (Action.Excel.ListStudent.Item item in list)
             {
-                studMin.Action.Excel.ListStudent students = new studMin.Action.Excel.ListStudent();
+                students.InsertItem(item);
+            }
 
-                students.InsertInfo(info);
-                foreach (Action.Excel.ListStudent.Item item in list)
-                {
-                    students.InsertItem(item);
-                }
-
-                students.ShowExcel();
-                students.Save(exportPath);
-
-                /*if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    students.ShowPrintPreview();
-                }
-
-                students.Dispose();*/
-            }));
+            students.ShowExcel();
+            students.Save(exportPath);
         }
 
         #region Buttons
