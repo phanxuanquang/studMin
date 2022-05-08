@@ -14,7 +14,7 @@ namespace studMin
     {
         StudentTimetable_SubTab studentTimetableSubTab;
         TeacherTimetable_SubTab teacherTimetableSubTab;
-        public Timetable_Tab()
+        public Timetable_Tab(role Role = role.normalTeacher)
         {
             InitializeComponent();
             studentTimetableSubTab = new StudentTimetable_SubTab();

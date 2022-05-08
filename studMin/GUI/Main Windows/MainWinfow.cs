@@ -12,7 +12,7 @@ namespace studMin
 {
     public partial class MainWinfow : Form
     {
-        TeacherDashboard_Base Dashboard;
+        dynamic Dashboard;
         Timetable_Tab timetable_Tab;
         role Role;
         dynamic statisticTab;
@@ -51,12 +51,14 @@ namespace studMin
                     Statistic_MenuButton.Visible = false;
                     break;
                 default: // office staff
-                    timetable_Tab = new Timetable_Tab();
+                    Dashboard = new StaffDashboard();
+                    timetable_Tab = new Timetable_Tab(role.officeStaff);
                     statisticTab = new StatisticTab();
                     break;
             }
             LoadMainTab(Dashboard);
             changeButtonColor(Dashboard_MenuButton);
+            
         }
 
         void LoadMainTab(UserControl tab)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace studMin.Action.Excel
 {
-    internal class Summary:CommonExcel
+    internal class Summary : CommonExcel
     {
         private const int StartColumnIndex = 1;
         private const int StartRowIndex = 7;
@@ -296,6 +296,18 @@ namespace studMin.Action.Excel
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectInfo()
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
+
+        public override object SelectItem(object argument)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

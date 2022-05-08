@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace studMin.Action.Excel
 {
-    internal class ScheduleStudent:CommonExcel
+    internal class ScheduleStudent : CommonExcel
     {
         private (string, string) Lop(string msg)
         {
@@ -174,6 +174,18 @@ namespace studMin.Action.Excel
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectInfo()
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
+
+        public override object SelectItem(object argument)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

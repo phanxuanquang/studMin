@@ -31,6 +31,12 @@ namespace studMin.Database
             return DataProvider.Instance.Database.STUDENTs.FirstOrDefault();
         }
 
+        public List<STUDENT> GetStudentByClass(string className, string schoolYear, string semester)
+        {
+            CLASS getClass = Database.ClassServices.Instance.GetClassByClassName(className);
+            return GetStudents().Where(student => student.IDCLASS == getClass.ID).ToList();
+        }
+
         public bool SaveStudentToDB(STUDENT saveStudent)
         {
             try
@@ -51,7 +57,6 @@ namespace studMin.Database
                 return false;
             }
         }
-        
         
         public bool SaveStudentToDB(string firstName, string lastName, int sex, DateTime dayOfBirth, string address, string email, Guid idClass, string emailParent, int grade, string telephone, int status, string bloodLine)
         {

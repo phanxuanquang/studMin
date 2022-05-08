@@ -14,6 +14,10 @@ namespace studMin
     using Database.Models;
     public partial class GradeModify_SubTab : UserControl
     {
+        private BackgroundWorker backgroundWorker = null;
+        private Action.Excel.Subject.Info importInfo = null;
+        private List<Action.Excel.Subject.Item> data = null;
+
         public GradeModify_SubTab()
         {
             this.Load += GradeModify_SubTab_Load;
@@ -22,8 +26,8 @@ namespace studMin
 
         private void GradeModify_SubTab_Load(object sender, EventArgs e)
         {
-            sTUDENTBindingSource.DataSource = Database.DataProvider.Instance.Database.STUDENTs.ToList();
-            
+            //sTUDENTBindingSource.DataSource = Database.DataProvider.Instance.Database.STUDENTs.ToList();
+            Class_ComboBox.DataSource = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
         }
 
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
@@ -50,7 +54,6 @@ namespace studMin
                 MessageBox.Show("Điểm phải nằm trong khoảng từ 0 đến 10. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
             }
-
         }
 
         private void MidTermTestScore_Box_TextChanged(object sender, EventArgs e)
@@ -70,7 +73,38 @@ namespace studMin
 
         private void DataGridViewImport_Button_Click(object sender, EventArgs e)
         {
-            try
+            if (backgroundWorker == null)
+            {
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                return;
+            }
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Excel | *.xlsx";
+
+            string importPath = string.Empty;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                importPath = openFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
+            backgroundWorker.DoWork += ImportExcel_DoWork;
+            backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
+            backgroundWorker.RunWorkerAsync(importPath);
+            /*try
             {
                 Cursor.Current = Cursors.WaitCursor;
                 DataTable dt = new DataTable();
@@ -147,7 +181,35 @@ namespace studMin
             catch
             {
                 MessageBox.Show("Truy xuất dữ liệu thất bại. Tệp tin bạn chọn không đúng quy chuẩn hoặc chứa dữ liệu không hợp lệ.\nVui lòng thử lại sau.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }*/
+        }
+
+        private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //throw new NotImplementedException();
+            if (!(Class_ComboBox.DataSource as List<string>).Contains(importInfo.Lop) && MessageBox.Show("đưa điểm vào csdl?", "IMPORT DATABASE", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                //studMin.Database.ClassServices.Instance.CreateClass(importInfo.Lop, studMin.Database.TeacherServices.Instance.GetTeacherByName(importInfo.GiaoVien), importInfo.NamHoc, )
+                List<STUDENT> students = studMin.Database.StudentServices.Instance.GetStudentByClass(Class_ComboBox.SelectedItem.ToString(), "", "");
+
+                for(int index = 0; index < students.Count; index++)
+                {
+                    SCORE score = new SCORE() { ID = Guid.NewGuid(), IDSTUDENT = students[index].ID, IDSUBJECT = studMin.Database.SubjectServices.Instance.GetSubjectByName(importInfo.MonHoc).Id, IDSEMESTER = null, IDROLESCORE = null, SCHOOLYEAR = importInfo.NamHoc, SCORE1 = data[index].Diem15Phut[0] };
+                    studMin.Database.DataProvider.Instance.Database.Set<SCORE>().Add(score);
+                    studMin.Database.DataProvider.Instance.Database.SaveChanges();
+                }
             }
+        }
+
+        private void ImportExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Action.Excel.Subject subject = new Action.Excel.Subject(true, (string)e.Argument);
+
+            importInfo = (Action.Excel.Subject.Info)subject.SelectInfo();
+
+            data = (List<Action.Excel.Subject.Item>)subject.SelectItem(null);
+
+            subject.Dispose();
         }
 
         private void Search_Box_TextChanged(object sender, EventArgs e)
@@ -214,6 +276,26 @@ namespace studMin
                 return;
             }
 
+            if (backgroundWorker == null)
+            {
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
+                return;
+            }
+            backgroundWorker.DoWork += ExportExcel_DoWork;
+            backgroundWorker.RunWorkerAsync(exportPath);
+        }
+
+        private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
             Action.Excel.Subject.Info info = new Action.Excel.Subject.Info()
             {
                 GiaoVien = "Nguyễn Ngân Hà",
@@ -275,30 +357,26 @@ namespace studMin
                 }
             };
 
-            this.BeginInvoke(new System.Action(() =>
+            studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject(false);
+
+            subject.InsertInfo(info);
+
+            foreach (Action.Excel.Subject.Item item in list)
             {
-                studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject();
+                subject.InsertItem(item);
+            }
 
-                subject.InsertInfo(info);
+            subject.ShowExcel();
 
-                foreach (Action.Excel.Subject.Item item in list)
-                {
-                    subject.InsertItem(item);
-                }
+            subject.Save((string)e.Argument);
 
-                subject.ShowExcel();
+            if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                subject.ShowPrintPreview();
+            }
 
-                subject.Save(exportPath);
-
-                if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    subject.ShowPrintPreview();
-                }
-
-                subject.Dispose();
-            }));
+            subject.Dispose();
         }
-
 
         private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -308,12 +386,70 @@ namespace studMin
             finalDataGridView.Rows.Clear();
             if (e.RowIndex > 0)
             {
-                STUDENT student = sTUDENTBindingSource.Current as STUDENT;
+                STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
                 List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
-                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M");
-                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M");
-                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M");
-                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL");
+                sCOREMBindingSource.DataSource = scores/*.Where(item => item.ROLESCORE.ROLE == "M")*/.Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+                /*sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();*/
+            }
+        }
+
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string className = Class_ComboBox.SelectedItem.ToString();
+            List<STUDENT> students = studMin.Database.StudentServices.Instance.GetStudentByClass(className, "", "");
+            sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
+        }
+
+        class STUDENT4GRIDVIEW
+        {
+            private Guid _id;
+            private string _firstName;
+            private string _lastName;
+
+            public Guid ID
+            {
+                get { return _id; }
+            }
+            
+            public string FirstName
+            {
+                get { return _firstName; }
+            }
+            
+            public string LastName
+            {
+                get { return _lastName; }
+            }
+
+            public STUDENT4GRIDVIEW(Guid ID, string FirstName, string LastName)
+            {
+                _id = ID;
+                _firstName = FirstName;
+                _lastName = LastName;
+            }
+        }
+
+        class SCORE4GRIDVIEW
+        {
+            private Guid _id;
+            private double _score;
+
+            public Guid ID
+            {
+                get { return _id; }
+            }
+
+            public double Score
+            {
+                get { return _score; }
+            }
+
+            public SCORE4GRIDVIEW(Guid ID, double Score)
+            {
+                _id = ID;
+                _score = Score;
             }
         }
     }
