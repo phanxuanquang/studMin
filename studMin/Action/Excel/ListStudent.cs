@@ -190,6 +190,8 @@ namespace studMin.Action.Excel
             }
         }
 
+        int rowUsed = 1;
+
         public override void InsertItem(dynamic item)
         {
             Item clone = item as Item;
@@ -198,7 +200,7 @@ namespace studMin.Action.Excel
                 if (item == null) return;
 
                 int indexColumn = StartColumnIndex;
-                int lastRow = FindLastRowUsed() + 1;
+                int lastRow = FindLastRowUsed() + rowUsed;
                 int No = lastRow - StartRowIndex + 1;
 
                 (string, string) Info_SiSo = SiSo(No);
@@ -230,6 +232,8 @@ namespace studMin.Action.Excel
 
                 columnName = GetExcelColumnName(indexColumn++);
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.SDT;
+
+                rowUsed++;
             }
             catch
             {
