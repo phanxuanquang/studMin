@@ -217,6 +217,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\OTPServices.cs" />
+    <Compile Include="Database\ReportSemesterServices.cs" />
     <Compile Include="Database\ScheduleServices.cs" />
     <Compile Include="Database\StaffServices.cs" />
     <Compile Include="Database\StudentServices.cs" />
