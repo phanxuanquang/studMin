@@ -34,6 +34,16 @@ namespace studMin.Database
             return DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == className).FirstOrDefault();
         }
 
+        public CLASS GetClassByClassNameAndSchoolYear(string className, string schoolYear)
+        {
+            return DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == className && item.SCHOOLYEAR == schoolYear).FirstOrDefault();
+        }
+
+        public List<CLASS> GetClassBySchoolYear(string schoolYear)
+        {
+            return DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).ToList();
+        }
+
         public List<STUDENT> GetListStudentOfClass(string className)
         {
             CLASS tempClass = GetClassByClassName(className);

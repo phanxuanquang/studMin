@@ -22,7 +22,87 @@ namespace studMin
 
         void DataExport_toExcel()
         {
-            // Something
+            string className = Class_ComboBox.SelectedItem.ToString();
+            string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+            CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
+
+            if (currentClass == null)
+            {
+                string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
+                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Excel | *.xlsx";
+
+            string exportPath = string.Empty;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = saveFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
+
+            
+            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className);
+
+            List<Action.Excel.ListStudent.Item> list = new List<Action.Excel.ListStudent.Item>();
+
+            foreach (var student in listStudents)
+            {
+                Action.Excel.ListStudent.Item temp = new studMin.Action.Excel.ListStudent.Item()
+                {
+                    MaHocSinh = student.ID.ToString(),
+                    HoTen = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME,
+                    NgaySinh = (DateTime)student.INFOR.DAYOFBIRTH,
+                    GioiTinh = student.INFOR.SEX == 1,
+                    DanToc = student.BLOODLINE,
+                    DiaChi = student.INFOR.ADDRESS,
+                    Email = student.EMAIL,
+                    SDT = student.TEL
+                };
+                list.Add(temp);
+            }
+
+            if (Semester_ComboBox.SelectedIndex == 0) return;
+
+            INFOR inforTeacher = currentClass.TEACHER.INFOR;
+            string startYear = currentClass.SCHOOLYEAR;
+
+            Action.Excel.ListStudent.Info info = new Action.Excel.ListStudent.Info()
+            {
+                Lop = Class_ComboBox.SelectedItem.ToString(),
+                GiaoVien = inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME,
+                NamHoc = SchoolYear_ComboBox.SelectedItem.ToString(),
+                HocKy = Semester_ComboBox.SelectedIndex == 1 ? 0 : 1,
+                SiSo = listStudents.Count,
+                ThongTinThem = "Danh sách lớp"
+            };
+
+            this.BeginInvoke(new System.Action(() =>
+            {
+                studMin.Action.Excel.ListStudent students = new studMin.Action.Excel.ListStudent();
+
+                students.InsertInfo(info);
+                foreach (Action.Excel.ListStudent.Item item in list)
+                {
+                    students.InsertItem(item);
+                }
+
+                students.ShowExcel();
+                students.Save(exportPath);
+
+                /*if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    students.ShowPrintPreview();
+                }
+
+                students.Dispose();*/
+            }));
         }
 
         #region Buttons
