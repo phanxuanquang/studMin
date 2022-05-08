@@ -17,6 +17,7 @@ namespace studMin
         private BackgroundWorker backgroundWorker = null;
         private Action.Excel.Subject.Info importInfo = null;
         private List<Action.Excel.Subject.Item> data = null;
+        string className = string.Empty;
 
         public GradeModify_SubTab()
         {
@@ -26,7 +27,6 @@ namespace studMin
 
         private void GradeModify_SubTab_Load(object sender, EventArgs e)
         {
-            //sTUDENTBindingSource.DataSource = Database.DataProvider.Instance.Database.STUDENTs.ToList();
             Class_ComboBox.DataSource = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
         }
 
@@ -104,99 +104,35 @@ namespace studMin
             backgroundWorker.DoWork += ImportExcel_DoWork;
             backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
             backgroundWorker.RunWorkerAsync(importPath);
-            /*try
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                DataTable dt = new DataTable();
-
-                dt.Columns.Add("Mã học sinh");
-                dt.Columns.Add("Họ tên");
-                dt.Columns.Add("Kiểm tra miệng");
-                dt.Columns.Add("Kiểm tra 15 phút");
-                dt.Columns.Add("Kiểm tra 1 tiết");
-                dt.Columns.Add("Kiểm tra học kỳ");
-                dt.Columns.Add("Trung bình chung");
-
-                using (XLWorkbook workBook = new XLWorkbook(Action.Excel.StoragePath.TemplateSubject))
-                {
-                    int flag = 0;
-                    var rows = workBook.Worksheet(1).RowsUsed();
-                    foreach (var row in rows)
-                    {
-                        if (flag >= 4)
-                        {
-                            dt.Rows.Add();
-                            int i = 0;
-                            double oralTest = 0, fifteenMinutes = 0, fortyMinutes = 0, semesterTest = 0, overallAverage = 0;
-                            int flagOralTest = 0, flagFifteenMinutes = 0;
-                            foreach (IXLCell cell in row.Cells())
-                            {
-                                if (!cell.IsEmpty())
-                                {
-                                    if (i == 0 || i == 1)
-                                    {
-                                        dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
-                                    }
-                                    else if (i >= 2 && i <= 6)
-                                    {
-                                        oralTest += Double.Parse(cell.Value.ToString());
-                                        flagOralTest++;
-                                    }
-                                    else if (i >= 7 && i <= 11)
-                                    {
-                                        fifteenMinutes += Double.Parse(cell.Value.ToString());
-                                        flagFifteenMinutes++;
-                                    }
-                                    else if (i >= 12 && i <= 14)
-                                    {
-                                        fortyMinutes += Double.Parse(cell.Value.ToString());
-                                    }
-                                    else if (i == 15)
-                                    {
-                                        semesterTest = Double.Parse(cell.Value.ToString());
-                                    }
-                                    else
-                                    {
-                                        overallAverage = Double.Parse(cell.Value.ToString());
-                                    }
-                                }
-
-                                i++;
-                            }
-
-                            dt.Rows[dt.Rows.Count - 1][2] = Math.Round((oralTest / flagOralTest), 2).ToString();
-                            dt.Rows[dt.Rows.Count - 1][3] = Math.Round((fifteenMinutes / flagFifteenMinutes), 2).ToString();
-                            dt.Rows[dt.Rows.Count - 1][4] = Math.Round((fortyMinutes / 3), 2).ToString();
-                            dt.Rows[dt.Rows.Count - 1][5] = Math.Round(semesterTest, 2).ToString();
-                            dt.Rows[dt.Rows.Count - 1][6] = Math.Round(overallAverage, 2).ToString();
-                        }
-
-                        flag++;
-                    }
-
-                    GridView.DataSource = dt.DefaultView;
-                    Cursor.Current = Cursors.Default;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Truy xuất dữ liệu thất bại. Tệp tin bạn chọn không đúng quy chuẩn hoặc chứa dữ liệu không hợp lệ.\nVui lòng thử lại sau.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }*/
         }
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //throw new NotImplementedException();
             if (!(Class_ComboBox.DataSource as List<string>).Contains(importInfo.Lop) && MessageBox.Show("đưa điểm vào csdl?", "IMPORT DATABASE", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                //studMin.Database.ClassServices.Instance.CreateClass(importInfo.Lop, studMin.Database.TeacherServices.Instance.GetTeacherByName(importInfo.GiaoVien), importInfo.NamHoc, )
-                List<STUDENT> students = studMin.Database.StudentServices.Instance.GetStudentByClass(Class_ComboBox.SelectedItem.ToString(), "", "");
+                TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
+                CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(importInfo.Lop);
 
-                for(int index = 0; index < students.Count; index++)
+                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME);
+
+                string schoolYear = importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0];
+
+                for (int index = 0; index < data.Count; index++)
                 {
-                    SCORE score = new SCORE() { ID = Guid.NewGuid(), IDSTUDENT = students[index].ID, IDSUBJECT = studMin.Database.SubjectServices.Instance.GetSubjectByName(importInfo.MonHoc).Id, IDSEMESTER = null, IDROLESCORE = null, SCHOOLYEAR = importInfo.NamHoc, SCORE1 = data[index].Diem15Phut[0] };
-                    studMin.Database.DataProvider.Instance.Database.Set<SCORE>().Add(score);
-                    studMin.Database.DataProvider.Instance.Database.SaveChanges();
+                    STUDENT student = students.Where(item => item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME == data[index].HoTen).FirstOrDefault();
+                    for (int oral = 0; oral < data[index].DiemMieng.Count; oral++)
+                    {
+                        studMin.Database.StudentServices.Instance.SaveScoreToDB(student.ID, data[index].DiemMieng[oral], schoolYear, importInfo.HocKy.ToString(), "M");
+                    }
+                    for (int regular = 0; regular < data[index].Diem15Phut.Count; regular++)
+                    {
+                        studMin.Database.StudentServices.Instance.SaveScoreToDB(student.ID, data[index].Diem15Phut[regular], schoolYear, importInfo.HocKy.ToString(), "15M");
+                    }
+                    for (int midTerm = 0; midTerm < data[index].Diem1Tiet.Count; midTerm++)
+                    {
+                        studMin.Database.StudentServices.Instance.SaveScoreToDB(student.ID, data[index].Diem1Tiet[midTerm], schoolYear, importInfo.HocKy.ToString(), "45M");
+                    }
+                    studMin.Database.StudentServices.Instance.SaveScoreToDB(student.ID, data[index].DiemCuoiKy, schoolYear, importInfo.HocKy.ToString(), "FINAL");
                 }
             }
         }
@@ -296,66 +232,36 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
+            TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
+            CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(className);
+            TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
+
             Action.Excel.Subject.Info info = new Action.Excel.Subject.Info()
             {
-                GiaoVien = "Nguyễn Ngân Hà",
-                HocKy = 1,
-                Lop = "10A2",
-                NamHoc = "2022 - 2023",
-                MonHoc = "Toán",
+                GiaoVien = teacher.INFOR.FIRSTNAME + " " + teacher.INFOR.LASTNAME,
+                HocKy = Convert.ToInt32(teach.SEMESTER.NAME),
+                Lop = @class.CLASSNAME,
+                NamHoc = @class.SCHOOLYEAR,
+                MonHoc = teach.SUBJECT.DisplayName,
             };
 
-            List<Action.Excel.Subject.Item> list = new List<Action.Excel.Subject.Item>()
+            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME);
+            List<Action.Excel.Subject.Item> list = new List<Action.Excel.Subject.Item>();
+
+            for (int index = 0; index < students.Count; index++)
             {
-                new studMin.Action.Excel.Subject.Item()
-                {
-                    HoTen = "Nguyễn Văn Tèo",
-                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
-                    Diem1Tiet = new List<double>() { 7, 9 },
-                    DiemCuoiKy = 8.5,
-                    DiemMieng = new List<double>() { 9, 8 }
-                },
-                new studMin.Action.Excel.Subject.Item()
-                {
-                    HoTen = "Trần Xuân Tài",
-                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
-                    Diem1Tiet = new List<double>() { 7, 6 },
-                    DiemCuoiKy = 8.5,
-                    DiemMieng = new List<double>() { 9, 8 }
-                },
-                new studMin.Action.Excel.Subject.Item()
-                {
-                    HoTen = "Ngô Xuân Yến",
-                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
-                    Diem1Tiet = new List<double>() { 7, 7 },
-                    DiemCuoiKy = 8.5,
-                    DiemMieng = new List<double>() { 9, 8 }
-                },
-                new studMin.Action.Excel.Subject.Item()
-                {
-                    HoTen = "Trần Thị Thanh Hiền",
-                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
-                    Diem1Tiet = new List<double>() { 7, 8 },
-                    DiemCuoiKy = 8,
-                    DiemMieng = new List<double>() { 8, 8 }
-                },
-                new studMin.Action.Excel.Subject.Item()
-                {
-                    HoTen = "Phạm Nguyễn Vi Trân",
-                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
-                    Diem1Tiet = new List<double>() { 7, 9 },
-                    DiemCuoiKy = 8.5,
-                    DiemMieng = new List<double>() { 9, 8 }
-                },
-                new studMin.Action.Excel.Subject.Item()
-                {
-                    HoTen = "Đỗ Minh Thanh",
-                    Diem15Phut = new List<double>() { 5, 5.3, 6.7, 8.7 },
-                    Diem1Tiet = new List<double>() { 7, 9 },
-                    DiemCuoiKy = 10,
-                    DiemMieng = new List<double>() { 9, 8 }
-                }
-            };
+                //không biết vì sao để lồng vào thì lại lỗi
+                //List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == students[index].ID).ToList();
+                Guid idStudent = students[index].ID;
+                List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == idStudent).ToList();
+
+                List<double> oralMark = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => score.SCORE1.Value).ToList();
+                List<double> regularMark = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => score.SCORE1.Value).ToList();
+                List<double> midTermMark = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => score.SCORE1.Value).ToList();
+                double finalMark = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => score.SCORE1.Value).FirstOrDefault();
+
+                list.Add(new Action.Excel.Subject.Item() { HoTen = students[index].INFOR.FIRSTNAME + " " + students[index].INFOR.LASTNAME, DiemMieng = oralMark, Diem15Phut = regularMark, Diem1Tiet = midTermMark, DiemCuoiKy = finalMark });
+            }
 
             studMin.Action.Excel.Subject subject = new studMin.Action.Excel.Subject(false);
 
@@ -384,21 +290,21 @@ namespace studMin
             m15DataGridView.Rows.Clear();
             m45DataGridView.Rows.Clear();
             finalDataGridView.Rows.Clear();
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
                 STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
                 List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
-                sCOREMBindingSource.DataSource = scores/*.Where(item => item.ROLESCORE.ROLE == "M")*/.Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-                /*sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
                 sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();*/
+                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
             }
         }
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string className = Class_ComboBox.SelectedItem.ToString();
-            List<STUDENT> students = studMin.Database.StudentServices.Instance.GetStudentByClass(className, "", "");
+            className = Class_ComboBox.SelectedItem.ToString();
+            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className);
             sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
         }
 
@@ -411,6 +317,11 @@ namespace studMin
             public Guid ID
             {
                 get { return _id; }
+            }
+
+            public string PresentID
+            {
+                get { return _id.ToString().Substring(0, 8).ToUpper(); }
             }
             
             public string FirstName
