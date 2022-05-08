@@ -31,12 +31,6 @@ namespace studMin.Database
             return DataProvider.Instance.Database.STUDENTs.FirstOrDefault();
         }
 
-        public List<STUDENT> GetStudentByClass(string className, string schoolYear, string semester)
-        {
-            CLASS getClass = Database.ClassServices.Instance.GetClassByClassName(className);
-            return GetStudents().Where(student => student.IDCLASS == getClass.ID).ToList();
-        }
-
         public bool SaveStudentToDB(STUDENT saveStudent)
         {
             try
@@ -85,7 +79,7 @@ namespace studMin.Database
         }
 
         // Nhập điểm cho một học sinh
-        public bool SaveScoreToDB(Guid idStudent, float score, string schoolYear, string semester, string role)
+        public bool SaveScoreToDB(Guid idStudent, double score, string schoolYear, string semester, string role)
         {
             SCORE scoreofstudent = new SCORE()
             {

@@ -75,8 +75,8 @@
             this.finalDataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.sCOREFinalBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OralScoreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegularScoreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MidTermScoreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegularScoreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinalScoreColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -958,14 +958,6 @@
             this.OralScoreColumn.Name = "OralScoreColumn";
             this.OralScoreColumn.ReadOnly = true;
             // 
-            // RegularScoreColumn
-            // 
-            this.RegularScoreColumn.DataPropertyName = "Score";
-            this.RegularScoreColumn.HeaderText = "Điểm 15 phút";
-            this.RegularScoreColumn.MinimumWidth = 10;
-            this.RegularScoreColumn.Name = "RegularScoreColumn";
-            this.RegularScoreColumn.ReadOnly = true;
-            // 
             // MidTermScoreColumn
             // 
             this.MidTermScoreColumn.DataPropertyName = "Score";
@@ -974,9 +966,17 @@
             this.MidTermScoreColumn.Name = "MidTermScoreColumn";
             this.MidTermScoreColumn.ReadOnly = true;
             // 
+            // RegularScoreColumn
+            // 
+            this.RegularScoreColumn.DataPropertyName = "Score";
+            this.RegularScoreColumn.HeaderText = "Điểm 15 phút";
+            this.RegularScoreColumn.MinimumWidth = 10;
+            this.RegularScoreColumn.Name = "RegularScoreColumn";
+            this.RegularScoreColumn.ReadOnly = true;
+            // 
             // FinalScoreColumn
             // 
-            this.FinalScoreColumn.DataPropertyName = "ID";
+            this.FinalScoreColumn.DataPropertyName = "Score";
             this.FinalScoreColumn.HeaderText = "Điểm cuối kỳ";
             this.FinalScoreColumn.MinimumWidth = 10;
             this.FinalScoreColumn.Name = "FinalScoreColumn";
@@ -984,7 +984,7 @@
             // 
             // ID
             // 
-            this.ID.DataPropertyName = "ID";
+            this.ID.DataPropertyName = "PresentID";
             this.ID.HeaderText = "ID";
             this.ID.MinimumWidth = 10;
             this.ID.Name = "ID";
