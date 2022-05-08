@@ -334,6 +334,12 @@
     <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab.Designer.cs">
       <DependentUpon>StatisticTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="VicePrincipalDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VicePrincipalDashboard.Designer.cs">
+      <DependentUpon>VicePrincipalDashboard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Login\OTPexample.resx">
       <DependentUpon>OTPexample.cs</DependentUpon>
     </EmbeddedResource>

@@ -51,12 +51,13 @@ namespace studMin
                     Statistic_MenuButton.Visible = false;
                     break;
                 default: // office staff
-                    timetable_Tab = new Timetable_Tab();
+                    timetable_Tab = new Timetable_Tab(role.officeStaff);
                     statisticTab = new StatisticTab();
                     break;
             }
             LoadMainTab(Dashboard);
             changeButtonColor(Dashboard_MenuButton);
+            
         }
 
         void LoadMainTab(UserControl tab)
