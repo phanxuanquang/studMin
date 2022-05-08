@@ -30,6 +30,10 @@ namespace studMin.Action.Excel
 
         public abstract void InsertInfo(dynamic info);
 
+        public abstract object SelectInfo();
+
+        public abstract object SelectItem(object argument);
+
         protected string GetExcelColumnName(int columnNumber)
         {
             string columnName = "";

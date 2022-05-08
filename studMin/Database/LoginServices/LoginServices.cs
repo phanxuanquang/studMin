@@ -110,8 +110,8 @@ namespace studMin.Database.LoginServices
                 }
                 catch
                 {
-                    Application.Exit();
-                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                    //Application.Exit();
+                    //System.Diagnostics.Process.Start(Application.ExecutablePath);
                 }
             }
             return (null, null);

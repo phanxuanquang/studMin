@@ -426,7 +426,7 @@ namespace studMin.Action.Excel
             return false;
         }
 
-        public Info SelecteInfo()
+        public override object SelectInfo()
         {
             Info info = Info.Parse(sheet.get_Range(title).Value.ToString());
             info.Truong = sheet.get_Range(nameSchool).Value.ToString();
@@ -447,10 +447,11 @@ namespace studMin.Action.Excel
             return DateTime.Now;
         }
 
-        public List<Item> SelectItem(DateTime dateTime)
+        public override object SelectItem(object argument)
         {
             List<Item> list = new List<Item>();
             Item item = null;
+            DateTime dateTime = (DateTime)argument;
 
             dateTime = FindDayNearly(dateTime, DayOfWeek.Monday);
 

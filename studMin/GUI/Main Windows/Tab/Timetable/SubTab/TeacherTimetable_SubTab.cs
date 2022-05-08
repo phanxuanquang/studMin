@@ -208,9 +208,9 @@ namespace studMin
         {
             Action.Excel.ScheduleAllTeacher scheduleAllTeacher = new Action.Excel.ScheduleAllTeacher(true, (string)e.Argument);
 
-            importInfo = scheduleAllTeacher.SelecteInfo();
+            importInfo = (Action.Excel.ScheduleAllTeacher.Info)scheduleAllTeacher.SelectInfo();
 
-            data = scheduleAllTeacher.SelectItem(importInfo.NgayApDung);
+            data = (List<Action.Excel.ScheduleAllTeacher.Item>)scheduleAllTeacher.SelectItem(importInfo.NgayApDung);
 
             scheduleAllTeacher.Dispose();
 
