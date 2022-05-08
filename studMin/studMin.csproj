@@ -125,6 +125,18 @@
     <Compile Include="Action\Excel\StoragePath.cs" />
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
+    <Compile Include="AddStudent_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStudent_Form.Designer.cs">
+      <DependentUpon>AddStudent_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\ClassInforTab_Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\ClassInforTab_Staff.Designer.cs">
+      <DependentUpon>ClassInforTab_Staff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\ClassServices.cs" />
     <Compile Include="Database\DataProvider.cs" />
     <Compile Include="Database\LoginServices\Hash.cs" />
@@ -334,12 +346,24 @@
     <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab.Designer.cs">
       <DependentUpon>StatisticTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="VicePrincipalDashboard.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StaffDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VicePrincipalDashboard.Designer.cs">
-      <DependentUpon>VicePrincipalDashboard.cs</DependentUpon>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StaffDashboard.Designer.cs">
+      <DependentUpon>StaffDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StudentInforTab_Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StudentInforTab_Staff.Designer.cs">
+      <DependentUpon>StudentInforTab_Staff.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddStudent_Form.resx">
+      <DependentUpon>AddStudent_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\ClassInforTab_Staff.resx">
+      <DependentUpon>ClassInforTab_Staff.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Login\OTPexample.resx">
       <DependentUpon>OTPexample.cs</DependentUpon>
     </EmbeddedResource>
@@ -398,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab.resx">
       <DependentUpon>StatisticTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StaffDashboard.resx">
+      <DependentUpon>StaffDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StudentInforTab_Staff.resx">
+      <DependentUpon>StudentInforTab_Staff.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Database\Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

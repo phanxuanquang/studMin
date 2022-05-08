@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace studMin
 {
-    public partial class VicePrincipalDashboard : TeacherDashboard_Base
+    public partial class ClassInforTab_Staff : UserControl
     {
-        public VicePrincipalDashboard()
+        public ClassInforTab_Staff()
         {
             InitializeComponent();
         }
