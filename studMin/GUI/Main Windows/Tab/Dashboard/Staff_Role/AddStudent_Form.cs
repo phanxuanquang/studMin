@@ -15,6 +15,12 @@ namespace studMin
         public AddStudent_Form()
         {
             InitializeComponent();
+            ShadowForm.SetShadowForm(this);
+        }
+
+        private void Exit_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

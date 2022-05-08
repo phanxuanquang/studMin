@@ -49,6 +49,7 @@
             this.Class_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Birthday_ComboBox = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.Elipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.SuspendLayout();
             // 
             // ParentNumber_Box
@@ -77,7 +78,6 @@
             this.ParentNumber_Box.Name = "ParentNumber_Box";
             this.ParentNumber_Box.PasswordChar = '\0';
             this.ParentNumber_Box.PlaceholderText = "Không xác định";
-            this.ParentNumber_Box.ReadOnly = true;
             this.ParentNumber_Box.SelectedText = "";
             this.ParentNumber_Box.ShadowDecoration.BorderRadius = 12;
             this.ParentNumber_Box.ShadowDecoration.Depth = 5;
@@ -113,7 +113,6 @@
             this.Address_Box.Name = "Address_Box";
             this.Address_Box.PasswordChar = '\0';
             this.Address_Box.PlaceholderText = "Không xác định";
-            this.Address_Box.ReadOnly = true;
             this.Address_Box.SelectedText = "";
             this.Address_Box.ShadowDecoration.BorderRadius = 12;
             this.Address_Box.ShadowDecoration.Depth = 5;
@@ -149,7 +148,6 @@
             this.Email_Box.Name = "Email_Box";
             this.Email_Box.PasswordChar = '\0';
             this.Email_Box.PlaceholderText = "Không xác định";
-            this.Email_Box.ReadOnly = true;
             this.Email_Box.SelectedText = "";
             this.Email_Box.ShadowDecoration.BorderRadius = 12;
             this.Email_Box.ShadowDecoration.Depth = 5;
@@ -185,7 +183,6 @@
             this.Bloodline_Box.Name = "Bloodline_Box";
             this.Bloodline_Box.PasswordChar = '\0';
             this.Bloodline_Box.PlaceholderText = "Không xác định";
-            this.Bloodline_Box.ReadOnly = true;
             this.Bloodline_Box.SelectedText = "";
             this.Bloodline_Box.ShadowDecoration.BorderRadius = 12;
             this.Bloodline_Box.ShadowDecoration.Depth = 5;
@@ -221,7 +218,6 @@
             this.FullName_Box.Name = "FullName_Box";
             this.FullName_Box.PasswordChar = '\0';
             this.FullName_Box.PlaceholderText = "Không xác định";
-            this.FullName_Box.ReadOnly = true;
             this.FullName_Box.SelectedText = "";
             this.FullName_Box.ShadowDecoration.BorderRadius = 12;
             this.FullName_Box.ShadowDecoration.Depth = 5;
@@ -405,6 +401,7 @@
             this.Exit_Button.TabIndex = 164;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
             // Sex_ComboBox
             // 
@@ -523,6 +520,8 @@
             this.Controls.Add(this.gunaLabel11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddStudent_Form";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddStudent_Form";
             this.ResumeLayout(false);
@@ -551,5 +550,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox Class_ComboBox;
         private Guna.UI2.WinForms.Guna2DateTimePicker Birthday_ComboBox;
         private Guna.UI2.WinForms.Guna2Elipse Elipse;
+        private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
     }
 }

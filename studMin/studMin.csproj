@@ -125,10 +125,10 @@
     <Compile Include="Action\Excel\StoragePath.cs" />
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
-    <Compile Include="AddStudent_Form.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\AddStudent_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddStudent_Form.Designer.cs">
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\AddStudent_Form.Designer.cs">
       <DependentUpon>AddStudent_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\ClassInforTab_Staff.cs">
@@ -358,7 +358,7 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\StudentInforTab_Staff.Designer.cs">
       <DependentUpon>StudentInforTab_Staff.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddStudent_Form.resx">
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\AddStudent_Form.resx">
       <DependentUpon>AddStudent_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\ClassInforTab_Staff.resx">
