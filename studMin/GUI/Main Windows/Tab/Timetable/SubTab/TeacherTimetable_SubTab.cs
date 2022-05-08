@@ -21,20 +21,6 @@ namespace studMin
 
         private void TimetableExport_Button_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "Excel | *.xlsx";
-
-            string exportPath = string.Empty;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                exportPath = saveFileDialog.FileName;
-            }
-            else
-            {
-                return;
-            }
-
             if (backgroundWorker == null)
             {
                 backgroundWorker = new BackgroundWorker();
@@ -49,8 +35,18 @@ namespace studMin
                 MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
                 return;
             }
-            backgroundWorker.DoWork += ExportExcel_DoWork;
-            backgroundWorker.RunWorkerAsync(exportPath);
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Excel | *.xlsx";
+
+            string exportPath = string.Empty;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = saveFileDialog.FileName;
+                backgroundWorker.DoWork += ExportExcel_DoWork;
+                backgroundWorker.RunWorkerAsync(exportPath);
+            }
         }
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)

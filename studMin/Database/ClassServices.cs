@@ -39,5 +39,27 @@ namespace studMin.Database
             CLASS tempClass = GetClassByClassName(className);
             return DataProvider.Instance.Database.STUDENTs.Where(item => item.IDCLASS == tempClass.ID).ToList();
         }
+
+        public CLASS CreateClass(string className, Guid idTeacher, string schoolYear, Guid idGrade)
+        {
+            try
+            {
+                CLASS _class = new CLASS()
+                {
+                    ID = Guid.NewGuid(),
+                    CLASSNAME = className,
+                    IDTEACHER = idTeacher,
+                    IDGRADE = idGrade,
+                    SCHOOLYEAR = schoolYear
+                };
+                DataProvider.Instance.Database.Set<CLASS>().Add(_class);
+                DataProvider.Instance.Database.SaveChanges();
+                return _class;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }
