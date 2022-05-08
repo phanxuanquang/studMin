@@ -27,7 +27,9 @@ namespace studMin
 
         private void GradeModify_SubTab_Load(object sender, EventArgs e)
         {
-            Class_ComboBox.DataSource = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
+            List<string> @class = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
+            @class.Add("Mọi lớp");
+            Class_ComboBox.DataSource = @class;
         }
 
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
@@ -46,6 +48,7 @@ namespace studMin
             {
                 MessageBox.Show("Điểm chỉ bao gồm chữ số và dấu chấm thập phân. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
+                textBox.Focus();
                 return;
             }
 
@@ -53,20 +56,20 @@ namespace studMin
             {
                 MessageBox.Show("Điểm phải nằm trong khoảng từ 0 đến 10. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
+                textBox.Focus();
             }
         }
-
-        private void MidTermTestScore_Box_TextChanged(object sender, EventArgs e)
+        private void OralTestScore_Box_Validated(object sender, EventArgs e)
         {
-            CheckValidGrade(MidTermTestScore_Box);
+            CheckValidGrade(OralTestScore_Box);
         }
 
-        private void RegularTestScore_Box_TextChanged(object sender, EventArgs e)
+        private void RegularTestScore_Box_Validated(object sender, EventArgs e)
         {
             CheckValidGrade(RegularTestScore_Box);
         }
 
-        private void OralTestScore_Box_TextChanged(object sender, EventArgs e)
+        private void MidTermTestScore_Box_Validated(object sender, EventArgs e)
         {
             CheckValidGrade(MidTermTestScore_Box);
         }
@@ -232,6 +235,12 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (className == "Mọi lớp")
+            {
+                MessageBox.Show("Chọn lớp để xuất");
+                return;
+            }
+
             TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
             CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(className);
             TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
@@ -298,14 +307,40 @@ namespace studMin
                 sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
                 sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
                 sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+
+                ResetComboBox();
             }
         }
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ResetComboBox();
             className = Class_ComboBox.SelectedItem.ToString();
-            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className);
-            sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
+            if (className != "Mọi lớp")
+            {
+                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className);
+                sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
+            }
+            else
+            {
+                List<string> @class = (Class_ComboBox.DataSource as List<string>);
+                List<STUDENT> students = new List<STUDENT>();
+                for (int index = 0; index < @class.Count; index++)
+                {
+                    if (@class[index] != "Mọi lớp")
+                    {
+                        students.AddRange(studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class[index]));
+                    }
+                }
+                sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
+            }
+        }
+
+        private void ResetComboBox()
+        {
+            OralTestScore_ComboBox.SelectedIndex = 0;
+            RegularTestScore_ComboBox.SelectedIndex = 0;
+            MidTermTestScore_ComboBox.SelectedIndex = 0;
         }
 
         class STUDENT4GRIDVIEW
@@ -361,6 +396,93 @@ namespace studMin
             {
                 _id = ID;
                 _score = Score;
+            }
+        }
+
+        private void OralTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = OralTestScore_ComboBox.SelectedIndex;
+            if (index > 0 && index <= sCOREMBindingSource.Count)
+            {
+                OralTestScore_Box.Text = ((SCORE4GRIDVIEW)sCOREMBindingSource.List[index - 1]).Score.ToString();
+            }
+            else OralTestScore_Box.Text = string.Empty;
+        }
+
+        private void RegularTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = RegularTestScore_ComboBox.SelectedIndex;
+            if (index > 0 && index <= sCORE15MBindingSource.Count)
+            {
+                RegularTestScore_Box.Text = ((SCORE4GRIDVIEW)sCORE15MBindingSource.List[index - 1]).Score.ToString();
+            }
+            else RegularTestScore_Box.Text = string.Empty;
+        }
+
+        private void MidTermTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = MidTermTestScore_ComboBox.SelectedIndex;
+            if (index > 0 && index <= sCORE45MBindingSource.Count)
+            {
+                MidTermTestScore_Box.Text = ((SCORE4GRIDVIEW)sCORE45MBindingSource.List[index - 1]).Score.ToString();
+            }
+            else MidTermTestScore_Box.Text = string.Empty;
+        }
+
+        private void UpdateData_Button_Click(object sender, EventArgs e)
+        {
+            double score = 0.0;
+            int index = -1;
+
+            if (!String.IsNullOrEmpty(OralTestScore_Box.Text))
+            {
+                index = OralTestScore_ComboBox.SelectedIndex;
+                if (index > 0)
+                {
+                    score = double.Parse(OralTestScore_Box.Text);
+                    UpdateScore(sCOREMBindingSource, index, score, "M");
+                }
+                else OralTestScore_Box.Text = string.Empty;
+            }
+
+            if (!String.IsNullOrEmpty(RegularTestScore_Box.Text))
+            {
+                index = RegularTestScore_ComboBox.SelectedIndex;
+                if (index > 0)
+                {
+                    score = double.Parse(RegularTestScore_Box.Text);
+                    UpdateScore(sCORE15MBindingSource, index, score, "15M");
+                }
+                else RegularTestScore_Box.Text = string.Empty;
+            }
+
+            if (!String.IsNullOrEmpty(MidTermTestScore_Box.Text))
+            {
+                index = MidTermTestScore_ComboBox.SelectedIndex;
+                if (index > 0)
+                {
+                    score = double.Parse(MidTermTestScore_Box.Text);
+                    UpdateScore(sCORE45MBindingSource, index, score, "45M");
+                }
+                else MidTermTestScore_Box.Text = string.Empty;
+            }
+        }
+
+        private void UpdateScore(BindingSource binding, int index, double score, string roleScore)
+        {
+            if (index <= binding.Count)
+            {
+                Guid idScore = ((SCORE4GRIDVIEW)binding.List[index - 1]).ID;
+                SCORE _score = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.ID == idScore).FirstOrDefault();
+                _score.SCORE1 = score;
+                studMin.Database.DataProvider.Instance.Database.SaveChanges();
+            }
+            else
+            {
+                TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
+                CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(className);
+                TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
+                studMin.Database.StudentServices.Instance.SaveScoreToDB((sTUDENTBindingSource.Current as STUDENT4GRIDVIEW).ID, score, @class.SCHOOLYEAR, teach.SEMESTER.NAME, roleScore);
             }
         }
     }
