@@ -50,6 +50,11 @@ namespace studMin.Database
             return DataProvider.Instance.Database.STUDENTs.Where(item => item.IDCLASS == tempClass.ID).ToList();
         }
 
+        public string GetCurrentSchoolYear()
+        {
+            return DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Max();
+        }
+
         public CLASS CreateClass(string className, Guid idTeacher, string schoolYear, Guid idGrade)
         {
             try

@@ -36,7 +36,6 @@
             this.PassGrade_SaveButton = new Guna.UI2.WinForms.Guna2Button();
             this.PassGrade_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.MaxPassGrade_SaveButton = new Guna.UI2.WinForms.Guna2Button();
             this.MaxGrade_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.GridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.TeahcherID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,11 +63,10 @@
             this.OralTest_GroupBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.OralTest_GroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.OralTest_GroupBox.ForeColor = System.Drawing.Color.White;
-            this.OralTest_GroupBox.Location = new System.Drawing.Point(215, 18);
-            this.OralTest_GroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.OralTest_GroupBox.Location = new System.Drawing.Point(161, 15);
             this.OralTest_GroupBox.Name = "OralTest_GroupBox";
             this.OralTest_GroupBox.ShadowDecoration.Parent = this.OralTest_GroupBox;
-            this.OralTest_GroupBox.Size = new System.Drawing.Size(380, 123);
+            this.OralTest_GroupBox.Size = new System.Drawing.Size(285, 100);
             this.OralTest_GroupBox.TabIndex = 85;
             this.OralTest_GroupBox.Text = "Điểm đạt tối thiểu của môn học";
             this.OralTest_GroupBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -90,12 +88,11 @@
             this.PassGrade_SaveButton.HoverState.FillColor = System.Drawing.Color.White;
             this.PassGrade_SaveButton.HoverState.Parent = this.PassGrade_SaveButton;
             this.PassGrade_SaveButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.PassGrade_SaveButton.Location = new System.Drawing.Point(245, 63);
-            this.PassGrade_SaveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.PassGrade_SaveButton.Location = new System.Drawing.Point(184, 51);
             this.PassGrade_SaveButton.Name = "PassGrade_SaveButton";
             this.PassGrade_SaveButton.PressedDepth = 20;
             this.PassGrade_SaveButton.ShadowDecoration.Parent = this.PassGrade_SaveButton;
-            this.PassGrade_SaveButton.Size = new System.Drawing.Size(89, 44);
+            this.PassGrade_SaveButton.Size = new System.Drawing.Size(67, 36);
             this.PassGrade_SaveButton.TabIndex = 86;
             this.PassGrade_SaveButton.Text = "LƯU";
             this.PassGrade_SaveButton.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -123,8 +120,8 @@
             this.PassGrade_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.PassGrade_Box.HoverState.Parent = this.PassGrade_Box;
             this.PassGrade_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.PassGrade_Box.Location = new System.Drawing.Point(45, 64);
-            this.PassGrade_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.PassGrade_Box.Location = new System.Drawing.Point(34, 52);
+            this.PassGrade_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PassGrade_Box.Name = "PassGrade_Box";
             this.PassGrade_Box.PasswordChar = '\0';
             this.PassGrade_Box.PlaceholderText = "";
@@ -133,7 +130,7 @@
             this.PassGrade_Box.ShadowDecoration.Depth = 5;
             this.PassGrade_Box.ShadowDecoration.Parent = this.PassGrade_Box;
             this.PassGrade_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.PassGrade_Box.Size = new System.Drawing.Size(187, 44);
+            this.PassGrade_Box.Size = new System.Drawing.Size(140, 36);
             this.PassGrade_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.PassGrade_Box.TabIndex = 42;
             this.PassGrade_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -143,47 +140,18 @@
             this.guna2GroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.guna2GroupBox1.BorderRadius = 5;
             this.guna2GroupBox1.BorderThickness = 2;
-            this.guna2GroupBox1.Controls.Add(this.MaxPassGrade_SaveButton);
             this.guna2GroupBox1.Controls.Add(this.MaxGrade_Box);
             this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.guna2GroupBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.guna2GroupBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.White;
-            this.guna2GroupBox1.Location = new System.Drawing.Point(639, 18);
-            this.guna2GroupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.guna2GroupBox1.Location = new System.Drawing.Point(479, 15);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
-            this.guna2GroupBox1.Size = new System.Drawing.Size(380, 123);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(285, 100);
             this.guna2GroupBox1.TabIndex = 87;
-            this.guna2GroupBox1.Text = "Điểm tối đa của môn học";
+            this.guna2GroupBox1.Text = "Thang Điểm";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // MaxPassGrade_SaveButton
-            // 
-            this.MaxPassGrade_SaveButton.Animated = true;
-            this.MaxPassGrade_SaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.MaxPassGrade_SaveButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxPassGrade_SaveButton.BorderRadius = 5;
-            this.MaxPassGrade_SaveButton.BorderThickness = 2;
-            this.MaxPassGrade_SaveButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.MaxPassGrade_SaveButton.CheckedState.Parent = this.MaxPassGrade_SaveButton;
-            this.MaxPassGrade_SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.MaxPassGrade_SaveButton.CustomImages.Parent = this.MaxPassGrade_SaveButton;
-            this.MaxPassGrade_SaveButton.FillColor = System.Drawing.Color.White;
-            this.MaxPassGrade_SaveButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.MaxPassGrade_SaveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxPassGrade_SaveButton.HoverState.FillColor = System.Drawing.Color.White;
-            this.MaxPassGrade_SaveButton.HoverState.Parent = this.MaxPassGrade_SaveButton;
-            this.MaxPassGrade_SaveButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.MaxPassGrade_SaveButton.Location = new System.Drawing.Point(245, 63);
-            this.MaxPassGrade_SaveButton.Margin = new System.Windows.Forms.Padding(4);
-            this.MaxPassGrade_SaveButton.Name = "MaxPassGrade_SaveButton";
-            this.MaxPassGrade_SaveButton.PressedDepth = 20;
-            this.MaxPassGrade_SaveButton.ShadowDecoration.Parent = this.MaxPassGrade_SaveButton;
-            this.MaxPassGrade_SaveButton.Size = new System.Drawing.Size(89, 44);
-            this.MaxPassGrade_SaveButton.TabIndex = 86;
-            this.MaxPassGrade_SaveButton.Text = "LƯU";
-            this.MaxPassGrade_SaveButton.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
             // MaxGrade_Box
             // 
@@ -207,17 +175,18 @@
             this.MaxGrade_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.MaxGrade_Box.HoverState.Parent = this.MaxGrade_Box;
             this.MaxGrade_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.MaxGrade_Box.Location = new System.Drawing.Point(45, 64);
-            this.MaxGrade_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.MaxGrade_Box.Location = new System.Drawing.Point(89, 52);
+            this.MaxGrade_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaxGrade_Box.Name = "MaxGrade_Box";
             this.MaxGrade_Box.PasswordChar = '\0';
             this.MaxGrade_Box.PlaceholderText = "";
+            this.MaxGrade_Box.ReadOnly = true;
             this.MaxGrade_Box.SelectedText = "";
             this.MaxGrade_Box.ShadowDecoration.BorderRadius = 12;
             this.MaxGrade_Box.ShadowDecoration.Depth = 5;
             this.MaxGrade_Box.ShadowDecoration.Parent = this.MaxGrade_Box;
             this.MaxGrade_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MaxGrade_Box.Size = new System.Drawing.Size(187, 44);
+            this.MaxGrade_Box.Size = new System.Drawing.Size(101, 36);
             this.MaxGrade_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.MaxGrade_Box.TabIndex = 42;
             this.MaxGrade_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -262,8 +231,7 @@
             this.GridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.GridView.EnableHeadersVisualStyles = false;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.GridView.Location = new System.Drawing.Point(0, 405);
-            this.GridView.Margin = new System.Windows.Forms.Padding(4);
+            this.GridView.Location = new System.Drawing.Point(0, 329);
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -277,7 +245,7 @@
             this.GridView.RowHeadersVisible = false;
             this.GridView.RowHeadersWidth = 51;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.GridView.Size = new System.Drawing.Size(1232, 442);
+            this.GridView.Size = new System.Drawing.Size(924, 359);
             this.GridView.TabIndex = 103;
             this.GridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.GridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -342,10 +310,9 @@
             this.SubjectLabel.BackColor = System.Drawing.Color.Transparent;
             this.SubjectLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.SubjectLabel.Location = new System.Drawing.Point(0, 350);
-            this.SubjectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SubjectLabel.Location = new System.Drawing.Point(0, 284);
             this.SubjectLabel.Name = "SubjectLabel";
-            this.SubjectLabel.Size = new System.Drawing.Size(1232, 50);
+            this.SubjectLabel.Size = new System.Drawing.Size(924, 41);
             this.SubjectLabel.TabIndex = 113;
             this.SubjectLabel.Text = "DANH SÁCH GIÁO VIÊN PHỤ TRÁCH MÔN NGỮ VĂN";
             this.SubjectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -356,10 +323,9 @@
             this.Notify_Label.BackColor = System.Drawing.Color.Transparent;
             this.Notify_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Notify_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Notify_Label.Location = new System.Drawing.Point(0, 146);
-            this.Notify_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Notify_Label.Location = new System.Drawing.Point(0, 119);
             this.Notify_Label.Name = "Notify_Label";
-            this.Notify_Label.Size = new System.Drawing.Size(1232, 50);
+            this.Notify_Label.Size = new System.Drawing.Size(924, 41);
             this.Notify_Label.TabIndex = 114;
             this.Notify_Label.Text = "THÔNG BÁO ĐẾN GIÁO VIÊN BỘ MÔN NGỮ VĂN";
             this.Notify_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -387,8 +353,8 @@
             this.NotifyContent_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.NotifyContent_Box.HoverState.Parent = this.NotifyContent_Box;
             this.NotifyContent_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.NotifyContent_Box.Location = new System.Drawing.Point(12, 199);
-            this.NotifyContent_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.NotifyContent_Box.Location = new System.Drawing.Point(9, 162);
+            this.NotifyContent_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NotifyContent_Box.Multiline = true;
             this.NotifyContent_Box.Name = "NotifyContent_Box";
             this.NotifyContent_Box.PasswordChar = '\0';
@@ -398,7 +364,7 @@
             this.NotifyContent_Box.ShadowDecoration.Depth = 5;
             this.NotifyContent_Box.ShadowDecoration.Parent = this.NotifyContent_Box;
             this.NotifyContent_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.NotifyContent_Box.Size = new System.Drawing.Size(1208, 148);
+            this.NotifyContent_Box.Size = new System.Drawing.Size(906, 120);
             this.NotifyContent_Box.TabIndex = 87;
             // 
             // SendNotify_Button
@@ -419,19 +385,18 @@
             this.SendNotify_Button.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.SendNotify_Button.HoverState.Parent = this.SendNotify_Button;
             this.SendNotify_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.SendNotify_Button.Location = new System.Drawing.Point(1120, 293);
-            this.SendNotify_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.SendNotify_Button.Location = new System.Drawing.Point(840, 238);
             this.SendNotify_Button.Name = "SendNotify_Button";
             this.SendNotify_Button.PressedDepth = 20;
             this.SendNotify_Button.ShadowDecoration.Parent = this.SendNotify_Button;
-            this.SendNotify_Button.Size = new System.Drawing.Size(89, 44);
+            this.SendNotify_Button.Size = new System.Drawing.Size(67, 36);
             this.SendNotify_Button.TabIndex = 87;
             this.SendNotify_Button.Text = "LƯU";
             this.SendNotify_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             // 
             // SubjectModify_SubTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.SendNotify_Button);
@@ -441,9 +406,8 @@
             this.Controls.Add(this.GridView);
             this.Controls.Add(this.guna2GroupBox1);
             this.Controls.Add(this.OralTest_GroupBox);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SubjectModify_SubTab";
-            this.Size = new System.Drawing.Size(1232, 847);
+            this.Size = new System.Drawing.Size(924, 688);
             this.Load += new System.EventHandler(this.SubjectModify_SubTab_Load);
             this.OralTest_GroupBox.ResumeLayout(false);
             this.guna2GroupBox1.ResumeLayout(false);
@@ -457,7 +421,6 @@
         private Guna.UI2.WinForms.Guna2TextBox PassGrade_Box;
         private Guna.UI2.WinForms.Guna2Button PassGrade_SaveButton;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
-        private Guna.UI2.WinForms.Guna2Button MaxPassGrade_SaveButton;
         private Guna.UI2.WinForms.Guna2TextBox MaxGrade_Box;
         private Guna.UI2.WinForms.Guna2DataGridView GridView;
         private System.Windows.Forms.Label SubjectLabel;

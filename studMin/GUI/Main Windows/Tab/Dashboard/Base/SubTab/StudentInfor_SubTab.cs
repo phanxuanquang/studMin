@@ -57,18 +57,9 @@ namespace studMin
                         var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
                         foreach (var student in listStudent)
                         {
-                            string newStudentID = student.ID.ToString().Substring(0, 8).ToUpper();
-                            string newStudentStatus = String.Empty;
-                            if (student.Status.ToString() == "1")
-                            {
-                                newStudentStatus = "Đang học";
-                            }
-                            else
-                            {
-                                newStudentStatus = "Đã nghỉ học";
-                            }
-                            DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, newStudentID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
-                        }  
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            students.Add(student);
+                        }
                     }
                 }
                 else
@@ -80,17 +71,8 @@ namespace studMin
                         var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
                         foreach (var student in listStudent)
                         {
-                            string newStudentID = student.ID.ToString().Substring(0, 8).ToUpper();
-                            string newStudentStatus = String.Empty;
-                            if (student.Status.ToString() == "1")
-                            {
-                                newStudentStatus = "Đang học";
-                            }
-                            else
-                            {
-                                newStudentStatus = "Đã nghỉ học";
-                            }
-                            DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, newStudentID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            students.Add(student);
                         }
                     }
                 } 
@@ -132,7 +114,17 @@ namespace studMin
         {
             foreach (var student in students)
             {
-                DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
+                string newStudentID = student.ID.ToString().Substring(0, 8).ToUpper();
+                string newStudentStatus = String.Empty;
+                if (student.Status.ToString() == "1")
+                {
+                    newStudentStatus = "Đang học";
+                }
+                else
+                {
+                    newStudentStatus = "Đã nghỉ học";
+                }
+                DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, newStudentID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
             }
         }
 
