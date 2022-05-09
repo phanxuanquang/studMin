@@ -159,6 +159,7 @@ namespace studMin.Action.Excel
             private int _start;
             private int _duration;
             private int _date;
+            private Guid _id;
             private enum _session
             {
                 Morning,
@@ -167,6 +168,12 @@ namespace studMin.Action.Excel
             private _session session;
             private string _subject;
             private string _class;
+
+            public Guid IDTeacher
+            {
+                get { return _id; }
+                set { _id = value; }
+            }
 
             public string Lop
             {

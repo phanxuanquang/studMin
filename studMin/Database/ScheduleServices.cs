@@ -29,6 +29,11 @@ namespace studMin.Database
             return DataProvider.Instance.Database.SCHEDULEs.FirstOrDefault();
         }
 
+        public SCHEDULE GetNewestSchedule()
+        {
+            return DataProvider.Instance.Database.SCHEDULEs.OrderByDescending(schedule => schedule.SCHOOLYEAR).ThenBy(schedule => schedule.SEMESTER.NAME).ThenBy(schedule => schedule.SCHEDULENAME).Take(1).FirstOrDefault();
+        }
+
         public SCHEDULE CreateSchedule(DateTime dayApply, string schoolYear, string semester)
         {
             try
