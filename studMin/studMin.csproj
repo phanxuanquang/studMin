@@ -126,6 +126,7 @@
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
     <Compile Include="Action\Excel\SummarySemester.cs" />
+    <Compile Include="Database\ParameterServices.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff_Role\AddStudent_Form.cs">
       <SubType>Form</SubType>
     </Compile>

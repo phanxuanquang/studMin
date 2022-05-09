@@ -35,7 +35,14 @@ namespace studMin
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
         {
             double numericTest;
-
+            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("THANDIEM");
+            int minScore = 0;
+            int maxScore = 10;
+            if (limitScore != null)
+            {
+                minScore = (int)limitScore.MIN;
+                maxScore = (int)limitScore.MAX;
+            }
             try
             {
                 if (textBox.Text == String.Empty)
@@ -52,9 +59,9 @@ namespace studMin
                 return;
             }
 
-            if (numericTest < 0 || numericTest > 10)
+            if (numericTest < minScore || numericTest > maxScore)
             {
-                MessageBox.Show("Điểm phải nằm trong khoảng từ 0 đến 10. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Điểm phải nằm trong khoảng từ {minScore} đến {maxScore}. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
                 textBox.Focus();
             }
@@ -295,12 +302,19 @@ namespace studMin
 
         private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+                if (e.RowIndex >= 0)
+                {
+                LoadScore();
+            }
+            
+        }
+
+        private void LoadScore()
+        {
             mDataGridView.Rows.Clear();
             m15DataGridView.Rows.Clear();
             m45DataGridView.Rows.Clear();
             finalDataGridView.Rows.Clear();
-            if (e.RowIndex >= 0)
-            {
                 STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
                 List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
                 sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
@@ -309,7 +323,6 @@ namespace studMin
                 sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
 
                 ResetComboBox();
-            }
         }
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -466,6 +479,7 @@ namespace studMin
                 }
                 else MidTermTestScore_Box.Text = string.Empty;
             }
+            LoadScore();
         }
 
         private void UpdateScore(BindingSource binding, int index, double score, string roleScore)

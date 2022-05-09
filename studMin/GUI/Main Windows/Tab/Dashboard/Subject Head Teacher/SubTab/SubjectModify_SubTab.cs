@@ -40,6 +40,8 @@ namespace studMin
 
                 MessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            DataProvider.Instance.Database.SaveChanges();
         }
 
         private void SubjectModify_SubTab_Load(object sender, EventArgs e)
@@ -54,6 +56,23 @@ namespace studMin
                     GridView.Rows.Add(listTeachers[i].ID, listTeachers[i].INFOR.FIRSTNAME + " " + listTeachers[i].INFOR.LASTNAME, listTeachers[i].INFOR.DAYOFBIRTH, listTeachers[i].USER.EMAIL, "1/1/2022");
                 }
             }
+
+            LoadScoreParameter();
+        }
+
+        private void LoadScoreParameter()
+        {
+            SUBJECT subject = TeacherServices.Instance.GetSubjectOfTeacher();
+            int passScore = (int)subject.PASSSCORE;
+            int maxScore = 10;
+            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("THANDIEM");
+            if (limitScore != null)
+            {
+                maxScore = (int)limitScore.MAX;
+            }
+
+            PassGrade_Box.Text = passScore.ToString();
+            MaxGrade_Box.Text = maxScore.ToString();
         }
     }
 }
