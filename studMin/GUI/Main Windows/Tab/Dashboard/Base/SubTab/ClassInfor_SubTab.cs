@@ -28,12 +28,6 @@ namespace studMin
                 return;
             }
 
-            if (Semester_ComboBox.SelectedIndex == 0)
-            {
-                MessageBox.Show("Vui lòng chọn học kỳ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
             string className = Class_ComboBox.SelectedItem.ToString();
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
