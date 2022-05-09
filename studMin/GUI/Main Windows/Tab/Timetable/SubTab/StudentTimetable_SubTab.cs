@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using studMin.Database.LoginServices;
+using studMin.Database.Models;
+using studMin.Database;
 
 namespace studMin
 {
@@ -18,6 +20,11 @@ namespace studMin
         private BackgroundWorker backgroundWorker = null;
         Action.Excel.ScheduleAllTeacher.Info importInfo = null;
         List<string> ListClass = null;
+        CLASS currentClass;
+        int semester;
+        string schoolYear;
+        bool isFirstTimeImported = true;
+
 
         public StudentTimetable_SubTab()
         {
@@ -58,18 +65,18 @@ namespace studMin
         {
             Action.Excel.ScheduleStudent.Info info = new Action.Excel.ScheduleStudent.Info()
             {
-                GiaoVien = "Nguyễn Ngân Hà",
-                HocKy = 1,
+                GiaoVien = currentClass.TEACHER.INFOR.FIRSTNAME + " " + currentClass.TEACHER.INFOR.LASTNAME,
+                HocKy = semester,
                 NgayApDung = DateTime.Now,
-                Lop = "12A1",
-                NamHoc = "2022 - 2023"
+                Lop = currentClass.CLASSNAME,
+                NamHoc = currentClass.SCHOOLYEAR + " - " + (int.Parse(currentClass.SCHOOLYEAR) + 1),
             };
 
             // lấy dữ liệu thời khóa biểu từ database
 
             List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>();
 
-            var classLesson = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == "12A1").FirstOrDefault();
+            var classLesson = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == currentClass.CLASSNAME).FirstOrDefault();
             var lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDCLASS == classLesson.ID).ToList();
 
             foreach (var item in lesson)
@@ -111,6 +118,18 @@ namespace studMin
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
+            if (Semester_ComboBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Vui lòng chọn học kỳ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (SchoolYear_ComboBox.SelectedIndex == 0)
+            {
+                MessageBox.Show("Vui lòng chọn năm học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (backgroundWorker == null)
             {
                 backgroundWorker = new BackgroundWorker();
@@ -142,11 +161,15 @@ namespace studMin
             backgroundWorker.DoWork += ImportExcel_DoWork;
             backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
             backgroundWorker.RunWorkerAsync(importPath);
+
+            isFirstTimeImported = false;
         }
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Class_ComboBox.DataSource = ListClass;
+
+            if (currentClass == null) return;
 
             if (MessageBox.Show("Bạn có muốn đưa dữ liệu lên cơ sở dữ liệu không?", "Đưa TKB lên CSDL", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -269,12 +292,24 @@ namespace studMin
             }
         }
 
+        private void ComboBoxesChangeHandler()
+        {
+            currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(Class_ComboBox.SelectedItem.ToString(), schoolYear);
+
+            if (currentClass == null)
+            {
+                string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
+                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            FilterTimeTableByClass(currentClass.CLASSNAME);
+        }
+
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // if (Class_ComboBox.SelectedIndex == 0) return;
-
-            string className = Class_ComboBox.SelectedItem.ToString();
-            FilterTimeTableByClass(className);
+            ComboBoxesChangeHandler();
+            
         }
 
         bool IsTheSameCellValue(int column, int row)
@@ -311,6 +346,21 @@ namespace studMin
             {
                 e.Value = "";
                 e.FormattingApplied = true;
+            }
+        }
+
+        private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            semester = Semester_ComboBox.SelectedIndex == 1 ? 0 : 1;
+        }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+
+            if (!isFirstTimeImported)
+            {
+                ComboBoxesChangeHandler();
             }
         }
     }
