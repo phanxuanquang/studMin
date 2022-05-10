@@ -24,7 +24,7 @@ namespace studMin
             classInfor_SubTab = new ClassInfor_SubTab();
             studentInfor_SubTab = new StudentInfor_SubTab();
 
-            Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
+            //Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
         }
 
 
