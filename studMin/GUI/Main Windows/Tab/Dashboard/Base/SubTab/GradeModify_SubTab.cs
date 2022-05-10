@@ -118,7 +118,7 @@ namespace studMin
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (!(Class_ComboBox.DataSource as List<string>).Contains(importInfo.Lop) && MessageBox.Show("đưa điểm vào csdl?", "IMPORT DATABASE", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("đưa điểm vào csdl?", "IMPORT DATABASE", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
                 CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(importInfo.Lop);
@@ -302,11 +302,10 @@ namespace studMin
 
         private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-                if (e.RowIndex >= 0)
-                {
+            if (e.RowIndex >= 0)
+            {
                 LoadScore();
             }
-            
         }
 
         private void LoadScore()
@@ -315,14 +314,15 @@ namespace studMin
             m15DataGridView.Rows.Clear();
             m45DataGridView.Rows.Clear();
             finalDataGridView.Rows.Clear();
-                STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
-                List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
-                sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-                sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-                sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-                sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
 
-                ResetComboBox();
+            STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
+            List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
+            sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+            sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+            sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+            sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+
+            ResetComboBox();
         }
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -45,20 +45,20 @@ namespace studMin
 
             List<REPORTSEMESTER> listReports = ReportSemesterServices.Instance.GetReports();
 
-            string semesterName = Semester_ComboBox.SelectedIndex == 1 ? "1" : "2";
+            string semesterName = Semester_ComboBox.SelectedIndex == 1 ? "0" : "1";
             SEMESTER selectedSemester = GetSelectedSemester(semesterName);
 
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             List<CLASS> listClassesOfSchoolYear = ClassServices.Instance.GetClassBySchoolYear(schoolYear);
 
-            List<Action.Excel.SummarySemester.Item> list = new List<Action.Excel.SummarySemester.Item>();
+            List<Action.Excel.ReportSemester.Item> list = new List<Action.Excel.ReportSemester.Item>();
 
             foreach (var report in listReports)
             {
                 CLASS currentClass = listClassesOfSchoolYear.Find(item => item.ID == report.IDCLASS);
                 if (report.IDSEMESTER == selectedSemester.ID && currentClass != null)
                 {
-                    Action.Excel.SummarySemester.Item item = new Action.Excel.SummarySemester.Item()
+                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
                     {
                         Lop = currentClass.CLASSNAME,
                         SiSo = currentClass.STUDENTs.Count,
@@ -69,22 +69,22 @@ namespace studMin
             }
 
             string formattedSchoolYear = int.Parse(schoolYear) + " - " + (int.Parse(schoolYear) + 1);
-            Action.Excel.SummarySemester.SummaryInfo info = new Action.Excel.SummarySemester.SummaryInfo()
+            Action.Excel.ReportSemester.Info info = new Action.Excel.ReportSemester.Info()
             {
                 HocKy = int.Parse(semesterName),
                 NamHoc = formattedSchoolYear
             };
 
-            Action.Excel.SummarySemester summarySemester = new Action.Excel.SummarySemester();
-            summarySemester.InsertInfo(info);
+            Action.Excel.ReportSemester ReportSemester = new Action.Excel.ReportSemester();
+            ReportSemester.InsertInfo(info);
 
-            foreach (Action.Excel.SummarySemester.Item item in list)
+            foreach (Action.Excel.ReportSemester.Item item in list)
             {
-                summarySemester.InsertItem(item);
+                ReportSemester.InsertItem(item);
             }
 
-            summarySemester.ShowExcel();
-            summarySemester.Save(exportPath);
+            ReportSemester.ShowExcel();
+            ReportSemester.Save(exportPath);
         }
 
         private SEMESTER GetSelectedSemester(string semester)

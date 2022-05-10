@@ -7,29 +7,37 @@ using Microsoft.Office.Interop.Excel;
 
 namespace studMin.Action.Excel
 {
-    internal class SummarySemester : CommonExcel
+    internal abstract class ReportCommon : CommonExcel
     {
         private const int StartColumnIndex = 1;
-        private const int StartRowIndex = 7;
+        private const int StartRowIndex = 6;
+        protected string locationSemester;
+        protected string locationSchoolYear;
+        protected string locationTitle = "A1";
+        protected string title;
+        List<Item> data = null;
 
-        private (string, string) HocKy(int num)
+        protected (string, string) HocKy(int num)
         {
             string convert = null;
             switch (num)
             {
-                case 1:
+                case 0:
                     convert = "I";
                     break;
-                case 2:
+                case 1:
                     convert = "II";
                     break;
+                case 2:
+                    convert = "Hè";
+                    break;
             }
-            return ("B2", String.Format("Học kỳ: {0}", convert));
+            return (locationSemester, String.Format("Học kỳ: {0}", convert));
         }
 
-        private (string, string) NamHoc(string msg)
+        protected (string, string) NamHoc(string msg)
         {
-            return ("C2", String.Format("Năm học: {0}", msg));
+            return (locationSchoolYear, String.Format("Năm học: {0} - {1}", msg, (int.Parse(msg) + 1).ToString()));
         }
 
         public class Item
@@ -37,7 +45,6 @@ namespace studMin.Action.Excel
             private string className;
             private int quantity;
             private int passQuantity;
-            private double passRatio;
 
             public string Lop
             {
@@ -59,68 +66,26 @@ namespace studMin.Action.Excel
 
             public double TiLeDat
             {
-                get { return passRatio; }
-                set { passRatio = Math.Round(1.0 * SoLuongDat / SiSo, 2); }
+                get { return Math.Round(100.0 * SoLuongDat / SiSo, 2); }
             }
         }
 
-        List<Item> data;
-        public SummarySemester()
+        public ReportCommon()
         {
-            template = StoragePath.TemplateSummarySemester;
+            template = StoragePath.TemplateReport;
             data = new List<Item>();
             InitExcel();
         }
 
-        public class SummaryInfo
-        {
-            private int semester;
-            private string schoolYear;
-
-            public int HocKy
-            {
-                get { return semester; }
-                set { semester = value; }
-            }
-
-            public string NamHoc
-            {
-                get { return schoolYear; }
-                set { schoolYear = value; }
-            }
-        }
-
-        public override void InsertInfo(dynamic info)
-        {
-            try
-            {
-                if (info == null) return;
-
-                SummaryInfo clone = info as SummaryInfo;
-
-                (string, string) Info_HocKy = HocKy(clone.HocKy);
-                (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
-
-                sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
-                sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
-            } 
-            catch
-            {
-                throw new Exception();
-            }
-        }
-
-        int rowUsed = 1;
         public override void InsertItem(dynamic item)
         {
             Item clone = item as Item;
-
             try
             {
                 if (item == null) return;
 
                 int indexColumn = StartColumnIndex;
-                int lastRow = FindLastRowUsed() + rowUsed;
+                int lastRow = FindLastRowUsed() + 1;
                 int No = lastRow - StartRowIndex + 1;
 
                 string columnName = GetExcelColumnName(indexColumn++);
@@ -133,14 +98,15 @@ namespace studMin.Action.Excel
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.SiSo;
 
                 columnName = GetExcelColumnName(indexColumn++);
-                sheet.get_Range(columnName + lastRow.ToString()).Value = clone.SoLuongDat;
+                sheet.get_Range(columnName + lastRow.ToString()).Formula = clone.SoLuongDat;
 
                 columnName = GetExcelColumnName(indexColumn++);
-                sheet.get_Range(columnName + lastRow.ToString()).Value = clone.TiLeDat;
-
-                rowUsed++;
+                sheet.get_Range(columnName + lastRow.ToString()).Formula = String.Format("{0}%", clone.TiLeDat);
             }
-            catch { }
+            catch
+            {
+                throw new Exception();
+            }
         }
 
         public override object SelectInfo()
