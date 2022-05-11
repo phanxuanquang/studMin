@@ -72,7 +72,7 @@ namespace studMin
             }
 
             PassGrade_Box.Text = passScore.ToString();
-            MaxGrade_Box.Text = maxScore.ToString();
+            /*MaxGrade_Box.Text = maxScore.ToString();*/
         }
     }
 }

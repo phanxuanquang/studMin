@@ -160,41 +160,43 @@ namespace studMin
 
         private void Search_Box_TextChanged(object sender, EventArgs e)
         {
-            if (Class_ComboBox.Text != "Mọi lớp")
+            /*if (Class_ComboBox.Text == "Mọi lớp")
             {
                 MessageBox.Show("Bạn phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                try
+                
+            }*/
+
+            try
+            {
+                CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                cm.SuspendBinding();
+
+                for (int i = 0; i < GridView.RowCount; i++)
                 {
-                    CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
-                    cm.SuspendBinding();
-
-                    for (int i = 0; i < GridView.RowCount; i++)
+                    if (GridView.Rows[i].Cells[0].Value != null &&
+                        GridView.Rows[i].Cells[1].Value != null)
                     {
-                        if (GridView.Rows[i].Cells[0].Value != null && 
-                            GridView.Rows[i].Cells[1].Value != null)
-                        {
-                            string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
+                        string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
 
-                            if (fullName.Contains(Search_Box.Text.ToLower()))
-                            {
-                                GridView.Rows[i].Visible = true;
-                            }
-                            else
-                            {
-                                GridView.Rows[i].Visible = false;
-                            }
+                        if (fullName.Contains(Search_Box.Text.ToLower()))
+                        {
+                            GridView.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            GridView.Rows[i].Visible = false;
                         }
                     }
+                }
 
-                    cm.ResumeBinding();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                cm.ResumeBinding();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
