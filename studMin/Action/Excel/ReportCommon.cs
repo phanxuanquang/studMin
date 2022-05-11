@@ -23,13 +23,13 @@ namespace studMin.Action.Excel
             switch (num)
             {
                 case 0:
-                    convert = "I";
+                    convert = "Hè";
                     break;
                 case 1:
-                    convert = "II";
+                    convert = "I";
                     break;
                 case 2:
-                    convert = "Hè";
+                    convert = "II";
                     break;
             }
             return (locationSemester, String.Format("Học kỳ: {0}", convert));
@@ -37,7 +37,7 @@ namespace studMin.Action.Excel
 
         protected (string, string) NamHoc(string msg)
         {
-            return (locationSchoolYear, msg);
+            return (locationSchoolYear, String.Format("Năm học: {0}", msg));
         }
 
         public class Item

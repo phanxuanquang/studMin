@@ -77,7 +77,6 @@ namespace studMin
             
 
             INFOR inforTeacher = currentClass.TEACHER.INFOR;
-            string startYear = currentClass.SCHOOLYEAR;
 
             Action.Excel.ListStudent.Info info = new Action.Excel.ListStudent.Info()
             {
@@ -89,7 +88,7 @@ namespace studMin
                 ThongTinThem = "Danh sách lớp"
             };
 
-            studMin.Action.Excel.ListStudent students = new studMin.Action.Excel.ListStudent();
+            Action.Excel.ListStudent students = new Action.Excel.ListStudent();
 
             students.InsertInfo(info);
             foreach (Action.Excel.ListStudent.Item item in list)
@@ -199,7 +198,7 @@ namespace studMin
             this.BeginInvoke((System.Action)(() =>
             {
 
-                List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
+                List<CLASS> listClasses = ClassServices.Instance.GetClasss();
 
                 List<string> ListClass = new List<string>();
                 List<string> ListSchoolYear = new List<string>();

@@ -33,19 +33,9 @@ namespace studMin
                 return;
             }
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel | *.xlsx";
-
-            string exportPath;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                exportPath = saveFileDialog.FileName;
-            }
-            else return;
-
             List<REPORTSEMESTER> listReports = ReportSemesterServices.Instance.GetReports();
 
-            string semesterName = Semester_ComboBox.SelectedIndex == 1 ? "0" : "1";
+            string semesterName = Semester_ComboBox.SelectedIndex == 1 ? "1" : "2";
             SEMESTER selectedSemester = GetSelectedSemester(semesterName);
 
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
@@ -67,6 +57,22 @@ namespace studMin
                     list.Add(item);
                 }
             }
+
+            if (list.Count == 0)
+            {
+                MessageBox.Show("Hiện tại chưa có dữ liệu tương ứng với học kỳ và năm học bạn đã chọn, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel | *.xlsx";
+
+            string exportPath;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = saveFileDialog.FileName;
+            }
+            else return;
 
             string formattedSchoolYear = int.Parse(schoolYear) + " - " + (int.Parse(schoolYear) + 1);
             Action.Excel.ReportSemester.Info info = new Action.Excel.ReportSemester.Info()
