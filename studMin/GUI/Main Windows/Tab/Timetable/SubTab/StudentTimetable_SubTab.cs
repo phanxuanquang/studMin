@@ -19,12 +19,42 @@ namespace studMin
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
         private BackgroundWorker backgroundWorker = null;
         Action.Excel.ScheduleAllTeacher.Info importInfo = null;
-        List<string> ListClass = null;
-        CLASS currentClass;
-        int semester;
-        string schoolYear;
-        bool isFirstTimeImported = true;
+        private GUI.WaitControl waitControl = null;
 
+        BindingSource listClass = null;
+        BindingSource listSemester = null;
+        BindingSource listSchoolYear = null;
+        BindingSource listDateApply = null;
+
+        private class SCHEDULE4COMBOBOX
+        {
+            private List<SCHEDULE> _grouping;
+            private string _key;
+
+            public string NamHoc { get { return _key; } }
+            public List<SCHEDULE> TKB_Nam { get { return _grouping; } }
+
+            public SCHEDULE4COMBOBOX(string NamHoc, List<SCHEDULE> TKB_Nam)
+            {
+                _key = NamHoc;
+                _grouping = TKB_Nam;
+            }
+        }
+
+        private class CLASS4GRIDVIEW
+        {
+            private Guid _id;
+            private string _name;
+
+            public Guid ID { get { return _id; } }
+            public string Lop { get { return _name; } }
+
+            public CLASS4GRIDVIEW(Guid ID, string Lop)
+            {
+                _id = ID;
+                _name = Lop;
+            }
+        }
 
         public StudentTimetable_SubTab()
         {
@@ -63,21 +93,51 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null || listClass.Current == null) return;
+
+            string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
+            string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
+            DateTime dateApply = DateTime.ParseExact((listDateApply.Current as string), "dd/MM/yyyy", null);
+            CLASS4GRIDVIEW @class = (listClass.Current as CLASS4GRIDVIEW);
+
+            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue)
+            {
+                MessageBox.Show("Vui lòng chọn đầy đủ thông tin");
+                return;
+            }
+
+            SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
+                schedule => schedule.SCHOOLYEAR == schoolYear
+                && schedule.SEMESTER.NAME == semester
+                && schedule.DATEAPPLY.Value.Equals(dateApply))
+                .FirstOrDefault();
+
+            if (findSchedule == null)
+            {
+                MessageBox.Show("Lỗi - Không tìm thấy TKB");
+                return;
+            }
+
+            List<LESSON> lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDSCHEDULE == findSchedule.ID && item.IDCLASS == @class.ID).ToList();
+
+            if (lesson == null)
+            {
+                MessageBox.Show("Lỗi - Không tìm thấy các môn giáo viên dạy");
+
+            }
+
             Action.Excel.ScheduleStudent.Info info = new Action.Excel.ScheduleStudent.Info()
             {
-                GiaoVien = currentClass.TEACHER.INFOR.FIRSTNAME + " " + currentClass.TEACHER.INFOR.LASTNAME,
-                HocKy = semester,
-                NgayApDung = DateTime.Now,
-                Lop = currentClass.CLASSNAME,
-                NamHoc = currentClass.SCHOOLYEAR + " - " + (int.Parse(currentClass.SCHOOLYEAR) + 1),
+                GiaoVien = lesson[0].CLASS.TEACHER.INFOR.FIRSTNAME + " " + lesson[0].CLASS.TEACHER.INFOR.LASTNAME,
+                HocKy  = Methods.ParseSemester(findSchedule.SEMESTER.NAME),
+                NgayApDung = findSchedule.DATEAPPLY.Value,
+                Lop = @class.Lop,
+                NamHoc = lesson[0].CLASS.SCHOOLYEAR + " - " + (int.Parse(lesson[0].CLASS.SCHOOLYEAR) + 1),
             };
 
             // lấy dữ liệu thời khóa biểu từ database
 
             List<Action.Excel.ScheduleAllTeacher.Item> list = new List<Action.Excel.ScheduleAllTeacher.Item>();
-
-            var classLesson = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == currentClass.CLASSNAME).FirstOrDefault();
-            var lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDCLASS == classLesson.ID).ToList();
 
             foreach (var item in lesson)
             {
@@ -161,16 +221,10 @@ namespace studMin
             backgroundWorker.DoWork += ImportExcel_DoWork;
             backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
             backgroundWorker.RunWorkerAsync(importPath);
-
-            isFirstTimeImported = false;
         }
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Class_ComboBox.DataSource = ListClass;
-
-            if (currentClass == null) return;
-
             if (MessageBox.Show("Bạn có muốn đưa dữ liệu lên cơ sở dữ liệu không?", "Đưa TKB lên CSDL", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (backgroundWorker == null)
@@ -231,25 +285,9 @@ namespace studMin
             data = (List<Action.Excel.ScheduleAllTeacher.Item>)scheduleAllTeacher.SelectItem(importInfo.NgayApDung);
 
             scheduleAllTeacher.Dispose();
-
-            if (ListClass == null)
-            {
-                ListClass = new List<string>();
-            }
-            else
-            {
-                ListClass.Clear();
-            }
-            for (int index = 0; index < data.Count; index++)
-            {
-                if (!ListClass.Contains(data[index].Lop))
-                {
-                    ListClass.Add(data[index].Lop);
-                }
-            }
         }
 
-        private void FilterTimeTableByClass(string className)
+        private void FilterTimeTableByClass(Guid idClass)
         {
             if (data == null) return;
 
@@ -276,11 +314,11 @@ namespace studMin
                 else dataSource.Rows.Add();
             }
 
-            Timetable_GridView.DataSource = dataSource;
+            Timetable_GridView.Invoke(new System.Action(() => { Timetable_GridView.DataSource = dataSource; }));
 
             for (int index = 0; index < data.Count; index++)
             {
-                if (data[index].Lop == className)
+                if (data[index].IDClass == idClass)
                 {
                     int offset = data[index].Buoi == "Afternoon" ? 6 : 0;
 
@@ -292,24 +330,18 @@ namespace studMin
             }
         }
 
-        private void ComboBoxesChangeHandler()
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(Class_ComboBox.SelectedItem.ToString(), schoolYear);
+            if (listClass.Current == null) return;
+            Guid idClass = (listClass.Current as CLASS4GRIDVIEW).ID;
 
-            if (currentClass == null)
+            /*if (@class == null)
             {
                 string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
                 MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }
-            FilterTimeTableByClass(currentClass.CLASSNAME);
-        }
-
-        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // if (Class_ComboBox.SelectedIndex == 0) return;
-            ComboBoxesChangeHandler();
-            
+            }*/
+            FilterTimeTableByClass(idClass);
         }
 
         bool IsTheSameCellValue(int column, int row)
@@ -349,19 +381,145 @@ namespace studMin
             }
         }
 
-        private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void StudentTimetable_SubTab_Load(object sender, EventArgs e)
         {
-            semester = Semester_ComboBox.SelectedIndex == 1 ? 0 : 1;
+            waitControl = new GUI.WaitControl(this.ParentForm);
+
+            listClass = new BindingSource();
+            listSemester = new BindingSource();
+            listSchoolYear = new BindingSource();
+            listDateApply = new BindingSource();
+
+            listClass.DataSource = typeof(CLASS4GRIDVIEW);
+            listSemester.DataSource = typeof(string);
+            listSchoolYear.DataSource = typeof(SCHEDULE4COMBOBOX);
+            listDateApply.DataSource = typeof(string);
+
+            listSchoolYear.CurrentChanged += ListSchoolYear_CurrentChanged;
+            listSemester.CurrentChanged += ListSemester_CurrentChanged;
+
+            listSchoolYear.CurrentChanged += ListClassChanged;
+            listSemester.CurrentChanged += ListClassChanged;
+            listDateApply.CurrentChanged += ListClassChanged;
+
+            listClass.CurrentChanged += Class_ComboBox_SelectedIndexChanged;
+
+            Class_ComboBox.DataSource = listClass;
+            Semester_ComboBox.DataSource = listSemester;
+            SchoolYear_ComboBox.DataSource = listSchoolYear;
+            DateApply_ComboBox.DataSource = listDateApply;
+
+            if (backgroundWorker == null)
+            {
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                return;
+            }
+
+            backgroundWorker.DoWork += LoadScheduleFromDatabase_DoWork;
+            backgroundWorker.RunWorkerCompleted += LoadScheduleFromDatabase_RunrWorkerCompleted;
+            backgroundWorker.RunWorkerAsync();
         }
 
-        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListClassChanged(object sender, EventArgs e)
         {
-            schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+            if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null) return;
+            string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
+            string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
+            DateTime dateApply = DateTime.ParseExact((listDateApply.Current as string), "dd/MM/yyyy", null);
 
-            if (!isFirstTimeImported)
+            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue) return;
+
+            SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
+                schedule => schedule.SCHOOLYEAR == schoolYear
+                && schedule.SEMESTER.NAME == semester
+                && schedule.DATEAPPLY.Value.Equals(dateApply))
+                .FirstOrDefault();
+
+            if (findSchedule == null) return;
+
+            Guid idTeacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID;
+            List<LESSON> lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDSCHEDULE == findSchedule.ID && (item.IDTEACHER == idTeacher || item.CLASS.IDTEACHER == idTeacher)).ToList();
+
+            data = new List<studMin.Action.Excel.ScheduleAllTeacher.Item>();
+            List<CLASS4GRIDVIEW> sourceBinding = new List<CLASS4GRIDVIEW>();
+
+            for (int index = 0; index < lesson.Count; index++)
             {
-                ComboBoxesChangeHandler();
+                data.Add(new studMin.Action.Excel.ScheduleAllTeacher.Item()
+                {
+                    IDTeacher = lesson[index].IDTEACHER,
+                    IDClass = lesson[index].IDCLASS,
+                    GiaoVien = lesson[index].TEACHER.INFOR.FIRSTNAME + " " + lesson[index].TEACHER.INFOR.LASTNAME,
+                    Lop = lesson[index].CLASS.CLASSNAME,
+                    MonHoc = lesson[index].SUBJECT.DisplayName,
+                    TietBatDau = lesson[index].TIMESTART.Value,
+                    TietKeoDai = lesson[index].TIMEEND.Value - lesson[index].TIMESTART.Value + 1,
+                    NgayHoc = lesson[index].DAYOFW.Value - 1,
+                    Buoi = lesson[index].TIMEOFDAY
+                });
+
+                if (sourceBinding.FindIndex(@class => @class.ID == lesson[index].IDCLASS) == -1)
+                {
+                    sourceBinding.Add(new CLASS4GRIDVIEW(lesson[index].IDCLASS, lesson[index].CLASS.CLASSNAME));
+                }
             }
+
+            sourceBinding.Add(new CLASS4GRIDVIEW(Guid.Empty, "Mọi lớp"));
+
+            AssignDataToComboBox(Class_ComboBox, listClass, sourceBinding, "Lop", "Lop");
+        }
+
+        private void ListSemester_CurrentChanged(object sender, EventArgs e)
+        {
+            if (listSchoolYear.Current == null || listSemester.Current == null) return;
+            List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
+            string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Where(sche => sche.SEMESTER.NAME == semester).Select(item => item.DATEAPPLY.Value.ToString("dd/MM/yyyy")).ToList(), "", "");
+        }
+
+        private void ListSchoolYear_CurrentChanged(object sender, EventArgs e)
+        {
+            if (listSchoolYear.Current == null) return;
+            List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => item.DATEAPPLY.Value.ToString("dd/MM/yyyy")).ToList(), "", "");
+            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
+        }
+
+        private void LoadScheduleFromDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ListSchoolYear_CurrentChanged(null, null);
+            waitControl.Stop();
+        }
+
+        private void LoadScheduleFromDatabase_DoWork(object sender, DoWorkEventArgs e)
+        {
+            waitControl.Start();
+            List<IGrouping<string, SCHEDULE>> schoolYear = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.GroupBy(schedule => schedule.SCHOOLYEAR).ToList();
+            AssignDataToComboBox(SchoolYear_ComboBox, listSchoolYear, schoolYear.Select(item => new SCHEDULE4COMBOBOX(item.Key, item.ToList())).ToList(), "NamHoc", "NamHoc");
+        }
+
+        private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, BindingSource binding, object data, string displayMember, string valueMember)
+        {
+            binding.DataSource = data;
+            userControl.Invoke(new System.Action(() =>
+            {
+                userControl.DisplayMember = displayMember;
+                userControl.ValueMember = valueMember;
+            }));
+        }
+
+        private string HocKy(int msg)
+        {
+            return String.Format("Học kỳ: {0}", Methods.Semester(msg));
         }
     }
 }

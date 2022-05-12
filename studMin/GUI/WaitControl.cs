@@ -70,22 +70,28 @@ namespace studMin.GUI
         public void Start()
         {
             this.progressBar.BringToFront();
-            this.form.Enabled = false;
-            if (this.progressBar.Visible == false)
+            this.form.BeginInvoke(new System.Action(() =>
             {
-                this.progressBar.Visible = true;
-            }
-            this.clock.Start();
+                this.form.Enabled = false;
+                if (this.progressBar.Visible == false)
+                {
+                    this.progressBar.Visible = true;
+                }
+                this.clock.Start();
+            }));
         }
 
         public void Stop()
         {
-            if (this.progressBar.Visible == true)
+            this.form.BeginInvoke(new System.Action(() =>
             {
-                this.progressBar.Visible = false;
-            }
-            this.form.Enabled = true;
-            this.clock.Stop();
+                if (this.progressBar.Visible == true)
+                {
+                    this.progressBar.Visible = false;
+                }
+                this.form.Enabled = true;
+                this.clock.Stop();
+            }));
         }
 
         public WaitControl(System.Windows.Forms.Form form)
@@ -100,6 +106,11 @@ namespace studMin.GUI
             this.progressBar.Visible = false;
 
             this.form.Controls.Add(this.progressBar);
+        }
+
+        public bool Running
+        {
+            get { return this.clock.Enabled; }
         }
     }
 }

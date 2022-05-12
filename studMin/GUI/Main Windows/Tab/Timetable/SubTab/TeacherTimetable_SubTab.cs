@@ -12,6 +12,7 @@ namespace studMin
     {
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
         private BackgroundWorker backgroundWorker = null;
+        private GUI.WaitControl waitControl = null;
         Action.Excel.ScheduleAllTeacher.Info importInfo = null;
 
         BindingSource listTeacher = null;
@@ -92,7 +93,7 @@ namespace studMin
 
         private void ExportExcelSingle_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null) return;
+            if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null && listTeacher.Current == null) return;
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
             DateTime dateApply = DateTime.ParseExact((listDateApply.Current as string), "dd/MM/yyyy", null);
@@ -382,7 +383,7 @@ namespace studMin
         {
             if (data == null) return;
 
-            string teacher = (listTeacher.Current as TEACHER4COMBOBOX).GiaoVien;
+            Guid teacher = (listTeacher.Current as TEACHER4COMBOBOX).ID;
 
             DataTable dataSource = new DataTable();
 
@@ -414,7 +415,7 @@ namespace studMin
 
             for (int index = 0; index < data.Count; index++)
             {
-                if (data[index].GiaoVien == teacher)
+                if (data[index].IDTeacher == teacher)
                 {
                     int offset = data[index].Buoi == "Afternoon" ? 6 : 0;
 
@@ -465,6 +466,8 @@ namespace studMin
 
         private void TeacherTimetable_SubTab_Load(object sender, EventArgs e)
         {
+            waitControl = new GUI.WaitControl(this.ParentForm);
+
             listTeacher = new BindingSource();
             listSemester = new BindingSource();
             listSchoolYear = new BindingSource();
@@ -569,6 +572,7 @@ namespace studMin
         private void LoadScheduleFromDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             ListSchoolYear_CurrentChanged(null, null);
+            waitControl.Stop();
         }
 
         private void ListSemester_CurrentChanged(object sender, EventArgs e)
@@ -581,6 +585,7 @@ namespace studMin
 
         private void LoadScheduleFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
+            waitControl.Start();
             List<IGrouping<string, SCHEDULE>> schoolYear = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.GroupBy(schedule => schedule.SCHOOLYEAR).ToList();
             AssignDataToComboBox(SchoolYear_ComboBox, listSchoolYear, schoolYear.Select(item => new SCHEDULE4COMBOBOX(item.Key, item.ToList())).ToList(), "NamHoc", "NamHoc");
         }
