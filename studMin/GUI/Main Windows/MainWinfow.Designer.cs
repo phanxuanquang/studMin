@@ -230,6 +230,7 @@
             this.Name = "MainWinfow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "studMin";
+            this.Load += new System.EventHandler(this.MainWinfow_Load);
             this.menuBar.ResumeLayout(false);
             this.ResumeLayout(false);
 

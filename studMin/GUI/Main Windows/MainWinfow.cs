@@ -22,56 +22,15 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
             this.Icon = Properties.Resources.studMin_Icon;
             Role = personRole;
-            switch (personRole)
-            {
-                case role.classHead:
-                    Dashboard = new ClassHeadTeacherDashboard();
-                    timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab_Headteacher();
-                    break;
-                case role.subjectHead:
-                    Dashboard = new SubjectHeadTeacherDashboard();
-                    timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab();
-                    Statistic_MenuButton.Visible = false;
-                    break;
-                case role.principal:
-                    Dashboard = new NormalTeacherDashboard();
-                    timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab();
-                    break;
-                case role.vicePrincipal:
-                    Dashboard = new NormalTeacherDashboard();
-                    timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab();
-                    break;
-                case role.normalTeacher:
-                    Dashboard = new NormalTeacherDashboard();
-                    timetable_Tab = new Timetable_Tab();
-                    Statistic_MenuButton.Visible = false;
-                    break;
-                default: // office staff
-                    Dashboard = new StaffDashboard();
-                    timetable_Tab = new Timetable_Tab(role.officeStaff);
-                    statisticTab = new StatisticTab();
-                    break;
-            }
-            LoadMainTab(Dashboard);
-            changeButtonColor(Dashboard_MenuButton);
-            
         }
 
         void LoadMainTab(UserControl tab)
         {
-            if (ContainerPanel.Controls.Contains(tab))
-            {
-                tab.BringToFront();
-            }
-            else
+            if (!ContainerPanel.Controls.Contains(tab))
             {
                 ContainerPanel.Controls.Add(tab);
-                tab.BringToFront();
             }
+            tab.BringToFront();
         }
 
         protected override CreateParams CreateParams
@@ -137,5 +96,46 @@ namespace studMin
         }
         #endregion
 
+        private void MainWinfow_Load(object sender, EventArgs e)
+        {
+
+            switch (Role)
+            {
+                case role.classHead:
+                    Dashboard = new ClassHeadTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    statisticTab = new StatisticTab_Headteacher();
+                    break;
+                case role.subjectHead:
+                    Dashboard = new SubjectHeadTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    statisticTab = new StatisticTab();
+                    Statistic_MenuButton.Visible = false;
+                    break;
+                case role.principal:
+                    Dashboard = new PrincipalDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    statisticTab = new StatisticTab();
+                    break;
+                case role.vicePrincipal:
+                    Dashboard = new NormalTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    statisticTab = new StatisticTab();
+                    break;
+                case role.normalTeacher:
+                    Dashboard = new NormalTeacherDashboard();
+                    timetable_Tab = new Timetable_Tab();
+                    Statistic_MenuButton.Visible = false;
+                    break;
+                default: // office staff
+                    Dashboard = new StaffDashboard();
+                    timetable_Tab = new Timetable_Tab(role.officeStaff);
+                    statisticTab = new StatisticTab();
+                    break;
+            }
+
+            LoadMainTab(Dashboard);
+            changeButtonColor(Dashboard_MenuButton);
+        }
     }
 }
