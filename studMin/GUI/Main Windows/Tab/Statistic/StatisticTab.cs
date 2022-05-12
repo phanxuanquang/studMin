@@ -98,7 +98,7 @@ namespace studMin
 
             foreach (Action.Excel.ReportCommon.Item item in list)
             {
-                dataSource.Rows.Add(dataSource.Rows.Count + 1, item.Lop, item.SiSo, item.SoLuongDat, item.TiLeDat);
+                dataSource.Rows.Add(dataSource.Rows.Count + 1, item.Lop, item.SiSo, item.SoLuongDat, item.TiLeDat + "%");
             }
 
             DataTable.DataSource = dataSource;
