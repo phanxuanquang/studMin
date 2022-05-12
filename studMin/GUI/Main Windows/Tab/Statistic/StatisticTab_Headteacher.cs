@@ -117,7 +117,7 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
-            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = int.Parse(ParseHocKy(listSemester.Current as string)), MonHoc = listSubject.Current as string, NamHoc = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc };
+            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = Methods.ParseSemester(listSemester.Current as string), MonHoc = listSubject.Current as string, NamHoc = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc };
 
             Action.Excel.ReportSubject reportSubject = new studMin.Action.Excel.ReportSubject();
 
@@ -194,7 +194,7 @@ namespace studMin
         private void UpdateReportSubject_CurrentChanged(object sender, EventArgs e)
         {
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
-            string _semester = ParseHocKy(listSemester.Current as string);
+            string _semester = Methods.ParseSemester(listSemester.Current as string).ToString();
             string _subject = (listSubject.Current as string);
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(_semester) || String.IsNullOrEmpty(_subject)) return;
@@ -260,43 +260,12 @@ namespace studMin
         private void ListSchoolYear_CurrentChanged(object sender, EventArgs e)
         {
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
-            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(semester)).ToList(), "", "");
+            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
         }
 
-        private string HocKy(string msg)
+        private string HocKy(int msg)
         {
-            string convert = null;
-            switch (msg)
-            {
-                case "0":
-                    convert = "I";
-                    break;
-                case "1":
-                    convert = "II";
-                    break;
-                case "2":
-                    convert = "Hè";
-                    break;
-            }
-            return String.Format("Học kỳ: {0}", convert);
-        }
-
-        private string ParseHocKy(string msg)
-        {
-            string convert = null;
-            switch (msg)
-            {
-                case "Học kỳ: I":
-                    convert = "0";
-                    break;
-                case "Học kỳ: II":
-                    convert = "1";
-                    break;
-                case "Học kỳ: Hè":
-                    convert = "2";
-                    break;
-            }
-            return convert;
+            return String.Format("Học kỳ: {0}", Methods.Semester(msg));
         }
     }
 }

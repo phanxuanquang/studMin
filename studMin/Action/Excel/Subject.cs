@@ -189,19 +189,7 @@ namespace studMin.Action.Excel
                 if (info == null) return;
                 Info clone = info as Info;
 
-                string convert = string.Empty;
-                switch (clone.HocKy)
-                {
-                    case 0:
-                        convert = "I";
-                        break;
-                    case 1:
-                        convert = "II";
-                        break;
-                    case 2:
-                        convert = "Hè";
-                        break;
-                }
+                string convert = Methods.Semester(clone.HocKy);
 
                 sheet.get_Range(locationClass).Value = String.Format("Lớp: {0}", clone.Lop);
                 sheet.get_Range(locationTeacher).Value = String.Format("Giáo viên bộ môn: {0}", clone.GiaoVien);
@@ -224,18 +212,7 @@ namespace studMin.Action.Excel
             info.GiaoVien = ((string)sheet.get_Range(locationTeacher).Value).Split(new string[] { "Giáo viên bộ môn: " }, StringSplitOptions.None)[1];
 
             string convert = ((string)sheet.get_Range(locationSemester).Value).Split(new string[] { "Học kỳ: " }, StringSplitOptions.None)[1];
-            switch (convert)
-            {
-                case "I":
-                    info.HocKy = 0;
-                    break;
-                case "II":
-                    info.HocKy = 1;
-                    break;
-                case "Hè":
-                    info.HocKy = 2;
-                    break;
-            }
+            info.HocKy = Methods.ParseSemester(convert);
 
             info.NamHoc = ((string)sheet.get_Range(locationYear).Value).Split(new string[] { "Năm học: " }, StringSplitOptions.None)[1];
 

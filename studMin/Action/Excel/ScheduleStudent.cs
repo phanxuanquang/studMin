@@ -26,20 +26,7 @@ namespace studMin.Action.Excel
 
         private (string, string) HocKy(int msg)
         {
-            string convert = null;
-            switch (msg)
-            {
-                case 0:
-                    convert = "I";
-                    break;
-                case 1:
-                    convert = "II";
-                    break;
-                case 2:
-                    convert = "Hè";
-                    break;
-            }
-            return ("D3", String.Format("Học kỳ: {0}", convert));
+            return ("D3", String.Format("Học kỳ: {0}", Methods.Semester(msg)));
         }
 
         private (string, string) NgayApDung(DateTime dateTime)

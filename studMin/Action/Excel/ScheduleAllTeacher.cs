@@ -78,20 +78,7 @@ namespace studMin.Action.Excel
 
             public string GetHocKy()
             {
-                string temp = string.Empty;
-                switch (HocKy)
-                {
-                    case 0:
-                        temp = "1";
-                        break;
-                    case 1:
-                        temp = "2";
-                        break;
-                    case 2:
-                        temp = "Hè";
-                        break;
-                }
-                return temp;
+                return (Methods.Semester(HocKy));
             }
 
             public string Title()
@@ -121,7 +108,7 @@ namespace studMin.Action.Excel
                         dateOfWeekVNese = "THỨ BẢY";
                         break;
                 }
-                return String.Format("THỜI KHÓA BIỂU SỐ {0} - HỌC KỲ {1} - NĂM HỌC {2}, ÁP DỤNG TỪ {3}, {4}", BieuMauSo, GetHocKy(), NamHoc, dateOfWeekVNese, NgayApDung.ToString("dd/MM/yyyy"));
+                return String.Format("THỜI KHÓA BIỂU SỐ {0} - HỌC KỲ {1} - NĂM HỌC {2}, ÁP DỤNG TỪ {3}, {4}", BieuMauSo, GetHocKy().ToUpper(), NamHoc, dateOfWeekVNese, NgayApDung.ToString("dd/MM/yyyy"));
             }
 
             public static Info Parse(string value)
@@ -136,7 +123,7 @@ namespace studMin.Action.Excel
                     info.BieuMauSo = int.Parse(bieumauso[bieumauso.Length - 1]);
 
                     string[] hocky = split[1].Split(' ');
-                    info.HocKy = int.Parse(hocky[hocky.Length - 1]);
+                    info.HocKy = Methods.ParseSemester(hocky[hocky.Length - 1]);
 
                     string[] namhoc = split[2].Split(' ');
                     info.NamHoc = namhoc[namhoc.Length - 1];

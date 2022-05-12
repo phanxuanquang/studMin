@@ -19,20 +19,7 @@ namespace studMin.Action.Excel
 
         protected (string, string) HocKy(int num)
         {
-            string convert = null;
-            switch (num)
-            {
-                case 0:
-                    convert = "Hè";
-                    break;
-                case 1:
-                    convert = "I";
-                    break;
-                case 2:
-                    convert = "II";
-                    break;
-            }
-            return (locationSemester, String.Format("Học kỳ: {0}", convert));
+            return (locationSemester, String.Format("Học kỳ: {1}", Methods.Semester(num)));
         }
 
         protected (string, string) NamHoc(string msg)
