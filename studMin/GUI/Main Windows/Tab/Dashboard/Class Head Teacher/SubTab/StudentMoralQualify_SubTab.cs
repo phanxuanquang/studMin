@@ -83,5 +83,17 @@ namespace studMin
                 MessageBox.Show("Đã có lỗi xảy ra, vui lòng thử lại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // load lại Grid view theo text trong searchBox
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
+        }
     }
 }

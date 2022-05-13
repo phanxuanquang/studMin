@@ -161,5 +161,26 @@ namespace studMin
         {
             this.Load += StudentInfor_SubTab_Load;
         }
+
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                DataTable.Rows.Clear();
+                if (string.IsNullOrWhiteSpace(Search_Box.Text))
+                {
+                    LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                }
+                else
+                {
+                    var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
+                    LoadToDataTable(students);
+                }
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
+        }
     }
 }

@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Search_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
             this.sttDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCHOOLYEARDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.semesterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDCONDUCTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).BeginInit();
@@ -83,14 +83,15 @@
             this.Search_Box.Size = new System.Drawing.Size(643, 36);
             this.Search_Box.TabIndex = 81;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
+            this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
             // DataTable
             // 
             this.DataTable.AllowDrop = true;
             this.DataTable.AllowUserToAddRows = false;
             this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.DataTable.AutoGenerateColumns = false;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -98,14 +99,14 @@
             this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -116,14 +117,14 @@
             this.iDCONDUCTDataGridViewTextBoxColumn});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DataTable.DataSource = this.tRANSCRIPTBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataTable.DefaultCellStyle = dataGridViewCellStyle9;
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
@@ -156,47 +157,6 @@
             this.DataTable.ThemeStyle.RowsStyle.Height = 22;
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            // 
-            // sttDataGridViewTextBoxColumn
-            // 
-            this.sttDataGridViewTextBoxColumn.HeaderText = "STT";
-            this.sttDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sttDataGridViewTextBoxColumn.Name = "sttDataGridViewTextBoxColumn";
-            this.sttDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sCHOOLYEARDataGridViewTextBoxColumn
-            // 
-            this.sCHOOLYEARDataGridViewTextBoxColumn.DataPropertyName = "SCHOOLYEAR";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.HeaderText = "Niên khóa";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sCHOOLYEARDataGridViewTextBoxColumn.Name = "sCHOOLYEARDataGridViewTextBoxColumn";
-            this.sCHOOLYEARDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // semesterDataGridViewTextBoxColumn
-            // 
-            this.semesterDataGridViewTextBoxColumn.HeaderText = "Học kỳ";
-            this.semesterDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.semesterDataGridViewTextBoxColumn.Name = "semesterDataGridViewTextBoxColumn";
-            this.semesterDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDCONDUCTDataGridViewTextBoxColumn
-            // 
-            this.iDCONDUCTDataGridViewTextBoxColumn.DataPropertyName = "IDCONDUCT";
-            this.iDCONDUCTDataGridViewTextBoxColumn.DataSource = this.cONDUCTBindingSource;
-            this.iDCONDUCTDataGridViewTextBoxColumn.DisplayMember = "NAME";
-            this.iDCONDUCTDataGridViewTextBoxColumn.HeaderText = "Hạnh kiểm";
-            this.iDCONDUCTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDCONDUCTDataGridViewTextBoxColumn.Name = "iDCONDUCTDataGridViewTextBoxColumn";
-            this.iDCONDUCTDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.iDCONDUCTDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.iDCONDUCTDataGridViewTextBoxColumn.ValueMember = "ID";
             // 
             // cONDUCTBindingSource
             // 
@@ -254,6 +214,47 @@
             this.UpdateData_Button.Text = "CẬP NHẬT";
             this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.UpdateData_Button.Click += new System.EventHandler(this.UpdateData_Button_Click);
+            // 
+            // sttDataGridViewTextBoxColumn
+            // 
+            this.sttDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
+            this.sttDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sttDataGridViewTextBoxColumn.Name = "sttDataGridViewTextBoxColumn";
+            this.sttDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sCHOOLYEARDataGridViewTextBoxColumn
+            // 
+            this.sCHOOLYEARDataGridViewTextBoxColumn.DataPropertyName = "SCHOOLYEAR";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.HeaderText = "Niên khóa";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sCHOOLYEARDataGridViewTextBoxColumn.Name = "sCHOOLYEARDataGridViewTextBoxColumn";
+            this.sCHOOLYEARDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // semesterDataGridViewTextBoxColumn
+            // 
+            this.semesterDataGridViewTextBoxColumn.HeaderText = "Học kỳ";
+            this.semesterDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.semesterDataGridViewTextBoxColumn.Name = "semesterDataGridViewTextBoxColumn";
+            this.semesterDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDCONDUCTDataGridViewTextBoxColumn
+            // 
+            this.iDCONDUCTDataGridViewTextBoxColumn.DataPropertyName = "IDCONDUCT";
+            this.iDCONDUCTDataGridViewTextBoxColumn.DataSource = this.cONDUCTBindingSource;
+            this.iDCONDUCTDataGridViewTextBoxColumn.DisplayMember = "NAME";
+            this.iDCONDUCTDataGridViewTextBoxColumn.HeaderText = "Hạnh kiểm";
+            this.iDCONDUCTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDCONDUCTDataGridViewTextBoxColumn.Name = "iDCONDUCTDataGridViewTextBoxColumn";
+            this.iDCONDUCTDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.iDCONDUCTDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.iDCONDUCTDataGridViewTextBoxColumn.ValueMember = "ID";
             // 
             // StudentMoralQualify_SubTab
             // 
