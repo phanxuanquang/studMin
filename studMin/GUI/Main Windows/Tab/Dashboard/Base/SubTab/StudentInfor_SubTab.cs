@@ -16,14 +16,15 @@ namespace studMin
     {
         public StudentInfor_SubTab()
         {
-            
-            this.Load += StudentInfor_SubTab_Load;
             InitializeComponent();
         }
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)
         {
-            LoadFromDB();
+            if (Class_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
+            {
+                LoadFromDB();
+            }
             Class_ComboBox.SelectedIndex = 0;
             SchoolYear_ComboBox.SelectedIndex = 0;
             LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
@@ -43,7 +44,6 @@ namespace studMin
             }    
         }
 
-       
         private List<STUDENT> GetListStudent(string className, string schoolYear)
         {
             List<STUDENT> students = new List<STUDENT>();
@@ -128,8 +128,6 @@ namespace studMin
             }
         }
 
-        
-
         private void Search_Button_Click(object sender, EventArgs e)
         {
             DataTable.Rows.Clear();
@@ -146,7 +144,22 @@ namespace studMin
 
         private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string queryID = String.Empty;
+            if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                queryID = DataTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+            // query lấy data đưa vào các textBox "Không xác định"
+        }
 
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Load += StudentInfor_SubTab_Load;
+        }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Load += StudentInfor_SubTab_Load;
         }
     }
 }

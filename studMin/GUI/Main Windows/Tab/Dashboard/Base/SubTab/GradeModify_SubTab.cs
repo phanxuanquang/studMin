@@ -160,15 +160,6 @@ namespace studMin
 
         private void Search_Box_TextChanged(object sender, EventArgs e)
         {
-            /*if (Class_ComboBox.Text == "Mọi lớp")
-            {
-                MessageBox.Show("Bạn phải chọn lớp trước khi tra cứu.", "LỖI TRUY XUẤT", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                
-            }*/
-
             try
             {
                 CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
@@ -500,6 +491,11 @@ namespace studMin
                 TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
                 studMin.Database.StudentServices.Instance.SaveScoreToDB((sTUDENTBindingSource.Current as STUDENT4GRIDVIEW).ID, score, @class.SCHOOLYEAR, teach.SEMESTER.NAME, roleScore);
             }
+        }
+
+        private void GridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

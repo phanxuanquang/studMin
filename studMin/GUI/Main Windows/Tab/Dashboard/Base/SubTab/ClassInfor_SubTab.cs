@@ -120,7 +120,7 @@ namespace studMin
                         
                         foreach (var classItem in listClasses)
                         {
-                            dataSource.Rows.Add(classItem.ID, classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                            dataSource.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
                         }
                         break;
                      case 1:
@@ -147,7 +147,7 @@ namespace studMin
                         {
                             string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
                             string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.INFOR.DAYOFBIRTH);
-                            dataSource.Rows.Add(student.ID, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
+                            dataSource.Rows.Add(student.ID.ToString().Substring(0, 8).ToUpper(), student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
                         }
                         break;
                     case 4:
