@@ -19,6 +19,7 @@ namespace studMin
             Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(true);
             ChangePath();
+            _isRunning = true;
             Application.Run(login_Window);
         }
         public static Login_Window login_Window = new Login_Window();
@@ -48,5 +49,11 @@ namespace studMin
             }
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
         }
+
+        public static bool isRunning
+        {
+            get { return _isRunning; }
+        }
+        private static bool _isRunning = false;
     }
 }

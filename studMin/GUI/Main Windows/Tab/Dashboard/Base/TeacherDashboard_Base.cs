@@ -16,6 +16,7 @@ namespace studMin
         GradeModify_SubTab gradeModify_SubTab;
         ClassInfor_SubTab classInfor_SubTab;
         StudentInfor_SubTab studentInfor_SubTab;
+
         public TeacherDashboard_Base()
         {
             InitializeComponent();
@@ -24,9 +25,11 @@ namespace studMin
             classInfor_SubTab = new ClassInfor_SubTab();
             studentInfor_SubTab = new StudentInfor_SubTab();
 
-            //Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
+            if (Program.isRunning)
+            {
+                Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
+            }
         }
-
 
         #region Buttons
         private void GradeModify_Button_Click(object sender, EventArgs e)
