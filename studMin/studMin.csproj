@@ -400,8 +400,14 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\TeacherManage_Form.Designer.cs">
       <DependentUpon>TeacherManage_Form.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\PrincipalDashboard.resx">
+      <DependentUpon>PrincipalDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\PrincipalControl_SubTab.resx">
       <DependentUpon>PrincipalControl_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\TeacherManage_Form.resx">
+      <DependentUpon>TeacherManage_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\AddStudent_Form.resx">
       <DependentUpon>AddStudent_Form.cs</DependentUpon>

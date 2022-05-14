@@ -23,5 +23,18 @@ namespace studMin
         {
             this.Close();
         }
+
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                DataTable.Rows.Clear();
+                // query để load lại table theo từ khóa trong search box
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
+        }
     }
 }

@@ -101,7 +101,7 @@
             this.Specialized_Button.HoverState.Parent = this.Specialized_Button;
             this.Specialized_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Specialized_Button.ShadowDecoration.Parent = this.Specialized_Button;
-            this.Specialized_Button.Text = "ĐIỀU KHIỂN";
+            this.Specialized_Button.Text = "QUẢN LÝ";
             this.Specialized_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Specialized_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
             this.Specialized_Button.Click += new System.EventHandler(this.Specialized_Button_Click);

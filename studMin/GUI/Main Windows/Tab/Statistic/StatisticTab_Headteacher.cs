@@ -267,5 +267,18 @@ namespace studMin
         {
             return String.Format("Học kỳ: {0}", Methods.Semester(msg));
         }
+
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                DataTable.Rows.Clear();
+                // query load lại table theo từ khóa trong search box
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
+        }
     }
 }
