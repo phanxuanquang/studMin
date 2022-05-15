@@ -29,14 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TeacherRole = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirePerson_Button = new Guna.UI2.WinForms.Guna2Button();
             this.ChangeSubjectName_Button = new Guna.UI2.WinForms.Guna2Button();
             this.AddSubject_Button = new Guna.UI2.WinForms.Guna2Button();
@@ -51,48 +47,44 @@
             this.DataTable.AllowDrop = true;
             this.DataTable.AllowUserToAddRows = false;
             this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
             this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.FullName,
-            this.Status,
-            this.TeacherRole});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataTable.DefaultCellStyle = dataGridViewCellStyle3;
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 57);
+            this.DataTable.Location = new System.Drawing.Point(0, 70);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(4);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
-            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(977, 489);
+            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataTable.Size = new System.Drawing.Size(1303, 602);
             this.DataTable.TabIndex = 103;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -117,34 +109,6 @@
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             // 
-            // ID
-            // 
-            this.ID.FillWeight = 120F;
-            this.ID.HeaderText = "Mã môn học";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // FullName
-            // 
-            this.FullName.HeaderText = "Tên môn học";
-            this.FullName.MinimumWidth = 6;
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Trưởng bộ môn";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // TeacherRole
-            // 
-            this.TeacherRole.HeaderText = "Số lượng giáo viên";
-            this.TeacherRole.Name = "TeacherRole";
-            this.TeacherRole.ReadOnly = true;
-            // 
             // FirePerson_Button
             // 
             this.FirePerson_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -160,10 +124,11 @@
             this.FirePerson_Button.ForeColor = System.Drawing.Color.White;
             this.FirePerson_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.FirePerson_Button.HoverState.Parent = this.FirePerson_Button;
-            this.FirePerson_Button.Location = new System.Drawing.Point(731, 12);
+            this.FirePerson_Button.Location = new System.Drawing.Point(975, 15);
+            this.FirePerson_Button.Margin = new System.Windows.Forms.Padding(4);
             this.FirePerson_Button.Name = "FirePerson_Button";
             this.FirePerson_Button.ShadowDecoration.Parent = this.FirePerson_Button;
-            this.FirePerson_Button.Size = new System.Drawing.Size(234, 36);
+            this.FirePerson_Button.Size = new System.Drawing.Size(312, 44);
             this.FirePerson_Button.TabIndex = 129;
             this.FirePerson_Button.Text = "THOÁT";
             this.FirePerson_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -187,11 +152,12 @@
             this.ChangeSubjectName_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.ChangeSubjectName_Button.HoverState.Parent = this.ChangeSubjectName_Button;
             this.ChangeSubjectName_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeSubjectName_Button.Location = new System.Drawing.Point(251, 12);
+            this.ChangeSubjectName_Button.Location = new System.Drawing.Point(335, 15);
+            this.ChangeSubjectName_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeSubjectName_Button.Name = "ChangeSubjectName_Button";
             this.ChangeSubjectName_Button.PressedDepth = 20;
             this.ChangeSubjectName_Button.ShadowDecoration.Parent = this.ChangeSubjectName_Button;
-            this.ChangeSubjectName_Button.Size = new System.Drawing.Size(234, 36);
+            this.ChangeSubjectName_Button.Size = new System.Drawing.Size(312, 44);
             this.ChangeSubjectName_Button.TabIndex = 128;
             this.ChangeSubjectName_Button.Text = "THAY ĐỔI TÊN MÔN HỌC";
             this.ChangeSubjectName_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -215,11 +181,12 @@
             this.AddSubject_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.AddSubject_Button.HoverState.Parent = this.AddSubject_Button;
             this.AddSubject_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.AddSubject_Button.Location = new System.Drawing.Point(11, 12);
+            this.AddSubject_Button.Location = new System.Drawing.Point(15, 15);
+            this.AddSubject_Button.Margin = new System.Windows.Forms.Padding(4);
             this.AddSubject_Button.Name = "AddSubject_Button";
             this.AddSubject_Button.PressedDepth = 20;
             this.AddSubject_Button.ShadowDecoration.Parent = this.AddSubject_Button;
-            this.AddSubject_Button.Size = new System.Drawing.Size(234, 36);
+            this.AddSubject_Button.Size = new System.Drawing.Size(312, 44);
             this.AddSubject_Button.TabIndex = 131;
             this.AddSubject_Button.Text = "BỔ SUNG THÊM MÔN HỌC";
             this.AddSubject_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -243,11 +210,12 @@
             this.ChangeSubjectHead_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.ChangeSubjectHead_Button.HoverState.Parent = this.ChangeSubjectHead_Button;
             this.ChangeSubjectHead_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeSubjectHead_Button.Location = new System.Drawing.Point(491, 12);
+            this.ChangeSubjectHead_Button.Location = new System.Drawing.Point(655, 15);
+            this.ChangeSubjectHead_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeSubjectHead_Button.Name = "ChangeSubjectHead_Button";
             this.ChangeSubjectHead_Button.PressedDepth = 20;
             this.ChangeSubjectHead_Button.ShadowDecoration.Parent = this.ChangeSubjectHead_Button;
-            this.ChangeSubjectHead_Button.Size = new System.Drawing.Size(234, 36);
+            this.ChangeSubjectHead_Button.Size = new System.Drawing.Size(312, 44);
             this.ChangeSubjectHead_Button.TabIndex = 132;
             this.ChangeSubjectHead_Button.Text = "THAY ĐỔI TRƯỞNG BỘ MÔN";
             this.ChangeSubjectHead_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -259,21 +227,23 @@
             // 
             // SubjectManage_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(977, 546);
+            this.ClientSize = new System.Drawing.Size(1303, 672);
             this.Controls.Add(this.ChangeSubjectHead_Button);
             this.Controls.Add(this.AddSubject_Button);
             this.Controls.Add(this.FirePerson_Button);
             this.Controls.Add(this.ChangeSubjectName_Button);
             this.Controls.Add(this.DataTable);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SubjectManage_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SubjectManage_Form";
+            this.Load += new System.EventHandler(this.SubjectManage_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             this.ResumeLayout(false);
 
@@ -282,10 +252,6 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherRole;
         private Guna.UI2.WinForms.Guna2Button FirePerson_Button;
         protected Guna.UI2.WinForms.Guna2Button ChangeSubjectName_Button;
         protected Guna.UI2.WinForms.Guna2Button AddSubject_Button;

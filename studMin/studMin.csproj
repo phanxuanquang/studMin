@@ -403,8 +403,14 @@
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\PrincipalDashboard.resx">
       <DependentUpon>PrincipalDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectName_Form.resx">
+      <DependentUpon>ChangeSubjectName_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\PrincipalControl_SubTab.resx">
       <DependentUpon>PrincipalControl_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\SubjectManage_Form.resx">
+      <DependentUpon>SubjectManage_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\TeacherManage_Form.resx">
       <DependentUpon>TeacherManage_Form.cs</DependentUpon>

@@ -40,6 +40,11 @@ namespace studMin.Database
             return DataProvider.Instance.Database.SUBJECTs.Where(item => item.Id == LoginServices.LoginServices.Instance.CurrentTeacher.IDSUBJECT).FirstOrDefault();
         }
 
+        public List<TEACHER> GetTeachersBySubject(Guid idSubject)
+        {
+            return DataProvider.Instance.Database.TEACHERs.Where(item => item.IDSUBJECT == idSubject).ToList();
+        }
+
         public List<CLASS> GetAllClassTeaching()
         {
             List<CLASS> list = new List<CLASS>();

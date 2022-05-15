@@ -35,23 +35,25 @@ namespace studMin.Action.Excel
 
         public override void InsertInfo(dynamic info)
         {
-            try
+            /*try
             {
-                if (info == null) return;
-
-                Info clone = info as Info;
-
-                (string, string) Info_HocKy = HocKy(clone.HocKy);
-                (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
-
-                sheet.get_Range(locationTitle).Value = title;
-                sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
-                sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
+                
             }
             catch
             {
                 throw new Exception();
-            }
+            }*/
+
+            if (info == null) return;
+
+            Info clone = info as Info;
+
+            (string, string) Info_HocKy = HocKy(clone.HocKy);
+            (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
+
+            sheet.get_Range(locationTitle).Value = title;
+            sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
+            sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
         }
     }
 }
