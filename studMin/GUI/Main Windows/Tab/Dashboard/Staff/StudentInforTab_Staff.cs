@@ -22,12 +22,17 @@ namespace studMin
 
         private void AddStudent_Button_Click(object sender, EventArgs e)
         {
-            AddStudent_Form addStudent_Form = new AddStudent_Form();
+            AddStudent_Form addStudent_Form = new AddStudent_Form(this);
             addStudent_Form.ShowDialog();
             this.Refresh();
         }
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)
+        {
+            LoadStudentsInfor();
+        }
+
+        public void LoadStudentsInfor()
         {
             LoadFromDB();
             Class_ComboBox.SelectedIndex = 0;
@@ -119,20 +124,22 @@ namespace studMin
 
         public void LoadToDataTable(List<STUDENT> students)
         {
-                foreach (var student in students)
+            DataTable.Rows.Clear();
+
+            foreach (var student in students)
+            {
+                string newStudentID = student.ID.ToString().Substring(0, 8).ToUpper();
+                string newStudentStatus = String.Empty;
+                if (student.Status.ToString() == "1")
                 {
-                    string newStudentID = student.ID.ToString().Substring(0, 8).ToUpper();
-                    string newStudentStatus = String.Empty;
-                    if (student.Status.ToString() == "1")
-                    {
-                        newStudentStatus = "Đang học";
-                    }
-                    else
-                    {
-                        newStudentStatus = "Đã nghỉ học";
-                    }
-                    DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, newStudentID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
+                    newStudentStatus = "Đang học";
                 }
+                else
+                {
+                    newStudentStatus = "Đã nghỉ học";
+                }
+                DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, newStudentID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
+            }
         }
 
         private void Search_Button_Click(object sender, EventArgs e)

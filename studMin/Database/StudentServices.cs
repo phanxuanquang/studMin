@@ -31,17 +31,18 @@ namespace studMin.Database
             return DataProvider.Instance.Database.STUDENTs.FirstOrDefault();
         }
 
-        public bool SaveStudentToDB(STUDENT saveStudent)
+        public bool SaveStudentToDB(STUDENT saveStudent, INFOR infor)
         {
             try
             {
-                if (saveStudent == null)
+                if (saveStudent == null || infor == null)
                 {
                     return false;
                 }
                 else
                 {
                     DataProvider.Instance.Database.STUDENTs.Add(saveStudent);
+                    DataProvider.Instance.Database.INFORs.Add(infor);
                 }
                 DataProvider.Instance.Database.SaveChanges();
                 return true;
@@ -52,14 +53,14 @@ namespace studMin.Database
             }
         }
         
-        public bool SaveStudentToDB(string firstName, string lastName, int sex, DateTime dayOfBirth, string address, string email, Guid idClass, string emailParent, int grade, string telephone, int status, string bloodLine)
+        public bool SaveStudentToDB(string firstName, string lastName, int sex, DateTime dayOfBirth, string address, string email, Guid idClass, string emailParent, string telephone, int status, string bloodLine)
         {
             STUDENT student = new STUDENT()
             {
                 ID = Guid.NewGuid(),
                 
                 EMAIL = email,
-                IDCLASS = LoginServices.LoginServices.Instance.ClassOfHeadTeacher.ID,
+                IDCLASS = idClass,
                 EMAILPARENT = emailParent,
                 TEL = telephone,
                 Status = status,
@@ -74,8 +75,8 @@ namespace studMin.Database
                 DAYOFBIRTH = dayOfBirth,
                 ADDRESS = address,
             };
-            student.ID = infor.ID; 
-            return SaveStudentToDB(student);
+            student.IDINFOR = infor.ID; 
+            return SaveStudentToDB(student, infor);
         }
 
         // Nhập điểm cho một học sinh

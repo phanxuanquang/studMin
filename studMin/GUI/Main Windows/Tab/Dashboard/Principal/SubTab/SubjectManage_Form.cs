@@ -20,7 +20,7 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
         }
 
-        private void FirePerson_Button_Click(object sender, EventArgs e)
+        private void Close_Button_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -40,11 +40,6 @@ namespace studMin
         private void SubjectManage_Form_Load(object sender, EventArgs e)
         {
             LoadSubjectsInfor();
-        }
-
-        public void ClearSubjectInfor()
-        {
-            DataTable.Rows.Clear();
         }
 
         public void LoadSubjectsInfor()

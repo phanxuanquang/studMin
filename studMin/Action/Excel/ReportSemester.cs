@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace studMin.Action.Excel
 {
@@ -35,25 +36,28 @@ namespace studMin.Action.Excel
 
         public override void InsertInfo(dynamic info)
         {
-            /*try
+            try
             {
-                
+                if (info == null)
+                {
+                    throw new Exception();
+                };
+
+                Info clone = info as Info;
+
+                (string, string) Info_HocKy = HocKy(clone.HocKy);
+                (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
+
+                sheet.get_Range(locationTitle).Value = title;
+                sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
+                sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
             }
-            catch
+            catch (Exception e)
             {
-                throw new Exception();
-            }*/
+                MessageBox.Show(e.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            if (info == null) return;
 
-            Info clone = info as Info;
-
-            (string, string) Info_HocKy = HocKy(clone.HocKy);
-            (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
-
-            sheet.get_Range(locationTitle).Value = title;
-            sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
-            sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
         }
     }
 }
