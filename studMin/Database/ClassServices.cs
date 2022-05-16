@@ -76,5 +76,12 @@ namespace studMin.Database
                 return null;
             }
         }
+
+        public int GetQuantityOfClass(Guid idClass)
+        {
+            CLASS tmp = GetClassById(idClass);
+            List <STUDENT> listStudent = GetListStudentOfClass(tmp.CLASSNAME);
+            return listStudent.Count();
+        }
     }
 }
