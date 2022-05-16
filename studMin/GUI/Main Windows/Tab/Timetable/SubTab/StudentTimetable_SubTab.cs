@@ -590,7 +590,7 @@ namespace studMin
 
         private void LoadScheduleFromDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ListSchoolYear_CurrentChanged(null, null);
+            //ListSchoolYear_CurrentChanged(null, null);
             waitControl.Stop();
         }
 
@@ -603,9 +603,9 @@ namespace studMin
 
         private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, BindingSource binding, object data, string displayMember, string valueMember)
         {
-            binding.DataSource = data;
             userControl.Invoke(new System.Action(() =>
             {
+                binding.DataSource = data;
                 userControl.DisplayMember = displayMember;
                 userControl.ValueMember = valueMember;
             }));

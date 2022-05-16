@@ -20,6 +20,8 @@ namespace studMin
         private BindingSource listSchoolYear = null;
         private BindingSource listSubject = null;
 
+        private GUI.WaitControl waitControl = null;
+
         private class SCHEDULE4COMBOBOX
         {
             private List<SCHEDULE> _grouping;
@@ -143,9 +145,9 @@ namespace studMin
 
         private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, BindingSource binding, object data, string displayMember, string valueMember)
         {
-            binding.DataSource = data;
             userControl.Invoke(new System.Action(() =>
             {
+                binding.DataSource = data;
                 userControl.DisplayMember = displayMember;
                 userControl.ValueMember = valueMember;
             }));
@@ -153,6 +155,8 @@ namespace studMin
 
         private void StatisticTab_Headteacher_Load(object sender, EventArgs e)
         {
+            waitControl = new GUI.WaitControl(this.ParentForm);
+
             listSemester = new BindingSource();
             listSchoolYear = new BindingSource();
             listSubject = new BindingSource();
@@ -244,12 +248,15 @@ namespace studMin
 
         private void LoadSubjectFromDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ListSchoolYear_CurrentChanged(null, null);
-            LoadSubjectFromDatabase_DoWork(null, null);
+            /*ListSchoolYear_CurrentChanged(null, null);
+            LoadSubjectFromDatabase_DoWork(null, null);*/
+            waitControl.Stop();
         }
 
         private void LoadSubjectFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
+            waitControl.Start();
+
             List<string> subjects = studMin.Database.SubjectServices.Instance.GetSubjects().Select(item => item.DisplayName).ToList();
             List<IGrouping<string, SCHEDULE>> schoolYear = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.GroupBy(schedule => schedule.SCHOOLYEAR).ToList();
 
@@ -268,16 +275,36 @@ namespace studMin
             return String.Format("Học kỳ: {0}", Methods.Semester(msg));
         }
 
-        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        private void Search_Box_TextChanged(object sender, EventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            try
             {
-                DataTable.Rows.Clear();
-                // query load lại table theo từ khóa trong search box
+                CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
+                cm.SuspendBinding();
+
+                for (int i = 0; i < DataTable.RowCount; i++)
+                {
+                    if (DataTable.Rows[i].Cells[0].Value != null &&
+                        DataTable.Rows[i].Cells[1].Value != null)
+                    {
+                        string @class = DataTable.Rows[i].Cells[1].Value.ToString().ToLower();
+
+                        if (@class.Contains(Search_Box.Text.ToLower()))
+                        {
+                            DataTable.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            DataTable.Rows[i].Visible = false;
+                        }
+                    }
+                }
+
+                cm.ResumeBinding();
             }
-            else if (e.KeyChar == (char)Keys.Escape)
+            catch (Exception ex)
             {
-                Search_Box.Text = String.Empty;
+                MessageBox.Show(ex.Message);
             }
         }
     }

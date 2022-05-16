@@ -105,7 +105,9 @@ namespace studMin.GUI
             this.progressBar.Top = (this.form.ClientSize.Height - this.progressBar.Height) / 2 + 120;
             this.progressBar.Visible = false;
 
+            this.form.SuspendLayout();
             this.form.Controls.Add(this.progressBar);
+            this.form.ResumeLayout();
         }
 
         public bool Running

@@ -50,9 +50,9 @@ namespace studMin
 
         private void Login_Window_Load(object sender, EventArgs e)
         {
-            if (!isInternetAvailable())
+            if (!isInternetAvailable() && MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
             {
-                MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
             }
             else
             {
