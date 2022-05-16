@@ -442,7 +442,7 @@
             this.gunaLabel16.Name = "gunaLabel16";
             this.gunaLabel16.Size = new System.Drawing.Size(169, 22);
             this.gunaLabel16.TabIndex = 111;
-            this.gunaLabel16.Text = "• Số điện thoại phụ huynh:";
+            this.gunaLabel16.Text = "• Email phụ huynh:";
             this.gunaLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.gunaLabel16.UseCompatibleTextRendering = true;
             // 

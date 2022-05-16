@@ -35,7 +35,7 @@ namespace studMin
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
         {
             double numericTest;
-            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("THANDIEM");
+            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("POINTLADDER");
             int minScore = 0;
             int maxScore = 10;
             if (limitScore != null)

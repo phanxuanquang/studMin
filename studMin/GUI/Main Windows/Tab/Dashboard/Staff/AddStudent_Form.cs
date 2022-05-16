@@ -57,7 +57,7 @@ namespace studMin
                 return;
             }
 
-            PARAMETER limitAge = Database.ParameterServices.Instance.GetParameterByName("TUOI");
+            PARAMETER limitAge = Database.ParameterServices.Instance.GetParameterByName("AGE");
 
             DateTime dateOfBirth = Birthday_ComboBox.Value;
             int maxAge = (int)limitAge.MAX;
@@ -108,6 +108,7 @@ namespace studMin
         private bool CheckAge(DateTime dateOfBirth, int maxAge, int minAge)
         {
             int age = int.Parse(Database.ClassServices.Instance.GetCurrentSchoolYear()) - dateOfBirth.Year;
+            if (dateOfBirth.Date > DateTime.Today.AddYears(-age)) age--;
             return age >= minAge && age <= maxAge;
         }
 

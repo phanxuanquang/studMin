@@ -56,7 +56,7 @@ namespace studMin
                     GridView.Rows.Add(listTeachers[i].ID, listTeachers[i].INFOR.FIRSTNAME + " " + listTeachers[i].INFOR.LASTNAME, listTeachers[i].INFOR.DAYOFBIRTH, listTeachers[i].USER.EMAIL, "1/1/2022");
                 }
             }
-
+            SubjectLabel.Text = subject.DisplayName;
             LoadScoreParameter();
         }
 
@@ -65,7 +65,7 @@ namespace studMin
             SUBJECT subject = TeacherServices.Instance.GetSubjectOfTeacher();
             int passScore = (int)subject.PASSSCORE;
             int maxScore = 10;
-            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("THANDIEM");
+            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("POINTLADDER");
             if (limitScore != null)
             {
                 maxScore = (int)limitScore.MAX;

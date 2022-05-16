@@ -114,7 +114,6 @@ namespace studMin
         {
             foreach (var student in students)
             {
-                string newStudentID = student.ID.ToString().Substring(0, 8).ToUpper();
                 string newStudentStatus = String.Empty;
                 if (student.Status.ToString() == "1")
                 {
@@ -124,7 +123,7 @@ namespace studMin
                 {
                     newStudentStatus = "Đã nghỉ học";
                 }
-                DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, newStudentID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
+                DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
             }
         }
 
@@ -142,6 +141,19 @@ namespace studMin
             }    
         }
 
+        private void BindStudentToTextBox(STUDENT student)
+        {
+            ID_Box.Text = student.ID.ToString();
+            FullName_Box.Text = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME;
+            SchoolYear_Box.Text = student.CLASS.SCHOOLYEAR;
+            Class_Box.Text = student.CLASS.CLASSNAME;
+            Genre_Box.Text = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
+            Bloodline_Box.Text = student.BLOODLINE;
+            Email_Box.Text = student.EMAIL;
+            Address_Box.Text = student.INFOR.ADDRESS;
+            ParentNumber_Box.Text = student.EMAILPARENT;
+        }
+
         private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string queryID = String.Empty;
@@ -149,7 +161,12 @@ namespace studMin
             {
                 queryID = DataTable.Rows[e.RowIndex].Cells[1].Value.ToString();
             }
-            // query lấy data đưa vào các textBox "Không xác định"
+
+            if (Guid.TryParse(queryID, out Guid idStudent) == true)
+            {
+                STUDENT student = Database.StudentServices.Instance.GetStudentById(idStudent);
+                BindStudentToTextBox(student);
+            }
         }
 
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -27,7 +27,7 @@ namespace studMin
 
             if (Program.isRunning)
             {
-                Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
+                //Program.loadTab(gradeModify_SubTab, ContainerPanel, GradeModify_Button, this.Badge);
             }
         }
 

@@ -36,6 +36,8 @@
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.MaxAge_Box = new Guna.UI2.WinForms.Guna2TextBox();
+            this.MinAgeCurrent_Box = new Guna.UI2.WinForms.Guna2TextBox();
+            this.MaxAgeCurrent_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.SuspendLayout();
             // 
             // Exit_Button
@@ -88,6 +90,7 @@
             this.Confirm_Button.TabIndex = 129;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Confirm_Button.Click += new System.EventHandler(this.Confirm_Button_Click);
             // 
             // SubjectName_Label
             // 
@@ -135,9 +138,10 @@
             this.MinAge_Box.ShadowDecoration.Depth = 5;
             this.MinAge_Box.ShadowDecoration.Parent = this.MinAge_Box;
             this.MinAge_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MinAge_Box.Size = new System.Drawing.Size(340, 47);
+            this.MinAge_Box.Size = new System.Drawing.Size(299, 47);
             this.MinAge_Box.TabIndex = 132;
             this.MinAge_Box.TextOffset = new System.Drawing.Point(3, 0);
+            this.MinAge_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Age_Box_KeyPress);
             // 
             // guna2Elipse1
             // 
@@ -176,9 +180,82 @@
             this.MaxAge_Box.ShadowDecoration.Depth = 5;
             this.MaxAge_Box.ShadowDecoration.Parent = this.MaxAge_Box;
             this.MaxAge_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MaxAge_Box.Size = new System.Drawing.Size(340, 47);
+            this.MaxAge_Box.Size = new System.Drawing.Size(299, 47);
             this.MaxAge_Box.TabIndex = 133;
             this.MaxAge_Box.TextOffset = new System.Drawing.Point(3, 0);
+            this.MaxAge_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Age_Box_KeyPress);
+            // 
+            // MinAgeCurrent_Box
+            // 
+            this.MinAgeCurrent_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.MinAgeCurrent_Box.Animated = true;
+            this.MinAgeCurrent_Box.BackColor = System.Drawing.Color.Transparent;
+            this.MinAgeCurrent_Box.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.MinAgeCurrent_Box.BorderRadius = 15;
+            this.MinAgeCurrent_Box.BorderThickness = 2;
+            this.MinAgeCurrent_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MinAgeCurrent_Box.DefaultText = "";
+            this.MinAgeCurrent_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.MinAgeCurrent_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.MinAgeCurrent_Box.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.MinAgeCurrent_Box.DisabledState.Parent = this.MinAgeCurrent_Box;
+            this.MinAgeCurrent_Box.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.MinAgeCurrent_Box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MinAgeCurrent_Box.FocusedState.Parent = this.MinAgeCurrent_Box;
+            this.MinAgeCurrent_Box.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MinAgeCurrent_Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MinAgeCurrent_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MinAgeCurrent_Box.HoverState.Parent = this.MinAgeCurrent_Box;
+            this.MinAgeCurrent_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
+            this.MinAgeCurrent_Box.Location = new System.Drawing.Point(354, 66);
+            this.MinAgeCurrent_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinAgeCurrent_Box.Name = "MinAgeCurrent_Box";
+            this.MinAgeCurrent_Box.PasswordChar = '\0';
+            this.MinAgeCurrent_Box.PlaceholderText = "";
+            this.MinAgeCurrent_Box.SelectedText = "";
+            this.MinAgeCurrent_Box.ShadowDecoration.BorderRadius = 12;
+            this.MinAgeCurrent_Box.ShadowDecoration.Depth = 5;
+            this.MinAgeCurrent_Box.ShadowDecoration.Parent = this.MinAgeCurrent_Box;
+            this.MinAgeCurrent_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
+            this.MinAgeCurrent_Box.Size = new System.Drawing.Size(48, 47);
+            this.MinAgeCurrent_Box.TabIndex = 134;
+            this.MinAgeCurrent_Box.TextOffset = new System.Drawing.Point(3, 0);
+            // 
+            // MaxAgeCurrent_Box
+            // 
+            this.MaxAgeCurrent_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.MaxAgeCurrent_Box.Animated = true;
+            this.MaxAgeCurrent_Box.BackColor = System.Drawing.Color.Transparent;
+            this.MaxAgeCurrent_Box.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.MaxAgeCurrent_Box.BorderRadius = 15;
+            this.MaxAgeCurrent_Box.BorderThickness = 2;
+            this.MaxAgeCurrent_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MaxAgeCurrent_Box.DefaultText = "";
+            this.MaxAgeCurrent_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.MaxAgeCurrent_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.MaxAgeCurrent_Box.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.MaxAgeCurrent_Box.DisabledState.Parent = this.MaxAgeCurrent_Box;
+            this.MaxAgeCurrent_Box.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.MaxAgeCurrent_Box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MaxAgeCurrent_Box.FocusedState.Parent = this.MaxAgeCurrent_Box;
+            this.MaxAgeCurrent_Box.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MaxAgeCurrent_Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MaxAgeCurrent_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MaxAgeCurrent_Box.HoverState.Parent = this.MaxAgeCurrent_Box;
+            this.MaxAgeCurrent_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
+            this.MaxAgeCurrent_Box.Location = new System.Drawing.Point(354, 132);
+            this.MaxAgeCurrent_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaxAgeCurrent_Box.Name = "MaxAgeCurrent_Box";
+            this.MaxAgeCurrent_Box.PasswordChar = '\0';
+            this.MaxAgeCurrent_Box.PlaceholderText = "";
+            this.MaxAgeCurrent_Box.SelectedText = "";
+            this.MaxAgeCurrent_Box.ShadowDecoration.BorderRadius = 12;
+            this.MaxAgeCurrent_Box.ShadowDecoration.Depth = 5;
+            this.MaxAgeCurrent_Box.ShadowDecoration.Parent = this.MaxAgeCurrent_Box;
+            this.MaxAgeCurrent_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
+            this.MaxAgeCurrent_Box.Size = new System.Drawing.Size(48, 47);
+            this.MaxAgeCurrent_Box.TabIndex = 135;
+            this.MaxAgeCurrent_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // ChangeAgeRange_Form
             // 
@@ -186,6 +263,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(434, 257);
+            this.Controls.Add(this.MaxAgeCurrent_Box);
+            this.Controls.Add(this.MinAgeCurrent_Box);
             this.Controls.Add(this.MaxAge_Box);
             this.Controls.Add(this.MinAge_Box);
             this.Controls.Add(this.SubjectName_Label);
@@ -210,5 +289,7 @@
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2TextBox MaxAge_Box;
+        private Guna.UI2.WinForms.Guna2TextBox MaxAgeCurrent_Box;
+        private Guna.UI2.WinForms.Guna2TextBox MinAgeCurrent_Box;
     }
 }
