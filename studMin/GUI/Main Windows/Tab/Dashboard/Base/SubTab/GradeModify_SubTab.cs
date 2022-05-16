@@ -158,47 +158,6 @@ namespace studMin
             subject.Dispose();
         }
 
-        private void Search_Box_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
-                cm.SuspendBinding();
-
-                for (int i = 0; i < GridView.RowCount; i++)
-                {
-                    if (GridView.Rows[i].Cells[0].Value != null &&
-                        GridView.Rows[i].Cells[1].Value != null)
-                    {
-                        string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
-
-                        if (fullName.Contains(Search_Box.Text.ToLower()))
-                        {
-                            GridView.Rows[i].Visible = true;
-                        }
-                        else
-                        {
-                            GridView.Rows[i].Visible = false;
-                        }
-                    }
-                }
-
-                cm.ResumeBinding();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void FullGridView_Button_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < GridView.RowCount; i++)
-            {
-                GridView.Rows[i].Visible = true;
-            }
-        }
-
         private void DataGridViewExport_Button_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -493,9 +452,73 @@ namespace studMin
             }
         }
 
-        private void GridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                try
+                {
+                    CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                    cm.SuspendBinding();
 
+                    for (int i = 0; i < GridView.RowCount; i++)
+                    {
+                        if (GridView.Rows[i].Cells[0].Value != null &&
+                            GridView.Rows[i].Cells[1].Value != null)
+                        {
+                            string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
+
+                            if (fullName.Contains(Search_Box.Text.ToLower()))
+                            {
+                                GridView.Rows[i].Visible = true;
+                            }
+                            else
+                            {
+                                GridView.Rows[i].Visible = false;
+                            }
+                        }
+                    }
+
+                    cm.ResumeBinding();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+                try
+                {
+                    CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
+                    cm.SuspendBinding();
+
+                    for (int i = 0; i < GridView.RowCount; i++)
+                    {
+                        if (GridView.Rows[i].Cells[0].Value != null &&
+                            GridView.Rows[i].Cells[1].Value != null)
+                        {
+                            string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
+
+                            if (fullName.Contains(Search_Box.Text.ToLower()))
+                            {
+                                GridView.Rows[i].Visible = true;
+                            }
+                            else
+                            {
+                                GridView.Rows[i].Visible = false;
+                            }
+                        }
+                    }
+
+                    cm.ResumeBinding();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

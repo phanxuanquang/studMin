@@ -74,7 +74,7 @@ namespace studMin
                 return;
             }
 
-            if (!CheckEmail(Email_Box.Text))
+            if (!CheckEmail(ParentEmail_Box.Text))
             {
                 MessageBox.Show("Email không hợp lệ, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -87,10 +87,11 @@ namespace studMin
             string bloodLine = Bloodline_Box.Text;
             string address = Address_Box.Text;
             string telephone = PhoneNumber_Box.Text;
-            string emailParent = Email_Box.Text;
+            string emailParent = ParentEmail_Box.Text;
+            string email = Email_Box.Text;
             Guid idClass = Database.ClassServices.Instance.GetClassByClassName(className).ID;
 
-            if (Database.StudentServices.Instance.SaveStudentToDB(firstName, lastName, sex, dateOfBirth, address, null, idClass, emailParent, telephone, 1, bloodLine))
+            if (Database.StudentServices.Instance.SaveStudentToDB(firstName, lastName, sex, dateOfBirth, address, email, idClass, emailParent, telephone, 1, bloodLine))
             {
                 MessageBox.Show("Thêm học sinh thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else
@@ -112,7 +113,7 @@ namespace studMin
 
         private bool CheckEmptyInput()
         {
-            return String.IsNullOrEmpty(FirstName_Box.Text) || String.IsNullOrEmpty(LastName_Box.Text) || String.IsNullOrEmpty(Bloodline_Box.Text) || String.IsNullOrEmpty(Address_Box.Text) || String.IsNullOrEmpty(PhoneNumber_Box.Text) || String.IsNullOrEmpty(Email_Box.Text);
+            return String.IsNullOrEmpty(FirstName_Box.Text) || String.IsNullOrEmpty(LastName_Box.Text) || String.IsNullOrEmpty(Bloodline_Box.Text) || String.IsNullOrEmpty(Address_Box.Text) || String.IsNullOrEmpty(PhoneNumber_Box.Text) || String.IsNullOrEmpty(ParentEmail_Box.Text);
         }
 
         public bool CheckEmail(string emailAddress)

@@ -65,7 +65,6 @@
             this.DataGridViewImport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.GridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.sTUDENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.FullGridView_Button = new Guna.UI2.WinForms.Guna2Button();
             this.mDataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.sCOREMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.m15DataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -209,10 +208,10 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(244, 36);
+            this.Search_Box.Size = new System.Drawing.Size(357, 36);
             this.Search_Box.TabIndex = 32;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
-            this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
+            this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
             // OralTest_GroupBox
             // 
@@ -589,38 +588,10 @@
             this.GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.GridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellClick);
-            this.GridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellContentClick);
             // 
             // sTUDENTBindingSource
             // 
             this.sTUDENTBindingSource.DataSource = typeof(studMin.GradeModify_SubTab.STUDENT4GRIDVIEW);
-            // 
-            // FullGridView_Button
-            // 
-            this.FullGridView_Button.Animated = true;
-            this.FullGridView_Button.BackColor = System.Drawing.Color.White;
-            this.FullGridView_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.FullGridView_Button.BorderRadius = 5;
-            this.FullGridView_Button.BorderThickness = 2;
-            this.FullGridView_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.FullGridView_Button.CheckedState.Parent = this.FullGridView_Button;
-            this.FullGridView_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FullGridView_Button.CustomImages.Parent = this.FullGridView_Button;
-            this.FullGridView_Button.FillColor = System.Drawing.Color.White;
-            this.FullGridView_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.FullGridView_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.FullGridView_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.FullGridView_Button.HoverState.Parent = this.FullGridView_Button;
-            this.FullGridView_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.FullGridView_Button.Location = new System.Drawing.Point(399, 32);
-            this.FullGridView_Button.Name = "FullGridView_Button";
-            this.FullGridView_Button.PressedDepth = 20;
-            this.FullGridView_Button.ShadowDecoration.Parent = this.FullGridView_Button;
-            this.FullGridView_Button.Size = new System.Drawing.Size(107, 36);
-            this.FullGridView_Button.TabIndex = 103;
-            this.FullGridView_Button.Text = "TÌM KIẾM";
-            this.FullGridView_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.FullGridView_Button.Click += new System.EventHandler(this.FullGridView_Button_Click);
             // 
             // mDataGridView
             // 
@@ -1007,7 +978,6 @@
             this.Controls.Add(this.m45DataGridView);
             this.Controls.Add(this.m15DataGridView);
             this.Controls.Add(this.mDataGridView);
-            this.Controls.Add(this.FullGridView_Button);
             this.Controls.Add(this.GridView);
             this.Controls.Add(this.DataGridViewImport_Button);
             this.Controls.Add(this.RegularTest_GroupBox);
@@ -1054,7 +1024,6 @@
         private Guna.UI2.WinForms.Guna2TextBox RegularTestScore_Box;
         private Guna.UI2.WinForms.Guna2Button DataGridViewImport_Button;
         private Guna.UI2.WinForms.Guna2DataGridView GridView;
-        private Guna.UI2.WinForms.Guna2Button FullGridView_Button;
         private System.Windows.Forms.BindingSource sTUDENTBindingSource;
         private Guna.UI2.WinForms.Guna2DataGridView mDataGridView;
         private System.Windows.Forms.BindingSource sCOREMBindingSource;

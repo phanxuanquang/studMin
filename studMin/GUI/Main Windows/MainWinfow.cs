@@ -118,7 +118,7 @@ namespace studMin
                     statisticTab = new StatisticTab();
                     break;
                 case role.vicePrincipal:
-                    Dashboard = new NormalTeacherDashboard();
+                    Dashboard = new VicePrincipalDashboard();
                     timetable_Tab = new Timetable_Tab();
                     statisticTab = new StatisticTab();
                     break;
