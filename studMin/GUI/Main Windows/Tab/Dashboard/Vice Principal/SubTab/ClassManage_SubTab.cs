@@ -22,5 +22,11 @@ namespace studMin
             AddClass_Form addClass_Form = new AddClass_Form();
             addClass_Form.ShowDialog();
         }
+
+        private void ChangeAgeRange_Button_Click(object sender, EventArgs e)
+        {
+            ChangeAgeRange_Form changeAgeRange_Form = new ChangeAgeRange_Form();
+            changeAgeRange_Form.ShowDialog();
+        }
     }
 }
