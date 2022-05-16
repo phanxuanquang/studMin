@@ -147,5 +147,38 @@ namespace studMin
 
             return list;
         }
+
+        private void StatisticTab_Load(object sender, EventArgs e)
+        {
+            List<SEMESTER> listSemesters = DataProvider.Instance.Database.SEMESTERs.Select(item => item).ToList();
+
+            foreach (SEMESTER semester in listSemesters)
+            {
+                if (semester.NAME == "1")
+                {
+                    Semester_ComboBox.Items.Add("Học kỳ 1");
+                } else if (semester.NAME == "2")
+                {
+                    Semester_ComboBox.Items.Add("Học kỳ 2");
+                }
+            }
+
+            List<string> listSchoolYear = new List<string>();
+            List<CLASS> listClass = ClassServices.Instance.GetClasss();
+
+            foreach (CLASS currentClass in listClass)
+            {
+                if (!listSchoolYear.Contains(currentClass.SCHOOLYEAR))
+                {
+                    listSchoolYear.Add(currentClass.SCHOOLYEAR);
+                }
+            }
+
+            foreach (string schoolYear in listSchoolYear)
+            {
+                SchoolYear_ComboBox.Items.Add(schoolYear);
+            }
+
+        }
     }
 }
