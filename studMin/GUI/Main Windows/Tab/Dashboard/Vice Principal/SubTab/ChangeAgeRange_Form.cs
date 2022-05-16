@@ -18,7 +18,15 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
             this.Load += ChangeAgeRange_Form_Load;
         }
-
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
         private void ChangeAgeRange_Form_Load(object sender, EventArgs e)
         {
             LoadAgeLimit();

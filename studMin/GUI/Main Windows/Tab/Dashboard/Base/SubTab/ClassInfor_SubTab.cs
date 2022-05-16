@@ -100,6 +100,34 @@ namespace studMin
             students.Save(exportPath);
         }
 
+        private void ClassInfor_SubTab_Load(object sender, EventArgs e)
+        {
+            this.BeginInvoke((System.Action)(() =>
+            {
+
+                List<CLASS> listClasses = ClassServices.Instance.GetClasss();
+
+                List<string> ListClass = new List<string>();
+                List<string> ListSchoolYear = new List<string>();
+
+                for (int index = 0; index < listClasses.Count; index++)
+                {
+                    if (!ListClass.Contains(listClasses[index].CLASSNAME))
+                    {
+                        ListClass.Add(listClasses[index].CLASSNAME);
+                    }
+
+                    if (!ListSchoolYear.Contains(listClasses[index].SCHOOLYEAR))
+                    {
+                        ListSchoolYear.Add(listClasses[index].SCHOOLYEAR);
+                    }
+                }
+
+                Class_ComboBox.DataSource = ListClass;
+                SchoolYear_ComboBox.DataSource = ListSchoolYear;
+            }));
+        }
+
         #region Buttons
         private void Search_Button_Click(object sender, EventArgs e)
         {
@@ -190,35 +218,6 @@ namespace studMin
                 MessageBox.Show("Xuất dữ liệu không thành công.", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         #endregion
-
-        private void ClassInfor_SubTab_Load(object sender, EventArgs e)
-        {
-            this.BeginInvoke((System.Action)(() =>
-            {
-
-                List<CLASS> listClasses = ClassServices.Instance.GetClasss();
-
-                List<string> ListClass = new List<string>();
-                List<string> ListSchoolYear = new List<string>();
-
-                for (int index = 0; index < listClasses.Count; index++)
-                {
-                    if (!ListClass.Contains(listClasses[index].CLASSNAME))
-                    {
-                        ListClass.Add(listClasses[index].CLASSNAME);
-                    }
-
-                    if (!ListSchoolYear.Contains(listClasses[index].SCHOOLYEAR))
-                    {
-                        ListSchoolYear.Add(listClasses[index].SCHOOLYEAR);
-                    }
-                }
-
-                Class_ComboBox.DataSource = ListClass;
-                SchoolYear_ComboBox.DataSource = ListSchoolYear;
-            }));
-        }
     }
 }

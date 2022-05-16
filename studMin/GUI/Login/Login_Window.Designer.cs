@@ -128,6 +128,7 @@
             this.Login_Button.BackColor = System.Drawing.Color.Transparent;
             this.Login_Button.BorderRadius = 15;
             this.Login_Button.CheckedState.Parent = this.Login_Button;
+            this.Login_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Login_Button.CustomImages.Parent = this.Login_Button;
             this.Login_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Login_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -147,6 +148,7 @@
             this.ForgetPassword_LinkLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ForgetPassword_LinkLabel.AutoSize = true;
             this.ForgetPassword_LinkLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ForgetPassword_LinkLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForgetPassword_LinkLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ForgetPassword_LinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.ForgetPassword_LinkLabel.Location = new System.Drawing.Point(297, 510);
@@ -168,6 +170,7 @@
             this.Exit_Button.BackColor = System.Drawing.Color.Transparent;
             this.Exit_Button.BorderRadius = 15;
             this.Exit_Button.CheckedState.Parent = this.Exit_Button;
+            this.Exit_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_Button.CustomImages.Parent = this.Exit_Button;
             this.Exit_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));

@@ -66,6 +66,7 @@ namespace studMin
                 textBox.Focus();
             }
         }
+
         private void OralTestScore_Box_Validated(object sender, EventArgs e)
         {
             CheckValidGrade(OralTestScore_Box);
@@ -303,9 +304,8 @@ namespace studMin
 
         private void ResetComboBox()
         {
-            OralTestScore_ComboBox.SelectedIndex = 0;
-            RegularTestScore_ComboBox.SelectedIndex = 0;
-            MidTermTestScore_ComboBox.SelectedIndex = 0;
+            OralTestScore_ComboBox.SelectedIndex = RegularTestScore_ComboBox.SelectedIndex = MidTermTestScore_ComboBox.SelectedIndex = 0;
+            MidTermTestScore_Box.Text = RegularTestScore_Box.Text = OralTestScore_Box.Text = "0";
         }
 
         class STUDENT4GRIDVIEW
@@ -364,34 +364,34 @@ namespace studMin
             }
         }
 
-        private void OralTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        void scoreModify(Guna.UI2.WinForms.Guna2ComboBox comboBox, Guna.UI2.WinForms.Guna2TextBox textBox)
         {
-            int index = OralTestScore_ComboBox.SelectedIndex;
+            int index = comboBox.SelectedIndex;
             if (index > 0 && index <= sCOREMBindingSource.Count)
             {
-                OralTestScore_Box.Text = ((SCORE4GRIDVIEW)sCOREMBindingSource.List[index - 1]).Score.ToString();
+                textBox.ReadOnly = false;
+                textBox.Text = ((SCORE4GRIDVIEW)sCOREMBindingSource.List[index - 1]).Score.ToString();
             }
-            else OralTestScore_Box.Text = string.Empty;
+            else
+            {
+                textBox.Text = "0";
+                textBox.ReadOnly = true;
+            };
+        }
+
+        private void OralTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            scoreModify(OralTestScore_ComboBox, OralTestScore_Box);
         }
 
         private void RegularTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = RegularTestScore_ComboBox.SelectedIndex;
-            if (index > 0 && index <= sCORE15MBindingSource.Count)
-            {
-                RegularTestScore_Box.Text = ((SCORE4GRIDVIEW)sCORE15MBindingSource.List[index - 1]).Score.ToString();
-            }
-            else RegularTestScore_Box.Text = string.Empty;
+            scoreModify(RegularTestScore_ComboBox, RegularTestScore_Box);
         }
 
         private void MidTermTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = MidTermTestScore_ComboBox.SelectedIndex;
-            if (index > 0 && index <= sCORE45MBindingSource.Count)
-            {
-                MidTermTestScore_Box.Text = ((SCORE4GRIDVIEW)sCORE45MBindingSource.List[index - 1]).Score.ToString();
-            }
-            else MidTermTestScore_Box.Text = string.Empty;
+            scoreModify(MidTermTestScore_ComboBox, MidTermTestScore_Box);
         }
 
         private void UpdateData_Button_Click(object sender, EventArgs e)
@@ -519,6 +519,35 @@ namespace studMin
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        void checkValidScore(Guna.UI2.WinForms.Guna2TextBox scoreBox)
+        {
+            if (scoreBox.Text != String.Empty)
+            {
+                double validScore = -1;
+                bool isValidScore = double.TryParse(scoreBox.Text, out validScore);
+                if (!isValidScore || validScore < 0 || validScore > 10)
+                {
+                    MessageBox.Show("Điểm phải là một số dương từ 0 đến 10.", "Điểm số không hợp lệ!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    scoreBox.Text = scoreBox.Text.Substring(0, scoreBox.Text.Length - 1);
+                }
+            }
+        }
+
+        private void MidTermTestScore_Box_TextChanged(object sender, EventArgs e)
+        {
+            checkValidScore(MidTermTestScore_Box);
+        }
+
+        private void RegularTestScore_Box_TextChanged(object sender, EventArgs e)
+        {
+            checkValidScore(RegularTestScore_Box);
+        }
+
+        private void OralTestScore_Box_TextChanged(object sender, EventArgs e)
+        {
+            checkValidScore(OralTestScore_Box);
         }
     }
 }

@@ -303,6 +303,7 @@
             this.OralTestScore_Box.Size = new System.Drawing.Size(67, 36);
             this.OralTestScore_Box.TabIndex = 41;
             this.OralTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.OralTestScore_Box.TextChanged += new System.EventHandler(this.OralTestScore_Box_TextChanged);
             this.OralTestScore_Box.Validated += new System.EventHandler(this.OralTestScore_Box_Validated);
             // 
             // MidTermTest_GroupBox
@@ -393,6 +394,7 @@
             this.MidTermTestScore_Box.Size = new System.Drawing.Size(67, 36);
             this.MidTermTestScore_Box.TabIndex = 41;
             this.MidTermTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MidTermTestScore_Box.TextChanged += new System.EventHandler(this.MidTermTestScore_Box_TextChanged);
             this.MidTermTestScore_Box.Validated += new System.EventHandler(this.MidTermTestScore_Box_Validated);
             // 
             // RegularTest_GroupBox
@@ -485,6 +487,7 @@
             this.RegularTestScore_Box.Size = new System.Drawing.Size(67, 36);
             this.RegularTestScore_Box.TabIndex = 41;
             this.RegularTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.RegularTestScore_Box.TextChanged += new System.EventHandler(this.RegularTestScore_Box_TextChanged);
             this.RegularTestScore_Box.Validated += new System.EventHandler(this.RegularTestScore_Box_Validated);
             // 
             // DataGridViewImport_Button
@@ -515,6 +518,8 @@
             this.GridView.AllowDrop = true;
             this.GridView.AllowUserToAddRows = false;
             this.GridView.AllowUserToDeleteRows = false;
+            this.GridView.AllowUserToResizeColumns = false;
+            this.GridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.GridView.AutoGenerateColumns = false;
@@ -598,6 +603,8 @@
             this.mDataGridView.AllowDrop = true;
             this.mDataGridView.AllowUserToAddRows = false;
             this.mDataGridView.AllowUserToDeleteRows = false;
+            this.mDataGridView.AllowUserToResizeColumns = false;
+            this.mDataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             this.mDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.mDataGridView.AutoGenerateColumns = false;
@@ -678,6 +685,8 @@
             this.m15DataGridView.AllowDrop = true;
             this.m15DataGridView.AllowUserToAddRows = false;
             this.m15DataGridView.AllowUserToDeleteRows = false;
+            this.m15DataGridView.AllowUserToResizeColumns = false;
+            this.m15DataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             this.m15DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.m15DataGridView.AutoGenerateColumns = false;
@@ -758,6 +767,8 @@
             this.m45DataGridView.AllowDrop = true;
             this.m45DataGridView.AllowUserToAddRows = false;
             this.m45DataGridView.AllowUserToDeleteRows = false;
+            this.m45DataGridView.AllowUserToResizeColumns = false;
+            this.m45DataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
             this.m45DataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.m45DataGridView.AutoGenerateColumns = false;
@@ -838,6 +849,8 @@
             this.finalDataGridView.AllowDrop = true;
             this.finalDataGridView.AllowUserToAddRows = false;
             this.finalDataGridView.AllowUserToDeleteRows = false;
+            this.finalDataGridView.AllowUserToResizeColumns = false;
+            this.finalDataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
             this.finalDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.finalDataGridView.AutoGenerateColumns = false;

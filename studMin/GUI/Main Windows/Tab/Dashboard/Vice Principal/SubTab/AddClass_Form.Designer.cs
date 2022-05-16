@@ -41,6 +41,7 @@
             this.Teacher_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Elipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
+            this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.SuspendLayout();
             // 
             // MaxQuantity_Box
@@ -70,7 +71,6 @@
             this.MaxQuantity_Box.Name = "MaxQuantity_Box";
             this.MaxQuantity_Box.PasswordChar = '\0';
             this.MaxQuantity_Box.PlaceholderText = "Không xác định";
-            this.MaxQuantity_Box.ReadOnly = true;
             this.MaxQuantity_Box.SelectedText = "";
             this.MaxQuantity_Box.ShadowDecoration.BorderRadius = 12;
             this.MaxQuantity_Box.ShadowDecoration.Depth = 5;
@@ -79,6 +79,8 @@
             this.MaxQuantity_Box.Size = new System.Drawing.Size(152, 22);
             this.MaxQuantity_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.MaxQuantity_Box.TabIndex = 158;
+            this.MaxQuantity_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MaxQuantity_Box.TextChanged += new System.EventHandler(this.MaxQuantity_Box_TextChanged);
             // 
             // ClassName_Box
             // 
@@ -115,6 +117,7 @@
             this.ClassName_Box.Size = new System.Drawing.Size(134, 22);
             this.ClassName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.ClassName_Box.TabIndex = 154;
+            this.ClassName_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gunaLabel6
             // 
@@ -184,6 +187,7 @@
             this.Complete_Button.BackColor = System.Drawing.Color.Transparent;
             this.Complete_Button.BorderRadius = 15;
             this.Complete_Button.CheckedState.Parent = this.Complete_Button;
+            this.Complete_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Complete_Button.CustomImages.Parent = this.Complete_Button;
             this.Complete_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Complete_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -207,6 +211,7 @@
             this.Exit_Button.BorderRadius = 15;
             this.Exit_Button.BorderThickness = 2;
             this.Exit_Button.CheckedState.Parent = this.Exit_Button;
+            this.Exit_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_Button.CustomImages.Parent = this.Exit_Button;
             this.Exit_Button.FillColor = System.Drawing.Color.White;
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -244,10 +249,10 @@
             this.Teacher_ComboBox.Items.AddRange(new object[] {
             "Chọn giáo viên"});
             this.Teacher_ComboBox.ItemsAppearance.Parent = this.Teacher_ComboBox;
-            this.Teacher_ComboBox.Location = new System.Drawing.Point(139, 108);
+            this.Teacher_ComboBox.Location = new System.Drawing.Point(135, 108);
             this.Teacher_ComboBox.Name = "Teacher_ComboBox";
             this.Teacher_ComboBox.ShadowDecoration.Parent = this.Teacher_ComboBox;
-            this.Teacher_ComboBox.Size = new System.Drawing.Size(412, 36);
+            this.Teacher_ComboBox.Size = new System.Drawing.Size(416, 36);
             this.Teacher_ComboBox.StartIndex = 0;
             this.Teacher_ComboBox.TabIndex = 166;
             this.Teacher_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -256,6 +261,10 @@
             // 
             this.Elipse.BorderRadius = 10;
             this.Elipse.TargetControl = this;
+            // 
+            // DragControl
+            // 
+            this.DragControl.TargetControl = this;
             // 
             // AddClass_Form
             // 
@@ -294,5 +303,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox Teacher_ComboBox;
         private Guna.UI2.WinForms.Guna2Elipse Elipse;
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
+        private Guna.UI2.WinForms.Guna2DragControl DragControl;
     }
 }

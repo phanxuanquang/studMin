@@ -21,7 +21,15 @@ namespace studMin
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
         }
-
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
         public ChangeSubjectName_Form(string _subjectName, SubjectManage_Form _subjectManageForm)
         {
             InitializeComponent();

@@ -18,7 +18,15 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
             this.Load += AddClass_Form_Load;
         }
-
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
         private void AddClass_Form_Load(object sender, EventArgs e)
         {
             LoadTeacher();
@@ -77,6 +85,20 @@ namespace studMin
         private bool CheckClassExisting(string className)
         {
              return Database.ClassServices.Instance.GetClasss().Select(item => item.CLASSNAME).Contains(className);
+        }
+
+        private void MaxQuantity_Box_TextChanged(object sender, EventArgs e)
+        {
+            if (MaxQuantity_Box.Text != String.Empty)
+            {
+                int validQuantity = -1;
+                bool isValidQuantity = int.TryParse(MaxQuantity_Box.Text, out validQuantity);
+                if (!isValidQuantity || validQuantity < 0)
+                {
+                    MessageBox.Show("Sỉ số phải là một số nguyên dương.", "Sỉ số không hợp lệ!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MaxQuantity_Box.Text = MaxQuantity_Box.Text.Substring(0, MaxQuantity_Box.Text.Length - 1);
+                }
+            }
         }
     }
 }

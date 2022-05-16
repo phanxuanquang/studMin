@@ -370,6 +370,7 @@
             this.Complete_Button.BackColor = System.Drawing.Color.Transparent;
             this.Complete_Button.BorderRadius = 15;
             this.Complete_Button.CheckedState.Parent = this.Complete_Button;
+            this.Complete_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Complete_Button.CustomImages.Parent = this.Complete_Button;
             this.Complete_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Complete_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -393,6 +394,7 @@
             this.Exit_Button.BorderRadius = 15;
             this.Exit_Button.BorderThickness = 2;
             this.Exit_Button.CheckedState.Parent = this.Exit_Button;
+            this.Exit_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Exit_Button.CustomImages.Parent = this.Exit_Button;
             this.Exit_Button.FillColor = System.Drawing.Color.White;
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -475,6 +477,7 @@
             this.Birthday_ComboBox.BorderThickness = 2;
             this.Birthday_ComboBox.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Birthday_ComboBox.CheckedState.Parent = this.Birthday_ComboBox;
+            this.Birthday_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Birthday_ComboBox.CustomFormat = "dd/mm/yyyy";
             this.Birthday_ComboBox.FillColor = System.Drawing.Color.White;
             this.Birthday_ComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F);

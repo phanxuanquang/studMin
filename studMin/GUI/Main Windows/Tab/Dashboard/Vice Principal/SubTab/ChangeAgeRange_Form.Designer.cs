@@ -38,6 +38,7 @@
             this.MaxAge_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.MinAgeCurrent_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.MaxAgeCurrent_Box = new Guna.UI2.WinForms.Guna2TextBox();
+            this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.SuspendLayout();
             // 
             // Exit_Button
@@ -138,7 +139,7 @@
             this.MinAge_Box.ShadowDecoration.Depth = 5;
             this.MinAge_Box.ShadowDecoration.Parent = this.MinAge_Box;
             this.MinAge_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MinAge_Box.Size = new System.Drawing.Size(299, 47);
+            this.MinAge_Box.Size = new System.Drawing.Size(246, 47);
             this.MinAge_Box.TabIndex = 132;
             this.MinAge_Box.TextOffset = new System.Drawing.Point(3, 0);
             this.MinAge_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Age_Box_KeyPress);
@@ -180,7 +181,7 @@
             this.MaxAge_Box.ShadowDecoration.Depth = 5;
             this.MaxAge_Box.ShadowDecoration.Parent = this.MaxAge_Box;
             this.MaxAge_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MaxAge_Box.Size = new System.Drawing.Size(299, 47);
+            this.MaxAge_Box.Size = new System.Drawing.Size(246, 47);
             this.MaxAge_Box.TabIndex = 133;
             this.MaxAge_Box.TextOffset = new System.Drawing.Point(3, 0);
             this.MaxAge_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Age_Box_KeyPress);
@@ -207,7 +208,7 @@
             this.MinAgeCurrent_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.MinAgeCurrent_Box.HoverState.Parent = this.MinAgeCurrent_Box;
             this.MinAgeCurrent_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.MinAgeCurrent_Box.Location = new System.Drawing.Point(354, 66);
+            this.MinAgeCurrent_Box.Location = new System.Drawing.Point(301, 66);
             this.MinAgeCurrent_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinAgeCurrent_Box.Name = "MinAgeCurrent_Box";
             this.MinAgeCurrent_Box.PasswordChar = '\0';
@@ -217,8 +218,9 @@
             this.MinAgeCurrent_Box.ShadowDecoration.Depth = 5;
             this.MinAgeCurrent_Box.ShadowDecoration.Parent = this.MinAgeCurrent_Box;
             this.MinAgeCurrent_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MinAgeCurrent_Box.Size = new System.Drawing.Size(48, 47);
+            this.MinAgeCurrent_Box.Size = new System.Drawing.Size(101, 47);
             this.MinAgeCurrent_Box.TabIndex = 134;
+            this.MinAgeCurrent_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.MinAgeCurrent_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // MaxAgeCurrent_Box
@@ -243,7 +245,7 @@
             this.MaxAgeCurrent_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.MaxAgeCurrent_Box.HoverState.Parent = this.MaxAgeCurrent_Box;
             this.MaxAgeCurrent_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.MaxAgeCurrent_Box.Location = new System.Drawing.Point(354, 132);
+            this.MaxAgeCurrent_Box.Location = new System.Drawing.Point(301, 132);
             this.MaxAgeCurrent_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaxAgeCurrent_Box.Name = "MaxAgeCurrent_Box";
             this.MaxAgeCurrent_Box.PasswordChar = '\0';
@@ -253,9 +255,14 @@
             this.MaxAgeCurrent_Box.ShadowDecoration.Depth = 5;
             this.MaxAgeCurrent_Box.ShadowDecoration.Parent = this.MaxAgeCurrent_Box;
             this.MaxAgeCurrent_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MaxAgeCurrent_Box.Size = new System.Drawing.Size(48, 47);
+            this.MaxAgeCurrent_Box.Size = new System.Drawing.Size(101, 47);
             this.MaxAgeCurrent_Box.TabIndex = 135;
+            this.MaxAgeCurrent_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.MaxAgeCurrent_Box.TextOffset = new System.Drawing.Point(3, 0);
+            // 
+            // DragControl
+            // 
+            this.DragControl.TargetControl = this;
             // 
             // ChangeAgeRange_Form
             // 
@@ -291,5 +298,6 @@
         private Guna.UI2.WinForms.Guna2TextBox MaxAge_Box;
         private Guna.UI2.WinForms.Guna2TextBox MaxAgeCurrent_Box;
         private Guna.UI2.WinForms.Guna2TextBox MinAgeCurrent_Box;
+        private Guna.UI2.WinForms.Guna2DragControl DragControl;
     }
 }

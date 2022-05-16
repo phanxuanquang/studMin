@@ -163,7 +163,6 @@ namespace studMin
             ForgetPasswordUC_MoverUp.Activate();
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
-
         #endregion
 
     }
