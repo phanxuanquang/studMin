@@ -21,15 +21,22 @@ namespace studMin
 
         public GradeModify_SubTab()
         {
-            this.Load += GradeModify_SubTab_Load;
             InitializeComponent();
+            this.Load += GradeModify_SubTab_Load;
         }
 
-        private void GradeModify_SubTab_Load(object sender, EventArgs e)
+        private async void GradeModify_SubTab_Load(object sender, EventArgs e)
         {
-            List<string> @class = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
-            @class.Add("Mọi lớp");
-            Class_ComboBox.DataSource = @class;
+            await System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                List<string> @class = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
+                @class.Add("Mọi lớp");
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new System.Action(() => { Class_ComboBox.DataSource = @class; }));
+                }
+                else Class_ComboBox.DataSource = @class;
+            });
         }
 
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
@@ -112,6 +119,7 @@ namespace studMin
             {
                 return;
             }
+
             backgroundWorker.DoWork += ImportExcel_DoWork;
             backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
             backgroundWorker.RunWorkerAsync(importPath);
@@ -189,6 +197,7 @@ namespace studMin
                 MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
                 return;
             }
+
             backgroundWorker.DoWork += ExportExcel_DoWork;
             backgroundWorker.RunWorkerAsync(exportPath);
         }

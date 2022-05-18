@@ -1,4 +1,4 @@
-﻿namespace studMin
+﻿namespace studMin.GUI
 {
     partial class LoadingWindow
     {
@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Elipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Elipse
@@ -37,24 +38,41 @@
             this.Elipse.BorderRadius = 10;
             this.Elipse.TargetControl = this;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(676, 65);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Vui lòng đợi trong giây lát ...";
+            this.label1.UseWaitCursor = true;
+            // 
             // LoadingWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(500, 500);
+            this.BackColor = System.Drawing.Color.DimGray;
+            this.ClientSize = new System.Drawing.Size(700, 250);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "LoadingWindow";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LoadingWindow";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private Guna.UI2.WinForms.Guna2Elipse Elipse;
+        private System.Windows.Forms.Label label1;
     }
 }

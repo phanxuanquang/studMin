@@ -20,7 +20,7 @@ namespace studMin
         private BindingSource listSchoolYear = null;
         private BindingSource listSubject = null;
 
-        private GUI.WaitControl waitControl = null;
+        private GUI.LoadingWindow loadingWindow = null;
 
         private class SCHEDULE4COMBOBOX
         {
@@ -155,7 +155,7 @@ namespace studMin
 
         private void StatisticTab_Headteacher_Load(object sender, EventArgs e)
         {
-            waitControl = new GUI.WaitControl(this.ParentForm);
+            loadingWindow = new GUI.LoadingWindow(this.ParentForm);
 
             listSemester = new BindingSource();
             listSchoolYear = new BindingSource();
@@ -193,6 +193,7 @@ namespace studMin
             backgroundWorker.DoWork += LoadSubjectFromDatabase_DoWork;
             backgroundWorker.RunWorkerCompleted += LoadSubjectFromDatabase_RunWorkerCompleted;
             backgroundWorker.RunWorkerAsync();
+            loadingWindow.ShowDialog();
         }
 
         private void UpdateReportSubject_CurrentChanged(object sender, EventArgs e)
@@ -250,13 +251,11 @@ namespace studMin
         {
             /*ListSchoolYear_CurrentChanged(null, null);
             LoadSubjectFromDatabase_DoWork(null, null);*/
-            waitControl.Stop();
+            loadingWindow.Close();
         }
 
         private void LoadSubjectFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
-            waitControl.Start();
-
             List<string> subjects = studMin.Database.SubjectServices.Instance.GetSubjects().Select(item => item.DisplayName).ToList();
             List<IGrouping<string, SCHEDULE>> schoolYear = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.GroupBy(schedule => schedule.SCHOOLYEAR).ToList();
 

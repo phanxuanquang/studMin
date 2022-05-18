@@ -79,8 +79,8 @@ namespace studMin
                 bool isValidAccount = false;
                 string accountRole = String.Empty;
 
-                GUI.WaitControl wait = new GUI.WaitControl(this);
-                wait.Start();
+                GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this);
+                loadingWindow.Show();
 
                 await System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
@@ -96,8 +96,8 @@ namespace studMin
                     }
                 });
 
-                wait.Stop();
-                wait.Dispose();
+                loadingWindow.Close();
+                loadingWindow.Dispose();
 
                 if (isValidAccount)
                 {

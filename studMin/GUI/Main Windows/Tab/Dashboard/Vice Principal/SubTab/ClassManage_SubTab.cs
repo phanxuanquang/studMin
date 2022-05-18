@@ -13,6 +13,9 @@ namespace studMin
     using Database.Models;
     public partial class ClassManage_SubTab : UserControl
     {
+        private BackgroundWorker backgroundWorker = null;
+        private GUI.LoadingWindow loadingWindow = null;
+
         public ClassManage_SubTab()
         {
             InitializeComponent();
@@ -60,11 +63,43 @@ namespace studMin
             {
                 MessageBox.Show("Tên lớp đã tồn tại!");
                 //Database.DataProvider.Instance.Database.Entry(Database.DataProvider.Instance.Database.CLASSes).Reload();
-                RefreshAll();
-                BidingClass();
+
+                if (backgroundWorker == null)
+                {
+                    backgroundWorker = new BackgroundWorker();
+                }
+                else if (!backgroundWorker.IsBusy)
+                {
+                    backgroundWorker.Dispose();
+                    backgroundWorker = new BackgroundWorker();
+                }
+                else
+                {
+                    MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                    return;
+                }
+
+                if (loadingWindow == null) loadingWindow = new GUI.LoadingWindow(this.ParentForm);
+
+                backgroundWorker.DoWork += ReloadDatabase_DoWork;
+                backgroundWorker.RunWorkerCompleted += ReloadDatabase_RunrWorkerCompleted;
+                backgroundWorker.RunWorkerAsync();
+                loadingWindow.ShowDialog();
+                
                 return;
             }
             Database.DataProvider.Instance.Database.SaveChanges();
+        }
+
+        private void ReloadDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            loadingWindow.Close();
+        }
+
+        private void ReloadDatabase_DoWork(object sender, DoWorkEventArgs e)
+        {
+            RefreshAll();
+            BidingClass();
         }
 
         public void RefreshAll()

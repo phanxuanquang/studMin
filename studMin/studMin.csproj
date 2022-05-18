@@ -331,7 +331,6 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.Designer.cs">
       <DependentUpon>NormalTeacherDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\WaitControl.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\PrincipalDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
