@@ -100,7 +100,7 @@ namespace studMin
             students.Save(exportPath);
         }
 
-        private void ClassInfor_SubTab_Load(object sender, EventArgs e)
+        /*private void ClassInfor_SubTab_Load(object sender, EventArgs e)
         {
             this.BeginInvoke((System.Action)(() =>
             {
@@ -126,7 +126,7 @@ namespace studMin
                 Class_ComboBox.DataSource = ListClass;
                 SchoolYear_ComboBox.DataSource = ListSchoolYear;
             }));
-        }
+        }*/
 
         #region Buttons
         private void Search_Button_Click(object sender, EventArgs e)
@@ -219,5 +219,46 @@ namespace studMin
             }
         }
         #endregion
+
+        private void ClassInfor_SubTab_Load(object sender, EventArgs e)
+        {
+            this.BeginInvoke((System.Action)(() =>
+            {
+
+                List<CLASS> listClasses = ClassServices.Instance.GetClasss();
+
+                List<string> ListClass = new List<string>();
+                List<string> ListSchoolYear = new List<string>();
+
+                for (int index = 0; index < listClasses.Count; index++)
+                {
+                    if (!ListClass.Contains(listClasses[index].CLASSNAME))
+                    {
+                        ListClass.Add(listClasses[index].CLASSNAME);
+                        Class_ComboBox.Items.Add(listClasses[index].CLASSNAME);
+                    }
+
+                    if (!ListSchoolYear.Contains(listClasses[index].SCHOOLYEAR))
+                    {
+                        ListSchoolYear.Add(listClasses[index].SCHOOLYEAR);
+                        SchoolYear_ComboBox.Items.Add(listClasses[index].SCHOOLYEAR);
+                    }
+                }
+
+                List<SEMESTER> listSemesters = DataProvider.Instance.Database.SEMESTERs.Select(item => item).ToList();
+
+                foreach (SEMESTER semester in listSemesters)
+                {
+                    if (semester.NAME == "1")
+                    {
+                        Semester_ComboBox.Items.Add("Học kỳ 1");
+                    }
+                    else if (semester.NAME == "2")
+                    {
+                        Semester_ComboBox.Items.Add("Học kỳ 2");
+                    }
+                }
+            }));
+        }
     }
 }

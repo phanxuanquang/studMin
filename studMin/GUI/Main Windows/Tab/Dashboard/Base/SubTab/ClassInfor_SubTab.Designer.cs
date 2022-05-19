@@ -85,9 +85,7 @@
             this.Semester_ComboBox.HoverState.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.ItemHeight = 30;
             this.Semester_ComboBox.Items.AddRange(new object[] {
-            "Mọi học kỳ",
-            "Học kỳ I",
-            "Học kỳ II"});
+            "Mọi học kỳ"});
             this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.Location = new System.Drawing.Point(196, 39);
             this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(4);
