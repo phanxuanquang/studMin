@@ -78,5 +78,11 @@ namespace studMin
 
             DataTable.DataSource = dataSource;
         }
+
+        private void ChangeSubjectHead_Button_Click(object sender, EventArgs e)
+        {
+            ChangeSubjectHead_Form changeSubjectHead_Form = new ChangeSubjectHead_Form();
+            changeSubjectHead_Form.ShowDialog();
+        }
     }
 }
