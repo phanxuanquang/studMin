@@ -129,6 +129,12 @@
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
     <Compile Include="Action\Excel\ReportCommon.cs" />
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.Designer.cs">
+      <DependentUpon>ChangeSubjectHead_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeAgeRange_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +435,9 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\VicePrincipalDashboard.Designer.cs">
       <DependentUpon>VicePrincipalDashboard.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.resx">
+      <DependentUpon>ChangeSubjectHead_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeAgeRange_Form.resx">
       <DependentUpon>ChangeAgeRange_Form.cs</DependentUpon>
     </EmbeddedResource>
