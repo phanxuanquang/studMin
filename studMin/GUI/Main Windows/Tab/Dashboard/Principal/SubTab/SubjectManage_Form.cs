@@ -81,7 +81,8 @@ namespace studMin
 
         private void ChangeSubjectHead_Button_Click(object sender, EventArgs e)
         {
-            ChangeSubjectHead_Form changeSubjectHead_Form = new ChangeSubjectHead_Form();
+            string subjectName = DataTable.SelectedRows[0].Cells["Tên môn học"].Value.ToString();
+            ChangeSubjectHead_Form changeSubjectHead_Form = new ChangeSubjectHead_Form(subjectName, this);
             changeSubjectHead_Form.ShowDialog();
         }
     }

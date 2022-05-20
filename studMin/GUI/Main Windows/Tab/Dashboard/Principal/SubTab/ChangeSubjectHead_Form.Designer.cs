@@ -52,10 +52,11 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(295, 155);
+            this.Exit_Button.Location = new System.Drawing.Point(393, 191);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
+            this.Exit_Button.Size = new System.Drawing.Size(191, 44);
             this.Exit_Button.TabIndex = 130;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -79,14 +80,16 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(117, 155);
+            this.Confirm_Button.Location = new System.Drawing.Point(156, 191);
+            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
-            this.Confirm_Button.Size = new System.Drawing.Size(143, 36);
+            this.Confirm_Button.Size = new System.Drawing.Size(191, 44);
             this.Confirm_Button.TabIndex = 129;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Confirm_Button.Click += new System.EventHandler(this.Confirm_Button_Click);
             // 
             // SubjectName_Label
             // 
@@ -95,10 +98,11 @@
             this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
+            this.SubjectName_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(555, 44);
+            this.SubjectName_Label.Size = new System.Drawing.Size(740, 54);
             this.SubjectName_Label.TabIndex = 131;
-            this.SubjectName_Label.Text = "THAY ĐỔI TRƯỞNG BỘ MÔN NGỮ VĂN";
+            this.SubjectName_Label.Text = "THAY ĐỔI TRƯỞNG BỘ MÔN ";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SubjectName_Label.UseCompatibleTextRendering = true;
             // 
@@ -131,30 +135,33 @@
             this.SubjectTeacher_ComboBox.Items.AddRange(new object[] {
             "Chọn giáo viên trưởng bộ môn mới"});
             this.SubjectTeacher_ComboBox.ItemsAppearance.Parent = this.SubjectTeacher_ComboBox;
-            this.SubjectTeacher_ComboBox.Location = new System.Drawing.Point(56, 83);
+            this.SubjectTeacher_ComboBox.Location = new System.Drawing.Point(75, 102);
+            this.SubjectTeacher_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SubjectTeacher_ComboBox.Name = "SubjectTeacher_ComboBox";
             this.SubjectTeacher_ComboBox.ShadowDecoration.Parent = this.SubjectTeacher_ComboBox;
-            this.SubjectTeacher_ComboBox.Size = new System.Drawing.Size(442, 36);
+            this.SubjectTeacher_ComboBox.Size = new System.Drawing.Size(588, 36);
             this.SubjectTeacher_ComboBox.StartIndex = 0;
             this.SubjectTeacher_ComboBox.TabIndex = 132;
             this.SubjectTeacher_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // ChangeSubjectHead_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(555, 206);
+            this.ClientSize = new System.Drawing.Size(740, 254);
             this.Controls.Add(this.SubjectTeacher_ComboBox);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Confirm_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChangeSubjectHead_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChangeSubjectName_Form";
+            this.Load += new System.EventHandler(this.ChangeSubjectHead_Form_Load);
             this.ResumeLayout(false);
 
         }

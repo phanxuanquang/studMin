@@ -44,7 +44,6 @@ namespace studMin
         private void Exit_Button_Click(object sender, EventArgs e)
         {
             this.Close();
-            subjectManageForm.LoadSubjectsInfor();
         }
 
         private void Confirm_Button_Click(object sender, EventArgs e)
@@ -65,6 +64,7 @@ namespace studMin
             currentSubject.DisplayName = SubjectName_Box.Text.Trim();
 
             DataProvider.Instance.Database.SaveChanges();
+            subjectManageForm.LoadSubjectsInfor();
 
             /*DataProvider.Instance.Database.SUBJECTs.Where(item => item.Id == currentSubject.Id).FirstOrDefault().DisplayName = SubjectName_Box.Text.Trim();*/
 

@@ -34,5 +34,13 @@ namespace studMin.Database
         {
             return DataProvider.Instance.Database.ROLESCOREs.Where(item => item.ROLE == role).FirstOrDefault();
         }
+
+        public void ChangeSubjectHeadTeacher(string subjectName, Guid teacherId)
+        {
+            SUBJECT currentSubject = GetSubjectByName(subjectName);
+            currentSubject.IDHEADTEACHER = teacherId;
+
+            DataProvider.Instance.Database.SaveChanges();
+        }
     }
 }
