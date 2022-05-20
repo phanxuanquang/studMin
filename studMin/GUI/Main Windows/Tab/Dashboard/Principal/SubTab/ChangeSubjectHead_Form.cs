@@ -59,10 +59,17 @@ namespace studMin
             try
             {
                 Guid teacherId = TeacherServices.Instance.GetTeacherByName(SubjectTeacher_ComboBox.SelectedItem.ToString()).ID;
-                SubjectServices.Instance.ChangeSubjectHeadTeacher(subjectName, teacherId);
+                bool isChanged = SubjectServices.Instance.ChangeSubjectHeadTeacher(subjectName, teacherId);
 
-                subjectManageForm.LoadSubjectsInfor();
-                MessageBox.Show("Thay đổi trưởng bộ môn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (isChanged)
+                {
+                    subjectManageForm.LoadSubjectsInfor();
+                    MessageBox.Show("Thay đổi trưởng bộ môn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Giáo viên bạn chọn hiện đã là trưởng bộ môn, vui lòng chọn giáo viên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             } 
             catch
             {
