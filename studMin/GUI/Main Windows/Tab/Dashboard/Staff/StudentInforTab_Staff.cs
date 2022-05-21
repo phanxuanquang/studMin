@@ -29,12 +29,10 @@ namespace studMin
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)
         {
-            LoadStudentsInfor();
-        }
-
-        public void LoadStudentsInfor()
-        {
-            LoadFromDB();
+            if (Class_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
+            {
+                LoadFromDB();
+            }
             Class_ComboBox.SelectedIndex = 0;
             SchoolYear_ComboBox.SelectedIndex = 0;
             LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
@@ -54,7 +52,6 @@ namespace studMin
                 SchoolYear_ComboBox.Items.Add(year.ToString());
             }
         }
-
 
         private List<STUDENT> GetListStudent(string className, string schoolYear)
         {
@@ -154,6 +151,65 @@ namespace studMin
                 var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).Contains(Search_Box.Text) || (item.ID.ToString().Contains(Search_Box.Text))).ToList();
                 LoadToDataTable(students);
             }
+        }
+
+        private void BindStudentToTextBox(STUDENT student)
+        {
+            ID_Box.Text = student.ID.ToString().Substring(0, 7).ToUpper();
+            FullName_Box.Text = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME;
+            SchoolYear_Box.Text = student.CLASS.SCHOOLYEAR;
+            Class_Box.Text = student.CLASS.CLASSNAME;
+            Genre_Box.Text = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
+            Bloodline_Box.Text = student.BLOODLINE;
+            Email_Box.Text = student.EMAIL;
+            Address_Box.Text = student.INFOR.ADDRESS;
+            ParentNumber_Box.Text = student.EMAILPARENT;
+        }
+
+        private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string queryID = String.Empty;
+            if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                queryID = DataTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+
+            if (Guid.TryParse(queryID, out Guid idStudent) == true)
+            {
+                STUDENT student = Database.StudentServices.Instance.GetStudentById(idStudent);
+                BindStudentToTextBox(student);
+            }
+        }
+
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                DataTable.Rows.Clear();
+                if (string.IsNullOrWhiteSpace(Search_Box.Text))
+                {
+                    LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                }
+                else
+                {
+                    var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
+                    LoadToDataTable(students);
+                }
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
+        }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Load += StudentInfor_SubTab_Load;
+        }
+
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Load += StudentInfor_SubTab_Load;
         }
     }
 }

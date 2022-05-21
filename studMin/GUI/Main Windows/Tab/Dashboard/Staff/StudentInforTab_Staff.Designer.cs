@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ParentNumber_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.Address_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.Email_Box = new Guna.UI2.WinForms.Guna2TextBox();
@@ -99,6 +99,7 @@
             this.ParentNumber_Box.Size = new System.Drawing.Size(218, 22);
             this.ParentNumber_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.ParentNumber_Box.TabIndex = 143;
+            this.ParentNumber_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Address_Box
             // 
@@ -136,6 +137,7 @@
             this.Address_Box.Size = new System.Drawing.Size(218, 22);
             this.Address_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.Address_Box.TabIndex = 142;
+            this.Address_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Email_Box
             // 
@@ -173,6 +175,7 @@
             this.Email_Box.Size = new System.Drawing.Size(218, 22);
             this.Email_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.Email_Box.TabIndex = 141;
+            this.Email_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Bloodline_Box
             // 
@@ -210,6 +213,7 @@
             this.Bloodline_Box.Size = new System.Drawing.Size(139, 22);
             this.Bloodline_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.Bloodline_Box.TabIndex = 140;
+            this.Bloodline_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Genre_Box
             // 
@@ -247,6 +251,7 @@
             this.Genre_Box.Size = new System.Drawing.Size(139, 22);
             this.Genre_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.Genre_Box.TabIndex = 139;
+            this.Genre_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Class_Box
             // 
@@ -284,6 +289,7 @@
             this.Class_Box.Size = new System.Drawing.Size(139, 22);
             this.Class_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.Class_Box.TabIndex = 138;
+            this.Class_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SchoolYear_Box
             // 
@@ -321,6 +327,7 @@
             this.SchoolYear_Box.Size = new System.Drawing.Size(139, 22);
             this.SchoolYear_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.SchoolYear_Box.TabIndex = 137;
+            this.SchoolYear_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FullName_Box
             // 
@@ -358,6 +365,7 @@
             this.FullName_Box.Size = new System.Drawing.Size(139, 22);
             this.FullName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.FullName_Box.TabIndex = 136;
+            this.FullName_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ID_Box
             // 
@@ -395,6 +403,7 @@
             this.ID_Box.Size = new System.Drawing.Size(139, 22);
             this.ID_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.ID_Box.TabIndex = 135;
+            this.ID_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gunaLabel16
             // 
@@ -515,6 +524,7 @@
             this.SchoolYear_ComboBox.StartIndex = 0;
             this.SchoolYear_ComboBox.TabIndex = 128;
             this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            this.SchoolYear_ComboBox.SelectedIndexChanged += new System.EventHandler(this.SchoolYear_ComboBox_SelectedIndexChanged);
             // 
             // gunaLabel10
             // 
@@ -581,6 +591,7 @@
             this.Search_Box.Size = new System.Drawing.Size(320, 36);
             this.Search_Box.TabIndex = 127;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
+            this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
             // AddStudent_Button
             // 
@@ -654,28 +665,29 @@
             this.Class_ComboBox.StartIndex = 0;
             this.Class_ComboBox.TabIndex = 125;
             this.Class_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            this.Class_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Class_ComboBox_SelectedIndexChanged);
             // 
             // DataTable
             // 
             this.DataTable.AllowDrop = true;
             this.DataTable.AllowUserToAddRows = false;
             this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
             this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -685,14 +697,14 @@
             this.FullName,
             this.Status});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataTable.DefaultCellStyle = dataGridViewCellStyle12;
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
@@ -726,6 +738,7 @@
             this.DataTable.ThemeStyle.RowsStyle.Height = 22;
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.DataTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataTable_CellContentClick);
             // 
             // SchoolYear
             // 

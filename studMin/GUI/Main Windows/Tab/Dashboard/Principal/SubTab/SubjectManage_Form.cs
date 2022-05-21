@@ -67,12 +67,12 @@ namespace studMin
                 int quantityOfTeacher = TeacherServices.Instance.GetTeachersBySubject(subject.Id).Count;
                 if (subject.IDHEADTEACHER == null)
                 {
-                    dataSource.Rows.Add(subject.Id, subject.DisplayName, "Chưa có", quantityOfTeacher);
+                    dataSource.Rows.Add(subject.Id.ToString().Substring(0, 7).ToUpper(), subject.DisplayName, "Chưa có", quantityOfTeacher);
                 }
                 else
                 {
                     TEACHER headTeacher = TeacherServices.Instance.GetTeacherById((Guid)subject.IDHEADTEACHER);
-                    dataSource.Rows.Add(subject.Id, subject.DisplayName, headTeacher.INFOR.FIRSTNAME + " " + headTeacher.INFOR.LASTNAME, quantityOfTeacher);
+                    dataSource.Rows.Add(subject.Id.ToString().Substring(0,7).ToUpper(), subject.DisplayName, headTeacher.INFOR.FIRSTNAME + " " + headTeacher.INFOR.LASTNAME, quantityOfTeacher);
                 }
             }
 

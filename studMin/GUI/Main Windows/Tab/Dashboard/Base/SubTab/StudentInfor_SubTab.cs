@@ -57,7 +57,7 @@ namespace studMin
                         var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
                         foreach (var student in listStudent)
                         {
-                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID.ToString().Substring(0, 7).ToUpper(), student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
                             students.Add(student);
                         }
                     }
@@ -71,7 +71,7 @@ namespace studMin
                         var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
                         foreach (var student in listStudent)
                         {
-                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID.ToString().Substring(0, 7).ToUpper(), student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
                             students.Add(student);
                         }
                     }
@@ -87,7 +87,7 @@ namespace studMin
                         var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
                         foreach (var student in listStudent)
                         {
-                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID.ToString().Substring(0, 7).ToUpper(), student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
                             students.Add(student);
                         }
                     }
@@ -143,7 +143,7 @@ namespace studMin
 
         private void BindStudentToTextBox(STUDENT student)
         {
-            ID_Box.Text = student.ID.ToString();
+            ID_Box.Text = student.ID.ToString().Substring(0,7).ToUpper();
             FullName_Box.Text = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME;
             SchoolYear_Box.Text = student.CLASS.SCHOOLYEAR;
             Class_Box.Text = student.CLASS.CLASSNAME;
