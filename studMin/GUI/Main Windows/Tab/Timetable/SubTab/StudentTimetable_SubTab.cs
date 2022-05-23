@@ -476,7 +476,7 @@ namespace studMin
 
         private void StudentTimetable_SubTab_Load(object sender, EventArgs e)
         {
-            loadingWindow = new GUI.LoadingWindow(this.ParentForm);
+            loadingWindow = new GUI.LoadingWindow(this.ParentForm, "ĐANG TẢI THỜI KHÓA BIỂU HỌC SINH");
 
             listClass = new BindingSource();
             listSemester = new BindingSource();

@@ -14,7 +14,7 @@ namespace studMin.GUI
     {
         private Form parentForm = null;
 
-        public LoadingWindow(Form parentForm)
+        public LoadingWindow(Form parentForm, string title = "")
         {
             if (parentForm == null) throw new ArgumentNullException();
             else this.parentForm = parentForm;
@@ -24,6 +24,7 @@ namespace studMin.GUI
             this.SuspendLayout();
 
             this.Location = new Point(this.parentForm.Location.X + this.parentForm.Width / 2 - this.Width / 2, this.parentForm.Location.Y + this.parentForm.Height / 2 - this.Height / 2);
+            if (!String.IsNullOrEmpty(title)) label1.Text = title;
 
             this.ResumeLayout(false);
         }

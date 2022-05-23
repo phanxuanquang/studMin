@@ -155,7 +155,7 @@ namespace studMin
 
         private void StatisticTab_Headteacher_Load(object sender, EventArgs e)
         {
-            loadingWindow = new GUI.LoadingWindow(this.ParentForm);
+            loadingWindow = new GUI.LoadingWindow(this.ParentForm, "ĐANG TẢI BẢNG TỔNG KẾT MÔN HỌC");
 
             listSemester = new BindingSource();
             listSchoolYear = new BindingSource();

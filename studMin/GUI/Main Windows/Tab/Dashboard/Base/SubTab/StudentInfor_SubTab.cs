@@ -12,34 +12,56 @@ namespace studMin
 {
     using studMin.Database.LoginServices;
     using studMin.Database.Models;
+
     public partial class StudentInfor_SubTab : UserControl
     {
+        private BackgroundWorker backgroundWorker = null;
+        private GUI.LoadingWindow loadingWindow = null;
         public StudentInfor_SubTab()
         {
             InitializeComponent();
-            this.Load += StudentInfor_SubTab_Load;
         }
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)
         {
-            LoadFromDB();
-            Class_ComboBox.SelectedIndex = 0;
-            SchoolYear_ComboBox.SelectedIndex = 0;
-            LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+            loadingWindow = new GUI.LoadingWindow(this.ParentForm, "ĐANG TẢI DỮ LIỆU");
+
+            if (backgroundWorker == null)
+            {
+                backgroundWorker = new BackgroundWorker();
+            }
+            else if (!backgroundWorker.IsBusy)
+            {
+                backgroundWorker.Dispose();
+                backgroundWorker = new BackgroundWorker();
+            }
+            else
+            {
+                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                return;
+            }
+            backgroundWorker.DoWork += LoadFromDB_DoWork;
+            backgroundWorker.RunWorkerCompleted += LoadFromDB_RunrWorkerCompleted;
+            backgroundWorker.RunWorkerAsync();
+            loadingWindow.ShowDialog();
         }
 
-        private void LoadFromDB()
+        private void LoadFromDB_DoWork(object sender, DoWorkEventArgs e)
         {
-            var teach = LoginServices.Instance.CurrentTeacher.TEACHes.ToList();
-            foreach (var item in teach)
-            {
-                Class_ComboBox.Items.Add(item.CLASS.CLASSNAME);
-            }
-            var years = Database.DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Distinct().ToList();
-            foreach (var year in years)
-            {
-                SchoolYear_ComboBox.Items.Add(year.ToString());
-            }    
+            e.Result = (LoginServices.Instance.CurrentTeacher.TEACHes.Select(item => item.CLASS.CLASSNAME).ToArray(), Database.DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Distinct().ToArray());
+        }
+
+        private void LoadFromDB_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            (string[], string[]) results = ((string[], string[]))(e.Result);
+            Class_ComboBox.Items.AddRange(results.Item1);
+            SchoolYear_ComboBox.Items.AddRange(results.Item2);
+
+            Class_ComboBox.SelectedIndex = 0;
+            SchoolYear_ComboBox.SelectedIndex = 0;
+
+            LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+            loadingWindow.Close();
         }
 
         private List<STUDENT> GetListStudent(string className, string schoolYear)
