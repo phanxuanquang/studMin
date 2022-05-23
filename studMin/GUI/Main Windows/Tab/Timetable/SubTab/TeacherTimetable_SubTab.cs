@@ -559,13 +559,18 @@ namespace studMin
             }
 
             sourceBinding.Add(new TEACHER4COMBOBOX(Guid.Empty, "Mọi giáo viên"));
-            int loadCurrentTeacherFirst = sourceBinding.FindIndex(teacher => teacher.ID == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID);
-            if (loadCurrentTeacherFirst > 0)
+
+            if (Database.LoginServices.LoginServices.Instance.CurrentTeacher != null)
             {
-                TEACHER4COMBOBOX currentTeacher = sourceBinding[loadCurrentTeacherFirst];
-                sourceBinding.RemoveAt(loadCurrentTeacherFirst);
-                sourceBinding.Insert(0, currentTeacher);
+                int loadCurrentTeacherFirst = sourceBinding.FindIndex(teacher => teacher.ID == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID);
+                if (loadCurrentTeacherFirst > 0)
+                {
+                    TEACHER4COMBOBOX currentTeacher = sourceBinding[loadCurrentTeacherFirst];
+                    sourceBinding.RemoveAt(loadCurrentTeacherFirst);
+                    sourceBinding.Insert(0, currentTeacher);
+                }
             }
+            
 
             AssignDataToComboBox(Class_ComboBox, listTeacher, sourceBinding, "GiaoVien", "GiaoVien");
         }
