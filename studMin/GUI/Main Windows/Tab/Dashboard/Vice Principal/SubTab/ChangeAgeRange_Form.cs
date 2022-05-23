@@ -18,6 +18,7 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
             this.Load += ChangeAgeRange_Form_Load;
         }
+
         protected override CreateParams CreateParams
         {
             get
@@ -27,6 +28,7 @@ namespace studMin
                 return handleParam;
             }
         }
+
         private void ChangeAgeRange_Form_Load(object sender, EventArgs e)
         {
             LoadAgeLimit();
@@ -34,9 +36,11 @@ namespace studMin
 
         private void LoadAgeLimit()
         {
-            MinAgeCurrent_Box.Text = GetAgeLimit().Item1.ToString();
-            MaxAgeCurrent_Box.Text = GetAgeLimit().Item2.ToString();
+            (int, int) getAge = GetAgeLimit();
+            MinAgeTextBox.PlaceholderText = getAge.Item1.ToString();
+            MaxAgeTextBox.PlaceholderText = getAge.Item2.ToString();
         }
+
         private void Exit_Button_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -44,12 +48,25 @@ namespace studMin
 
         private void Confirm_Button_Click(object sender, EventArgs e)
         {
-            int minAge = (int)(string.IsNullOrEmpty(MinAge_Box.Text) ? GetAgeLimit().Item1 : int.Parse(MinAge_Box.Text));
-            int maxAge = (int)(string.IsNullOrEmpty(MaxAge_Box.Text) ? GetAgeLimit().Item2 : int.Parse(MaxAge_Box.Text));
-            SaveAgeLimit(minAge, maxAge);
-            LoadAgeLimit();
-            MinAge_Box.Clear();
-            MaxAge_Box.Clear();
+            int minAge = int.Parse(MinAgeTextBox.PlaceholderText);
+            int maxAge = int.Parse(MaxAgeTextBox.PlaceholderText);
+
+            if (!String.IsNullOrEmpty(MaxAgeTextBox.Text) && !int.TryParse(MaxAgeTextBox.Text, out maxAge))
+            {
+                MessageBox.Show("Tuổi tối đa không hợp lệ!");
+                return;
+            }
+            if (!String.IsNullOrEmpty(MinAgeTextBox.Text) && !int.TryParse(MinAgeTextBox.Text, out minAge))
+            {
+                MessageBox.Show("Tuổi tối thiểu không hợp lệ!");
+                return;
+            }
+
+            if (MessageBox.Show("Có chắc chắn muốn thay đổi hay không?", "XÁC NHẬN", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                SaveAgeLimit(minAge, maxAge);
+                Exit_Button_Click(null, null);
+            }
         }
 
         private (int, int) GetAgeLimit()
@@ -65,14 +82,6 @@ namespace studMin
             return (minAge, maxAge);
         }
 
-        private void Age_Box_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void SaveAgeLimit(int min, int max)
         {
             if (min >= max) return;
@@ -82,6 +91,22 @@ namespace studMin
             param.MIN = min;
 
             Database.DataProvider.Instance.Database.SaveChanges();
+        }
+
+        private void MaxAgeTextBox_Validated(object sender, EventArgs e)
+        {
+            Guna.UI2.WinForms.Guna2TextBox textbox = sender as Guna.UI2.WinForms.Guna2TextBox;
+            if (!String.IsNullOrEmpty(textbox.Text))
+            {
+                if (int.TryParse(textbox.Text, out int value))
+                {
+                    ValidProvider.SetError(textbox, "Hợp lệ");
+                }
+                else
+                {
+                    InvalidProvider.SetError(textbox, "Vui lòng nhập số nguyên!");
+                }
+            }
         }
     }
 }
