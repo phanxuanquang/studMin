@@ -14,9 +14,9 @@ namespace studMin.Database
 
         private StaffServices() { }
 
-        public STAFF GetStaffById(Guid id)
+        public STAFF GetStaffById(string id)
         {
-            return DataProvider.Instance.Database.STAFFs.Where(Staff => Staff.ID == id).FirstOrDefault();
+            return DataProvider.Instance.Database.STAFFs.Where(Staff => Staff.ID.ToString() == id).FirstOrDefault();
         }
 
         public List<STAFF> GetStaffs()
