@@ -213,6 +213,7 @@
             this.MinAgeCurrent_Box.Name = "MinAgeCurrent_Box";
             this.MinAgeCurrent_Box.PasswordChar = '\0';
             this.MinAgeCurrent_Box.PlaceholderText = "";
+            this.MinAgeCurrent_Box.ReadOnly = true;
             this.MinAgeCurrent_Box.SelectedText = "";
             this.MinAgeCurrent_Box.ShadowDecoration.BorderRadius = 12;
             this.MinAgeCurrent_Box.ShadowDecoration.Depth = 5;
@@ -250,6 +251,7 @@
             this.MaxAgeCurrent_Box.Name = "MaxAgeCurrent_Box";
             this.MaxAgeCurrent_Box.PasswordChar = '\0';
             this.MaxAgeCurrent_Box.PlaceholderText = "";
+            this.MaxAgeCurrent_Box.ReadOnly = true;
             this.MaxAgeCurrent_Box.SelectedText = "";
             this.MaxAgeCurrent_Box.ShadowDecoration.BorderRadius = 12;
             this.MaxAgeCurrent_Box.ShadowDecoration.Depth = 5;
