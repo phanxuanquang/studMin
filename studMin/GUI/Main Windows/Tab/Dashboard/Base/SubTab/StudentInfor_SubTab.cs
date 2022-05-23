@@ -17,6 +17,7 @@ namespace studMin
         public StudentInfor_SubTab()
         {
             InitializeComponent();
+            LoadFromDB();
         }
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)

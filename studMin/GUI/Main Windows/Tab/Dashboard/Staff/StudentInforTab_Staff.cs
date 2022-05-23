@@ -211,5 +211,11 @@ namespace studMin
         {
             this.Load += StudentInfor_SubTab_Load;
         }
+
+        public void LoadStudentsInfor()
+        {
+            List<STUDENT> listStudents = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString());
+            LoadToDataTable(listStudents);
+        }
     }
 }
