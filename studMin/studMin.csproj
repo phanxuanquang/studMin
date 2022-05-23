@@ -648,6 +648,8 @@
     </Content>
     <Content Include="Guna.UI.dll" />
     <Content Include="Logo.ico" />
+    <None Include="Resources\valid_icon.ico" />
+    <None Include="Resources\invalid_icon.ico" />
     <None Include="Resources\mail.html" />
     <None Include="Resources\Icons\studMin_Icon.ico" />
   </ItemGroup>

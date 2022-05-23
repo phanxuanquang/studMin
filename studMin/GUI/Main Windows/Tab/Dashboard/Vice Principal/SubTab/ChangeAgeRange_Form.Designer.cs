@@ -224,13 +224,13 @@
             // 
             this.ValidProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.ValidProvider.ContainerControl = this;
-            this.ValidProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("ValidProvider.Icon")));
+            this.ValidProvider.Icon = studMin.Properties.Resources.valid_icon;
             // 
             // InvalidProvider
             // 
             this.InvalidProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.InvalidProvider.ContainerControl = this;
-            this.InvalidProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("InvalidProvider.Icon")));
+            this.InvalidProvider.Icon = studMin.Properties.Resources.invalid_icon;
             // 
             // ChangeAgeRange_Form
             // 
