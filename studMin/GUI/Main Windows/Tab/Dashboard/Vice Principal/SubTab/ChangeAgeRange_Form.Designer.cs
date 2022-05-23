@@ -35,13 +35,13 @@
             this.SubjectName_Label = new System.Windows.Forms.Label();
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.MinAgeTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            this.MaxAgeTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.MinAgeLabel = new System.Windows.Forms.Label();
-            this.MaxAgeLabel = new System.Windows.Forms.Label();
             this.ValidProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.InvalidProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.MinTrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
+            this.MaxTrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
+            this.MaxLabel = new System.Windows.Forms.Label();
+            this.MinLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ValidProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InvalidProvider)).BeginInit();
             this.SuspendLayout();
@@ -61,11 +61,10 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(470, 396);
-            this.Exit_Button.Margin = new System.Windows.Forms.Padding(6);
+            this.Exit_Button.Location = new System.Drawing.Point(235, 198);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(286, 69);
+            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
             this.Exit_Button.TabIndex = 130;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -89,12 +88,11 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(114, 396);
-            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(6);
+            this.Confirm_Button.Location = new System.Drawing.Point(57, 198);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
-            this.Confirm_Button.Size = new System.Drawing.Size(286, 69);
+            this.Confirm_Button.Size = new System.Drawing.Size(143, 36);
             this.Confirm_Button.TabIndex = 129;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -107,9 +105,8 @@
             this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
-            this.SubjectName_Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(868, 85);
+            this.SubjectName_Label.Size = new System.Drawing.Size(434, 44);
             this.SubjectName_Label.TabIndex = 131;
             this.SubjectName_Label.Text = "THAY ĐỔI GIỚI HẠN TUỔI";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -120,105 +117,9 @@
             this.guna2Elipse1.BorderRadius = 10;
             this.guna2Elipse1.TargetControl = this;
             // 
-            // MinAgeTextBox
-            // 
-            this.MinAgeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.MinAgeTextBox.Animated = true;
-            this.MinAgeTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.MinAgeTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.MinAgeTextBox.BorderRadius = 15;
-            this.MinAgeTextBox.BorderThickness = 2;
-            this.MinAgeTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.MinAgeTextBox.DefaultText = "";
-            this.MinAgeTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.MinAgeTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.MinAgeTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.MinAgeTextBox.DisabledState.Parent = this.MinAgeTextBox;
-            this.MinAgeTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.MinAgeTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MinAgeTextBox.FocusedState.Parent = this.MinAgeTextBox;
-            this.MinAgeTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.MinAgeTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MinAgeTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MinAgeTextBox.HoverState.Parent = this.MinAgeTextBox;
-            this.MinAgeTextBox.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.MinAgeTextBox.Location = new System.Drawing.Point(509, 127);
-            this.MinAgeTextBox.Margin = new System.Windows.Forms.Padding(8);
-            this.MinAgeTextBox.Name = "MinAgeTextBox";
-            this.MinAgeTextBox.PasswordChar = '\0';
-            this.MinAgeTextBox.PlaceholderText = "10";
-            this.MinAgeTextBox.SelectedText = "";
-            this.MinAgeTextBox.ShadowDecoration.BorderRadius = 12;
-            this.MinAgeTextBox.ShadowDecoration.Depth = 5;
-            this.MinAgeTextBox.ShadowDecoration.Parent = this.MinAgeTextBox;
-            this.MinAgeTextBox.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MinAgeTextBox.Size = new System.Drawing.Size(295, 90);
-            this.MinAgeTextBox.TabIndex = 134;
-            this.MinAgeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MinAgeTextBox.TextOffset = new System.Drawing.Point(3, 0);
-            this.MinAgeTextBox.Validated += new System.EventHandler(this.MaxAgeTextBox_Validated);
-            // 
-            // MaxAgeTextBox
-            // 
-            this.MaxAgeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.MaxAgeTextBox.Animated = true;
-            this.MaxAgeTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.MaxAgeTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.MaxAgeTextBox.BorderRadius = 15;
-            this.MaxAgeTextBox.BorderThickness = 2;
-            this.MaxAgeTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.MaxAgeTextBox.DefaultText = "";
-            this.MaxAgeTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.MaxAgeTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.MaxAgeTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.MaxAgeTextBox.DisabledState.Parent = this.MaxAgeTextBox;
-            this.MaxAgeTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.MaxAgeTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxAgeTextBox.FocusedState.Parent = this.MaxAgeTextBox;
-            this.MaxAgeTextBox.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.MaxAgeTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxAgeTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxAgeTextBox.HoverState.Parent = this.MaxAgeTextBox;
-            this.MaxAgeTextBox.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.MaxAgeTextBox.Location = new System.Drawing.Point(509, 254);
-            this.MaxAgeTextBox.Margin = new System.Windows.Forms.Padding(8);
-            this.MaxAgeTextBox.Name = "MaxAgeTextBox";
-            this.MaxAgeTextBox.PasswordChar = '\0';
-            this.MaxAgeTextBox.PlaceholderText = "18";
-            this.MaxAgeTextBox.SelectedText = "";
-            this.MaxAgeTextBox.ShadowDecoration.BorderRadius = 12;
-            this.MaxAgeTextBox.ShadowDecoration.Depth = 5;
-            this.MaxAgeTextBox.ShadowDecoration.Parent = this.MaxAgeTextBox;
-            this.MaxAgeTextBox.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MaxAgeTextBox.Size = new System.Drawing.Size(295, 90);
-            this.MaxAgeTextBox.TabIndex = 135;
-            this.MaxAgeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MaxAgeTextBox.TextOffset = new System.Drawing.Point(3, 0);
-            this.MaxAgeTextBox.Validated += new System.EventHandler(this.MaxAgeTextBox_Validated);
-            // 
             // DragControl
             // 
             this.DragControl.TargetControl = this;
-            // 
-            // MinAgeLabel
-            // 
-            this.MinAgeLabel.AutoSize = true;
-            this.MinAgeLabel.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MinAgeLabel.Location = new System.Drawing.Point(74, 152);
-            this.MinAgeLabel.Name = "MinAgeLabel";
-            this.MinAgeLabel.Size = new System.Drawing.Size(424, 50);
-            this.MinAgeLabel.TabIndex = 136;
-            this.MinAgeLabel.Text = "Tuổi nhập học tối thiểu";
-            // 
-            // MaxAgeLabel
-            // 
-            this.MaxAgeLabel.AutoSize = true;
-            this.MaxAgeLabel.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaxAgeLabel.Location = new System.Drawing.Point(74, 274);
-            this.MaxAgeLabel.Name = "MaxAgeLabel";
-            this.MaxAgeLabel.Size = new System.Drawing.Size(378, 50);
-            this.MaxAgeLabel.TabIndex = 137;
-            this.MaxAgeLabel.Text = "Tuổi nhập học tối đa";
             // 
             // ValidProvider
             // 
@@ -232,21 +133,74 @@
             this.InvalidProvider.ContainerControl = this;
             this.InvalidProvider.Icon = ((System.Drawing.Icon)(resources.GetObject("InvalidProvider.Icon")));
             // 
+            // MinTrackBar
+            // 
+            this.MinTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.MinTrackBar.HoverState.Parent = this.MinTrackBar;
+            this.MinTrackBar.Location = new System.Drawing.Point(33, 86);
+            this.MinTrackBar.Maximum = 40;
+            this.MinTrackBar.Minimum = 10;
+            this.MinTrackBar.Name = "MinTrackBar";
+            this.MinTrackBar.Size = new System.Drawing.Size(368, 23);
+            this.MinTrackBar.TabIndex = 133;
+            this.MinTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MinTrackBar.Value = 15;
+            this.MinTrackBar.ValueChanged += new System.EventHandler(this.MinTrackBar_ValueChanged);
+            // 
+            // MaxTrackBar
+            // 
+            this.MaxTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.MaxTrackBar.HoverState.Parent = this.MaxTrackBar;
+            this.MaxTrackBar.Location = new System.Drawing.Point(33, 154);
+            this.MaxTrackBar.Maximum = 40;
+            this.MaxTrackBar.Minimum = 10;
+            this.MaxTrackBar.Name = "MaxTrackBar";
+            this.MaxTrackBar.Size = new System.Drawing.Size(368, 23);
+            this.MaxTrackBar.TabIndex = 134;
+            this.MaxTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MaxTrackBar.Value = 15;
+            this.MaxTrackBar.ValueChanged += new System.EventHandler(this.MaxTrackBar_ValueChanged);
+            // 
+            // MaxLabel
+            // 
+            this.MaxLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MaxLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MaxLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MaxLabel.Location = new System.Drawing.Point(33, 127);
+            this.MaxLabel.Name = "MaxLabel";
+            this.MaxLabel.Size = new System.Drawing.Size(368, 28);
+            this.MaxLabel.TabIndex = 135;
+            this.MaxLabel.Text = "Tuổi nhập học tối đa:";
+            this.MaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MaxLabel.UseCompatibleTextRendering = true;
+            // 
+            // MinLabel
+            // 
+            this.MinLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MinLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MinLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.MinLabel.Location = new System.Drawing.Point(33, 57);
+            this.MinLabel.Name = "MinLabel";
+            this.MinLabel.Size = new System.Drawing.Size(368, 28);
+            this.MinLabel.TabIndex = 136;
+            this.MinLabel.Text = "Tuổi nhập học tối thiểu:";
+            this.MinLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MinLabel.UseCompatibleTextRendering = true;
+            // 
             // ChangeAgeRange_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(868, 494);
-            this.Controls.Add(this.MaxAgeLabel);
-            this.Controls.Add(this.MinAgeLabel);
-            this.Controls.Add(this.MaxAgeTextBox);
-            this.Controls.Add(this.MinAgeTextBox);
+            this.ClientSize = new System.Drawing.Size(434, 249);
+            this.Controls.Add(this.MinLabel);
+            this.Controls.Add(this.MaxLabel);
+            this.Controls.Add(this.MaxTrackBar);
+            this.Controls.Add(this.MinTrackBar);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Confirm_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ChangeAgeRange_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -255,7 +209,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ValidProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InvalidProvider)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -266,12 +219,12 @@
         private System.Windows.Forms.Label SubjectName_Label;
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2TextBox MaxAgeTextBox;
-        private Guna.UI2.WinForms.Guna2TextBox MinAgeTextBox;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
-        private System.Windows.Forms.Label MaxAgeLabel;
-        private System.Windows.Forms.Label MinAgeLabel;
         private System.Windows.Forms.ErrorProvider ValidProvider;
         private System.Windows.Forms.ErrorProvider InvalidProvider;
+        private Guna.UI2.WinForms.Guna2TrackBar MinTrackBar;
+        private Guna.UI2.WinForms.Guna2TrackBar MaxTrackBar;
+        private System.Windows.Forms.Label MaxLabel;
+        private System.Windows.Forms.Label MinLabel;
     }
 }

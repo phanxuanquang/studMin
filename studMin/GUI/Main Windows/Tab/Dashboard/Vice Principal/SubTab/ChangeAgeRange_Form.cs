@@ -37,8 +37,12 @@ namespace studMin
         private void LoadAgeLimit()
         {
             (int, int) getAge = GetAgeLimit();
-            MinAgeTextBox.PlaceholderText = getAge.Item1.ToString();
-            MaxAgeTextBox.PlaceholderText = getAge.Item2.ToString();
+
+            MinLabel.Text = String.Format("Tuổi nhập học tối thiểu: {0} tuổi", getAge.Item1.ToString());
+            MaxLabel.Text = String.Format("Tuổi nhập học tối đa: {0} tuổi", getAge.Item2.ToString());
+
+            MinTrackBar.Value = getAge.Item1;
+            MaxTrackBar.Value = getAge.Item2;
         }
 
         private void Exit_Button_Click(object sender, EventArgs e)
@@ -48,23 +52,9 @@ namespace studMin
 
         private void Confirm_Button_Click(object sender, EventArgs e)
         {
-            int minAge = int.Parse(MinAgeTextBox.PlaceholderText);
-            int maxAge = int.Parse(MaxAgeTextBox.PlaceholderText);
-
-            if (!String.IsNullOrEmpty(MaxAgeTextBox.Text) && !int.TryParse(MaxAgeTextBox.Text, out maxAge))
-            {
-                MessageBox.Show("Tuổi tối đa không hợp lệ!");
-                return;
-            }
-            if (!String.IsNullOrEmpty(MinAgeTextBox.Text) && !int.TryParse(MinAgeTextBox.Text, out minAge))
-            {
-                MessageBox.Show("Tuổi tối thiểu không hợp lệ!");
-                return;
-            }
-
             if (MessageBox.Show("Có chắc chắn muốn thay đổi hay không?", "XÁC NHẬN", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                SaveAgeLimit(minAge, maxAge);
+                SaveAgeLimit(MinTrackBar.Value, MaxTrackBar.Value);
                 Exit_Button_Click(null, null);
             }
         }
@@ -107,6 +97,16 @@ namespace studMin
                     InvalidProvider.SetError(textbox, "Vui lòng nhập số nguyên!");
                 }
             }
+        }
+
+        private void MinTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            MinLabel.Text = String.Format("Tuổi nhập học tối thiểu: {0} tuổi", MinTrackBar.Value.ToString());
+        }
+
+        private void MaxTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            MaxLabel.Text = String.Format("Tuổi nhập học tối đa: {0} tuổi", MaxTrackBar.Value.ToString());
         }
     }
 }
