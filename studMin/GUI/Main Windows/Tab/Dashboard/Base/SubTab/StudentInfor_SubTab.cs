@@ -17,14 +17,12 @@ namespace studMin
         public StudentInfor_SubTab()
         {
             InitializeComponent();
+            this.Load += StudentInfor_SubTab_Load;
         }
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)
         {
-            if (Class_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
-            {
-                LoadFromDB();
-            }
+            LoadFromDB();
             Class_ComboBox.SelectedIndex = 0;
             SchoolYear_ComboBox.SelectedIndex = 0;
             LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
@@ -167,16 +165,6 @@ namespace studMin
                 STUDENT student = Database.StudentServices.Instance.GetStudentById(idStudent);
                 BindStudentToTextBox(student);
             }
-        }
-
-        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Load += StudentInfor_SubTab_Load;
-        }
-
-        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Load += StudentInfor_SubTab_Load;
         }
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)

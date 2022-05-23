@@ -29,10 +29,7 @@ namespace studMin
 
         private void StudentInfor_SubTab_Load(object sender, EventArgs e)
         {
-            if (Class_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
-            {
                 LoadFromDB();
-            }
             Class_ComboBox.SelectedIndex = 0;
             SchoolYear_ComboBox.SelectedIndex = 0;
             LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
@@ -200,16 +197,6 @@ namespace studMin
             {
                 Search_Box.Text = String.Empty;
             }
-        }
-
-        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Load += StudentInfor_SubTab_Load;
-        }
-
-        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Load += StudentInfor_SubTab_Load;
         }
     }
 }
