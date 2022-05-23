@@ -55,7 +55,7 @@ namespace studMin
         {
             this.Close();
 
-            studentInforTab_Staff.LoadStudentsInfor();
+            //studentInforTab_Staff.LoadStudentsInfor();
         }
 
         private void Complete_Button_Click(object sender, EventArgs e)
