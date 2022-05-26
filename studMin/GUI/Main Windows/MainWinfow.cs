@@ -12,10 +12,8 @@ namespace studMin
 {
     public partial class MainWinfow : Form
     {
-        dynamic Dashboard;
-        Timetable_Tab timetable_Tab;
+        dynamic Dashboard, timetable_Tab, statisticTab;
         role Role;
-        dynamic statisticTab;
         public MainWinfow(role personRole)
         {
             InitializeComponent();
@@ -129,7 +127,7 @@ namespace studMin
                     break;
                 default: // office staff
                     Dashboard = new StaffDashboard();
-                    timetable_Tab = new Timetable_Tab(role.officeStaff);
+                    timetable_Tab = new TimeTableTab_Staff();
                     statisticTab = new StatisticTab();
                     break;
             }

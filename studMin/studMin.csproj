@@ -435,6 +435,12 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\VicePrincipalDashboard.Designer.cs">
       <DependentUpon>VicePrincipalDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.Designer.cs">
+      <DependentUpon>TimeTableTab_Staff.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.resx">
       <DependentUpon>ChangeSubjectHead_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -498,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoadingWindow.resx">
       <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.resx">
+      <DependentUpon>TimeTableTab_Staff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
