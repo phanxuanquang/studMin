@@ -14,11 +14,6 @@ namespace studMin
 {
     public partial class TimeTableTab_Staff : UserControl
     {
-        public TimeTableTab_Staff()
-        {
-            InitializeComponent();
-        }
-
         private List<Action.Excel.ScheduleAllTeacher.Item> data = null;
         private BackgroundWorker backgroundWorker = null;
         Action.Excel.ScheduleAllTeacher.Info importInfo = null;
@@ -28,6 +23,11 @@ namespace studMin
         BindingSource listSemester = null;
         BindingSource listSchoolYear = null;
         BindingSource listDateApply = null;
+
+        public TimeTableTab_Staff()
+        {
+            InitializeComponent();
+        }
 
         private class SCHEDULE4COMBOBOX
         {
@@ -208,7 +208,7 @@ namespace studMin
                 return;
             }
 
-            TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
+            TEACHER teacher = studMin.Database.ClassServices.Instance.GetClassById(@class.ID).TEACHER;
             List<LESSON> lesson = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDSCHEDULE == findSchedule.ID && item.IDCLASS == @class.ID).ToList();
 
             if (lesson == null)
@@ -582,16 +582,8 @@ namespace studMin
         {
             if (listSchoolYear.Current == null) return;
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
-
-            try
-            {
-                AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => item.DATEAPPLY.Value.ToString("dd/MM/yyyy")).ToList(), "", "");
-                AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => item.DATEAPPLY.Value.ToString("dd/MM/yyyy")).ToList(), "", "");
+            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
         }
 
         private void LoadScheduleFromDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
