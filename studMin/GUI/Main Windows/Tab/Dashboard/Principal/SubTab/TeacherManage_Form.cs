@@ -14,6 +14,7 @@ namespace studMin
 {
     public partial class TeacherManage_Form : Form
     {
+        List<STAFF> staffList;
         public TeacherManage_Form()
         {
             
@@ -34,39 +35,35 @@ namespace studMin
             this.Close();
         }
 
-        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        private void LoadDataToDataTable(string enteredText)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                LoadDataToDataTable();
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
-            {
-                Search_Box.Text = String.Empty;
-            }
-        }
+            if (String.IsNullOrEmpty(enteredText)) return;
 
-        private void LoadDataToDataTable()
-        {
             DataTable.Rows.Clear();
+            staffList = new List<STAFF>();
             // query để load lại table theo từ khóa trong search box
             List<STAFF> listStaffs = StaffServices.Instance.GetStaffs();
-            string enteredValue = Search_Box.Text;
 
             foreach (STAFF staff in listStaffs)
             {
                 string staffName = staff.INFOR.FIRSTNAME + " " + staff.INFOR.LASTNAME;
-                if (staffName.ToLower().Contains(enteredValue.ToLower()))
+                if (staffName.ToLower().Contains(enteredText.ToLower()))
                 {
-                    string fullName = staff.INFOR.FIRSTNAME + " " + staff.INFOR.LASTNAME;
                     string gender = staff.INFOR.SEX == 0 ? "Nam" : "Nữ";
-                    DataTable.Rows.Add(staff.ID, fullName, gender, staff.INFOR.DAYOFBIRTH, staff.USER.EMAIL);
+                    staffList.Add(staff);
+                    DataTable.Rows.Add(staff.ID, staffName, gender, staff.INFOR.DAYOFBIRTH.ToString().Split(' ')[0], staff.USER.EMAIL);
                 }
             }
         }
 
         private void FirePerson_Button_Click(object sender, EventArgs e)
         {
+            if (staffList == null || staffList.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy nhân viên nào, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             DialogResult dialog = MessageBox.Show("Bạn có chắc muốn sa thải nhân viên này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialog == DialogResult.Yes)
@@ -77,9 +74,14 @@ namespace studMin
                 DataProvider.Instance.Database.STAFFs.Remove(selectedStaff);
                 DataProvider.Instance.Database.SaveChanges();
 
-                LoadDataToDataTable();
+                LoadDataToDataTable(Search_Box.Text);
                 MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+            LoadDataToDataTable(Search_Box.Text.Trim());
         }
     }
 }

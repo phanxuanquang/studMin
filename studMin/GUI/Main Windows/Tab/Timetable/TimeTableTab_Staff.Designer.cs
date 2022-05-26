@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Timetable_GridView = new Guna.UI2.WinForms.Guna2DataGridView();
             this.ApplyDate_Label = new System.Windows.Forms.Label();
             this.DateApply_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -47,44 +47,45 @@
             this.Timetable_GridView.AllowDrop = true;
             this.Timetable_GridView.AllowUserToAddRows = false;
             this.Timetable_GridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.Timetable_GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.Timetable_GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.Timetable_GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Timetable_GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Timetable_GridView.BackgroundColor = System.Drawing.Color.White;
             this.Timetable_GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Timetable_GridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.Timetable_GridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Timetable_GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Timetable_GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Timetable_GridView.ColumnHeadersHeight = 25;
             this.Timetable_GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.Timetable_GridView.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Timetable_GridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Timetable_GridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.Timetable_GridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Timetable_GridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Timetable_GridView.EnableHeadersVisualStyles = false;
             this.Timetable_GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.Timetable_GridView.Location = new System.Drawing.Point(0, 157);
+            this.Timetable_GridView.Location = new System.Drawing.Point(0, 193);
+            this.Timetable_GridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Timetable_GridView.Name = "Timetable_GridView";
             this.Timetable_GridView.ReadOnly = true;
             this.Timetable_GridView.RowHeadersVisible = false;
             this.Timetable_GridView.RowHeadersWidth = 82;
             this.Timetable_GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.Timetable_GridView.Size = new System.Drawing.Size(924, 583);
+            this.Timetable_GridView.Size = new System.Drawing.Size(1232, 718);
             this.Timetable_GridView.TabIndex = 81;
             this.Timetable_GridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.Timetable_GridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -108,6 +109,8 @@
             this.Timetable_GridView.ThemeStyle.RowsStyle.Height = 22;
             this.Timetable_GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.Timetable_GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            this.Timetable_GridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.Timetable_GridView_CellFormatting);
+            this.Timetable_GridView.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.Timetable_GridView_CellPainting);
             // 
             // ApplyDate_Label
             // 
@@ -116,8 +119,9 @@
             this.ApplyDate_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ApplyDate_Label.ForeColor = System.Drawing.Color.White;
             this.ApplyDate_Label.Location = new System.Drawing.Point(0, 0);
+            this.ApplyDate_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ApplyDate_Label.Name = "ApplyDate_Label";
-            this.ApplyDate_Label.Size = new System.Drawing.Size(924, 71);
+            this.ApplyDate_Label.Size = new System.Drawing.Size(1232, 87);
             this.ApplyDate_Label.TabIndex = 113;
             this.ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ THỨ HAI, NGÀY 10 THÁNG 10 NĂM 2022";
             this.ApplyDate_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,10 +149,11 @@
             this.DateApply_ComboBox.Items.AddRange(new object[] {
             "Mới nhất"});
             this.DateApply_ComboBox.ItemsAppearance.Parent = this.DateApply_ComboBox;
-            this.DateApply_ComboBox.Location = new System.Drawing.Point(398, 95);
+            this.DateApply_ComboBox.Location = new System.Drawing.Point(531, 117);
+            this.DateApply_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DateApply_ComboBox.Name = "DateApply_ComboBox";
             this.DateApply_ComboBox.ShadowDecoration.Parent = this.DateApply_ComboBox;
-            this.DateApply_ComboBox.Size = new System.Drawing.Size(140, 36);
+            this.DateApply_ComboBox.Size = new System.Drawing.Size(185, 36);
             this.DateApply_ComboBox.StartIndex = 0;
             this.DateApply_ComboBox.TabIndex = 127;
             this.DateApply_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -175,10 +180,11 @@
             this.Semester_ComboBox.Items.AddRange(new object[] {
             "Mọi học kỳ"});
             this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Location = new System.Drawing.Point(280, 95);
+            this.Semester_ComboBox.Location = new System.Drawing.Point(373, 117);
+            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Semester_ComboBox.Name = "Semester_ComboBox";
             this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Size = new System.Drawing.Size(114, 36);
+            this.Semester_ComboBox.Size = new System.Drawing.Size(151, 36);
             this.Semester_ComboBox.StartIndex = 0;
             this.Semester_ComboBox.TabIndex = 126;
             this.Semester_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -205,10 +211,11 @@
             this.SchoolYear_ComboBox.Items.AddRange(new object[] {
             "Mọi niên khóa"});
             this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(140, 95);
+            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(187, 117);
+            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
             this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(136, 36);
+            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(180, 36);
             this.SchoolYear_ComboBox.StartIndex = 0;
             this.SchoolYear_ComboBox.TabIndex = 125;
             this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -227,13 +234,15 @@
             this.TimetableImport_Button.ForeColor = System.Drawing.Color.White;
             this.TimetableImport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.TimetableImport_Button.HoverState.Parent = this.TimetableImport_Button;
-            this.TimetableImport_Button.Location = new System.Drawing.Point(542, 95);
+            this.TimetableImport_Button.Location = new System.Drawing.Point(723, 117);
+            this.TimetableImport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TimetableImport_Button.Name = "TimetableImport_Button";
             this.TimetableImport_Button.ShadowDecoration.Parent = this.TimetableImport_Button;
-            this.TimetableImport_Button.Size = new System.Drawing.Size(181, 36);
+            this.TimetableImport_Button.Size = new System.Drawing.Size(241, 44);
             this.TimetableImport_Button.TabIndex = 124;
             this.TimetableImport_Button.Text = "NHẬP THỜI KHÓA BIỂU";
             this.TimetableImport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.TimetableImport_Button.Click += new System.EventHandler(this.TimetableImport_Button_Click);
             // 
             // TimetableExport_Button
             // 
@@ -249,10 +258,11 @@
             this.TimetableExport_Button.ForeColor = System.Drawing.Color.White;
             this.TimetableExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.TimetableExport_Button.HoverState.Parent = this.TimetableExport_Button;
-            this.TimetableExport_Button.Location = new System.Drawing.Point(729, 95);
+            this.TimetableExport_Button.Location = new System.Drawing.Point(972, 117);
+            this.TimetableExport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TimetableExport_Button.Name = "TimetableExport_Button";
             this.TimetableExport_Button.ShadowDecoration.Parent = this.TimetableExport_Button;
-            this.TimetableExport_Button.Size = new System.Drawing.Size(181, 36);
+            this.TimetableExport_Button.Size = new System.Drawing.Size(241, 44);
             this.TimetableExport_Button.TabIndex = 123;
             this.TimetableExport_Button.Text = "XUẤT THỜI KHÓA BIỂU";
             this.TimetableExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -279,17 +289,18 @@
             this.Class_ComboBox.Items.AddRange(new object[] {
             "Chọn lớp"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
-            this.Class_ComboBox.Location = new System.Drawing.Point(14, 95);
+            this.Class_ComboBox.Location = new System.Drawing.Point(19, 117);
+            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Class_ComboBox.Name = "Class_ComboBox";
             this.Class_ComboBox.ShadowDecoration.Parent = this.Class_ComboBox;
-            this.Class_ComboBox.Size = new System.Drawing.Size(120, 36);
+            this.Class_ComboBox.Size = new System.Drawing.Size(159, 36);
             this.Class_ComboBox.StartIndex = 0;
             this.Class_ComboBox.TabIndex = 122;
             this.Class_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
-            // Timetable_Tab
+            // TimeTableTab_Staff
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.DateApply_ComboBox);
@@ -300,8 +311,10 @@
             this.Controls.Add(this.Class_ComboBox);
             this.Controls.Add(this.ApplyDate_Label);
             this.Controls.Add(this.Timetable_GridView);
-            this.Name = "Timetable_Tab";
-            this.Size = new System.Drawing.Size(924, 740);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "TimeTableTab_Staff";
+            this.Size = new System.Drawing.Size(1232, 911);
+            this.Load += new System.EventHandler(this.TimeTableTab_Staff_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Timetable_GridView)).EndInit();
             this.ResumeLayout(false);
 

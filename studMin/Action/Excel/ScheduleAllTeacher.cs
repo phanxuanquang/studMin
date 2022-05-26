@@ -430,7 +430,7 @@ namespace studMin.Action.Excel
         public override object SelectInfo()
         {
             Info info = Info.Parse(sheet.get_Range(title).Value.ToString());
-            info.Truong = sheet.get_Range(nameSchool).Value.ToString();
+            info.Truong = "THPT X";
             return info;
         }
 
