@@ -57,7 +57,7 @@ namespace studMin
             return transcripts;
         }
 
-        private void FullGridView_Button_Click(object sender, EventArgs e)
+        /*private void FullGridView_Button_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Search_Box.Text))
             {
@@ -69,12 +69,18 @@ namespace studMin
             }
             tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(listStudent);
             LoadGridView();
-        }
+        }*/
 
         private void UpdateData_Button_Click(object sender, EventArgs e)
         {
             try
             {
+                if (DataTable.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy học sinh nào, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 Database.DataProvider.Instance.Database.SaveChanges();
                 MessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -89,10 +95,40 @@ namespace studMin
             if (e.KeyChar == (char)Keys.Enter)
             {
                 // load lại Grid view theo text trong searchBox
+                LoadDataToDataTable(Search_Box.Text.Trim());
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
                 Search_Box.Text = String.Empty;
+            }
+        }
+
+        private void LoadDataToDataTable(string enteredText)
+        {
+            if (String.IsNullOrEmpty(enteredText)) return;
+
+            /*DataTable.Rows.Clear();
+            listStudent = new List<STUDENT>();*/
+            tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(listStudent); ;
+            int count = 1;
+            foreach (DataGridViewRow row in DataTable.Rows)
+            {
+                TRANSCRIPT selected = row.DataBoundItem as TRANSCRIPT;
+                if (selected != null)
+                {
+                    string studentName = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
+
+                    if (studentName.ToLower().Contains(enteredText.ToLower()) || selected.IDSTUDENT.ToString().Contains(enteredText))
+                    {
+                        row.Cells["sttDataGridViewTextBoxColumn"].Value = count++;
+                        row.Cells["nameDataGridViewTextBoxColumn"].Value = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
+                        row.Cells["semesterDataGridViewTextBoxColumn"].Value = selected.SEMESTER.NAME;
+                    }
+                    else
+                    {
+                        tRANSCRIPTBindingSource.DataSource = null;
+                    }
+                }
             }
         }
     }
