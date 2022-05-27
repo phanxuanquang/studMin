@@ -188,7 +188,7 @@
             this.Search_Box.Size = new System.Drawing.Size(880, 44);
             this.Search_Box.TabIndex = 125;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
-            this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
+            this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
             // FirePerson_Button
             // 

@@ -58,6 +58,12 @@ namespace studMin
 
         private void FirePerson_Button_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(Search_Box.Text.Trim()))
+            {
+                MessageBox.Show("Vui lòng nhập họ tên hoặc mã định danh của nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (staffList == null || staffList.Count == 0)
             {
                 MessageBox.Show("Không tìm thấy nhân viên nào, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -79,9 +85,16 @@ namespace studMin
             }
         }
 
-        private void Search_Box_TextChanged(object sender, EventArgs e)
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
-            LoadDataToDataTable(Search_Box.Text.Trim());
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                LoadDataToDataTable(Search_Box.Text.Trim());
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
         }
     }
 }
