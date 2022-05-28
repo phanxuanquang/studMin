@@ -590,11 +590,7 @@
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.Search_Box.Size = new System.Drawing.Size(469, 36);
-<<<<<<< HEAD
-            this.Search_Box.TabIndex = 104;
-=======
             this.Search_Box.TabIndex = 0;
->>>>>>> 5ae3fce64d91e359f37255b6c153e00fa5e260f7
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
@@ -620,11 +616,7 @@
             this.Search_Button.PressedDepth = 20;
             this.Search_Button.ShadowDecoration.Parent = this.Search_Button;
             this.Search_Button.Size = new System.Drawing.Size(143, 36);
-<<<<<<< HEAD
-            this.Search_Button.TabIndex = 103;
-=======
             this.Search_Button.TabIndex = 1;
->>>>>>> 5ae3fce64d91e359f37255b6c153e00fa5e260f7
             this.Search_Button.Text = "TÌM KIẾM";
             this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
