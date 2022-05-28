@@ -59,8 +59,8 @@ namespace studMin
 
             Class_ComboBox.SelectedIndex = 0;
             SchoolYear_ComboBox.SelectedIndex = 0;
-
-            LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+            BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+            //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             loadingWindow.Close();
         }
 
@@ -130,40 +130,60 @@ namespace studMin
             return students;
         }
 
-        public void LoadToDataTable(List<STUDENT> students)
+        public void BindingStudent(List<STUDENT> sTUDENTs)
         {
-            foreach (var student in students)
+            sTUDENTBindingSource.ResetBindings(true);
+            sTUDENTBindingSource.DataSource = sTUDENTs;
+            foreach (DataGridViewRow row in DataTable.Rows)
             {
-                string newStudentStatus = String.Empty;
-                if (student.Status.ToString() == "1")
+                STUDENT selected = row.DataBoundItem as STUDENT;
+                if (selected != null)
                 {
-                    newStudentStatus = "Đang học";
+                    row.Cells["SchoolYear"].Value = selected.CLASS.SCHOOLYEAR;
+                    row.Cells["Id"].Value = selected.ID.ToString().Substring(0, 8).ToUpper();
+                    row.Cells["Class"].Value = selected.CLASS.CLASSNAME;
+                    row.Cells["FullName"].Value = selected.INFOR.FIRSTNAME + " " + selected.INFOR.LASTNAME;
+                    row.Cells["Status"].Value = selected.Status == 1 ? "Đang học" : "Đã nghỉ học";
                 }
-                else
-                {
-                    newStudentStatus = "Đã nghỉ học";
-                }
-                DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
             }
         }
+
+        //public void LoadToDataTable(List<STUDENT> students)
+        //{
+        //    foreach (var student in students)
+        //    {
+        //        string newStudentStatus = String.Empty;
+        //        if (student.Status.ToString() == "1")
+        //        {
+        //            newStudentStatus = "Đang học";
+        //        }
+        //        else
+        //        {
+        //            newStudentStatus = "Đã nghỉ học";
+        //        }
+        //        DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, newStudentStatus);
+        //    }
+        //}
 
         private void Search_Button_Click(object sender, EventArgs e)
         {
             DataTable.Rows.Clear();
             if (string.IsNullOrWhiteSpace(Search_Box.Text))
             {
-                LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             }    
             else
             {
                 var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
-                LoadToDataTable(students);
+                BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                //LoadToDataTable(students);
             }    
         }
 
         private void BindStudentToTextBox(STUDENT student)
         {
-            ID_Box.Text = student.ID.ToString().Substring(0,7).ToUpper();
+            ID_Box.Text = student.ID.ToString().Substring(0,8).ToUpper();
             FullName_Box.Text = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME;
             SchoolYear_Box.Text = student.CLASS.SCHOOLYEAR;
             Class_Box.Text = student.CLASS.CLASSNAME;
@@ -176,16 +196,14 @@ namespace studMin
 
         private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string queryID = String.Empty;
+            STUDENT studentCurrent;
             if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                queryID = DataTable.Rows[e.RowIndex].Cells[1].Value.ToString();
-            }
-
-            if (Guid.TryParse(queryID, out Guid idStudent) == true)
-            {
-                STUDENT student = Database.StudentServices.Instance.GetStudentById(idStudent);
-                BindStudentToTextBox(student);
+                studentCurrent = sTUDENTBindingSource.Current as STUDENT;
+                if (studentCurrent != null)
+                {
+                    BindStudentToTextBox(studentCurrent);
+                }
             }
         }
 
@@ -196,12 +214,14 @@ namespace studMin
                 DataTable.Rows.Clear();
                 if (string.IsNullOrWhiteSpace(Search_Box.Text))
                 {
-                    LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                    //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                    BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
                 }
                 else
                 {
                     var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
-                    LoadToDataTable(students);
+                    BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                    //LoadToDataTable(students);
                 }
             }
             else if (e.KeyChar == (char)Keys.Escape)

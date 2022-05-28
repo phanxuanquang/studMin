@@ -49,6 +49,7 @@ namespace studMin
                 CLASS selected = row.DataBoundItem as CLASS;
                 if (selected != null)
                 {
+                    row.Cells["ClassId"].Value = selected.ID.ToString().Substring(0, 8).ToUpper();
                     row.Cells["NameClassHeadTeacher"].Value = selected.TEACHER.INFOR.FIRSTNAME + " " + selected.TEACHER.INFOR.LASTNAME;
                     row.Cells["Quantity"].Value = Database.ClassServices.Instance.GetQuantityOfClass(selected.ID);
                     row.Cells["MaxQuantity"].Value = maxQuantity;

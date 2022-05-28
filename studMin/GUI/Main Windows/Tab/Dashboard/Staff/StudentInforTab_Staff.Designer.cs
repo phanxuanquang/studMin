@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -54,13 +55,15 @@
             this.gunaLabel12 = new Guna.UI.WinForms.GunaLabel();
             this.Class_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.Search_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.sTUDENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Search_Button = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ParentNumber_Box
@@ -672,6 +675,7 @@
             this.DataTable.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataTable.AutoGenerateColumns = false;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
@@ -695,6 +699,7 @@
             this.FullName,
             this.Status});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DataTable.DataSource = this.sTUDENTBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -738,6 +743,37 @@
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.DataTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataTable_CellContentClick);
             // 
+            // Search_Button
+            // 
+            this.Search_Button.Animated = true;
+            this.Search_Button.BackColor = System.Drawing.Color.White;
+            this.Search_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Search_Button.BorderRadius = 5;
+            this.Search_Button.BorderThickness = 2;
+            this.Search_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Search_Button.CheckedState.Parent = this.Search_Button;
+            this.Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Search_Button.CustomImages.Parent = this.Search_Button;
+            this.Search_Button.FillColor = System.Drawing.Color.White;
+            this.Search_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Search_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Search_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.Search_Button.HoverState.Parent = this.Search_Button;
+            this.Search_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Search_Button.Location = new System.Drawing.Point(623, 32);
+            this.Search_Button.Name = "Search_Button";
+            this.Search_Button.PressedDepth = 20;
+            this.Search_Button.ShadowDecoration.Parent = this.Search_Button;
+            this.Search_Button.Size = new System.Drawing.Size(143, 36);
+            this.Search_Button.TabIndex = 144;
+            this.Search_Button.Text = "TÌM KIẾM";
+            this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
+            // 
+            // sTUDENTBindingSource
+            // 
+            this.sTUDENTBindingSource.DataSource = typeof(studMin.Database.Models.STUDENT);
+            // 
             // SchoolYear
             // 
             this.SchoolYear.HeaderText = "Niên khóa";
@@ -774,33 +810,6 @@
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
             // 
-            // Search_Button
-            // 
-            this.Search_Button.Animated = true;
-            this.Search_Button.BackColor = System.Drawing.Color.White;
-            this.Search_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Search_Button.BorderRadius = 5;
-            this.Search_Button.BorderThickness = 2;
-            this.Search_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.Search_Button.CheckedState.Parent = this.Search_Button;
-            this.Search_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Search_Button.CustomImages.Parent = this.Search_Button;
-            this.Search_Button.FillColor = System.Drawing.Color.White;
-            this.Search_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Search_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Search_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.Search_Button.HoverState.Parent = this.Search_Button;
-            this.Search_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Search_Button.Location = new System.Drawing.Point(623, 32);
-            this.Search_Button.Name = "Search_Button";
-            this.Search_Button.PressedDepth = 20;
-            this.Search_Button.ShadowDecoration.Parent = this.Search_Button;
-            this.Search_Button.Size = new System.Drawing.Size(143, 36);
-            this.Search_Button.TabIndex = 144;
-            this.Search_Button.Text = "TÌM KIẾM";
-            this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
-            // 
             // StudentInforTab_Staff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -833,6 +842,7 @@
             this.Name = "StudentInforTab_Staff";
             this.Size = new System.Drawing.Size(924, 688);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -862,11 +872,12 @@
         private Guna.UI.WinForms.GunaLabel gunaLabel12;
         private Guna.UI2.WinForms.Guna2ComboBox Class_ComboBox;
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
+        protected Guna.UI2.WinForms.Guna2Button Search_Button;
+        private System.Windows.Forms.BindingSource sTUDENTBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn SchoolYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Class;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        protected Guna.UI2.WinForms.Guna2Button Search_Button;
     }
 }
