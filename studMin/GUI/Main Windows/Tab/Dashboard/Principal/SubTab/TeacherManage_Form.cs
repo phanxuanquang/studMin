@@ -18,7 +18,7 @@ namespace studMin
         List<TEACHER> teacherList;
         public TeacherManage_Form()
         {
-            
+
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
         }
@@ -51,7 +51,7 @@ namespace studMin
 
         private void FirePerson_Button_Click(object sender, EventArgs e)
         {
-            if (staffList == null || staffList.Count == 0 || teacherList == null || teacherList.Count == 0)
+            if ((staffList == null || staffList.Count == 0) && (teacherList == null || teacherList.Count == 0))
             {
                 MessageBox.Show("Không tìm thấy nhân viên nào, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -69,7 +69,6 @@ namespace studMin
 
                 LoadDataToDataTable(Search_Box.Text, false);
                 MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
             }
         }
 

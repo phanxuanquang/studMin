@@ -196,18 +196,14 @@ namespace studMin
 
                         foreach (var classItem in listClasses)
                         {
-                            if (classItem.LESSONs.Count > 0)
+                            if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                             {
-                                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
-                                {
-                                    INFOR inforTeacher = classItem.TEACHER.INFOR;
+                                INFOR inforTeacher = classItem.TEACHER.INFOR;
 
-                                    string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
-                                    string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
-                                    dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
-                                }
+                                string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
+                                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
+                                dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
                             }
-                            
                         }
                         break;
                 }
@@ -216,7 +212,7 @@ namespace studMin
             }
             catch 
             {
-                MessageBox.Show("Vui lòng kiểm tra lại điều kiên truy xuất và kết nối mạng.", "TRUY XUÂT THÔNG TIN THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Vui lòng kiểm tra lại điều kiện truy xuất và kết nối mạng.", "TRUY XUÂT THÔNG TIN THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
