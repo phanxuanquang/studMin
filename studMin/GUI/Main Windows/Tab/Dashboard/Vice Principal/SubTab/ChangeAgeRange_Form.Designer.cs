@@ -29,21 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangeAgeRange_Form));
             this.Exit_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Confirm_Button = new Guna.UI2.WinForms.Guna2Button();
             this.SubjectName_Label = new System.Windows.Forms.Label();
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
-            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.Elipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.ValidProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.InvalidProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.MinTrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
             this.MaxTrackBar = new Guna.UI2.WinForms.Guna2TrackBar();
             this.MaxLabel = new System.Windows.Forms.Label();
             this.MinLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ValidProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InvalidProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // Exit_Button
@@ -112,34 +107,22 @@
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SubjectName_Label.UseCompatibleTextRendering = true;
             // 
-            // guna2Elipse1
+            // Elipse
             // 
-            this.guna2Elipse1.BorderRadius = 10;
-            this.guna2Elipse1.TargetControl = this;
+            this.Elipse.BorderRadius = 10;
+            this.Elipse.TargetControl = this;
             // 
             // DragControl
             // 
-            this.DragControl.TargetControl = this;
-            // 
-            // ValidProvider
-            // 
-            this.ValidProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.ValidProvider.ContainerControl = this;
-            this.ValidProvider.Icon = studMin.Properties.Resources.valid_icon;
-            // 
-            // InvalidProvider
-            // 
-            this.InvalidProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.InvalidProvider.ContainerControl = this;
-            this.InvalidProvider.Icon = studMin.Properties.Resources.invalid_icon;
+            this.DragControl.TargetControl = this.SubjectName_Label;
             // 
             // MinTrackBar
             // 
             this.MinTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.MinTrackBar.HoverState.Parent = this.MinTrackBar;
             this.MinTrackBar.Location = new System.Drawing.Point(33, 86);
-            this.MinTrackBar.Maximum = 40;
-            this.MinTrackBar.Minimum = 10;
+            this.MinTrackBar.Maximum = 50;
+            this.MinTrackBar.Minimum = 5;
             this.MinTrackBar.Name = "MinTrackBar";
             this.MinTrackBar.Size = new System.Drawing.Size(368, 23);
             this.MinTrackBar.TabIndex = 133;
@@ -152,13 +135,13 @@
             this.MaxTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.MaxTrackBar.HoverState.Parent = this.MaxTrackBar;
             this.MaxTrackBar.Location = new System.Drawing.Point(33, 154);
-            this.MaxTrackBar.Maximum = 40;
-            this.MaxTrackBar.Minimum = 10;
+            this.MaxTrackBar.Maximum = 50;
+            this.MaxTrackBar.Minimum = 5;
             this.MaxTrackBar.Name = "MaxTrackBar";
             this.MaxTrackBar.Size = new System.Drawing.Size(368, 23);
             this.MaxTrackBar.TabIndex = 134;
             this.MaxTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxTrackBar.Value = 15;
+            this.MaxTrackBar.Value = 18;
             this.MaxTrackBar.ValueChanged += new System.EventHandler(this.MaxTrackBar_ValueChanged);
             // 
             // MaxLabel
@@ -206,8 +189,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChangeSubjectName_Form";
-            ((System.ComponentModel.ISupportInitialize)(this.ValidProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.InvalidProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,10 +199,8 @@
         protected Guna.UI2.WinForms.Guna2Button Confirm_Button;
         private System.Windows.Forms.Label SubjectName_Label;
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
-        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2Elipse Elipse;
         private Guna.UI2.WinForms.Guna2DragControl DragControl;
-        private System.Windows.Forms.ErrorProvider ValidProvider;
-        private System.Windows.Forms.ErrorProvider InvalidProvider;
         private Guna.UI2.WinForms.Guna2TrackBar MinTrackBar;
         private Guna.UI2.WinForms.Guna2TrackBar MaxTrackBar;
         private System.Windows.Forms.Label MaxLabel;

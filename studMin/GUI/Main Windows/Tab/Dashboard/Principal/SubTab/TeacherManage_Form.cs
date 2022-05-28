@@ -69,6 +69,7 @@ namespace studMin
 
                 LoadDataToDataTable(Search_Box.Text, false);
                 MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
 

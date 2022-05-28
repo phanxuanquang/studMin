@@ -138,7 +138,7 @@
             this.Login_Button.Name = "Login_Button";
             this.Login_Button.ShadowDecoration.Parent = this.Login_Button;
             this.Login_Button.Size = new System.Drawing.Size(340, 47);
-            this.Login_Button.TabIndex = 2;
+            this.Login_Button.TabIndex = 4;
             this.Login_Button.Text = "ĐĂNG NHẬP";
             this.Login_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             this.Login_Button.Click += new System.EventHandler(this.Login_Button_Click);
@@ -154,7 +154,7 @@
             this.ForgetPassword_LinkLabel.Location = new System.Drawing.Point(297, 510);
             this.ForgetPassword_LinkLabel.Name = "ForgetPassword_LinkLabel";
             this.ForgetPassword_LinkLabel.Size = new System.Drawing.Size(94, 19);
-            this.ForgetPassword_LinkLabel.TabIndex = 4;
+            this.ForgetPassword_LinkLabel.TabIndex = 3;
             this.ForgetPassword_LinkLabel.TabStop = true;
             this.ForgetPassword_LinkLabel.Text = "Quên mật khẩu";
             this.ForgetPassword_LinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -207,7 +207,7 @@
             this.RememberLogin_CheckBox.Location = new System.Drawing.Point(55, 509);
             this.RememberLogin_CheckBox.Name = "RememberLogin_CheckBox";
             this.RememberLogin_CheckBox.Size = new System.Drawing.Size(155, 18);
-            this.RememberLogin_CheckBox.TabIndex = 8;
+            this.RememberLogin_CheckBox.TabIndex = 2;
             this.RememberLogin_CheckBox.Text = " Ghi nhớ đăng nhập";
             this.RememberLogin_CheckBox.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.RememberLogin_CheckBox.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));

@@ -17,7 +17,6 @@ namespace studMin
         {
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
-            this.Icon = Properties.Resources.studMin_Icon;
         }
 
         protected override CreateParams CreateParams
@@ -150,6 +149,7 @@ namespace studMin
             {
                 sender.Text = String.Empty;
             }
+            //thêm tab event
         }
 
         private void Exit_Button_Click(object sender, EventArgs e)
