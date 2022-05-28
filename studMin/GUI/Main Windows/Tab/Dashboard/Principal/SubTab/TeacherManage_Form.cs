@@ -15,6 +15,7 @@ namespace studMin
     public partial class TeacherManage_Form : Form
     {
         List<STAFF> staffList;
+        List<TEACHER> teacherList;
         public TeacherManage_Form()
         {
             
@@ -35,36 +36,22 @@ namespace studMin
             this.Close();
         }
 
-        private void LoadDataToDataTable(string enteredText)
+        private void LoadDataToDataTable(string enteredText, bool loadInitData)
         {
-            if (String.IsNullOrEmpty(enteredText)) return;
-
             DataTable.Rows.Clear();
             staffList = new List<STAFF>();
+            teacherList = new List<TEACHER>();
             // query để load lại table theo từ khóa trong search box
             List<STAFF> listStaffs = StaffServices.Instance.GetStaffs();
+            List<TEACHER> listTeachers = TeacherServices.Instance.GetTeachers();
 
-            foreach (STAFF staff in listStaffs)
-            {
-                string staffName = staff.INFOR.FIRSTNAME + " " + staff.INFOR.LASTNAME;
-                if (staffName.ToLower().Contains(enteredText.ToLower()))
-                {
-                    string gender = staff.INFOR.SEX == 0 ? "Nam" : "Nữ";
-                    staffList.Add(staff);
-                    DataTable.Rows.Add(staff.ID, staffName, gender, staff.INFOR.DAYOFBIRTH.ToString().Split(' ')[0], staff.USER.EMAIL);
-                }
-            }
+            LoadList(listStaffs, enteredText, loadInitData);
+            LoadList(listTeachers, enteredText, loadInitData);
         }
 
         private void FirePerson_Button_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Search_Box.Text.Trim()))
-            {
-                MessageBox.Show("Vui lòng nhập họ tên hoặc mã định danh của nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (staffList == null || staffList.Count == 0)
+            if (staffList == null || staffList.Count == 0 || teacherList == null || teacherList.Count == 0)
             {
                 MessageBox.Show("Không tìm thấy nhân viên nào, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -77,10 +64,10 @@ namespace studMin
                 string staffId = DataTable.SelectedRows[0].Cells[0].Value.ToString();
                 STAFF selectedStaff = StaffServices.Instance.GetStaffById(staffId);
 
-                DataProvider.Instance.Database.STAFFs.Remove(selectedStaff);
-                DataProvider.Instance.Database.SaveChanges();
+                /*DataProvider.Instance.Database.STAFFs.Remove(selectedStaff);
+                DataProvider.Instance.Database.SaveChanges();*/
 
-                LoadDataToDataTable(Search_Box.Text);
+                LoadDataToDataTable(Search_Box.Text, false);
                 MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -89,11 +76,59 @@ namespace studMin
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                LoadDataToDataTable(Search_Box.Text.Trim());
+                LoadDataToDataTable(Search_Box.Text.Trim(), false);
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
                 Search_Box.Text = String.Empty;
+            }
+        }
+
+        private void TeacherManage_Form_Load(object sender, EventArgs e)
+        {
+            LoadDataToDataTable(Search_Box.Text.Trim(), true);
+        }
+
+        public void LoadList(IEnumerable<dynamic> list, string enteredText, bool loadInitData)
+        {
+            foreach (var item in list)
+            {
+                string teacherName = item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME;
+                string gender = item.INFOR.SEX == 0 ? "Nam" : "Nữ";
+                string role = item is TEACHER ? item.TEACHERROLE.ROLE : item.STAFFROLE.ROLE;
+
+                if (role == "Hiệu trưởng")
+                {
+                    continue;
+                }
+
+                if (!loadInitData)
+                {
+                    if (teacherName.ToLower().Contains(enteredText.ToLower()) || item.ID.ToString().ToLower().Contains(enteredText.ToLower()))
+                    {
+                        if (item is TEACHER)
+                        {
+                            teacherList.Add(item);
+                        }
+                        else
+                        {
+                            staffList.Add(item);
+                        }
+                        DataTable.Rows.Add(item.ID, teacherName, gender, item.USER.EMAIL, role);
+                    }
+                }
+                else
+                {
+                    if (item is TEACHER)
+                    {
+                        teacherList.Add(item);
+                    }
+                    else
+                    {
+                        staffList.Add(item);
+                    }
+                    DataTable.Rows.Add(item.ID, teacherName, gender, item.USER.EMAIL, role);
+                }
             }
         }
     }

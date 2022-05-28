@@ -83,7 +83,6 @@ namespace studMin
                 Lop = Class_ComboBox.SelectedItem.ToString(),
                 GiaoVien = inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME,
                 NamHoc = SchoolYear_ComboBox.SelectedItem.ToString(),
-                HocKy = Semester_ComboBox.SelectedIndex == 1 ? 0 : 1,
                 SiSo = listStudents.Count,
                 ThongTinThem = "Danh sách lớp"
             };
@@ -145,10 +144,20 @@ namespace studMin
                         dataSource.Columns.Add("Khối");
                         dataSource.Columns.Add("Giáo viên");
                         dataSource.Columns.Add("Năm học");
-                        
+
                         foreach (var classItem in listClasses)
                         {
-                            dataSource.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                            if (SchoolYear_ComboBox.SelectedIndex != 0)
+                            {
+                                if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                                {
+                                    dataSource.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                                }
+                            }
+                            else
+                            {
+                                dataSource.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                            }
                         }
                         break;
                      case 1:
@@ -178,7 +187,7 @@ namespace studMin
                             dataSource.Rows.Add(student.ID.ToString().Substring(0, 8).ToUpper(), student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
                         }
                         break;
-                    case 4:
+                    case 2:
                         dataSource.Columns.Add("Mã giáo viên");
                         dataSource.Columns.Add("Họ tên");
                         dataSource.Columns.Add("Giới tính");
@@ -187,14 +196,18 @@ namespace studMin
 
                         foreach (var classItem in listClasses)
                         {
-                            if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                            if (classItem.LESSONs.Count > 0)
                             {
-                                INFOR inforTeacher = classItem.TEACHER.INFOR;
+                                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                                {
+                                    INFOR inforTeacher = classItem.TEACHER.INFOR;
 
-                                string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
-                                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
-                                dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                                    string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
+                                    string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
+                                    dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                                }
                             }
+                            
                         }
                         break;
                 }
@@ -246,18 +259,6 @@ namespace studMin
                 }
 
                 List<SEMESTER> listSemesters = DataProvider.Instance.Database.SEMESTERs.Select(item => item).ToList();
-
-                foreach (SEMESTER semester in listSemesters)
-                {
-                    if (semester.NAME == "1")
-                    {
-                        Semester_ComboBox.Items.Add("Học kỳ 1");
-                    }
-                    else if (semester.NAME == "2")
-                    {
-                        Semester_ComboBox.Items.Add("Học kỳ 2");
-                    }
-                }
             }));
         }
     }
