@@ -591,7 +591,7 @@
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.Search_Box.Size = new System.Drawing.Size(320, 36);
-            this.Search_Box.TabIndex = 127;
+            this.Search_Box.TabIndex = 0;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 

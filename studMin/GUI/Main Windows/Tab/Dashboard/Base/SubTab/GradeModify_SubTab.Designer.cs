@@ -117,7 +117,7 @@
             this.UpdateData_Button.PressedDepth = 20;
             this.UpdateData_Button.ShadowDecoration.Parent = this.UpdateData_Button;
             this.UpdateData_Button.Size = new System.Drawing.Size(107, 36);
-            this.UpdateData_Button.TabIndex = 30;
+            this.UpdateData_Button.TabIndex = 4;
             this.UpdateData_Button.Text = "CẬP NHẬT";
             this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.UpdateData_Button.Click += new System.EventHandler(this.UpdateData_Button_Click);
@@ -209,7 +209,7 @@
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.Search_Box.Size = new System.Drawing.Size(357, 36);
-            this.Search_Box.TabIndex = 32;
+            this.Search_Box.TabIndex = 0;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
@@ -301,7 +301,7 @@
             this.OralTestScore_Box.ShadowDecoration.Parent = this.OralTestScore_Box;
             this.OralTestScore_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.OralTestScore_Box.Size = new System.Drawing.Size(67, 36);
-            this.OralTestScore_Box.TabIndex = 41;
+            this.OralTestScore_Box.TabIndex = 1;
             this.OralTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.OralTestScore_Box.TextChanged += new System.EventHandler(this.OralTestScore_Box_TextChanged);
             this.OralTestScore_Box.Validated += new System.EventHandler(this.OralTestScore_Box_Validated);
@@ -392,7 +392,7 @@
             this.MidTermTestScore_Box.ShadowDecoration.Parent = this.MidTermTestScore_Box;
             this.MidTermTestScore_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.MidTermTestScore_Box.Size = new System.Drawing.Size(67, 36);
-            this.MidTermTestScore_Box.TabIndex = 41;
+            this.MidTermTestScore_Box.TabIndex = 3;
             this.MidTermTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.MidTermTestScore_Box.TextChanged += new System.EventHandler(this.MidTermTestScore_Box_TextChanged);
             this.MidTermTestScore_Box.Validated += new System.EventHandler(this.MidTermTestScore_Box_Validated);
@@ -448,7 +448,7 @@
             this.RegularTestScore_ComboBox.ShadowDecoration.Parent = this.RegularTestScore_ComboBox;
             this.RegularTestScore_ComboBox.Size = new System.Drawing.Size(140, 36);
             this.RegularTestScore_ComboBox.StartIndex = 0;
-            this.RegularTestScore_ComboBox.TabIndex = 40;
+            this.RegularTestScore_ComboBox.TabIndex = 2;
             this.RegularTestScore_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             this.RegularTestScore_ComboBox.SelectedIndexChanged += new System.EventHandler(this.RegularTestScore_ComboBox_SelectedIndexChanged);
             // 
@@ -485,7 +485,7 @@
             this.RegularTestScore_Box.ShadowDecoration.Parent = this.RegularTestScore_Box;
             this.RegularTestScore_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.RegularTestScore_Box.Size = new System.Drawing.Size(67, 36);
-            this.RegularTestScore_Box.TabIndex = 41;
+            this.RegularTestScore_Box.TabIndex = 20;
             this.RegularTestScore_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.RegularTestScore_Box.TextChanged += new System.EventHandler(this.RegularTestScore_Box_TextChanged);
             this.RegularTestScore_Box.Validated += new System.EventHandler(this.RegularTestScore_Box_Validated);

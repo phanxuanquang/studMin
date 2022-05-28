@@ -103,11 +103,14 @@ namespace studMin
             if (Database.StudentServices.Instance.SaveStudentToDB(firstName, lastName, sex, dateOfBirth, address, email, idClass, emailParent, telephone, 1, bloodLine))
             {
                 MessageBox.Show("Thêm học sinh thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } else
+            } 
+            else
             {
                 MessageBox.Show("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
+            this.Close();
+
             //Luu hoc sinh
             //Thong tin hoc sinh
             //Database.StudentServices.Instance.SaveStudentToDB();

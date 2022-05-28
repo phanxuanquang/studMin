@@ -69,6 +69,7 @@ namespace studMin
             /*DataProvider.Instance.Database.SUBJECTs.Where(item => item.Id == currentSubject.Id).FirstOrDefault().DisplayName = SubjectName_Box.Text.Trim();*/
 
             MessageBox.Show("Thay đổi tên môn học thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
     }
 }

@@ -193,7 +193,7 @@
             this.Complete_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Complete_Button.ForeColor = System.Drawing.Color.White;
             this.Complete_Button.HoverState.Parent = this.Complete_Button;
-            this.Complete_Button.Location = new System.Drawing.Point(66, 179);
+            this.Complete_Button.Location = new System.Drawing.Point(66, 168);
             this.Complete_Button.Name = "Complete_Button";
             this.Complete_Button.ShadowDecoration.Parent = this.Complete_Button;
             this.Complete_Button.Size = new System.Drawing.Size(217, 41);
@@ -217,7 +217,7 @@
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Exit_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(305, 179);
+            this.Exit_Button.Location = new System.Drawing.Point(305, 168);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
             this.Exit_Button.Size = new System.Drawing.Size(217, 41);
@@ -271,7 +271,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(589, 242);
+            this.ClientSize = new System.Drawing.Size(589, 231);
             this.Controls.Add(this.Teacher_ComboBox);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Complete_Button);
