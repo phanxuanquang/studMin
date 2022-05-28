@@ -53,11 +53,10 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(313, 254);
-            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.Exit_Button.Location = new System.Drawing.Point(235, 206);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(191, 44);
+            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
             this.Exit_Button.TabIndex = 130;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -81,13 +80,12 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(76, 254);
-            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.Confirm_Button.Location = new System.Drawing.Point(57, 206);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
-            this.Confirm_Button.Size = new System.Drawing.Size(191, 44);
-            this.Confirm_Button.TabIndex = 129;
+            this.Confirm_Button.Size = new System.Drawing.Size(143, 36);
+            this.Confirm_Button.TabIndex = 2;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Confirm_Button.Click += new System.EventHandler(this.Confirm_Button_Click);
@@ -99,9 +97,8 @@
             this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
-            this.SubjectName_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(579, 54);
+            this.SubjectName_Label.Size = new System.Drawing.Size(434, 44);
             this.SubjectName_Label.TabIndex = 131;
             this.SubjectName_Label.Text = "THAY ĐỔI TÊN MÔN ";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,8 +126,8 @@
             this.SubjectName_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.SubjectName_Box.HoverState.Parent = this.SubjectName_Box;
             this.SubjectName_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.SubjectName_Box.Location = new System.Drawing.Point(63, 81);
-            this.SubjectName_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.SubjectName_Box.Location = new System.Drawing.Point(47, 66);
+            this.SubjectName_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SubjectName_Box.Name = "SubjectName_Box";
             this.SubjectName_Box.PasswordChar = '\0';
             this.SubjectName_Box.PlaceholderText = " Tên mới của môn học";
@@ -139,8 +136,8 @@
             this.SubjectName_Box.ShadowDecoration.Depth = 5;
             this.SubjectName_Box.ShadowDecoration.Parent = this.SubjectName_Box;
             this.SubjectName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.SubjectName_Box.Size = new System.Drawing.Size(453, 58);
-            this.SubjectName_Box.TabIndex = 132;
+            this.SubjectName_Box.Size = new System.Drawing.Size(340, 47);
+            this.SubjectName_Box.TabIndex = 0;
             this.SubjectName_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // guna2Elipse1
@@ -170,8 +167,8 @@
             this.ConfirmSubjectName_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.ConfirmSubjectName_Box.HoverState.Parent = this.ConfirmSubjectName_Box;
             this.ConfirmSubjectName_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.ConfirmSubjectName_Box.Location = new System.Drawing.Point(63, 163);
-            this.ConfirmSubjectName_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.ConfirmSubjectName_Box.Location = new System.Drawing.Point(47, 132);
+            this.ConfirmSubjectName_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ConfirmSubjectName_Box.Name = "ConfirmSubjectName_Box";
             this.ConfirmSubjectName_Box.PasswordChar = '\0';
             this.ConfirmSubjectName_Box.PlaceholderText = "Xác nhận lại tên mới của môn học";
@@ -180,23 +177,22 @@
             this.ConfirmSubjectName_Box.ShadowDecoration.Depth = 5;
             this.ConfirmSubjectName_Box.ShadowDecoration.Parent = this.ConfirmSubjectName_Box;
             this.ConfirmSubjectName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.ConfirmSubjectName_Box.Size = new System.Drawing.Size(453, 58);
-            this.ConfirmSubjectName_Box.TabIndex = 133;
+            this.ConfirmSubjectName_Box.Size = new System.Drawing.Size(340, 47);
+            this.ConfirmSubjectName_Box.TabIndex = 1;
             this.ConfirmSubjectName_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // ChangeSubjectName_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(579, 316);
+            this.ClientSize = new System.Drawing.Size(434, 257);
             this.Controls.Add(this.ConfirmSubjectName_Box);
             this.Controls.Add(this.SubjectName_Box);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Confirm_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ChangeSubjectName_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

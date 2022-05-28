@@ -52,7 +52,7 @@
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
             this.Confirm_Button.Size = new System.Drawing.Size(340, 47);
-            this.Confirm_Button.TabIndex = 8;
+            this.Confirm_Button.TabIndex = 4;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             this.Confirm_Button.Click += new System.EventHandler(this.Confirm_Button_Click);
@@ -92,7 +92,7 @@
             this.NewPassword_Box.ShadowDecoration.Parent = this.NewPassword_Box;
             this.NewPassword_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.NewPassword_Box.Size = new System.Drawing.Size(340, 47);
-            this.NewPassword_Box.TabIndex = 7;
+            this.NewPassword_Box.TabIndex = 2;
             this.NewPassword_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // OTP_Box
@@ -129,7 +129,7 @@
             this.OTP_Box.ShadowDecoration.Parent = this.OTP_Box;
             this.OTP_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.OTP_Box.Size = new System.Drawing.Size(340, 47);
-            this.OTP_Box.TabIndex = 6;
+            this.OTP_Box.TabIndex = 1;
             this.OTP_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // ConfirmNewPassword_Box
@@ -167,7 +167,7 @@
             this.ConfirmNewPassword_Box.ShadowDecoration.Parent = this.ConfirmNewPassword_Box;
             this.ConfirmNewPassword_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
             this.ConfirmNewPassword_Box.Size = new System.Drawing.Size(340, 47);
-            this.ConfirmNewPassword_Box.TabIndex = 9;
+            this.ConfirmNewPassword_Box.TabIndex = 3;
             this.ConfirmNewPassword_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
             // Exit_Button

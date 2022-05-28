@@ -87,14 +87,13 @@
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 75);
-            this.DataTable.Margin = new System.Windows.Forms.Padding(4);
+            this.DataTable.Location = new System.Drawing.Point(0, 61);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataTable.Size = new System.Drawing.Size(1311, 602);
+            this.DataTable.Size = new System.Drawing.Size(983, 489);
             this.DataTable.TabIndex = 102;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -175,8 +174,8 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(17, 16);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.Search_Box.Location = new System.Drawing.Point(13, 13);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập họ tên hoặc mã định danh . . .";
@@ -185,8 +184,8 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(880, 44);
-            this.Search_Box.TabIndex = 125;
+            this.Search_Box.Size = new System.Drawing.Size(660, 36);
+            this.Search_Box.TabIndex = 0;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
             // 
@@ -207,13 +206,12 @@
             this.FirePerson_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.FirePerson_Button.HoverState.Parent = this.FirePerson_Button;
             this.FirePerson_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.FirePerson_Button.Location = new System.Drawing.Point(907, 16);
-            this.FirePerson_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.FirePerson_Button.Location = new System.Drawing.Point(680, 13);
             this.FirePerson_Button.Name = "FirePerson_Button";
             this.FirePerson_Button.PressedDepth = 20;
             this.FirePerson_Button.ShadowDecoration.Parent = this.FirePerson_Button;
-            this.FirePerson_Button.Size = new System.Drawing.Size(191, 44);
-            this.FirePerson_Button.TabIndex = 127;
+            this.FirePerson_Button.Size = new System.Drawing.Size(143, 36);
+            this.FirePerson_Button.TabIndex = 1;
             this.FirePerson_Button.Text = "SA THẢI";
             this.FirePerson_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.FirePerson_Button.Click += new System.EventHandler(this.FirePerson_Button_Click);
@@ -237,28 +235,26 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(1104, 16);
-            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.Exit_Button.Location = new System.Drawing.Point(828, 13);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(191, 44);
-            this.Exit_Button.TabIndex = 128;
+            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
+            this.Exit_Button.TabIndex = 2;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
             // TeacherManage_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1311, 677);
+            this.ClientSize = new System.Drawing.Size(983, 550);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.FirePerson_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.DataTable);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TeacherManage_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

@@ -59,7 +59,7 @@
             this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
             this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
             this.DataGridViewExport_Button.Size = new System.Drawing.Size(143, 36);
-            this.DataGridViewExport_Button.TabIndex = 22;
+            this.DataGridViewExport_Button.TabIndex = 5;
             this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
             this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.DataGridViewExport_Button.Click += new System.EventHandler(this.DataGridViewExport_Button_Click);
@@ -91,7 +91,7 @@
             this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.Size = new System.Drawing.Size(131, 36);
             this.Semester_ComboBox.StartIndex = 0;
-            this.Semester_ComboBox.TabIndex = 21;
+            this.Semester_ComboBox.TabIndex = 1;
             this.Semester_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // SchoolYear_ComboBox
@@ -121,7 +121,7 @@
             this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
             this.SchoolYear_ComboBox.Size = new System.Drawing.Size(140, 36);
             this.SchoolYear_ComboBox.StartIndex = 0;
-            this.SchoolYear_ComboBox.TabIndex = 20;
+            this.SchoolYear_ComboBox.TabIndex = 2;
             this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // Filter_ComboBox
@@ -146,7 +146,6 @@
             this.Filter_ComboBox.Items.AddRange(new object[] {
             "Danh sách lớp học",
             "Danh sách học sinh",
-            "Bảng điểm tổng kết",
             "Giáo viên phụ trách"});
             this.Filter_ComboBox.ItemsAppearance.Parent = this.Filter_ComboBox;
             this.Filter_ComboBox.Location = new System.Drawing.Point(430, 32);
@@ -154,7 +153,7 @@
             this.Filter_ComboBox.ShadowDecoration.Parent = this.Filter_ComboBox;
             this.Filter_ComboBox.Size = new System.Drawing.Size(187, 36);
             this.Filter_ComboBox.StartIndex = 0;
-            this.Filter_ComboBox.TabIndex = 19;
+            this.Filter_ComboBox.TabIndex = 3;
             this.Filter_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // Class_ComboBox
@@ -184,7 +183,7 @@
             this.Class_ComboBox.ShadowDecoration.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Size = new System.Drawing.Size(131, 36);
             this.Class_ComboBox.StartIndex = 0;
-            this.Class_ComboBox.TabIndex = 18;
+            this.Class_ComboBox.TabIndex = 0;
             this.Class_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // DataTable_Info
@@ -275,7 +274,7 @@
             this.Search_Button.PressedDepth = 20;
             this.Search_Button.ShadowDecoration.Parent = this.Search_Button;
             this.Search_Button.Size = new System.Drawing.Size(143, 36);
-            this.Search_Button.TabIndex = 23;
+            this.Search_Button.TabIndex = 4;
             this.Search_Button.Text = "TÌM KIẾM";
             this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);

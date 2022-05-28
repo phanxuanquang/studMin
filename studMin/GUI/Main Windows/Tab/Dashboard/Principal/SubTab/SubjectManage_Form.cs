@@ -43,7 +43,8 @@ namespace studMin
 
         private void AddSubject_Button_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Từ từ rồi có! Hối đấm giờ!");
+            AddStudent_Form addStudent_Form = new AddStudent_Form();
+            addStudent_Form.ShowDialog();
         }
 
         private void SubjectManage_Form_Load(object sender, EventArgs e)

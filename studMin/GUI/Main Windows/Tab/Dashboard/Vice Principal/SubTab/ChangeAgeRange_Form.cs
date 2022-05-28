@@ -34,6 +34,7 @@ namespace studMin
             LoadAgeLimit();
         }
 
+        int currentMax, currentMin;
         private void LoadAgeLimit()
         {
             (int, int) getAge = GetAgeLimit();
@@ -41,8 +42,8 @@ namespace studMin
             MinLabel.Text = String.Format("Tuổi nhập học tối thiểu: {0} tuổi", getAge.Item1.ToString());
             MaxLabel.Text = String.Format("Tuổi nhập học tối đa: {0} tuổi", getAge.Item2.ToString());
 
-            MinTrackBar.Value = getAge.Item1;
-            MaxTrackBar.Value = getAge.Item2;
+            MinTrackBar.Value = currentMin = getAge.Item1;
+            MaxTrackBar.Value = currentMax = getAge.Item2;
         }
 
         private void Exit_Button_Click(object sender, EventArgs e)
@@ -83,30 +84,16 @@ namespace studMin
             Database.DataProvider.Instance.Database.SaveChanges();
         }
 
-        private void MaxAgeTextBox_Validated(object sender, EventArgs e)
-        {
-            Guna.UI2.WinForms.Guna2TextBox textbox = sender as Guna.UI2.WinForms.Guna2TextBox;
-            if (!String.IsNullOrEmpty(textbox.Text))
-            {
-                if (int.TryParse(textbox.Text, out int value))
-                {
-                    ValidProvider.SetError(textbox, "Hợp lệ");
-                }
-                else
-                {
-                    InvalidProvider.SetError(textbox, "Vui lòng nhập số nguyên!");
-                }
-            }
-        }
-
         private void MinTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MinLabel.Text = String.Format("Tuổi nhập học tối thiểu: {0} tuổi", MinTrackBar.Value.ToString());
+            MaxTrackBar.Minimum = MinTrackBar.Value;
         }
 
         private void MaxTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MaxLabel.Text = String.Format("Tuổi nhập học tối đa: {0} tuổi", MaxTrackBar.Value.ToString());
+            MinTrackBar.Maximum = MaxTrackBar.Value;
         }
     }
 }
