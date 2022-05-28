@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
             this.Close_Button = new Guna.UI2.WinForms.Guna2Button();
             this.ChangeSubjectName_Button = new Guna.UI2.WinForms.Guna2Button();
@@ -39,6 +39,8 @@
             this.ChangeSubjectHead_Button = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
+            this.SubjectName_Label = new System.Windows.Forms.Label();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,43 +49,43 @@
             this.DataTable.AllowDrop = true;
             this.DataTable.AllowUserToAddRows = false;
             this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
             this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataTable.DefaultCellStyle = dataGridViewCellStyle6;
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 57);
+            this.DataTable.Location = new System.Drawing.Point(0, 108);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataTable.Size = new System.Drawing.Size(977, 489);
+            this.DataTable.Size = new System.Drawing.Size(977, 428);
             this.DataTable.TabIndex = 103;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -123,7 +125,7 @@
             this.Close_Button.ForeColor = System.Drawing.Color.White;
             this.Close_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Close_Button.HoverState.Parent = this.Close_Button;
-            this.Close_Button.Location = new System.Drawing.Point(731, 12);
+            this.Close_Button.Location = new System.Drawing.Point(731, 58);
             this.Close_Button.Name = "Close_Button";
             this.Close_Button.ShadowDecoration.Parent = this.Close_Button;
             this.Close_Button.Size = new System.Drawing.Size(234, 36);
@@ -150,7 +152,7 @@
             this.ChangeSubjectName_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.ChangeSubjectName_Button.HoverState.Parent = this.ChangeSubjectName_Button;
             this.ChangeSubjectName_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeSubjectName_Button.Location = new System.Drawing.Point(251, 12);
+            this.ChangeSubjectName_Button.Location = new System.Drawing.Point(251, 58);
             this.ChangeSubjectName_Button.Name = "ChangeSubjectName_Button";
             this.ChangeSubjectName_Button.PressedDepth = 20;
             this.ChangeSubjectName_Button.ShadowDecoration.Parent = this.ChangeSubjectName_Button;
@@ -178,7 +180,7 @@
             this.AddSubject_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.AddSubject_Button.HoverState.Parent = this.AddSubject_Button;
             this.AddSubject_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.AddSubject_Button.Location = new System.Drawing.Point(11, 12);
+            this.AddSubject_Button.Location = new System.Drawing.Point(11, 58);
             this.AddSubject_Button.Name = "AddSubject_Button";
             this.AddSubject_Button.PressedDepth = 20;
             this.AddSubject_Button.ShadowDecoration.Parent = this.AddSubject_Button;
@@ -206,7 +208,7 @@
             this.ChangeSubjectHead_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.ChangeSubjectHead_Button.HoverState.Parent = this.ChangeSubjectHead_Button;
             this.ChangeSubjectHead_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeSubjectHead_Button.Location = new System.Drawing.Point(491, 12);
+            this.ChangeSubjectHead_Button.Location = new System.Drawing.Point(491, 58);
             this.ChangeSubjectHead_Button.Name = "ChangeSubjectHead_Button";
             this.ChangeSubjectHead_Button.PressedDepth = 20;
             this.ChangeSubjectHead_Button.ShadowDecoration.Parent = this.ChangeSubjectHead_Button;
@@ -221,12 +223,31 @@
             this.guna2Elipse1.BorderRadius = 10;
             this.guna2Elipse1.TargetControl = this;
             // 
+            // SubjectName_Label
+            // 
+            this.SubjectName_Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.SubjectName_Label.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
+            this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
+            this.SubjectName_Label.Name = "SubjectName_Label";
+            this.SubjectName_Label.Size = new System.Drawing.Size(977, 46);
+            this.SubjectName_Label.TabIndex = 133;
+            this.SubjectName_Label.Text = "QUẢN LÝ MÔN HỌC";
+            this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.SubjectName_Label.UseCompatibleTextRendering = true;
+            // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.TargetControl = this.SubjectName_Label;
+            // 
             // SubjectManage_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(977, 546);
+            this.ClientSize = new System.Drawing.Size(977, 536);
+            this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.ChangeSubjectHead_Button);
             this.Controls.Add(this.AddSubject_Button);
             this.Controls.Add(this.Close_Button);
@@ -253,5 +274,7 @@
         protected Guna.UI2.WinForms.Guna2Button ChangeSubjectHead_Button;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
+        private System.Windows.Forms.Label SubjectName_Label;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
     }
 }

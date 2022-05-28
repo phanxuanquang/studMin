@@ -53,7 +53,7 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(237, 137);
+            this.Exit_Button.Location = new System.Drawing.Point(300, 137);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
             this.Exit_Button.Size = new System.Drawing.Size(143, 36);
@@ -80,7 +80,7 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(59, 137);
+            this.Confirm_Button.Location = new System.Drawing.Point(122, 137);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
@@ -98,7 +98,7 @@
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(439, 44);
+            this.SubjectName_Label.Size = new System.Drawing.Size(565, 44);
             this.SubjectName_Label.TabIndex = 131;
             this.SubjectName_Label.Text = "THAY ĐỔI TRƯỞNG BỘ MÔN ";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,7 +136,7 @@
             this.SubjectTeacher_ComboBox.Location = new System.Drawing.Point(56, 74);
             this.SubjectTeacher_ComboBox.Name = "SubjectTeacher_ComboBox";
             this.SubjectTeacher_ComboBox.ShadowDecoration.Parent = this.SubjectTeacher_ComboBox;
-            this.SubjectTeacher_ComboBox.Size = new System.Drawing.Size(326, 36);
+            this.SubjectTeacher_ComboBox.Size = new System.Drawing.Size(452, 36);
             this.SubjectTeacher_ComboBox.StartIndex = 0;
             this.SubjectTeacher_ComboBox.TabIndex = 132;
             this.SubjectTeacher_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -150,7 +150,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(439, 188);
+            this.ClientSize = new System.Drawing.Size(565, 188);
             this.Controls.Add(this.SubjectTeacher_ComboBox);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.Exit_Button);

@@ -36,6 +36,7 @@
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ConfirmSubjectName_Box = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.SuspendLayout();
             // 
             // Exit_Button
@@ -53,7 +54,7 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(235, 206);
+            this.Exit_Button.Location = new System.Drawing.Point(277, 206);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
             this.Exit_Button.Size = new System.Drawing.Size(143, 36);
@@ -80,7 +81,7 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(57, 206);
+            this.Confirm_Button.Location = new System.Drawing.Point(99, 206);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
@@ -98,7 +99,7 @@
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(434, 44);
+            this.SubjectName_Label.Size = new System.Drawing.Size(518, 44);
             this.SubjectName_Label.TabIndex = 131;
             this.SubjectName_Label.Text = "THAY ĐỔI TÊN MÔN ";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,7 +137,7 @@
             this.SubjectName_Box.ShadowDecoration.Depth = 5;
             this.SubjectName_Box.ShadowDecoration.Parent = this.SubjectName_Box;
             this.SubjectName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.SubjectName_Box.Size = new System.Drawing.Size(340, 47);
+            this.SubjectName_Box.Size = new System.Drawing.Size(424, 47);
             this.SubjectName_Box.TabIndex = 0;
             this.SubjectName_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
@@ -177,16 +178,20 @@
             this.ConfirmSubjectName_Box.ShadowDecoration.Depth = 5;
             this.ConfirmSubjectName_Box.ShadowDecoration.Parent = this.ConfirmSubjectName_Box;
             this.ConfirmSubjectName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.ConfirmSubjectName_Box.Size = new System.Drawing.Size(340, 47);
+            this.ConfirmSubjectName_Box.Size = new System.Drawing.Size(424, 47);
             this.ConfirmSubjectName_Box.TabIndex = 1;
             this.ConfirmSubjectName_Box.TextOffset = new System.Drawing.Point(3, 0);
+            // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.TargetControl = this.SubjectName_Label;
             // 
             // ChangeSubjectName_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(434, 257);
+            this.ClientSize = new System.Drawing.Size(518, 257);
             this.Controls.Add(this.ConfirmSubjectName_Box);
             this.Controls.Add(this.SubjectName_Box);
             this.Controls.Add(this.SubjectName_Label);
@@ -211,5 +216,6 @@
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2TextBox ConfirmSubjectName_Box;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
     }
 }
