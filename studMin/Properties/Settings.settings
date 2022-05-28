@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Email" Type="System.String" Scope="User">
-      <Value Profile="(Default)">example@gmail.com</Value>
+      <Value Profile="(Default)">DariusVirus1122@gmail.com</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">password</Value>
+      <Value Profile="(Default)">glwf lvjb tjen kmba</Value>
     </Setting>
   </Settings>
 </SettingsFile>

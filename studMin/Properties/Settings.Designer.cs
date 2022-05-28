@@ -25,7 +25,7 @@ namespace studMin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("example@gmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DariusVirus1122@gmail.com")]
         public string Email {
             get {
                 return ((string)(this["Email"]));
@@ -37,7 +37,7 @@ namespace studMin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("password")]
+        [global::System.Configuration.DefaultSettingValueAttribute("glwf lvjb tjen kmba")]
         public string Password {
             get {
                 return ((string)(this["Password"]));

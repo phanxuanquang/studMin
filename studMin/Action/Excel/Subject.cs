@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace studMin.Action.Excel
     internal class Subject : CommonExcel
     {
         private const int StartColumnIndex = 1;
+        private const int RowTitle = 5;
         private const int StartRowIndex = 6;
 
         private const string locationClass = "B2";
@@ -17,13 +19,61 @@ namespace studMin.Action.Excel
         private const string locationSemester = "B3";
         private const string locationSubject = "A1";
 
+        public Coefficient coefficient = null;
+
+        public class Coefficient
+        {
+            private int coefficientOral = 1;
+            private int coefficientRegular = 1;
+            private int coefficientMidTerm = 2;
+            private int coefficientFinal = 3;
+
+            public int HeSoDiemMieng
+            {
+                get { return coefficientOral; }
+                set { coefficientOral = value; }
+            }
+
+            public int HeSoDiem15Phut
+            {
+                get { return coefficientRegular; }
+                set { coefficientRegular = value; }
+            }
+
+            public int HeSoDiem1Tiet
+            {
+                get { return coefficientMidTerm; }
+                set { coefficientMidTerm = value; }
+            }
+
+            public int HeSoDiemHocKy
+            {
+                get { return coefficientFinal; }
+                set { coefficientFinal = value; }
+            }
+        }
+
+        public string Fomular(int row, Coefficient coefficient, List<(string, string, int)> rangeExcel)
+        {
+            //{0} dòng đang tương tác
+            //{coefficient.HeSoDiemMieng} hệ số cho điểm miệng
+            //{coefficient.HeSoDiem15Phut}} hệ số cho điểm 15p
+            //{coefficient.HeSoDiem1Tiet} hệ số cho điểm 1 tiết
+            //{coefficient.HeSoDiemHocKy} hệ số cho điểm học kỳ
+            //{maxOral} số cột tối đa của cột điểm miệng
+            //{maxRegular} số cột tối đa của cột điểm 15p
+            //{maxMidTerm} số cột tối đa của cột điểm 1 tiết
+
+            (string, string, int) rangeExcelOral = rangeExcel[0];
+            (string, string, int) rangeExcelRegular = rangeExcel[1];
+            (string, string, int) rangeExcelMidTerm = rangeExcel[2];
+            (string, string, int) rangeExcelFinal = rangeExcel[3];
+
+            return $"=ROUNDUP((SUM({rangeExcelOral.Item1}{row}:{rangeExcelOral.Item2}{row})*{coefficient.HeSoDiemMieng} + SUM({rangeExcelRegular.Item1}{row}:{rangeExcelRegular.Item2}{row})*{coefficient.HeSoDiem15Phut} + SUM({rangeExcelMidTerm.Item1}{row}:{rangeExcelMidTerm.Item2}{row})*{coefficient.HeSoDiem1Tiet} + {rangeExcelFinal.Item1}{row}*{coefficient.HeSoDiemHocKy}) / ({rangeExcelOral.Item3} - COUNTIF({rangeExcelOral.Item1}{row}:{rangeExcelOral.Item2}{row},\"\")*{coefficient.HeSoDiemMieng} + ({rangeExcelRegular.Item3} - COUNTIF({rangeExcelRegular.Item1}{row}:{rangeExcelRegular.Item2}{row},\"\")*{coefficient.HeSoDiem15Phut}) + ({rangeExcelMidTerm.Item3} - COUNTIF({rangeExcelMidTerm.Item1}{row}:{rangeExcelMidTerm.Item2}{row},\"\"))*{coefficient.HeSoDiem1Tiet} + {coefficient.HeSoDiemHocKy}), 2)";
+        }
+
         public class Item
         {
-            public static int MaxOralMark = 5;
-            public static int MaxRegularMark = 5;
-            public static int MaxMidTermMark = 3;
-            public static int MaxEndTerm = 1;
-
             private List<double> oralMark;
             private List<double> regularMark;
             private List<double> midTerm;
@@ -60,30 +110,6 @@ namespace studMin.Action.Excel
                 set { name = value; }
             }
 
-            public enum Factor
-            {
-                Oral,
-                Regular,
-                MidTerm,
-                EndTerm
-            }
-
-            public int GetFactor(Factor factor)
-            {
-                switch (factor)
-                {
-                    case Factor.Oral:
-                        return 1;
-                    case Factor.Regular:
-                        return 1;
-                    case Factor.MidTerm:
-                        return 2;
-                    case Factor.EndTerm:
-                        return 3;
-                }
-                return 0;
-            }
-
             public int GetAllFactor()
             {
                 int total = 0;
@@ -108,22 +134,10 @@ namespace studMin.Action.Excel
                 return total;
             }
 
-            public string Fomular(int row)
-            {
-                //{0} dòng đang tương tác
-                //{1} hệ số cho điểm miệng
-                //{2} hệ số cho điểm 15p
-                //{3} hệ số cho điểm 1 tiết
-                //{4} số cột tối đa của cột điểm miệng
-                //{5} số cột tối đa của cột điểm 15p
-                //{6} số cột tối đa của cột điểm 1 tiết
-                return String.Format("=ROUNDUP((SUM(C{0}:G{0})*{1} + SUM(H{0}:L{0})*{1} + SUM(M{0}:O{0})*{2} + P{0}*{3}) / ({4} - COUNTIF(C{0}:G{0},\"\")*{1} + {5} - COUNTIF(H{0}:L{0},\"\")*{1} + ({6} - COUNTIF(M{0}:O{0},\"\"))*{2} + {3}), 2)", row, GetFactor(Factor.Oral), GetFactor(Factor.MidTerm), GetFactor(Factor.EndTerm), MaxOralMark, MaxRegularMark, MaxMidTermMark);
-            }
-
             public void AddOral(List<double> marks)
             {
                 if (oralMark == null) oralMark = new List<double>();
-                if (marks != null && oralMark.Count + marks.Count < Item.MaxOralMark + 1)
+                if (marks != null)
                 {
                     for (int index = 0; index < marks.Count; index++)
                     {
@@ -136,7 +150,7 @@ namespace studMin.Action.Excel
             public void AddRegular(List<double> marks)
             {
                 if (regularMark == null) regularMark = new List<double>();
-                if (marks != null && regularMark.Count + marks.Count < Item.MaxRegularMark + 1)
+                if (marks != null)
                 {
                     for (int index = 0; index < marks.Count; index++)
                     {
@@ -149,7 +163,7 @@ namespace studMin.Action.Excel
             public void AddMidTearm(List<double> marks)
             {
                 if (midTerm == null) midTerm = new List<double>();
-                if (marks != null && midTerm.Count + marks.Count < Item.MaxMidTermMark + 1)
+                if (marks != null)
                 {
                     for (int index = 0; index < marks.Count; index++)
                     {
@@ -179,6 +193,7 @@ namespace studMin.Action.Excel
             this.template = isReadOnly ? pathFile : StoragePath.TemplateSubject;
             this.isReadOnly = isReadOnly;
             data = new List<Item>();
+            coefficient = new Coefficient();
             InitExcel();
         }
 
@@ -223,12 +238,20 @@ namespace studMin.Action.Excel
             return info;
         }
 
-        private void InsertColumn(List<double> values, ref string columnName, ref int indexColumn, int lastRow, int MaxMark)
+        private void InsertColumn(List<double> values, ref string columnName, ref int indexColumn, int lastRow, int currentScoreColumnNumber)
         {
             if (values != null)
             {
                 int counts = values.Count;
-                for (int index = 0; index < MaxMark; index++)
+                int addColumn = counts - currentScoreColumnNumber + 1;
+                int maxColumnScore = Math.Max(currentScoreColumnNumber - 1, values.Count) + 1;
+
+                for (int index = 0; index < addColumn; index++)
+                {
+                    sheet.Columns[GetExcelColumnName(indexColumn + currentScoreColumnNumber + index - 1)].Insert();
+                }
+
+                for (int index = 0; index < maxColumnScore; index++)
                 {
                     columnName = GetExcelColumnName(indexColumn++);
                     if (counts > index)
@@ -246,6 +269,7 @@ namespace studMin.Action.Excel
         public override void InsertItem(dynamic item)
         {
             Item clone = item as Item;
+
             try
             {
                 if (item == null) return;
@@ -261,25 +285,76 @@ namespace studMin.Action.Excel
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.HoTen;
 
                 List<double> values = clone.DiemMieng;
-                InsertColumn(values, ref columnName, ref indexColumn, lastRow, Item.MaxOralMark);
+                InsertColumn(values, ref columnName, ref indexColumn, lastRow, countMerge(indexColumn));
 
                 values = clone.Diem15Phut;
-                InsertColumn(values, ref columnName, ref indexColumn, lastRow, Item.MaxRegularMark);
+                InsertColumn(values, ref columnName, ref indexColumn, lastRow, countMerge(indexColumn));
 
                 values = clone.Diem1Tiet;
-                InsertColumn(values, ref columnName, ref indexColumn, lastRow, Item.MaxMidTermMark);
+                InsertColumn(values, ref columnName, ref indexColumn, lastRow, countMerge(indexColumn));
 
                 columnName = GetExcelColumnName(indexColumn++);
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.DiemCuoiKy;
 
                 columnName = GetExcelColumnName(indexColumn++);
-                sheet.get_Range(columnName + lastRow.ToString()).Formula = clone.Fomular(lastRow);
+                sheet.get_Range(columnName + lastRow.ToString()).Formula = "=0";
             }
             catch
             {
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public void SetFomular()
+        {
+            List<(string, string, int)> rangeExcel = UpdateRangeExcel();
+
+            int lastRow = FindLastRowUsed();
+            string columnName = GetExcelColumnName(FindLastColumnUsed());
+
+            for (int indexRow = StartRowIndex; indexRow <= lastRow; indexRow++)
+            {
+                sheet.get_Range(columnName + indexRow.ToString()).Formula = Fomular(indexRow, coefficient, rangeExcel);
+            }
+        }
+
+        private List<(string, string, int)> UpdateRangeExcel()
+        {
+            List<(string, string, int)> rangeExcel = new List<(string, string, int)>();
+
+            int lastColumn = FindLastColumnUsed();
+            int count = 0;
+            int countCellMerge = 0;
+
+            for (int index = 1; index <= lastColumn; index++)
+            {
+                countCellMerge = countMerge(index);
+                if (countCellMerge > 1)
+                {
+                    count++;
+                    rangeExcel.Add((GetExcelColumnName(index), GetExcelColumnName(index + countCellMerge - 1), countCellMerge));
+                    index += countCellMerge - 1;
+                }
+                if (count == 3)
+                {
+                    rangeExcel.Add((GetExcelColumnName(index + 1), "", 1));
+                    break;
+                }
+            }
+
+            return rangeExcel;
+        }
+
+        private int countMerge(int indexColumn)
+        {
+            int currentScoreColumnNumber = 0;
+            Range cell = sheet.Cells[RowTitle, indexColumn];
+            if (cell != null && cell.Value != null)
+            {
+                return currentScoreColumnNumber = cell.MergeArea.Count;
+            }
+            return 1;
         }
 
         public override object SelectItem(object argument)
@@ -301,37 +376,49 @@ namespace studMin.Action.Excel
                 regularMark = new List<double>();
                 midTermMark = new List<double>();
 
+                int countGroup = 0;
+                bool isLoadedFinalScore = false;
                 for (int column = StartColumnIndex + 1; column <= endColumn; column++)
                 {
-                    object cell = sheet.get_Range(GetExcelColumnName(column) + row.ToString()).Value;
-                    if (cell == null) continue;
-                    switch (column)
+                    int countCellMerge = countMerge(column);
+                    object cell = null;
+                    if (countCellMerge > 1)
                     {
-                        case 2:
-                            item.HoTen = cell.ToString();
-                            break;
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
-                            oralMark.Add(Convert.ToDouble(cell));
-                            break;
-                        case 8:
-                        case 9:
-                        case 10:
-                        case 11:
-                        case 12:
-                            regularMark.Add(Convert.ToDouble(cell));
-                            break;
-                        case 13:
-                        case 14:
-                        case 15:
-                            midTermMark.Add(Convert.ToDouble(cell));
-                            break;
-                        case 16:
-                            item.DiemCuoiKy = Convert.ToDouble(cell);
-                            break;
+                        countGroup++;
+                        for (int index = 0; index < countCellMerge; index++)
+                        {
+                            cell = sheet.get_Range(GetExcelColumnName(column + index) + row.ToString()).Value;
+                            if (cell == null) continue;
+
+                            switch (countGroup)
+                            {
+                                case 1:
+                                    oralMark.Add(Convert.ToDouble(cell));
+                                    break;
+                                case 2:
+                                    regularMark.Add(Convert.ToDouble(cell));
+                                    break;
+                                case 3:
+                                    midTermMark.Add(Convert.ToDouble(cell));
+                                    break;
+                            }
+                        }
+                        column += countCellMerge - 1;
+                    }
+                    else if (countCellMerge == 1 && !isLoadedFinalScore)
+                    {
+                        cell = sheet.get_Range(GetExcelColumnName(column) + row.ToString()).Value;
+                        if (cell == null) continue;
+                        switch (countGroup)
+                        {
+                            case 0:
+                                item.HoTen = cell.ToString();
+                                break;
+                            case 3:
+                                item.DiemCuoiKy = Convert.ToDouble(cell);
+                                isLoadedFinalScore = true;
+                                break;
+                        }
                     }
                 }
 

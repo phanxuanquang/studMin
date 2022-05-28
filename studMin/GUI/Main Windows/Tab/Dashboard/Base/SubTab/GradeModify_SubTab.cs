@@ -41,24 +41,9 @@ namespace studMin
 
         void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
         {
-            double numericTest;
-            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("POINTLADDER");
-            int minScore = 0;
-            int maxScore = 10;
-            if (limitScore != null)
-            {
-                minScore = (int)limitScore.MIN;
-                maxScore = (int)limitScore.MAX;
-            }
-            try
-            {
-                if (textBox.Text == String.Empty)
-                {
-                    return;
-                }
-                numericTest = double.Parse(textBox.Text);
-            }
-            catch
+            bool isValid = double.TryParse(textBox.Text, out double numericTest);
+
+            if (!isValid)
             {
                 MessageBox.Show("Điểm chỉ bao gồm chữ số và dấu chấm thập phân. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
@@ -66,11 +51,28 @@ namespace studMin
                 return;
             }
 
+            int minScore = 0;
+            int maxScore = 10;
+
+            PARAMETER limitScore = Database.ParameterServices.Instance.GetParameterByName("POINTLADDER");
+
+            if (limitScore != null)
+            {
+                minScore = (int)limitScore.MIN;
+                maxScore = (int)limitScore.MAX;
+            }
+
             if (numericTest < minScore || numericTest > maxScore)
             {
                 MessageBox.Show($"Điểm phải nằm trong khoảng từ {minScore} đến {maxScore}. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
                 textBox.Focus();
+                return;
+            }
+
+            if (textBox.Text.Length > 4)
+            {
+                ToolTipRound.Show(String.Format("Điểm sẽ được làm tròn thành: {0}", Math.Round(numericTest, 2)), textBox);
             }
         }
 
@@ -245,10 +247,12 @@ namespace studMin
 
             subject.InsertInfo(info);
 
-            foreach (Action.Excel.Subject.Item item in list)
+            for (int index = 0; index < list.Count; index++)
             {
-                subject.InsertItem(item);
+                subject.InsertItem(list[index]);
             }
+
+            subject.SetFomular();
 
             subject.ShowExcel();
 
@@ -279,10 +283,32 @@ namespace studMin
 
             STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
             List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
-            sCOREMBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-            sCORE15MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-            sCORE45MBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
-            sCOREFinalBindingSource.DataSource = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+
+            List<SCORE4GRIDVIEW> orals = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+            List<SCORE4GRIDVIEW> regulars = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+            List<SCORE4GRIDVIEW> midterms = scores.Where(item => item.ROLESCORE.ROLE == "45M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+            List<SCORE4GRIDVIEW> finals = scores.Where(item => item.ROLESCORE.ROLE == "FINAL").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
+
+            sCOREMBindingSource.DataSource = orals;
+            sCORE15MBindingSource.DataSource = regulars;
+            sCORE45MBindingSource.DataSource = midterms;
+            sCOREFinalBindingSource.DataSource = finals;
+
+            OralTestScore_ComboBox.Items.Clear();
+            RegularTestScore_ComboBox.Items.Clear();
+            MidTermTestScore_ComboBox.Items.Clear();
+
+            OralTestScore_ComboBox.Items.Add("Lần kiểm tra");
+            RegularTestScore_ComboBox.Items.Add("Lần kiểm tra");
+            MidTermTestScore_ComboBox.Items.Add("Lần kiểm tra");
+
+            OralTestScore_ComboBox.Items.AddRange(orals.Select(item => String.Format("Lần {0}", orals.IndexOf(item) + 1)).ToArray());
+            RegularTestScore_ComboBox.Items.AddRange(regulars.Select(item => String.Format("Lần {0}", regulars.IndexOf(item) + 1)).ToArray());
+            MidTermTestScore_ComboBox.Items.AddRange(midterms.Select(item => String.Format("Lần {0}", midterms.IndexOf(item) + 1)).ToArray());
+
+            OralTestScore_ComboBox.Items.Add("Thêm...");
+            RegularTestScore_ComboBox.Items.Add("Thêm...");
+            MidTermTestScore_ComboBox.Items.Add("Thêm...");
 
             ResetComboBox();
         }
@@ -314,7 +340,6 @@ namespace studMin
         private void ResetComboBox()
         {
             OralTestScore_ComboBox.SelectedIndex = RegularTestScore_ComboBox.SelectedIndex = MidTermTestScore_ComboBox.SelectedIndex = 0;
-            MidTermTestScore_Box.Text = RegularTestScore_Box.Text = OralTestScore_Box.Text = "0";
         }
 
         class STUDENT4GRIDVIEW
@@ -373,34 +398,42 @@ namespace studMin
             }
         }
 
-        void scoreModify(Guna.UI2.WinForms.Guna2ComboBox comboBox, Guna.UI2.WinForms.Guna2TextBox textBox)
+        void scoreModify(Guna.UI2.WinForms.Guna2ComboBox comboBox, Guna.UI2.WinForms.Guna2TextBox textBox, BindingSource binding)
         {
             int index = comboBox.SelectedIndex;
-            if (index > 0 && index <= sCOREMBindingSource.Count)
+            int count = binding.Count;
+
+            if (index == 0)
             {
-                textBox.ReadOnly = false;
-                textBox.Text = ((SCORE4GRIDVIEW)sCOREMBindingSource.List[index - 1]).Score.ToString();
+                textBox.Text = String.Empty;
+                textBox.Enabled = false;
             }
-            else
+            else if (index == count + 1)
             {
-                textBox.Text = "0";
-                textBox.ReadOnly = true;
-            };
+                textBox.Text = String.Empty;
+                textBox.Enabled = true;
+            }
+            else if (index > 0 && index <= count)
+            {
+                textBox.Enabled = true;
+                textBox.ReadOnly = false;
+                textBox.Text = ((SCORE4GRIDVIEW)binding.List[index - 1]).Score.ToString();
+            }
         }
 
         private void OralTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            scoreModify(OralTestScore_ComboBox, OralTestScore_Box);
+            scoreModify(OralTestScore_ComboBox, OralTestScore_Box, sCOREMBindingSource);
         }
 
         private void RegularTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            scoreModify(RegularTestScore_ComboBox, RegularTestScore_Box);
+            scoreModify(RegularTestScore_ComboBox, RegularTestScore_Box, sCORE15MBindingSource);
         }
 
         private void MidTermTestScore_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            scoreModify(MidTermTestScore_ComboBox, MidTermTestScore_Box);
+            scoreModify(MidTermTestScore_ComboBox, MidTermTestScore_Box, sCORE45MBindingSource);
         }
 
         private void UpdateData_Button_Click(object sender, EventArgs e)
