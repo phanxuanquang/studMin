@@ -12,7 +12,8 @@ namespace studMin
 {
     public partial class Login_Window : Form
     {
-        role personRole;
+        private role personRole;
+        private bool isLoading = false;
         public Login_Window()
         {
             InitializeComponent();
@@ -80,6 +81,7 @@ namespace studMin
 
                 GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this, "ĐANG XÁC THỰC \n VUI LÒNG ĐỢI");
                 loadingWindow.Show();
+                this.Enabled = false;
 
                 await System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
@@ -97,6 +99,7 @@ namespace studMin
 
                 loadingWindow.Close();
                 loadingWindow.Dispose();
+                this.Enabled = true;
 
                 if (isValidAccount)
                 {

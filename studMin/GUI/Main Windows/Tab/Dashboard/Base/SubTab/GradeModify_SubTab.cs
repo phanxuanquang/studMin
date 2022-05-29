@@ -17,7 +17,9 @@ namespace studMin
         private BackgroundWorker backgroundWorker = null;
         private Action.Excel.Subject.Info importInfo = null;
         private List<Action.Excel.Subject.Item> data = null;
-        string className = string.Empty;
+        private string className = string.Empty;
+        private Timer timer = null;
+
 
         public GradeModify_SubTab()
         {
@@ -73,6 +75,18 @@ namespace studMin
             if (textBox.Text.Length > 4)
             {
                 ToolTipRound.Show(String.Format("Điểm sẽ được làm tròn thành: {0}", Math.Round(numericTest, 2)), textBox);
+
+                timer = new Timer();
+                timer.Interval = 1000;
+                timer.Tick += (s, e) =>
+                {
+                    textBox.Text = Math.Round(numericTest, 2).ToString();
+                    ToolTipRound.Hide(textBox);
+                    timer.Stop();
+                    timer.Dispose();
+                    timer = null;
+                };
+                timer.Start();
             }
         }
 
@@ -251,6 +265,15 @@ namespace studMin
             {
                 subject.InsertItem(list[index]);
             }
+
+            List<ROLESCORE> roleScore = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
+            subject.coefficient = new studMin.Action.Excel.Subject.Coefficient()
+            {
+                HeSoDiemMieng = roleScore.Where(role => role.ROLE == "M").Select(item => item.COEFFICIENT).FirstOrDefault().Value,
+                HeSoDiem15Phut = roleScore.Where(role => role.ROLE == "15M").Select(item => item.COEFFICIENT).FirstOrDefault().Value,
+                HeSoDiem1Tiet = roleScore.Where(role => role.ROLE == "45M").Select(item => item.COEFFICIENT).FirstOrDefault().Value,
+                HeSoDiemHocKy = roleScore.Where(role => role.ROLE == "FINAL").Select(item => item.COEFFICIENT).FirstOrDefault().Value,
+            };
 
             subject.SetFomular();
 
