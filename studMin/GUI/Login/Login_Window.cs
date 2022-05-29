@@ -56,7 +56,6 @@ namespace studMin
             }
             else
             {
-                // đọc trạng thái của RememberLogin_CheckBox ở file lưu trong máy
                 bool isRememberLogin = RememberLogin_CheckBox.Checked = true;
                 if (isRememberLogin)
                 {
@@ -142,18 +141,6 @@ namespace studMin
                 MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void EnterAccountComplete_KeyPress(dynamic sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                Login_Button_Click(sender, e);
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
-            {
-                sender.Text = String.Empty;
-            }
-            //thêm tab event
-        }
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
@@ -168,6 +155,39 @@ namespace studMin
         }
         #endregion
 
+        private void EnterAccountComplete_KeyPress(dynamic sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Login_Button_Click(sender, e);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                sender.Text = String.Empty;
+            }
+        }
+
+        private void SeePassword_Button_MouseDown(object sender, MouseEventArgs e)
+        {
+            Password_Box.UseSystemPasswordChar = false;
+        }
+
+        private void SeePassword_Button_MouseUp(object sender, MouseEventArgs e)
+        {
+            Password_Box.UseSystemPasswordChar = true;
+        }
+
+        private void ShowPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Alt && Password_Box.UseSystemPasswordChar)
+            {
+                Password_Box.UseSystemPasswordChar = false;
+            }
+            else if (e.Alt && !Password_Box.UseSystemPasswordChar)
+            {
+                Password_Box.UseSystemPasswordChar = true;
+            }
+        }
     }
     public enum role
     {

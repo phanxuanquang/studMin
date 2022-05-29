@@ -39,6 +39,7 @@
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.DragForm = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.RememberLogin_CheckBox = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.SeePassword_Button = new Guna.UI2.WinForms.Guna2ImageButton();
             this.forgetPassword_UC1 = new studMin.ForgetPassword_UC();
             this.ForgetPasswordUC_MoverUp = new Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit();
             this.SuspendLayout();
@@ -108,7 +109,7 @@
             this.Password_Box.Location = new System.Drawing.Point(50, 456);
             this.Password_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Password_Box.Name = "Password_Box";
-            this.Password_Box.PasswordChar = '•';
+            this.Password_Box.PasswordChar = '\0';
             this.Password_Box.PlaceholderText = " Mật khẩu";
             this.Password_Box.SelectedText = "";
             this.Password_Box.ShadowDecoration.BorderRadius = 12;
@@ -119,7 +120,7 @@
             this.Password_Box.TabIndex = 1;
             this.Password_Box.TextOffset = new System.Drawing.Point(3, 0);
             this.Password_Box.UseSystemPasswordChar = true;
-            this.Password_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterAccountComplete_KeyPress);
+            this.Password_Box.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShowPassword_KeyDown);
             // 
             // Login_Button
             // 
@@ -217,6 +218,23 @@
             this.RememberLogin_CheckBox.UseCompatibleTextRendering = true;
             this.RememberLogin_CheckBox.UseVisualStyleBackColor = false;
             // 
+            // SeePassword_Button
+            // 
+            this.SeePassword_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SeePassword_Button.BackColor = System.Drawing.Color.Transparent;
+            this.SeePassword_Button.CheckedState.Parent = this.SeePassword_Button;
+            this.SeePassword_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SeePassword_Button.HoverState.ImageSize = new System.Drawing.Size(21, 21);
+            this.SeePassword_Button.HoverState.Parent = this.SeePassword_Button;
+            this.SeePassword_Button.Image = ((System.Drawing.Image)(resources.GetObject("SeePassword_Button.Image")));
+            this.SeePassword_Button.Location = new System.Drawing.Point(355, 469);
+            this.SeePassword_Button.Name = "SeePassword_Button";
+            this.SeePassword_Button.PressedState.Parent = this.SeePassword_Button;
+            this.SeePassword_Button.Size = new System.Drawing.Size(25, 25);
+            this.SeePassword_Button.TabIndex = 7;
+            this.SeePassword_Button.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SeePassword_Button_MouseDown);
+            this.SeePassword_Button.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SeePassword_Button_MouseUp);
+            // 
             // forgetPassword_UC1
             // 
             this.forgetPassword_UC1.BackColor = System.Drawing.Color.Transparent;
@@ -255,6 +273,7 @@
             this.BackgroundImage = global::studMin.Properties.Resources.Login_BG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(440, 720);
+            this.Controls.Add(this.SeePassword_Button);
             this.Controls.Add(this.RememberLogin_CheckBox);
             this.Controls.Add(this.forgetPassword_UC1);
             this.Controls.Add(this.Exit_Button);
@@ -287,5 +306,6 @@
         private Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit ForgetPasswordUC_MoverUp;
         private Guna.UI2.WinForms.Guna2CheckBox RememberLogin_CheckBox;
         private ForgetPassword_UC forgetPassword_UC1;
+        private Guna.UI2.WinForms.Guna2ImageButton SeePassword_Button;
     }
 }
