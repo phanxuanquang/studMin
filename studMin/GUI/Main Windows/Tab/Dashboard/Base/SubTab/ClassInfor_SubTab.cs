@@ -84,7 +84,7 @@ namespace studMin
                 GiaoVien = inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME,
                 NamHoc = SchoolYear_ComboBox.SelectedItem.ToString(),
                 SiSo = listStudents.Count,
-                ThongTinThem = "Danh sách lớp"
+                ThongTinThem = "Danh sách lớp " + className
             };
 
             Action.Excel.ListStudent students = new Action.Excel.ListStudent();
@@ -178,7 +178,6 @@ namespace studMin
                                 listStudents = classItem.STUDENTs.ToList();
                             }
                         }
-
                         
                         foreach (var student in listStudents)
                         {
@@ -194,15 +193,36 @@ namespace studMin
                         dataSource.Columns.Add("Ngày sinh");
                         dataSource.Columns.Add("Địa chỉ");
 
+                        if (Class_ComboBox.SelectedIndex == 0)
+                        {
+                            MessageBox.Show("Vui lòng chọn lớp muốn tìm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
                         foreach (var classItem in listClasses)
                         {
-                            if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                            if (classItem.TEACHER == null)
                             {
-                                INFOR inforTeacher = classItem.TEACHER.INFOR;
+                                continue;
+                            }
 
-                                string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
-                                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
-                                dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                            INFOR inforTeacher = classItem.TEACHER.INFOR;
+                            string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
+                            string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
+
+                            if (SchoolYear_ComboBox.SelectedIndex != 0)
+                            {
+                                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                                {
+                                    dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                                }
+                            }
+                            else
+                            {
+                                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString())
+                                {
+                                    dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                                }
                             }
                         }
                         break;

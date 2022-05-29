@@ -213,7 +213,7 @@ namespace studMin.Action.Excel
                 columnName = GetExcelColumnName(indexColumn++);
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.SDT;
 
-                rowUsed++;
+                /*rowUsed++;*/
             }
             catch
             {
