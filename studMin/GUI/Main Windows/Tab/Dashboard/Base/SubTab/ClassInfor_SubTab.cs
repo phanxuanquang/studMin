@@ -31,8 +31,9 @@ namespace studMin
             string className = Class_ComboBox.SelectedItem.ToString();
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
+            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className);
 
-            if (currentClass == null)
+            if (currentClass == null || listStudents.Count == 0)
             {
                 string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
                 MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -54,7 +55,7 @@ namespace studMin
             }
 
             
-            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className);
+            
 
             List<Action.Excel.ListStudent.Item> list = new List<Action.Excel.ListStudent.Item>();
 
