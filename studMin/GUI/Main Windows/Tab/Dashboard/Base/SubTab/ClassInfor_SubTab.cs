@@ -142,6 +142,18 @@ namespace studMin
                     GetListClasses(listClasses);
                     break;
                 case 1:
+                    if (Class_ComboBox.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("Vui lòng chọn lớp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    if (SchoolYear_ComboBox.SelectedIndex == 0)
+                    {
+                        MessageBox.Show("Vui lòng chọn niên khóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
                     GetListStudents(listClasses);
                     break;
                 case 2:
