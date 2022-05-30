@@ -64,8 +64,19 @@ namespace studMin
                 string staffId = DataTable.SelectedRows[0].Cells[0].Value.ToString();
                 STAFF selectedStaff = StaffServices.Instance.GetStaffById(staffId);
 
-                /*DataProvider.Instance.Database.STAFFs.Remove(selectedStaff);
-                DataProvider.Instance.Database.SaveChanges();*/
+                if (selectedStaff == null)
+                {
+                    Guid teacherId = new Guid(staffId);
+                    TEACHER selectedTeacher = TeacherServices.Instance.GetTeacherById(teacherId);
+
+                    selectedTeacher.USER.ISDELETED = true;
+                }
+                else
+                {
+                    selectedStaff.USER.ISDELETED = true;
+                }
+
+                DataProvider.Instance.Database.SaveChanges();
 
                 LoadDataToDataTable(Search_Box.Text, false);
                 MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -104,7 +115,7 @@ namespace studMin
 
                 if (!loadInitData)
                 {
-                    if (teacherName.ToLower().Contains(enteredText.ToLower()) || item.ID.ToString().ToLower().Contains(enteredText.ToLower()))
+                    if ((teacherName.ToLower().Contains(enteredText.ToLower()) || item.ID.ToString().ToLower().Contains(enteredText.ToLower())) && !item.USER.ISDELETED)
                     {
                         if (item is TEACHER)
                         {
@@ -119,15 +130,18 @@ namespace studMin
                 }
                 else
                 {
-                    if (item is TEACHER)
+                    if (!item.USER.ISDELETED)
                     {
-                        teacherList.Add(item);
+                        if (item is TEACHER)
+                        {
+                            teacherList.Add(item);
+                        }
+                        else
+                        {
+                            staffList.Add(item);
+                        }
+                        DataTable.Rows.Add(item.ID, teacherName, gender, item.USER.EMAIL, role);
                     }
-                    else
-                    {
-                        staffList.Add(item);
-                    }
-                    DataTable.Rows.Add(item.ID, teacherName, gender, item.USER.EMAIL, role);
                 }
             }
         }
