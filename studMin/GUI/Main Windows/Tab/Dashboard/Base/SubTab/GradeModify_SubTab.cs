@@ -49,16 +49,40 @@ namespace studMin
             });
         }
 
-        void CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
+        bool CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
         {
+            if (String.IsNullOrEmpty(textBox.Text) && MessageBox.Show("Bạn đã thay đổi điểm số. \nBạn có muốn tiếp tục.", "Diểm số nhập rỗng", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+            {
+                Guna.UI2.WinForms.Guna2ComboBox targetCall = null;
+                if (textBox != null)
+                {
+                    if (textBox.Equals(OralTestScore_Box))
+                    {
+                        targetCall = OralTestScore_ComboBox;
+                    }
+                    else if (textBox.Equals(RegularTestScore_Box))
+                    {
+                        targetCall = RegularTestScore_ComboBox;
+                    }
+                    else if (textBox.Equals(MidTermTestScore_Box))
+                    {
+                        targetCall = MidTermTestScore_ComboBox;
+                    }
+                }
+
+                if (targetCall != null) targetCall.SelectedIndex = 0;
+
+                return false;
+            }
+
             bool isValid = double.TryParse(textBox.Text, out double numericTest);
 
-            if (!isValid)
+            if (textBox.Enabled && !isValid)
             {
                 MessageBox.Show("Điểm chỉ bao gồm chữ số và dấu chấm thập phân. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
                 textBox.Focus();
-                return;
+                return false;
             }
 
             int minScore = 0;
@@ -77,7 +101,7 @@ namespace studMin
                 MessageBox.Show($"Điểm phải nằm trong khoảng từ {minScore} đến {maxScore}. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
                 textBox.Focus();
-                return;
+                return false;
             }
 
             if (textBox.Text.Length > 4)
@@ -96,6 +120,7 @@ namespace studMin
                 };
                 timer.Start();
             }
+            return true;
         }
 
         private void OralTestScore_Box_Validated(object sender, EventArgs e)
@@ -605,33 +630,105 @@ namespace studMin
             }
         }
 
-        void checkValidScore(Guna.UI2.WinForms.Guna2TextBox scoreBox)
+        private void DetailScore_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (scoreBox.Text != String.Empty)
+            Guna.UI2.WinForms.Guna2DataGridView whoCall = sender as Guna.UI2.WinForms.Guna2DataGridView;
+            Guna.UI2.WinForms.Guna2ComboBox targetCall = null;
+
+            if (whoCall != null)
             {
-                double validScore = -1;
-                bool isValidScore = double.TryParse(scoreBox.Text, out validScore);
-                if (!isValidScore || validScore < 0 || validScore > 10)
+                if (whoCall.Equals(mDataGridView))
                 {
-                    MessageBox.Show("Điểm phải là một số dương từ 0 đến 10.", "Điểm số không hợp lệ!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    scoreBox.Text = scoreBox.Text.Substring(0, scoreBox.Text.Length - 1);
+                    targetCall = OralTestScore_ComboBox;
+                }
+                else if (whoCall.Equals(m15DataGridView))
+                {
+                    targetCall = RegularTestScore_ComboBox;
+                }
+                else if (whoCall.Equals(m45DataGridView))
+                {
+                    targetCall = MidTermTestScore_ComboBox;
+                }
+            }
+
+            if (targetCall != null)
+            {
+                targetCall.SelectedIndex = e.RowIndex + 1;
+            }
+        }
+
+        private void UpdateScore_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Delete || e.KeyCode == Keys.Escape)) return;
+            Guna.UI2.WinForms.Guna2TextBox whoCall = sender as Guna.UI2.WinForms.Guna2TextBox;
+            Guna.UI2.WinForms.Guna2ComboBox targetCall = null;
+            BindingSource binding = null;
+
+            if (CheckValidGrade(whoCall))
+            {
+                if (whoCall != null)
+                {
+                    if (whoCall.Equals(OralTestScore_Box))
+                    {
+                        targetCall = OralTestScore_ComboBox;
+                    }
+                    else if (whoCall.Equals(RegularTestScore_Box))
+                    {
+                        targetCall = RegularTestScore_ComboBox;
+                    }
+                    else if (whoCall.Equals(MidTermTestScore_Box))
+                    {
+                        targetCall = MidTermTestScore_ComboBox;
+                    }
+                }
+
+                if (targetCall != null)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Enter:
+                            UpdateData_Button_Click(null, null);
+                            break;
+                        case Keys.Delete:
+                            if (whoCall != null)
+                            {
+                                if (whoCall.Equals(OralTestScore_Box))
+                                {
+                                    binding = sCOREMBindingSource;
+                                }
+                                else if (whoCall.Equals(RegularTestScore_Box))
+                                {
+                                    binding = sCORE15MBindingSource;
+                                }
+                                else if (whoCall.Equals(MidTermTestScore_Box))
+                                {
+                                    binding = sCORE45MBindingSource;
+                                }
+                            }
+
+                            if (binding != null)
+                            {
+                                RemoveScore(binding, targetCall.SelectedIndex);
+                            }
+                            break;
+                        case Keys.Escape:
+                            targetCall.SelectedIndex = 0;
+                            break;
+                    }
                 }
             }
         }
 
-        private void MidTermTestScore_Box_TextChanged(object sender, EventArgs e)
+        private void RemoveScore(BindingSource binding, int index)
         {
-            checkValidScore(MidTermTestScore_Box);
-        }
-
-        private void RegularTestScore_Box_TextChanged(object sender, EventArgs e)
-        {
-            checkValidScore(RegularTestScore_Box);
-        }
-
-        private void OralTestScore_Box_TextChanged(object sender, EventArgs e)
-        {
-            checkValidScore(OralTestScore_Box);
+            if (index <= binding.Count)
+            {
+                Guid idScore = ((SCORE4GRIDVIEW)binding.List[index - 1]).ID;
+                SCORE score = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.ID == idScore).FirstOrDefault();
+                studMin.Database.DataProvider.Instance.Database.SCOREs.Remove(score);
+                studMin.Database.DataProvider.Instance.Database.SaveChanges();
+            }
+            LoadScore();
         }
     }
 }
