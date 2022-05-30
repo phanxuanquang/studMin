@@ -429,6 +429,11 @@ namespace studMin
             if (listClass.Current == null) return;
             Guid idClass = (listClass.Current as CLASS4GRIDVIEW).ID;
 
+            if (listClass.Count > 1 && idClass == Guid.Empty && MessageBox.Show("Xuất Excel đẻ xem TKB của mọi lớp!", "Có muốn xem TKB mọi lớp không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                TimetableExport_Button_Click(null, null);
+            }
+
             /*if (@class == null)
             {
                 string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);

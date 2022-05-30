@@ -386,6 +386,11 @@ namespace studMin
 
             Guid teacher = (listTeacher.Current as TEACHER4COMBOBOX).ID;
 
+            if (listTeacher.Count > 1 && teacher == Guid.Empty && MessageBox.Show("Xuất Excel đẻ xem TKB của mọi giáo viên!", "Có muốn xem TKB mọi giáo viên không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                TimetableExport_Button_Click(null, null);
+            }
+
             DataTable dataSource = new DataTable();
 
             dataSource.Columns.Add("TIẾT");

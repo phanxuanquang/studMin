@@ -57,8 +57,8 @@ namespace studMin
             Class_ComboBox.Items.AddRange(results.Item1);
             SchoolYear_ComboBox.Items.AddRange(results.Item2);
 
-            Class_ComboBox.SelectedIndex = 0;
-            SchoolYear_ComboBox.SelectedIndex = 0;
+            //Class_ComboBox.SelectedIndex = 0;
+            //SchoolYear_ComboBox.SelectedIndex = 0;
             BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             loadingWindow.Close();
