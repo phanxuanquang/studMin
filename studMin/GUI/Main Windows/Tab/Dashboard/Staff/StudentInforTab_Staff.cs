@@ -59,7 +59,7 @@ namespace studMin
 
         private void LoadFromDB_DoWork(object sender, DoWorkEventArgs e)
         {
-            e.Result = (Database.ClassServices.Instance.GetClasss().Select(item => item.CLASSNAME).ToArray(), Database.DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Distinct().ToArray());
+            e.Result = (Database.ClassServices.Instance.GetClasss().Select(item => item.CLASSNAME).Distinct().ToArray(), Database.DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Distinct().ToArray());
         }
 
         private void LoadFromDB_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -70,7 +70,7 @@ namespace studMin
 
             Class_ComboBox.SelectedIndex = 0;
             SchoolYear_ComboBox.SelectedIndex = 0;
-            BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+            BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             loadingWindow.Close();
         }
@@ -90,27 +90,28 @@ namespace studMin
         //    }
         //}
 
-        public void BindingStudent(List<STUDENT> sTUDENTs)
+        public void BindingStudent(List<STUDYING> sTUDENTs)
         {
-            sTUDENTBindingSource.ResetBindings(true);
-            sTUDENTBindingSource.DataSource = sTUDENTs;
+            sTUDYINGBindingSource.ResetBindings(true);
+            sTUDYINGBindingSource.DataSource = sTUDENTs;
             foreach (DataGridViewRow row in DataTable.Rows)
             {
-                STUDENT selected = row.DataBoundItem as STUDENT;
+                STUDYING selected = row.DataBoundItem as STUDYING;
                 if (selected != null)
                 {
                     row.Cells["SchoolYear"].Value = selected.CLASS.SCHOOLYEAR;
-                    row.Cells["Id"].Value = selected.ID.ToString().Substring(0, 8).ToUpper();
                     row.Cells["Class"].Value = selected.CLASS.CLASSNAME;
-                    row.Cells["FullName"].Value = selected.INFOR.FIRSTNAME + " " + selected.INFOR.LASTNAME;
-                    row.Cells["Status"].Value = selected.Status == 1 ? "Đang học" : "Đã nghỉ học";
+
+                    row.Cells["Id"].Value = selected.IDSTUDENT.ToString().Substring(0, 8).ToUpper();
+                    row.Cells["FullName"].Value = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
+                    row.Cells["Status"].Value = selected.STUDENT.Status == 1 ? "Đang học" : "Đã nghỉ học";
                 }
             }
         }
 
-        private List<STUDENT> GetListStudent(string className, string schoolYear)
+        private List<STUDYING> GetListStudying(string className, string schoolYear)
         {
-            List<STUDENT> students = new List<STUDENT>();
+            List<STUDYING> students = new List<STUDYING>();
             if (className == "Mọi lớp")
             {
                 if (schoolYear == "Mọi niên khóa")
@@ -118,10 +119,10 @@ namespace studMin
                     var allClass = Database.DataProvider.Instance.Database.CLASSes.ToList();
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
+                        var listStudent = Database.ClassServices.Instance.GetListStudyingOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
-                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID.ToString().Substring(0, 7).ToUpper(), student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
                             students.Add(student);
                         }
                     }
@@ -132,10 +133,10 @@ namespace studMin
                     var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).ToList();
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
+                        var listStudent = Database.ClassServices.Instance.GetListStudyingOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
-                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID.ToString().Substring(0, 7).ToUpper(), student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
                             students.Add(student);
                         }
                     }
@@ -145,13 +146,13 @@ namespace studMin
             {
                 if (schoolYear == "Mọi niên khóa")
                 {
-                    var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == Class_ComboBox.SelectedItem.ToString());
+                    var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == Class_ComboBox.SelectedItem.ToString()).ToList();
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
+                        var listStudent = Database.ClassServices.Instance.GetListStudyingOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
-                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
+                            //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID.ToString().Substring(0, 7).ToUpper(), student.CLASS.CLASSNAME, student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, student.Status);
                             students.Add(student);
                         }
                     }
@@ -159,10 +160,10 @@ namespace studMin
                 else
                 {
 
-                    var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && item.SCHOOLYEAR == schoolYear).ToList();
-                    foreach (var aClass in allClass)
+                    //var allClass = Database.ClassServices.Instance.GetClassByClassNameAndSchoolYear(className,schoolYear);
+
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
+                        var listStudent = Database.ClassServices.Instance.GetListStudyingOfClass(className, schoolYear);
                         foreach (var student in listStudent)
                         {
                             //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
@@ -199,13 +200,13 @@ namespace studMin
             DataTable.Rows.Clear();
             if (string.IsNullOrWhiteSpace(Search_Box.Text))
             {
-                BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
                 //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
             }
             else
             {
-                var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
-                BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                var students = GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.STUDENT.INFOR.FIRSTNAME + " " + item.STUDENT.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.STUDENT.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
+                BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
                 //LoadToDataTable(students);
             }
         }
@@ -225,13 +226,13 @@ namespace studMin
 
         private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            STUDENT studentCurrent;
+            STUDYING studentCurrent;
             if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                studentCurrent = sTUDENTBindingSource.Current as STUDENT;
+                studentCurrent = sTUDYINGBindingSource.Current as STUDYING;
                 if (studentCurrent != null)
                 {
-                    BindStudentToTextBox(studentCurrent);
+                    BindStudentToTextBox(studentCurrent.STUDENT);
                 }
             }
         }
@@ -244,11 +245,11 @@ namespace studMin
                 if (string.IsNullOrWhiteSpace(Search_Box.Text))
                 {
                     //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
-                    BindingStudent(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+                    BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
                 }
                 else
                 {
-                    var students = GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
+                    var students = GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.STUDENT.INFOR.FIRSTNAME + " " + item.STUDENT.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.STUDENT.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
                     BindingStudent(students);
                     //LoadToDataTable(students);
                 }

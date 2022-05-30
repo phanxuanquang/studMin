@@ -56,14 +56,14 @@
             this.Class_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
             this.Search_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.sTUDENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sTUDYINGBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTUDYINGBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ParentNumber_Box
@@ -699,7 +699,7 @@
             this.FullName,
             this.Status});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DataTable.DataSource = this.sTUDENTBindingSource;
+            this.DataTable.DataSource = this.sTUDYINGBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -770,9 +770,9 @@
             this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
             // 
-            // sTUDENTBindingSource
+            // sTUDYINGBindingSource
             // 
-            this.sTUDENTBindingSource.DataSource = typeof(studMin.Database.Models.STUDENT);
+            this.sTUDYINGBindingSource.DataSource = typeof(studMin.Database.Models.STUDYING);
             // 
             // SchoolYear
             // 
@@ -842,7 +842,7 @@
             this.Name = "StudentInforTab_Staff";
             this.Size = new System.Drawing.Size(924, 688);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sTUDYINGBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -873,11 +873,11 @@
         private Guna.UI2.WinForms.Guna2ComboBox Class_ComboBox;
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
         protected Guna.UI2.WinForms.Guna2Button Search_Button;
-        private System.Windows.Forms.BindingSource sTUDENTBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn SchoolYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Class;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.BindingSource sTUDYINGBindingSource;
     }
 }

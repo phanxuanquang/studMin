@@ -220,13 +220,13 @@ namespace studMin
 
         private void DataTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            STUDENT studentCurrent;
+            STUDYING studentCurrent;
             if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                studentCurrent = sTUDENTBindingSource.Current as STUDENT;
+                studentCurrent = sTUDYINGBindingSource.Current as STUDYING;
                 if (studentCurrent != null)
                 {
-                    BindStudentToTextBox(studentCurrent);
+                    BindStudentToTextBox(studentCurrent.STUDENT);
                 }
             }
         }
