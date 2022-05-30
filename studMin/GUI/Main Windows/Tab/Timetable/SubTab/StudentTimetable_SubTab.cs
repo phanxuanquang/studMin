@@ -269,7 +269,7 @@ namespace studMin
             scheduleStudent.Dispose();
         }
 
-        private void TimetableImport_Button_Click(object sender, EventArgs e)
+        /*private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
             if (Semester_ComboBox.SelectedIndex == 0)
             {
@@ -314,7 +314,7 @@ namespace studMin
             backgroundWorker.DoWork += ImportExcel_DoWork;
             backgroundWorker.RunWorkerCompleted += ImportExcel_RunrWorkerCompleted;
             backgroundWorker.RunWorkerAsync(importPath);
-        }
+        }*/
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -538,6 +538,8 @@ namespace studMin
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue) return;
 
+            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ THỨ HAI (" + DateApply_ComboBox.SelectedItem.ToString() + ")";
+
             SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
                 schedule => schedule.SCHOOLYEAR == schoolYear
                 && schedule.SEMESTER.NAME == semester
@@ -599,6 +601,7 @@ namespace studMin
         {
             //ListSchoolYear_CurrentChanged(null, null);
             loadingWindow.Close();
+            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ THỨ HAI (" + DateApply_ComboBox.SelectedItem.ToString() + ")";
         }
 
         private void LoadScheduleFromDatabase_DoWork(object sender, DoWorkEventArgs e)
