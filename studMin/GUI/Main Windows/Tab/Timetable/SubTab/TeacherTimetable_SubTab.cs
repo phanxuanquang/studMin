@@ -343,7 +343,8 @@ namespace studMin
                     (byte)data[index].TietBatDau,
                     (byte)(data[index].TietKeoDai + data[index].TietBatDau - 1),
                     (byte)(data[index].NgayHoc + 1),
-                    data[index].Buoi.Substring(0, 1)
+                    data[index].Buoi.Substring(0, 1),
+                    importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0]
                     );
             }
         }
@@ -384,6 +385,11 @@ namespace studMin
             if (data == null) return;
 
             Guid teacher = (listTeacher.Current as TEACHER4COMBOBOX).ID;
+
+            if (listTeacher.Count > 1 && teacher == Guid.Empty && MessageBox.Show("Xuất Excel đẻ xem TKB của mọi giáo viên!", "Có muốn xem TKB mọi giáo viên không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                TimetableExport_Button_Click(null, null);
+            }
 
             DataTable dataSource = new DataTable();
 

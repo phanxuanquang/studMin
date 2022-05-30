@@ -22,5 +22,10 @@ namespace studMin.Database.Models
         public virtual CLASS CLASS { get; set; }
         public virtual SEMESTER SEMESTER { get; set; }
         public virtual STUDENT STUDENT { get; set; }
+
+        public static implicit operator STUDYING(STUDENT v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

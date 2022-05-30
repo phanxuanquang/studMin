@@ -44,12 +44,46 @@ namespace studMin.Database
             return DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).ToList();
         }
 
-        public List<STUDENT> GetListStudentOfClass(string className)
+        public List<STUDENT> GetListStudentOfClass(string className, string schoolYear = null)
         {
-            CLASS tempClass = GetClassByClassName(className);
-            return DataProvider.Instance.Database.STUDENTs.Where(item => item.IDCLASS == tempClass.ID).ToList();
+            CLASS tempClass = GetClassByClassNameAndSchoolYear(className, schoolYear == null ? GetCurrentSchoolYear() : schoolYear);
+            var listStudying = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID).ToList();
+            var listStudents = new List<STUDENT>();
+            foreach (var studying in listStudying)
+            {
+                {
+                    if (!listStudents.Contains(DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault()))
+                    {
+                        listStudents.Add(DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT ).FirstOrDefault());
+
+                    }
+                }
+            }
+            return listStudents;
         }
 
+        public List<STUDYING> GetListStudyingOfClass(string className, string schoolYear)
+        {
+            var listStudying = new List<STUDYING>();
+            CLASS tempClass = GetClassByClassNameAndSchoolYear(className, schoolYear == null ? GetCurrentSchoolYear() : schoolYear);
+            if (tempClass != null)
+            {
+                listStudying = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID).ToList();
+            }
+            return listStudying.Distinct(new STUDYINGCompare()).ToList();
+        }
+        
+        public bool Check(List<STUDYING> sTUDYINGs, STUDYING a)
+        {
+            foreach (var item in sTUDYINGs)
+            {
+                if (item.IDCLASS == a.IDCLASS)
+                {
+                    return true;
+                }    
+            }
+            return false;
+        }    
         public string GetCurrentSchoolYear()
         {
             return DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Max();
@@ -80,8 +114,33 @@ namespace studMin.Database
         public int GetQuantityOfClass(Guid idClass)
         {
             CLASS tmp = GetClassById(idClass);
-            List <STUDENT> listStudent = GetListStudentOfClass(tmp.CLASSNAME);
+            List <STUDENT> listStudent = GetListStudentOfClass(tmp.CLASSNAME, tmp.SCHOOLYEAR);
             return listStudent.Count();
+        }
+
+        public class STUDYINGCompare : IEqualityComparer<STUDYING>
+        {
+            public bool Equals(STUDYING x, STUDYING y)
+            {
+                if (x.IDCLASS == y.IDCLASS && x.IDSTUDENT == y.IDSTUDENT)
+                {
+                    return true;
+                }    
+                return false;
+            }
+
+            public int GetHashCode(STUDYING obj)
+            {
+                if (object.ReferenceEquals(obj, null))
+                    return 0;
+                int hashProductName = obj.IDCLASS == null ? 0 : obj.IDCLASS.GetHashCode();
+
+                //Get hash code for the Code field.
+                int hashProductCode = obj.IDSTUDENT.GetHashCode();
+
+                //Calculate the hash code for the product.
+                return hashProductName ^ hashProductCode;
+            }
         }
     }
 }

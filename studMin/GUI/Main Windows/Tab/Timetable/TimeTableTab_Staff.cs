@@ -362,7 +362,8 @@ namespace studMin
                     (byte)data[index].TietBatDau,
                     (byte)(data[index].TietKeoDai + data[index].TietBatDau - 1),
                     (byte)(data[index].NgayHoc + 1),
-                    data[index].Buoi.Substring(0, 1)
+                    data[index].Buoi.Substring(0, 1),
+                    importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0]
                     );
             }
         }

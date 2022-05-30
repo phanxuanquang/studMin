@@ -98,7 +98,8 @@ namespace studMin
             string telephone = PhoneNumber_Box.Text;
             string emailParent = ParentEmail_Box.Text;
             string email = Email_Box.Text;
-            Guid idClass = Database.ClassServices.Instance.GetClassByClassName(className).ID;
+            string shoolYear = Database.ClassServices.Instance.GetCurrentSchoolYear();
+            Guid idClass = Database.ClassServices.Instance.GetClassByClassNameAndSchoolYear(className,shoolYear).ID;
 
             if (Database.StudentServices.Instance.SaveStudentToDB(firstName, lastName, sex, dateOfBirth, address, email, idClass, emailParent, telephone, 1, bloodLine))
             {

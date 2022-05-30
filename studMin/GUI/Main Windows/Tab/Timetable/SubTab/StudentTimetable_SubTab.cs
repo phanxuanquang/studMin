@@ -364,7 +364,8 @@ namespace studMin
                     (byte)data[index].TietBatDau,
                     (byte)(data[index].TietKeoDai + data[index].TietBatDau - 1),
                     (byte)(data[index].NgayHoc + 1),
-                    data[index].Buoi.Substring(0, 1)
+                    data[index].Buoi.Substring(0, 1),
+                    importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0]
                     );
             }
         }
@@ -427,6 +428,11 @@ namespace studMin
         {
             if (listClass.Current == null) return;
             Guid idClass = (listClass.Current as CLASS4GRIDVIEW).ID;
+
+            if (listClass.Count > 1 && idClass == Guid.Empty && MessageBox.Show("Xuất Excel đẻ xem TKB của mọi lớp!", "Có muốn xem TKB mọi lớp không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                TimetableExport_Button_Click(null, null);
+            }
 
             /*if (@class == null)
             {

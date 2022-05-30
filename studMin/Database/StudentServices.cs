@@ -103,29 +103,29 @@ namespace studMin.Database
         }
 
         //Nhập điểm 15 phút cho toàn bộ lớp được dạy bởi giáo viên hiện đang đăng nhập
-        public void SaveScoreOfClass()
-        {
-            string role = "15M";
-            string schoolYear = "2022";
-            string semester = "2";
-            float score = 10;
-            List<CLASS> listClass = TeacherServices.Instance.GetAllClassTeaching();
-            foreach (var item in listClass)
-            {
-                List<STUDENT> listStudent = ClassServices.Instance.GetListStudentOfClass(item.CLASSNAME);
-                foreach (STUDENT student in listStudent)
-                {
-                    if (!SaveScoreToDB(student.ID, score, schoolYear, semester, role))
-                    {
-                        //thông báo có lỗi khi lưu điểm
-                    }
-                    else
-                    {
-                        //đã lưu thành công
-                    }
-                }
-            }
-        }
+        //public void SaveScoreOfClass()
+        //{
+        //    string role = "15M";
+        //    string schoolYear = "2022";
+        //    string semester = "2";
+        //    float score = 10;
+        //    List<CLASS> listClass = TeacherServices.Instance.GetAllClassTeaching();
+        //    foreach (var item in listClass)
+        //    {
+        //        List<STUDENT> listStudent = ClassServices.Instance.GetListStudentOfClass(item.CLASSNAME);
+        //        foreach (STUDENT student in listStudent)
+        //        {
+        //            if (!SaveScoreToDB(student.ID, score, schoolYear, semester, role))
+        //            {
+        //                //thông báo có lỗi khi lưu điểm
+        //            }
+        //            else
+        //            {
+        //                //đã lưu thành công
+        //            }
+        //        }
+        //    }
+        //}
 
         public bool SaveScoreToDB(SCORE saveScore)
         {
