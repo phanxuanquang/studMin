@@ -195,19 +195,6 @@ namespace studMin
             ParentNumber_Box.Text = student.EMAILPARENT;
         }
 
-        private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            STUDYING studentCurrent;
-            if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-            {
-                studentCurrent = sTUDYINGBindingSource.Current as STUDYING;
-                if (studentCurrent != null)
-                {
-                    BindStudentToTextBox(studentCurrent.STUDENT);
-                }
-            }
-        }
-
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -229,6 +216,29 @@ namespace studMin
             {
                 Search_Box.Text = String.Empty;
             }
+        }
+
+        private void DataTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            STUDENT studentCurrent;
+            if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                studentCurrent = sTUDENTBindingSource.Current as STUDENT;
+                if (studentCurrent != null)
+                {
+                    BindStudentToTextBox(studentCurrent);
+                }
+            }
+        }
+
+        private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search_Button_Click(sender, e);
+        }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search_Button_Click(sender, e);
         }
     }
 }

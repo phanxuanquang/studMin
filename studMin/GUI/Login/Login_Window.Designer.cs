@@ -80,7 +80,7 @@
             this.Username_Box.Size = new System.Drawing.Size(340, 47);
             this.Username_Box.TabIndex = 0;
             this.Username_Box.TextOffset = new System.Drawing.Point(3, 0);
-            this.Username_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterAccountComplete_KeyPress);
+            this.Username_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Username_Box_KeyPress);
             // 
             // Password_Box
             // 
@@ -121,6 +121,7 @@
             this.Password_Box.TextOffset = new System.Drawing.Point(3, 0);
             this.Password_Box.UseSystemPasswordChar = true;
             this.Password_Box.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShowPassword_KeyDown);
+            this.Password_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Password_Box_KeyPress);
             // 
             // Login_Button
             // 

@@ -533,6 +533,7 @@
             this.SchoolYear_ComboBox.StartIndex = 0;
             this.SchoolYear_ComboBox.TabIndex = 105;
             this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            this.SchoolYear_ComboBox.SelectedIndexChanged += new System.EventHandler(this.SchoolYear_ComboBox_SelectedIndexChanged);
             // 
             // gunaLabel10
             // 
@@ -677,6 +678,7 @@
             this.Class_ComboBox.StartIndex = 0;
             this.Class_ComboBox.TabIndex = 102;
             this.Class_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            this.Class_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Class_ComboBox_SelectedIndexChanged);
             // 
             // DataTable
             // 
@@ -753,7 +755,7 @@
             this.DataTable.ThemeStyle.RowsStyle.Height = 22;
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataTable_CellContentClick);
+            this.DataTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataTable_CellClick);
             // 
             // sTUDYINGBindingSource
             // 

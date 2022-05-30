@@ -102,33 +102,36 @@ namespace studMin
                 case role.classHead:
                     Dashboard = new ClassHeadTeacherDashboard();
                     timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab_Headteacher();
+                    //statisticTab = new StatisticTab();
+                    Statistic_MenuButton.Visible = false;
                     break;
                 case role.subjectHead:
                     Dashboard = new SubjectHeadTeacherDashboard();
                     timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab();
+                   // statisticTab = new StatisticTab();
                     Statistic_MenuButton.Visible = false;
                     break;
                 case role.principal:
                     Dashboard = new PrincipalDashboard();
                     timetable_Tab = new Timetable_Tab();
+                    //statisticTab = new StatisticTab_Headteacher();
                     statisticTab = new StatisticTab();
                     break;
                 case role.vicePrincipal:
                     Dashboard = new VicePrincipalDashboard();
                     timetable_Tab = new Timetable_Tab();
-                    statisticTab = new StatisticTab();
+                    statisticTab = new StatisticTab_Headteacher();
                     break;
                 case role.normalTeacher:
                     Dashboard = new NormalTeacherDashboard();
                     timetable_Tab = new Timetable_Tab();
+                   // statisticTab = new StatisticTab();
                     Statistic_MenuButton.Visible = false;
                     break;
                 default: // office staff
                     Dashboard = new StaffDashboard();
                     timetable_Tab = new TimeTableTab_Staff();
-                    statisticTab = new StatisticTab();
+                    statisticTab = new StatisticTab_Headteacher();
                     break;
             }
 
