@@ -51,7 +51,8 @@ namespace studMin.Database
             var teaching = DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == LoginServices.LoginServices.Instance.CurrentTeacher.ID).ToList();
             foreach (var item in teaching)
             {
-                list.Add(item.CLASS);
+                if (!list.Contains(item.CLASS))
+                    list.Add(item.CLASS);
             }    
             return list;
         }
