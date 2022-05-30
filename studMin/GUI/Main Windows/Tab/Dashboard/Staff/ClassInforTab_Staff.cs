@@ -53,7 +53,7 @@ namespace studMin
             }
 
 
-            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className);
+            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
 
             List<Action.Excel.ListStudent.Item> list = new List<Action.Excel.ListStudent.Item>();
 

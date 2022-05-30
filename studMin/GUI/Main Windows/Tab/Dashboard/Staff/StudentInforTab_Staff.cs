@@ -118,7 +118,7 @@ namespace studMin
                     var allClass = Database.DataProvider.Instance.Database.CLASSes.ToList();
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
+                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
                             //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
@@ -132,7 +132,7 @@ namespace studMin
                     var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).ToList();
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
+                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
                             //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
@@ -148,7 +148,7 @@ namespace studMin
                     var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == Class_ComboBox.SelectedItem.ToString());
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
+                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
                             //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);
@@ -162,7 +162,7 @@ namespace studMin
                     var allClass = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && item.SCHOOLYEAR == schoolYear).ToList();
                     foreach (var aClass in allClass)
                     {
-                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME);
+                        var listStudent = Database.ClassServices.Instance.GetListStudentOfClass(aClass.CLASSNAME, aClass.SCHOOLYEAR);
                         foreach (var student in listStudent)
                         {
                             //DataTable.Rows.Add(student.CLASS.SCHOOLYEAR, student.ID, student.CLASS.CLASSNAME, student.FIRSTNAME + " " + student.LASTNAME, student.Status);

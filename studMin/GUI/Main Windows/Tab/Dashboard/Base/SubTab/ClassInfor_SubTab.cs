@@ -31,7 +31,7 @@ namespace studMin
             string className = Class_ComboBox.SelectedItem.ToString();
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
-            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className);
+            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
 
             if (currentClass == null || listStudents.Count == 0)
             {

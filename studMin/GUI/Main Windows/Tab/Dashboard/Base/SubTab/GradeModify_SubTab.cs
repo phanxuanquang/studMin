@@ -146,11 +146,12 @@ namespace studMin
             if (MessageBox.Show("đưa điểm vào csdl?", "IMPORT DATABASE", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
-                CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(importInfo.Lop);
-
-                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME);
-
                 string schoolYear = importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0];
+                CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassNameAndSchoolYear(importInfo.Lop, schoolYear);
+
+                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME, schoolYear);
+
+                
 
                 for (int index = 0; index < data.Count; index++)
                 {
@@ -217,7 +218,7 @@ namespace studMin
             backgroundWorker.DoWork += ExportExcel_DoWork;
             backgroundWorker.RunWorkerAsync(exportPath);
         }
-
+        // sửa hàm khi có combobox
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
             if (className == "Mọi lớp")

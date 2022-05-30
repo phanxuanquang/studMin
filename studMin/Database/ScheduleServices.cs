@@ -56,7 +56,7 @@ namespace studMin.Database
             }
         }
 
-        public bool SaveLessonToDB(SCHEDULE infoSchedule, string teacherName, string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday)
+        public bool SaveLessonToDB(SCHEDULE infoSchedule, string teacherName, string subjectName, string className, byte timeStart, byte timeEnd, byte dayofweek, string timeofday, string schoolYear)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace studMin.Database
                         ID = Guid.NewGuid(),
                         IDTEACHER = TeacherServices.Instance.GetTeacherByName(teacherName).ID,
                         IDSUBJECT = SubjectServices.Instance.GetSubjectByName(subjectName).Id,
-                        IDCLASS = ClassServices.Instance.GetClassByClassName(className).ID,
+                        IDCLASS = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear).ID,
                         IDSCHEDULE = infoSchedule.ID,
                         TIMESTART = timeStart,
                         TIMEEND = timeEnd,

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 namespace studMin.Database
 {
     using Models;
+    using Database;
     public class TeacherServices
     {
+        
         private static TeacherServices instance;
         public static TeacherServices Instance => instance ?? (instance = new TeacherServices());
 
@@ -45,13 +47,18 @@ namespace studMin.Database
             return DataProvider.Instance.Database.TEACHERs.Where(item => item.IDSUBJECT == idSubject).ToList();
         }
 
-        public List<CLASS> GetAllClassTeaching()
+        public List<CLASS> GetAllClassTeaching(string schoolYear = null)
         {
+            if (schoolYear == null)
+            {
+                schoolYear = ClassServices.Instance.GetCurrentSchoolYear();
+            }    
             List<CLASS> list = new List<CLASS>();
-            var teaching = DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == LoginServices.LoginServices.Instance.CurrentTeacher.ID).ToList();
+            var teaching = DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == LoginServices.LoginServices.Instance.CurrentTeacher.ID && item.SCHOOLYEAR == schoolYear).ToList();
             foreach (var item in teaching)
             {
-                list.Add(item.CLASS);
+                if (!list.Contains(item.CLASS))
+                    list.Add(item.CLASS);
             }    
             return list;
         }
