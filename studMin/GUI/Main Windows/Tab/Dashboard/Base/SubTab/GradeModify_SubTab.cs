@@ -18,6 +18,7 @@ namespace studMin
         private Action.Excel.Subject.Info importInfo = null;
         private List<Action.Excel.Subject.Item> data = null;
         private string className = string.Empty;
+        private string schoolYear = string.Empty;
         private Timer timer = null;
 
 
@@ -31,13 +32,20 @@ namespace studMin
         {
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                List<string> @class = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
+                /*List<string> @class = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
                 @class.Add("Mọi lớp");
                 if (this.InvokeRequired)
                 {
                     this.Invoke(new System.Action(() => { Class_ComboBox.DataSource = @class; }));
                 }
-                else Class_ComboBox.DataSource = @class;
+                else Class_ComboBox.DataSource = @class;*/
+
+                List<string> schoolYear = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Distinct().ToList();
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new System.Action(() => { SchoolYear_ComboBox.DataSource = schoolYear; }));
+                }
+                else SchoolYear_ComboBox.DataSource = schoolYear;
             });
         }
 
@@ -240,7 +248,7 @@ namespace studMin
                 MonHoc = teach.SUBJECT.DisplayName,
             };
 
-            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME);
+            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME, schoolYear);
             List<Action.Excel.Subject.Item> list = new List<Action.Excel.Subject.Item>();
 
             for (int index = 0; index < students.Count; index++)
@@ -343,7 +351,7 @@ namespace studMin
             className = Class_ComboBox.SelectedItem.ToString();
             if (className != "Mọi lớp")
             {
-                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className);
+                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
                 sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
             }
             else
@@ -354,10 +362,20 @@ namespace studMin
                 {
                     if (@class[index] != "Mọi lớp")
                     {
-                        students.AddRange(studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class[index]));
+                        students.AddRange(studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class[index], schoolYear));
                     }
                 }
                 sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
+            }
+        }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+            if (!String.IsNullOrEmpty(schoolYear))
+            {
+                List<string> @class = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).Select(item => item.CLASSNAME).ToList();
+                Class_ComboBox.DataSource = @class;
             }
         }
 
@@ -614,11 +632,6 @@ namespace studMin
         private void OralTestScore_Box_TextChanged(object sender, EventArgs e)
         {
             checkValidScore(OralTestScore_Box);
-        }
-
-        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

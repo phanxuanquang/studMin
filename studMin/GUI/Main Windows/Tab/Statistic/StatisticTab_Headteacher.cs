@@ -208,6 +208,11 @@ namespace studMin
             SUBJECT subject = studMin.Database.DataProvider.Instance.Database.SUBJECTs.FirstOrDefault(item => item.DisplayName == _subject);
             Guid idSemester = studMin.Database.DataProvider.Instance.Database.SEMESTERs.FirstOrDefault(item => item.NAME == _semester).ID;
 
+            int coefficientOralMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "M").FirstOrDefault().COEFFICIENT.Value;
+            int coefficientRegularMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "15M").FirstOrDefault().COEFFICIENT.Value;
+            int coefficientMidTermMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "45M").FirstOrDefault().COEFFICIENT.Value;
+            int coefficientFinalMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "FINAL").FirstOrDefault().COEFFICIENT.Value;
+
             if (data == null) data = new List<GRIDVIEW4REPORT>();
             else data.Clear();
 
@@ -223,11 +228,6 @@ namespace studMin
 
                 for (int indexStudent = 0; indexStudent < students.Count; indexStudent++)
                 {
-                    int coefficientOralMark = scores.FirstOrDefault(score => score.ROLESCORE.ROLE == "M").ROLESCORE.COEFFICIENT.Value;
-                    int coefficientRegularMark = scores.FirstOrDefault(score => score.ROLESCORE.ROLE == "15M").ROLESCORE.COEFFICIENT.Value;
-                    int coefficientMidTermMark = scores.FirstOrDefault(score => score.ROLESCORE.ROLE == "45M").ROLESCORE.COEFFICIENT.Value;
-                    int coefficientFinalMark = scores.FirstOrDefault(score => score.ROLESCORE.ROLE == "FINAL").ROLESCORE.COEFFICIENT.Value;
-
                     List<double> oralMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
                     List<double> regularMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "15M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
                     List<double> midTermMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "45M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
