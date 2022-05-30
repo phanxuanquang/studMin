@@ -614,5 +614,10 @@ namespace studMin
         {
             checkValidScore(OralTestScore_Box);
         }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

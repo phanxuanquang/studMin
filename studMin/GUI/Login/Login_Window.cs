@@ -18,6 +18,7 @@ namespace studMin
         {
             InitializeComponent();
             ShadowForm.SetShadowForm(this);
+            this.Icon = Properties.Resources.studMin_Icon;
         }
 
         protected override CreateParams CreateParams
@@ -157,14 +158,7 @@ namespace studMin
 
         private void EnterAccountComplete_KeyPress(dynamic sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                Login_Button_Click(sender, e);
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
-            {
-                sender.Text = String.Empty;
-            }
+            
         }
 
         private void SeePassword_Button_MouseDown(object sender, MouseEventArgs e)
@@ -179,13 +173,37 @@ namespace studMin
 
         private void ShowPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Alt && Password_Box.UseSystemPasswordChar)
+            if (e.Alt && Password_Box.UseSystemPasswordChar)
             {
                 Password_Box.UseSystemPasswordChar = false;
             }
             else if (e.Alt && !Password_Box.UseSystemPasswordChar)
             {
                 Password_Box.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void Password_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Login_Button_Click(sender, e);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Password_Box.Text = String.Empty;
+            }
+        }
+
+        private void Username_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Login_Button_Click(sender, e);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Username_Box.Text = String.Empty;
             }
         }
     }
