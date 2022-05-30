@@ -211,7 +211,7 @@ namespace studMin.Action.Excel
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.Email;
 
                 columnName = GetExcelColumnName(indexColumn++);
-                sheet.get_Range(columnName + lastRow.ToString()).Value = clone.SDT;
+                sheet.get_Range(columnName + lastRow.ToString()).Value = "'" + clone.SDT;
 
                 /*rowUsed++;*/
             }

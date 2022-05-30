@@ -132,108 +132,143 @@ namespace studMin
         private void Search_Button_Click(object sender, EventArgs e)
         {
             DataTable_Info.Columns.Clear();
-            try
+            DataTable_Info.Rows.Clear();
+
+            List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
+
+            switch (Filter_ComboBox.SelectedIndex)
             {
-                DataTable dataSource = new DataTable();
-                List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
+                case 0:
+                    GetListClasses(listClasses);
+                    break;
+                case 1:
+                    GetListStudents(listClasses);
+                    break;
+                case 2:
+                    if (Class_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex == 0)
+                    {
+                        GetTeachersByClassesBySchoolYear(listClasses, false, false);
+                        return;
+                    }
 
-                switch (Filter_ComboBox.SelectedIndex)
+                    if (Class_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex != 0)
+                    {
+                        GetTeachersByClassesBySchoolYear(listClasses, false, true);
+                        return;
+                    }
+
+                    if (Class_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex == 0)
+                    {
+                        GetTeachersByClassesBySchoolYear(listClasses, true, false);
+                        return;
+                    }
+
+                    if (Class_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
+                    {
+                        GetTeachersByClassesBySchoolYear(listClasses, true, true);
+                        return;
+                    }
+                    break;
+            }
+        }
+
+        private void GetTeachersByClassesBySchoolYear(List<CLASS> listClasses, bool filterByClass, bool filterBySchoolYear)
+        {
+            DataTable_Info.Columns.Add("Column1", "Mã giáo viên");
+            DataTable_Info.Columns.Add("Column2", "Họ tên");
+            DataTable_Info.Columns.Add("Column3", "Lớp phụ trách");
+            DataTable_Info.Columns.Add("Column4", "Giới tính");
+            DataTable_Info.Columns.Add("Column5", "Ngày sinh");
+            DataTable_Info.Columns.Add("Column6", "Địa chỉ");
+
+            foreach (var classItem in listClasses)
+            {
+                if (classItem.TEACHER == null)
                 {
-                    case 0:
-                        dataSource.Columns.Add("Mã lớp");
-                        dataSource.Columns.Add("Tên lớp");
-                        dataSource.Columns.Add("Khối");
-                        dataSource.Columns.Add("Giáo viên");
-                        dataSource.Columns.Add("Năm học");
-
-                        foreach (var classItem in listClasses)
-                        {
-                            if (SchoolYear_ComboBox.SelectedIndex != 0)
-                            {
-                                if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
-                                {
-                                    dataSource.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
-                                }
-                            }
-                            else
-                            {
-                                dataSource.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
-                            }
-                        }
-                        break;
-                     case 1:
-                        dataSource.Columns.Add("Mã học sinh");
-                        dataSource.Columns.Add("Họ tên");
-                        dataSource.Columns.Add("Giới tính");
-                        dataSource.Columns.Add("Ngày sinh");
-                        dataSource.Columns.Add("Địa chỉ");
-                        dataSource.Columns.Add("Số điện thoại");
-                        dataSource.Columns.Add("Email");
-
-                        List<STUDENT> listStudents = new List<STUDENT>();
-
-                        foreach (var classItem in listClasses)
-                        {
-                            if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
-                            {
-                                listStudents = classItem.STUDENTs.ToList();
-                            }
-                        }
-                        
-                        foreach (var student in listStudents)
-                        {
-                            string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
-                            string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.INFOR.DAYOFBIRTH);
-                            dataSource.Rows.Add(student.ID.ToString().Substring(0, 8).ToUpper(), student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
-                        }
-                        break;
-                    case 2:
-                        dataSource.Columns.Add("Mã giáo viên");
-                        dataSource.Columns.Add("Họ tên");
-                        dataSource.Columns.Add("Giới tính");
-                        dataSource.Columns.Add("Ngày sinh");
-                        dataSource.Columns.Add("Địa chỉ");
-
-                        if (Class_ComboBox.SelectedIndex == 0)
-                        {
-                            MessageBox.Show("Vui lòng chọn lớp muốn tìm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
-                        }
-
-                        foreach (var classItem in listClasses)
-                        {
-                            if (classItem.TEACHER == null)
-                            {
-                                continue;
-                            }
-
-                            INFOR inforTeacher = classItem.TEACHER.INFOR;
-                            string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
-                            string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
-
-                            if (SchoolYear_ComboBox.SelectedIndex != 0)
-                            {
-                                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
-                                {
-                                    dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
-                                }
-                            }
-                            else
-                            {
-                                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString())
-                                {
-                                    dataSource.Rows.Add(inforTeacher.ID, inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
-                                }
-                            }
-                        }
-                        break;
+                    continue;
                 }
 
-                DataTable_Info.DataSource = dataSource;
+                INFOR inforTeacher = classItem.TEACHER.INFOR;
+                string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
+                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
+
+                if (!filterByClass && filterBySchoolYear)
+                {
+                    if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                    {
+                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                    }
+                }
+                else if (!filterByClass && !filterBySchoolYear)
+                {
+                    DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                }
+                else if (filterByClass && !filterBySchoolYear)
+                {
+                    if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString())
+                    {
+                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                    }
+                }
+                else if (filterByClass && filterBySchoolYear)
+                {
+                    if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                    {
+                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                    }
+                }
             }
-            catch 
+        }
+
+        private void GetListClasses(List<CLASS> listClasses)
+        {
+            DataTable_Info.Columns.Add("Column1", "Mã lớp");
+            DataTable_Info.Columns.Add("Column2", "Tên lớp");
+            DataTable_Info.Columns.Add("Column3", "Khối");
+            DataTable_Info.Columns.Add("Column4", "Giáo viên");
+            DataTable_Info.Columns.Add("Column5", "Năm học");
+
+            foreach (var classItem in listClasses)
             {
-                MessageBox.Show("Vui lòng kiểm tra lại điều kiện truy xuất và kết nối mạng.", "TRUY XUÂT THÔNG TIN THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (SchoolYear_ComboBox.SelectedIndex != 0)
+                {
+                    if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                    {
+                        DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                    }
+                }
+                else
+                {
+                    DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                }
+            }
+        }
+
+        private void GetListStudents(List<CLASS> listClasses)
+        {
+            DataTable_Info.Columns.Add("Column1", "Mã học sinh");
+            DataTable_Info.Columns.Add("Column2", "Họ tên");
+            DataTable_Info.Columns.Add("Column3", "Giới tính");
+            DataTable_Info.Columns.Add("Column4", "Ngày sinh");
+            DataTable_Info.Columns.Add("Column5", "Địa chỉ");
+            DataTable_Info.Columns.Add("Column6", "Số điện thoại");
+            DataTable_Info.Columns.Add("Column7", "Email");
+
+            List<STUDENT> listStudents = new List<STUDENT>();
+
+            foreach (var classItem in listClasses)
+            {
+                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
+                {
+                    listStudents = classItem.STUDENTs.ToList();
+                }
+            }
+
+            foreach (var student in listStudents)
+            {
+                string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
+                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.INFOR.DAYOFBIRTH);
+                DataTable_Info.Rows.Add(student.ID.ToString().Substring(0, 8).ToUpper(), student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
             }
         }
 
