@@ -105,31 +105,22 @@ namespace studMin
 
         private void LoadDataToDataTable(string enteredText)
         {
-            if (String.IsNullOrEmpty(enteredText)) return;
+            /*if (String.IsNullOrEmpty(enteredText)) return;*/
 
-            /*DataTable.Rows.Clear();
-            listStudent = new List<STUDENT>();*/
-            tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(listStudent); ;
-            int count = 1;
-            foreach (DataGridViewRow row in DataTable.Rows)
+            /*DataTable.Rows.Clear();*/
+            List<STUDENT> list = new List<STUDENT>();
+
+            foreach (STUDENT student in listStudent)
             {
-                TRANSCRIPT selected = row.DataBoundItem as TRANSCRIPT;
-                if (selected != null)
+                string studentName = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME;
+                if (studentName.ToLower().Contains(enteredText.ToLower()) || student.ID.ToString().Contains(enteredText))
                 {
-                    string studentName = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
-
-                    if (studentName.ToLower().Contains(enteredText.ToLower()) || selected.IDSTUDENT.ToString().Contains(enteredText))
-                    {
-                        row.Cells["sttDataGridViewTextBoxColumn"].Value = count++;
-                        row.Cells["nameDataGridViewTextBoxColumn"].Value = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
-                        row.Cells["semesterDataGridViewTextBoxColumn"].Value = selected.SEMESTER.NAME;
-                    }
-                    else
-                    {
-                        tRANSCRIPTBindingSource.DataSource = null;
-                    }
+                    list.Add(student);
                 }
             }
+
+            tRANSCRIPTBindingSource.DataSource = GetTRANSCRIPTs(list);
+            LoadGridView();
         }
     }
 }
