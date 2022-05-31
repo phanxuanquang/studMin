@@ -40,7 +40,7 @@ namespace studMin
                 }
                 else Class_ComboBox.DataSource = @class;*/
 
-                List<string> schoolYear = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Distinct().ToList();
+                List<string> schoolYear = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID).Select(item => item.SCHOOLYEAR).Distinct().ToList();
                 if (this.InvokeRequired)
                 {
                     this.Invoke(new System.Action(() => { SchoolYear_ComboBox.DataSource = schoolYear; }));
@@ -373,6 +373,7 @@ namespace studMin
         private void Class_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetComboBox();
+            ResetDataGridView();
             className = Class_ComboBox.SelectedItem.ToString();
             if (className != "Mọi lớp")
             {
@@ -396,12 +397,21 @@ namespace studMin
 
         private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ResetDataGridView();
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             if (!String.IsNullOrEmpty(schoolYear))
             {
-                List<string> @class = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).Select(item => item.CLASSNAME).ToList();
+                List<string> @class = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.SCHOOLYEAR == schoolYear && item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID).Select(item => item.CLASS.CLASSNAME).Distinct().ToList();
                 Class_ComboBox.DataSource = @class;
             }
+        }
+
+        private void ResetDataGridView()
+        {
+            sCOREMBindingSource.Clear();
+            sCORE15MBindingSource.Clear();
+            sCORE45MBindingSource.Clear();
+            sCOREFinalBindingSource.Clear();
         }
 
         private void ResetComboBox()
