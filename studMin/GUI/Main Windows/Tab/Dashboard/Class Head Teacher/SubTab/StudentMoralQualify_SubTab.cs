@@ -105,7 +105,7 @@ namespace studMin
 
         private void LoadDataToDataTable(string enteredText)
         {
-            /*if (String.IsNullOrEmpty(enteredText)) return;*/
+            if (String.IsNullOrEmpty(enteredText)) return;
 
             /*DataTable.Rows.Clear();*/
             List<STUDENT> list = new List<STUDENT>();

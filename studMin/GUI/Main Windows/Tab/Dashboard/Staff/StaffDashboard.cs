@@ -12,11 +12,11 @@ namespace studMin
 {
     public partial class StaffDashboard : UserControl
     {
-        ClassInforTab_Staff classInforTab_Staff;
+        ClassInfor_SubTab classInforTab_Staff;
         StudentInforTab_Staff studentInforTab_Staff;
         public StaffDashboard()
         {
-            classInforTab_Staff = new ClassInforTab_Staff();
+            classInforTab_Staff = new ClassInfor_SubTab();
             studentInforTab_Staff = new StudentInforTab_Staff();
 
             InitializeComponent();

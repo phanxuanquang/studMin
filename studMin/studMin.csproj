@@ -172,12 +172,6 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\AddStudent_Form.Designer.cs">
       <DependentUpon>AddStudent_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\ClassInforTab_Staff.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\ClassInforTab_Staff.Designer.cs">
-      <DependentUpon>ClassInforTab_Staff.cs</DependentUpon>
-    </Compile>
     <Compile Include="Database\ClassServices.cs" />
     <Compile Include="Database\DataProvider.cs" />
     <Compile Include="Database\LoginServices\Hash.cs" />
@@ -473,9 +467,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\AddStudent_Form.resx">
       <DependentUpon>AddStudent_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\ClassInforTab_Staff.resx">
-      <DependentUpon>ClassInforTab_Staff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Login\OTPexample.resx">
       <DependentUpon>OTPexample.cs</DependentUpon>
