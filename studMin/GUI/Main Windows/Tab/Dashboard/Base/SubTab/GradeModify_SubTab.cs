@@ -261,19 +261,18 @@ namespace studMin
             }
 
             TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
-            CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(className);
-            TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
+            TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.CLASS.CLASSNAME == className && item.SCHOOLYEAR == schoolYear && item.IDTEACHER == teacher.ID).FirstOrDefault();
 
             Action.Excel.Subject.Info info = new Action.Excel.Subject.Info()
             {
                 GiaoVien = teacher.INFOR.FIRSTNAME + " " + teacher.INFOR.LASTNAME,
                 HocKy = Convert.ToInt32(teach.SEMESTER.NAME),
-                Lop = @class.CLASSNAME,
-                NamHoc = @class.SCHOOLYEAR,
+                Lop = className,
+                NamHoc = schoolYear,
                 MonHoc = teach.SUBJECT.DisplayName,
             };
 
-            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME, schoolYear);
+            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
             List<Action.Excel.Subject.Item> list = new List<Action.Excel.Subject.Item>();
 
             for (int index = 0; index < students.Count; index++)
@@ -281,7 +280,7 @@ namespace studMin
                 //không biết vì sao để lồng vào thì lại lỗi
                 //List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == students[index].ID).ToList();
                 Guid idStudent = students[index].ID;
-                List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == idStudent).ToList();
+                List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == idStudent && item.IDSUBJECT == teach.IDSUBJECT && item.SCHOOLYEAR == schoolYear).ToList();
 
                 List<double> oralMark = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => score.SCORE1.Value).ToList();
                 List<double> regularMark = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => score.SCORE1.Value).ToList();
@@ -339,7 +338,10 @@ namespace studMin
             finalDataGridView.Rows.Clear();
 
             STUDENT4GRIDVIEW student = sTUDENTBindingSource.Current as STUDENT4GRIDVIEW;
-            List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID).ToList();
+            //đè lấy điểm (năm học, lớp, học sinh, (môn học của giáo viên))
+
+            Guid idSubject = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.IDSUBJECT.Value;
+            List<SCORE> scores = Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSTUDENT == student.ID && item.IDSUBJECT == idSubject && item.SCHOOLYEAR == schoolYear).ToList();
 
             List<SCORE4GRIDVIEW> orals = scores.Where(item => item.ROLESCORE.ROLE == "M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();
             List<SCORE4GRIDVIEW> regulars = scores.Where(item => item.ROLESCORE.ROLE == "15M").Select(score => new SCORE4GRIDVIEW(score.ID, score.SCORE1.Value)).ToList();

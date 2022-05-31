@@ -22,18 +22,18 @@ namespace studMin
 
         private GUI.LoadingWindow loadingWindow = null;
 
-        private class SCHEDULE4COMBOBOX
+        private class TEACH4COMBOBOX
         {
-            private List<SCHEDULE> _grouping;
+            private List<TEACH> _grouping;
             private string _key;
 
             public string NamHoc { get { return _key; } }
-            public List<SCHEDULE> TKB_Nam { get { return _grouping; } }
+            public List<TEACH> GiangDay { get { return _grouping; } }
 
-            public SCHEDULE4COMBOBOX(string NamHoc, List<SCHEDULE> TKB_Nam)
+            public TEACH4COMBOBOX(string NamHoc, List<TEACH> GiangDay)
             {
                 _key = NamHoc;
-                _grouping = TKB_Nam;
+                _grouping = GiangDay;
             }
         }
 
@@ -119,7 +119,7 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
-            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = Methods.ParseSemester(listSemester.Current as string), MonHoc = listSubject.Current as string, NamHoc = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc };
+            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = Methods.ParseSemester(listSemester.Current as string), MonHoc = listSubject.Current as string, NamHoc = (listSchoolYear.Current as TEACH4COMBOBOX).NamHoc };
 
             Action.Excel.ReportSubject reportSubject = new studMin.Action.Excel.ReportSubject();
 
@@ -166,7 +166,7 @@ namespace studMin
             SchoolYear_ComboBox.DataSource = listSchoolYear;
 
             listSemester.DataSource = typeof(string);
-            listSchoolYear.DataSource = typeof(SCHEDULE4COMBOBOX);
+            listSchoolYear.DataSource = typeof(TEACH4COMBOBOX);
             listSubject.DataSource = typeof(string);
 
             listSchoolYear.CurrentChanged += ListSchoolYear_CurrentChanged;
@@ -198,13 +198,13 @@ namespace studMin
 
         private void UpdateReportSubject_CurrentChanged(object sender, EventArgs e)
         {
-            string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
+            string schoolYear = (listSchoolYear.Current as TEACH4COMBOBOX).NamHoc;
             string _semester = Methods.ParseSemester(listSemester.Current as string).ToString();
             string _subject = (listSubject.Current as string);
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(_semester) || String.IsNullOrEmpty(_subject)) return;
 
-            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.CLASSes.Where(item => item.SCHOOLYEAR == schoolYear).ToList();
+            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(item => item.SCHOOLYEAR == schoolYear && item.SEMESTER.NAME == _semester).Select(item => item.CLASS).Distinct().ToList();
             SUBJECT subject = studMin.Database.DataProvider.Instance.Database.SUBJECTs.FirstOrDefault(item => item.DisplayName == _subject);
             Guid idSemester = studMin.Database.DataProvider.Instance.Database.SEMESTERs.FirstOrDefault(item => item.NAME == _semester).ID;
 
@@ -219,19 +219,19 @@ namespace studMin
             for (int indexClass = 0; indexClass < classes.Count; indexClass++)
             {
                 Guid idClass = classes[indexClass].ID;
-                List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.SEMESTER.ID == idSemester && item.SCHOOLYEAR == schoolYear && item.STUDENT.IDCLASS == idClass).ToList();
-                List<STUDENT> students = studMin.Database.DataProvider.Instance.Database.STUDENTs.Where(student => student.IDCLASS == idClass && student.CLASS.SCHOOLYEAR == schoolYear).ToList();
-
-                if (scores.Count == 0 || students.Count == 0) continue;
+                string className = classes[indexClass].CLASSNAME;
+                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
+                List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.SEMESTER.ID == idSemester && item.SCHOOLYEAR == schoolYear/* && item.STUDENT.IDCLASS == idClass*/ && item.IDSUBJECT == subject.Id).ToList();
+                if (students.Count == 0 || scores.Count == 0) continue;
 
                 List<double> avgScoreStudent = new List<double>();
 
                 for (int indexStudent = 0; indexStudent < students.Count; indexStudent++)
                 {
-                    List<double> oralMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
-                    List<double> regularMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "15M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
-                    List<double> midTermMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "45M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
-                    List<double> finalMark = scores.Where(item => item.IDSUBJECT == subject.Id && item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "FINAL").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
+                    List<double> oralMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
+                    List<double> regularMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "15M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
+                    List<double> midTermMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "45M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
+                    List<double> finalMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "FINAL").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
 
                     double avg = (oralMark.Sum() + regularMark.Sum() + midTermMark.Sum() + finalMark.Sum()) / (coefficientOralMark * oralMark.Count + coefficientRegularMark * regularMark.Count + coefficientMidTermMark * midTermMark.Count + coefficientFinalMark * finalMark.Count);
 
@@ -247,6 +247,7 @@ namespace studMin
             this.Invoke(new System.Action(() => { dataGridViewBindingSource.DataSource = data.ToList(); }));
         }
 
+
         private void LoadSubjectFromDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             /*ListSchoolYear_CurrentChanged(null, null);
@@ -257,15 +258,15 @@ namespace studMin
         private void LoadSubjectFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
             List<string> subjects = studMin.Database.SubjectServices.Instance.GetSubjects().Select(item => item.DisplayName).ToList();
-            List<IGrouping<string, SCHEDULE>> schoolYear = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.GroupBy(schedule => schedule.SCHOOLYEAR).ToList();
+            List<IGrouping<string, TEACH>> schoolYear = studMin.Database.DataProvider.Instance.Database.TEACHes.GroupBy(item => item.SCHOOLYEAR).ToList();
 
-            AssignDataToComboBox(SchoolYear_ComboBox, listSchoolYear, schoolYear.Select(item => new SCHEDULE4COMBOBOX(item.Key, item.ToList())).ToList(), "NamHoc", "NamHoc");
+            AssignDataToComboBox(SchoolYear_ComboBox, listSchoolYear, schoolYear.Select(item => new TEACH4COMBOBOX(item.Key, item.ToList())).ToList(), "NamHoc", "NamHoc");
             AssignDataToComboBox(Subject_ComboBox, listSubject, subjects, "", "");
         }
 
         private void ListSchoolYear_CurrentChanged(object sender, EventArgs e)
         {
-            List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
+            List<TEACH> schedule = (listSchoolYear.Current as TEACH4COMBOBOX).GiangDay;
             AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
         }
 
