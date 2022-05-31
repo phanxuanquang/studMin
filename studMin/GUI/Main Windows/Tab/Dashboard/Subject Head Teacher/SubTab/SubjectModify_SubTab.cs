@@ -53,10 +53,10 @@ namespace studMin
             {
                 if (listTeachers[i].IDSUBJECT == subject.Id)
                 {
-                    GridView.Rows.Add(listTeachers[i].ID, listTeachers[i].INFOR.FIRSTNAME + " " + listTeachers[i].INFOR.LASTNAME, listTeachers[i].INFOR.DAYOFBIRTH, listTeachers[i].USER.EMAIL, "1/1/2022");
+                    GridView.Rows.Add(listTeachers[i].ID.ToString().Substring(0,8).ToUpper(), listTeachers[i].INFOR.FIRSTNAME + " " + listTeachers[i].INFOR.LASTNAME, listTeachers[i].INFOR.DAYOFBIRTH.Value.ToString("dd/mm/yyyy"), listTeachers[i].USER.EMAIL, "01/01/2022");
                 }
             }
-            SubjectLabel.Text = subject.DisplayName;
+            SubjectLabel.Text = "DANH SÁCH GIÁO VIÊN PHỤ TRÁCH MÔN " + subject.DisplayName.ToUpper();
             LoadScoreParameter();
         }
 
