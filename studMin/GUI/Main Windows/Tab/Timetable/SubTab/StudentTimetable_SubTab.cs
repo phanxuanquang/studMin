@@ -318,7 +318,7 @@ namespace studMin
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn đưa dữ liệu lên cơ sở dữ liệu không?", "Đưa TKB lên CSDL", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có muốn đưa dữ liệu lên cơ sở dữ liệu không?", "Đưa thời khóa biểu lên cơ sở dữ liệu", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (backgroundWorker == null)
                 {
@@ -343,7 +343,7 @@ namespace studMin
 
         private void UploadScheduleToDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Đã đưa dữ liệu TKB lên CSDL");
+            MessageBox.Show("Đưa thời khóa biểu lên cơ sở dữ liệu");
         }
 
         private void UploadScheduleToDatabase_DoWork(object sender, DoWorkEventArgs e)
@@ -429,7 +429,7 @@ namespace studMin
             if (listClass.Current == null) return;
             Guid idClass = (listClass.Current as CLASS4GRIDVIEW).ID;
 
-            if (listClass.Count > 1 && idClass == Guid.Empty && MessageBox.Show("Xuất Excel đẻ xem TKB của mọi lớp!", "Có muốn xem TKB mọi lớp không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (listClass.Count > 1 && idClass == Guid.Empty && MessageBox.Show("Xuất Excel để xem thời khóa biểu của mọi lớp!", "Có muốn xem thời khóa biểu mọi lớp không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 TimetableExport_Button_Click(null, null);
             }
@@ -538,7 +538,7 @@ namespace studMin
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue) return;
 
-            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ THỨ HAI (" + DateApply_ComboBox.SelectedItem.ToString() + ")";
+            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ " + DateApply_ComboBox.SelectedItem.ToString();
 
             SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
                 schedule => schedule.SCHOOLYEAR == schoolYear
@@ -601,7 +601,7 @@ namespace studMin
         {
             //ListSchoolYear_CurrentChanged(null, null);
             loadingWindow.Close();
-            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ THỨ HAI (" + DateApply_ComboBox.SelectedItem.ToString() + ")";
+            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ " + DateApply_ComboBox.SelectedItem.ToString();
         }
 
         private void LoadScheduleFromDatabase_DoWork(object sender, DoWorkEventArgs e)

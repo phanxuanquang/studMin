@@ -40,10 +40,6 @@
             this.Semester_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.SchoolYear_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Subject_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Result = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ratio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -145,11 +141,6 @@
             this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.FullName,
-            this.Result,
-            this.Ratio});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DataTable.DataSource = this.dataGridViewBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -288,39 +279,6 @@
             this.Subject_ComboBox.TabIndex = 117;
             this.Subject_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "Lop";
-            this.ID.FillWeight = 120F;
-            this.ID.HeaderText = "Lớp";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // FullName
-            // 
-            this.FullName.DataPropertyName = "SiSo";
-            this.FullName.HeaderText = "Sỉ số";
-            this.FullName.MinimumWidth = 6;
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
-            // 
-            // Result
-            // 
-            this.Result.DataPropertyName = "SoLuongDat";
-            this.Result.HeaderText = "Số lượng đạt";
-            this.Result.MinimumWidth = 6;
-            this.Result.Name = "Result";
-            this.Result.ReadOnly = true;
-            // 
-            // Ratio
-            // 
-            this.Ratio.DataPropertyName = "TiLeDat";
-            this.Ratio.HeaderText = "Tỉ lệ đạt";
-            this.Ratio.MinimumWidth = 6;
-            this.Ratio.Name = "Ratio";
-            this.Ratio.ReadOnly = true;
-            // 
             // StatisticTab_Headteacher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,9 +310,5 @@
         private Guna.UI2.WinForms.Guna2ComboBox SchoolYear_ComboBox;
         private Guna.UI2.WinForms.Guna2ComboBox Subject_ComboBox;
         private System.Windows.Forms.BindingSource dataGridViewBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Result;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ratio;
     }
 }
