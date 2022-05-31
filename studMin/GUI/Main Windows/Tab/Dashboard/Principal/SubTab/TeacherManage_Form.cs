@@ -108,7 +108,7 @@ namespace studMin
                 string gender = item.INFOR.SEX == 0 ? "Nam" : "Nữ";
                 string role = item is TEACHER ? item.TEACHERROLE.ROLE : item.STAFFROLE.ROLE;
 
-                if (role == "Hiệu trưởng")
+                if (role == "Hiệu trưởng" || role == "Phó hiệu trưởng" || role == "Trưởng bộ môn")
                 {
                     continue;
                 }
