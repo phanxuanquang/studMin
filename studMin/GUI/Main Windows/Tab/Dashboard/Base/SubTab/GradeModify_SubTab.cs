@@ -518,6 +518,11 @@ namespace studMin
             double score = 0.0;
             int index = -1;
 
+            if (String.IsNullOrEmpty(OralTestScore_Box.Text) && String.IsNullOrEmpty(RegularTestScore_Box.Text) && String.IsNullOrEmpty(MidTermTestScore_Box.Text))
+            {
+                return;
+            }
+
             if (!String.IsNullOrEmpty(OralTestScore_Box.Text))
             {
                 index = OralTestScore_ComboBox.SelectedIndex;
@@ -551,6 +556,7 @@ namespace studMin
                 else MidTermTestScore_Box.Text = string.Empty;
             }
             LoadScore();
+            MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void UpdateScore(BindingSource binding, int index, double score, string roleScore)
