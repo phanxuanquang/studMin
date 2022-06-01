@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -57,11 +58,19 @@ namespace studMin
             }
             else
             {
-                bool isRememberLogin = RememberLogin_CheckBox.Checked = true;
-                if (isRememberLogin)
+                string isRememberLogin = String.Empty;
+                try
                 {
- 
-                    Username_Box.Text = LoginServices.Instance.GetRememberAccount().Item1;
+                    isRememberLogin = File.ReadAllText("rem.loginf").Trim();
+                }
+                catch
+                {
+                    isRememberLogin = "0";
+                }
+                if (isRememberLogin == "1")
+                {
+                    RememberLogin_CheckBox.Checked = true;
+                    Username_Box.Text = LoginServices.Instance.GetRememberAccount().Item1; 
                     Password_Box.Text = LoginServices.Instance.GetRememberAccount().Item2;
                 }
             }
@@ -136,6 +145,14 @@ namespace studMin
                     Username_Box.Text = Password_Box.Text = String.Empty;
                     MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác.\nVui lòng điền lại thông tin đăng nhập.", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                if (RememberLogin_CheckBox.Checked)
+                {
+                    File.WriteAllText("rem.loginf", "1");
+                }
+                else
+                {
+                    File.WriteAllText("rem.loginf", "0");
+                }
             }
             else
             {
@@ -145,6 +162,14 @@ namespace studMin
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
+            if (RememberLogin_CheckBox.Checked)
+            {
+                File.WriteAllText("rem.loginf", "1");
+            }
+            else
+            {
+                File.WriteAllText("rem.loginf", "0");
+            }
             Application.Exit();
         }
 
@@ -155,11 +180,6 @@ namespace studMin
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
         #endregion
-
-        private void EnterAccountComplete_KeyPress(dynamic sender, KeyPressEventArgs e)
-        {
-            
-        }
 
         private void SeePassword_Button_MouseDown(object sender, MouseEventArgs e)
         {
@@ -187,7 +207,7 @@ namespace studMin
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                Login_Button_Click(sender, e);
+                Login_Button_Click(sender, null);
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
@@ -199,7 +219,7 @@ namespace studMin
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                Login_Button_Click(sender, e);
+                Login_Button_Click(sender, null);
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
