@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SubjectName_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.gunaLabel10 = new Guna.UI.WinForms.GunaLabel();
             this.SubjectHead_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -40,7 +40,7 @@
             this.gunaLabel2 = new Guna.UI.WinForms.GunaLabel();
             this.AddSubjectTeacher_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Exit_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.Confirm_Button = new Guna.UI2.WinForms.Guna2Button();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
             this.SchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,7 +75,7 @@
             this.SubjectName_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.SubjectName_Box.HoverState.Parent = this.SubjectName_Box;
             this.SubjectName_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.SubjectName_Box.Location = new System.Drawing.Point(209, 60);
+            this.SubjectName_Box.Location = new System.Drawing.Point(279, 74);
             this.SubjectName_Box.Margin = new System.Windows.Forms.Padding(0);
             this.SubjectName_Box.Name = "SubjectName_Box";
             this.SubjectName_Box.PasswordChar = '\0';
@@ -85,7 +85,7 @@
             this.SubjectName_Box.ShadowDecoration.Depth = 5;
             this.SubjectName_Box.ShadowDecoration.Parent = this.SubjectName_Box;
             this.SubjectName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.SubjectName_Box.Size = new System.Drawing.Size(364, 22);
+            this.SubjectName_Box.Size = new System.Drawing.Size(485, 27);
             this.SubjectName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.SubjectName_Box.TabIndex = 0;
             this.SubjectName_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -99,9 +99,10 @@
             this.gunaLabel10.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gunaLabel10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gunaLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.gunaLabel10.Location = new System.Drawing.Point(57, 63);
+            this.gunaLabel10.Location = new System.Drawing.Point(76, 78);
+            this.gunaLabel10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel10.Name = "gunaLabel10";
-            this.gunaLabel10.Size = new System.Drawing.Size(149, 22);
+            this.gunaLabel10.Size = new System.Drawing.Size(199, 27);
             this.gunaLabel10.TabIndex = 116;
             this.gunaLabel10.Text = "• Tên môn học:";
             this.gunaLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,10 +132,11 @@
             this.SubjectHead_ComboBox.Items.AddRange(new object[] {
             "Chọn giáo viên trưởng bộ môn mới"});
             this.SubjectHead_ComboBox.ItemsAppearance.Parent = this.SubjectHead_ComboBox;
-            this.SubjectHead_ComboBox.Location = new System.Drawing.Point(209, 94);
+            this.SubjectHead_ComboBox.Location = new System.Drawing.Point(279, 116);
+            this.SubjectHead_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.SubjectHead_ComboBox.Name = "SubjectHead_ComboBox";
             this.SubjectHead_ComboBox.ShadowDecoration.Parent = this.SubjectHead_ComboBox;
-            this.SubjectHead_ComboBox.Size = new System.Drawing.Size(364, 36);
+            this.SubjectHead_ComboBox.Size = new System.Drawing.Size(484, 36);
             this.SubjectHead_ComboBox.StartIndex = 0;
             this.SubjectHead_ComboBox.TabIndex = 133;
             this.SubjectHead_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -148,9 +150,10 @@
             this.gunaLabel1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gunaLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gunaLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.gunaLabel1.Location = new System.Drawing.Point(57, 107);
+            this.gunaLabel1.Location = new System.Drawing.Point(76, 132);
+            this.gunaLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel1.Name = "gunaLabel1";
-            this.gunaLabel1.Size = new System.Drawing.Size(149, 22);
+            this.gunaLabel1.Size = new System.Drawing.Size(199, 27);
             this.gunaLabel1.TabIndex = 134;
             this.gunaLabel1.Text = "• Trưởng bộ môn:";
             this.gunaLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -178,12 +181,13 @@
             this.SubjectTeacher_ComboBox.HoverState.Parent = this.SubjectTeacher_ComboBox;
             this.SubjectTeacher_ComboBox.ItemHeight = 30;
             this.SubjectTeacher_ComboBox.Items.AddRange(new object[] {
-            "Chọn giáo viên trưởng bộ môn mới"});
+            "Chọn giáo viên phụ trách"});
             this.SubjectTeacher_ComboBox.ItemsAppearance.Parent = this.SubjectTeacher_ComboBox;
-            this.SubjectTeacher_ComboBox.Location = new System.Drawing.Point(209, 143);
+            this.SubjectTeacher_ComboBox.Location = new System.Drawing.Point(279, 176);
+            this.SubjectTeacher_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.SubjectTeacher_ComboBox.Name = "SubjectTeacher_ComboBox";
             this.SubjectTeacher_ComboBox.ShadowDecoration.Parent = this.SubjectTeacher_ComboBox;
-            this.SubjectTeacher_ComboBox.Size = new System.Drawing.Size(270, 36);
+            this.SubjectTeacher_ComboBox.Size = new System.Drawing.Size(359, 36);
             this.SubjectTeacher_ComboBox.StartIndex = 0;
             this.SubjectTeacher_ComboBox.TabIndex = 135;
             this.SubjectTeacher_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -197,9 +201,10 @@
             this.gunaLabel2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gunaLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gunaLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.gunaLabel2.Location = new System.Drawing.Point(57, 151);
+            this.gunaLabel2.Location = new System.Drawing.Point(76, 186);
+            this.gunaLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel2.Name = "gunaLabel2";
-            this.gunaLabel2.Size = new System.Drawing.Size(149, 22);
+            this.gunaLabel2.Size = new System.Drawing.Size(199, 27);
             this.gunaLabel2.TabIndex = 136;
             this.gunaLabel2.Text = "• Giáo viên phụ trách:";
             this.gunaLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,11 +229,12 @@
             this.AddSubjectTeacher_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.AddSubjectTeacher_Button.HoverState.Parent = this.AddSubjectTeacher_Button;
             this.AddSubjectTeacher_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.AddSubjectTeacher_Button.Location = new System.Drawing.Point(485, 143);
+            this.AddSubjectTeacher_Button.Location = new System.Drawing.Point(647, 176);
+            this.AddSubjectTeacher_Button.Margin = new System.Windows.Forms.Padding(4);
             this.AddSubjectTeacher_Button.Name = "AddSubjectTeacher_Button";
             this.AddSubjectTeacher_Button.PressedDepth = 20;
             this.AddSubjectTeacher_Button.ShadowDecoration.Parent = this.AddSubjectTeacher_Button;
-            this.AddSubjectTeacher_Button.Size = new System.Drawing.Size(88, 36);
+            this.AddSubjectTeacher_Button.Size = new System.Drawing.Size(117, 44);
             this.AddSubjectTeacher_Button.TabIndex = 137;
             this.AddSubjectTeacher_Button.Text = "THÊM";
             this.AddSubjectTeacher_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -249,50 +255,53 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(333, 558);
+            this.Exit_Button.Location = new System.Drawing.Point(444, 687);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
+            this.Exit_Button.Size = new System.Drawing.Size(191, 44);
             this.Exit_Button.TabIndex = 139;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
-            // guna2Button1
+            // Confirm_Button
             // 
-            this.guna2Button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.Confirm_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button1.Animated = true;
-            this.guna2Button1.BackColor = System.Drawing.Color.White;
-            this.guna2Button1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.guna2Button1.BorderRadius = 10;
-            this.guna2Button1.BorderThickness = 2;
-            this.guna2Button1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
-            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.White;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.White;
-            this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.guna2Button1.Location = new System.Drawing.Point(155, 558);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.PressedDepth = 20;
-            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(143, 36);
-            this.guna2Button1.TabIndex = 138;
-            this.guna2Button1.Text = "XÁC NHẬN";
-            this.guna2Button1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Confirm_Button.Animated = true;
+            this.Confirm_Button.BackColor = System.Drawing.Color.White;
+            this.Confirm_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Confirm_Button.BorderRadius = 10;
+            this.Confirm_Button.BorderThickness = 2;
+            this.Confirm_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.Confirm_Button.CheckedState.Parent = this.Confirm_Button;
+            this.Confirm_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Confirm_Button.CustomImages.Parent = this.Confirm_Button;
+            this.Confirm_Button.FillColor = System.Drawing.Color.White;
+            this.Confirm_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Confirm_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
+            this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Confirm_Button.Location = new System.Drawing.Point(207, 687);
+            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.Confirm_Button.Name = "Confirm_Button";
+            this.Confirm_Button.PressedDepth = 20;
+            this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
+            this.Confirm_Button.Size = new System.Drawing.Size(191, 44);
+            this.Confirm_Button.TabIndex = 138;
+            this.Confirm_Button.Text = "XÁC NHẬN";
+            this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Confirm_Button.Click += new System.EventHandler(this.Confirm_Button_Click);
             // 
             // DataTable
             // 
             this.DataTable.AllowDrop = true;
             this.DataTable.AllowUserToAddRows = false;
             this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DataTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -301,14 +310,14 @@
             this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -316,24 +325,25 @@
             this.ID,
             this.Column1});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataTable.DefaultCellStyle = dataGridViewCellStyle12;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 192);
+            this.DataTable.Location = new System.Drawing.Point(0, 236);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(4);
             this.DataTable.MultiSelect = false;
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataTable.Size = new System.Drawing.Size(630, 351);
+            this.DataTable.Size = new System.Drawing.Size(840, 432);
             this.DataTable.TabIndex = 140;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -376,6 +386,7 @@
             // Column1
             // 
             this.Column1.HeaderText = "Vai trò";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
@@ -386,8 +397,9 @@
             this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
+            this.SubjectName_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(630, 44);
+            this.SubjectName_Label.Size = new System.Drawing.Size(840, 54);
             this.SubjectName_Label.TabIndex = 141;
             this.SubjectName_Label.Text = "BỔ SUNG THÊM MÔN HỌC";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -404,14 +416,14 @@
             // 
             // AddSubject_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(630, 607);
+            this.ClientSize = new System.Drawing.Size(840, 747);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.DataTable);
             this.Controls.Add(this.Exit_Button);
-            this.Controls.Add(this.guna2Button1);
+            this.Controls.Add(this.Confirm_Button);
             this.Controls.Add(this.AddSubjectTeacher_Button);
             this.Controls.Add(this.gunaLabel2);
             this.Controls.Add(this.SubjectTeacher_ComboBox);
@@ -420,11 +432,13 @@
             this.Controls.Add(this.SubjectName_Box);
             this.Controls.Add(this.gunaLabel10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddSubject_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddSubject_Form";
+            this.Load += new System.EventHandler(this.AddSubject_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             this.ResumeLayout(false);
 
@@ -440,7 +454,7 @@
         private Guna.UI.WinForms.GunaLabel gunaLabel2;
         protected Guna.UI2.WinForms.Guna2Button AddSubjectTeacher_Button;
         private Guna.UI2.WinForms.Guna2Button Exit_Button;
-        protected Guna.UI2.WinForms.Guna2Button guna2Button1;
+        protected Guna.UI2.WinForms.Guna2Button Confirm_Button;
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn SchoolYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
