@@ -156,11 +156,6 @@ namespace studMin
         }
         #endregion
 
-        private void EnterAccountComplete_KeyPress(dynamic sender, KeyPressEventArgs e)
-        {
-            
-        }
-
         private void SeePassword_Button_MouseDown(object sender, MouseEventArgs e)
         {
             Password_Box.UseSystemPasswordChar = false;

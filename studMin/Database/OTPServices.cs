@@ -68,19 +68,18 @@ namespace studMin.Database
             if (DataProvider.Instance.Database.OTPs.ToList().Count == 0)
                 return;
             var listOTP = DataProvider.Instance.Database.OTPs.Where(otp => DbFunctions.DiffMinutes(otp.Time, DateTime.Now) > 5).ToList();
-            if (listOTP.Count < 0)
+            if (listOTP.Count <= 0)
                 return;
             foreach (var otp in listOTP)
             {
                 
-                DataProvider.Instance.Database.OTPs.Remove(otp);
                 var user = UserServices.Instance.GetUserByOTP(otp);
-                
-                try
+                DataProvider.Instance.Database.OTPs.Remove(otp);
+
+                if (user != null)
                 {
                     user.IDOTP = null;
                 }
-                catch { }
             }
             DataProvider.Instance.Database.SaveChanges();
         }

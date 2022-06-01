@@ -46,11 +46,13 @@ namespace studMin
             if (Username_Box.Text == String.Empty || Email_Box.Text == String.Empty)
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Không thể kết nối đến hệ thống!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            else if (isValidAccount(Username_Box.Text, Email_Box.Text))
+
+            if (isValidAccount(Username_Box.Text, Email_Box.Text))
             {
                 // Do something
-                await GetOPTAsync(Username_Box.Text ,Email_Box.Text);
+                await GetOPTAsync(Username_Box.Text, Email_Box.Text);
 
                 //MessageBox.Show("Mật khẩu mới đã được gửi đến e-mail của bạn.\nVui lòng kiểm tra hộp thư đến.");
                 ForgetPasswordUC_MoverDown.Activate();
@@ -59,6 +61,10 @@ namespace studMin
                 studMin.GUI.Login.OTPexample oTPexample = new GUI.Login.OTPexample(Username_Box.Text);
                 oTPexample.ShowDialog();
                 this.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Email của bạn không trùng khớp với tên đăng nhập, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
