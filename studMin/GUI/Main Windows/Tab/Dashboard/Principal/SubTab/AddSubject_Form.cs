@@ -145,15 +145,26 @@ namespace studMin
 
             foreach (DataGridViewRow row in DataTable.Rows)
             {
-                if (row.Cells[2].Value.ToString() == "Trưởng bộ môn")
+                if (row.Cells[0].Value.ToString().ToLower() == selectedHeadTeacher.ID.ToString().Substring(0, 8).ToLower())
                 {
-                    row.Cells[0].Value = selectedHeadTeacher.ID.ToString().Substring(0, 8).ToUpper();
-                    row.Cells[1].Value = selectedHeadTeacher.INFOR.FIRSTNAME + " " + selectedHeadTeacher.INFOR.LASTNAME;
+                    row.Cells[2].Value = "Trưởng bộ môn";
                     return;
                 }
             }
 
             DataTable.Rows.Add(selectedHeadTeacher.ID.ToString().Substring(0, 8).ToUpper(), selectedHeadTeacher.INFOR.FIRSTNAME + " " + selectedHeadTeacher.INFOR.LASTNAME, "Trưởng bộ môn");
+        }
+
+        private void DataTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedRowsCount = DataTable.SelectedRows.Count;
+            if (selectedRowsCount == 0 || selectedRowsCount > 1) return;
+
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn hủy phân công cho giáo viên này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DataTable.Rows.RemoveAt(e.RowIndex);
+            }
         }
     }
 }
