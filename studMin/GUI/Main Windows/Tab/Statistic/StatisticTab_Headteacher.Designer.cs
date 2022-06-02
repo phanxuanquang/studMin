@@ -40,6 +40,11 @@
             this.Semester_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.SchoolYear_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Subject_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.thuTuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siSoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongDatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiLeDatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -58,10 +63,11 @@
             this.DataGridViewExport_Button.ForeColor = System.Drawing.Color.White;
             this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Location = new System.Drawing.Point(772, 66);
+            this.DataGridViewExport_Button.Location = new System.Drawing.Point(1029, 81);
+            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(4);
             this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
             this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Size = new System.Drawing.Size(143, 36);
+            this.DataGridViewExport_Button.Size = new System.Drawing.Size(191, 44);
             this.DataGridViewExport_Button.TabIndex = 108;
             this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
             this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -89,8 +95,8 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(10, 66);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Search_Box.Location = new System.Drawing.Point(13, 81);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(5);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập lớp để tìm kiếm ...";
@@ -99,7 +105,7 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(338, 36);
+            this.Search_Box.Size = new System.Drawing.Size(451, 44);
             this.Search_Box.TabIndex = 107;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
@@ -111,8 +117,9 @@
             this.tittleLabel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
             this.tittleLabel.ForeColor = System.Drawing.Color.White;
             this.tittleLabel.Location = new System.Drawing.Point(0, 0);
+            this.tittleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tittleLabel.Name = "tittleLabel";
-            this.tittleLabel.Size = new System.Drawing.Size(924, 52);
+            this.tittleLabel.Size = new System.Drawing.Size(1232, 64);
             this.tittleLabel.TabIndex = 105;
             this.tittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ 1 NĂM HỌC 2021-2022 CỦA LỚP 10A1";
             this.tittleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -141,6 +148,12 @@
             this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.thuTuDataGridViewTextBoxColumn,
+            this.lopDataGridViewTextBoxColumn,
+            this.siSoDataGridViewTextBoxColumn,
+            this.soLuongDatDataGridViewTextBoxColumn,
+            this.tiLeDatDataGridViewTextBoxColumn});
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DataTable.DataSource = this.dataGridViewBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -154,13 +167,14 @@
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 117);
+            this.DataTable.Location = new System.Drawing.Point(0, 144);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(4);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(924, 623);
+            this.DataTable.Size = new System.Drawing.Size(1232, 767);
             this.DataTable.TabIndex = 111;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -211,10 +225,11 @@
             this.Semester_ComboBox.Items.AddRange(new object[] {
             "Mọi niên khóa"});
             this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Location = new System.Drawing.Point(490, 66);
+            this.Semester_ComboBox.Location = new System.Drawing.Point(653, 81);
+            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.Semester_ComboBox.Name = "Semester_ComboBox";
             this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Size = new System.Drawing.Size(142, 36);
+            this.Semester_ComboBox.Size = new System.Drawing.Size(188, 36);
             this.Semester_ComboBox.StartIndex = 0;
             this.Semester_ComboBox.TabIndex = 116;
             this.Semester_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -241,10 +256,11 @@
             this.SchoolYear_ComboBox.Items.AddRange(new object[] {
             "Mọi học kỳ"});
             this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(638, 66);
+            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(851, 81);
+            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
             this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(129, 36);
+            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(171, 36);
             this.SchoolYear_ComboBox.StartIndex = 0;
             this.SchoolYear_ComboBox.TabIndex = 115;
             this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -271,17 +287,58 @@
             this.Subject_ComboBox.Items.AddRange(new object[] {
             "Mọi môn học"});
             this.Subject_ComboBox.ItemsAppearance.Parent = this.Subject_ComboBox;
-            this.Subject_ComboBox.Location = new System.Drawing.Point(354, 66);
+            this.Subject_ComboBox.Location = new System.Drawing.Point(472, 81);
+            this.Subject_ComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.Subject_ComboBox.Name = "Subject_ComboBox";
             this.Subject_ComboBox.ShadowDecoration.Parent = this.Subject_ComboBox;
-            this.Subject_ComboBox.Size = new System.Drawing.Size(130, 36);
+            this.Subject_ComboBox.Size = new System.Drawing.Size(172, 36);
             this.Subject_ComboBox.StartIndex = 0;
             this.Subject_ComboBox.TabIndex = 117;
             this.Subject_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
+            // thuTuDataGridViewTextBoxColumn
+            // 
+            this.thuTuDataGridViewTextBoxColumn.DataPropertyName = "ThuTu";
+            this.thuTuDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
+            this.thuTuDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.thuTuDataGridViewTextBoxColumn.Name = "thuTuDataGridViewTextBoxColumn";
+            this.thuTuDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lopDataGridViewTextBoxColumn
+            // 
+            this.lopDataGridViewTextBoxColumn.DataPropertyName = "Lop";
+            this.lopDataGridViewTextBoxColumn.HeaderText = "Lớp";
+            this.lopDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.lopDataGridViewTextBoxColumn.Name = "lopDataGridViewTextBoxColumn";
+            this.lopDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // siSoDataGridViewTextBoxColumn
+            // 
+            this.siSoDataGridViewTextBoxColumn.DataPropertyName = "SiSo";
+            this.siSoDataGridViewTextBoxColumn.HeaderText = "Sỉ số";
+            this.siSoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.siSoDataGridViewTextBoxColumn.Name = "siSoDataGridViewTextBoxColumn";
+            this.siSoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // soLuongDatDataGridViewTextBoxColumn
+            // 
+            this.soLuongDatDataGridViewTextBoxColumn.DataPropertyName = "SoLuongDat";
+            this.soLuongDatDataGridViewTextBoxColumn.HeaderText = "Số lượng đạt";
+            this.soLuongDatDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.soLuongDatDataGridViewTextBoxColumn.Name = "soLuongDatDataGridViewTextBoxColumn";
+            this.soLuongDatDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tiLeDatDataGridViewTextBoxColumn
+            // 
+            this.tiLeDatDataGridViewTextBoxColumn.DataPropertyName = "TiLeDat";
+            this.tiLeDatDataGridViewTextBoxColumn.HeaderText = "Tỉ lệ đạt";
+            this.tiLeDatDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tiLeDatDataGridViewTextBoxColumn.Name = "tiLeDatDataGridViewTextBoxColumn";
+            this.tiLeDatDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // StatisticTab_Headteacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.Subject_ComboBox);
@@ -291,8 +348,9 @@
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.tittleLabel);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StatisticTab_Headteacher";
-            this.Size = new System.Drawing.Size(924, 740);
+            this.Size = new System.Drawing.Size(1232, 911);
             this.Load += new System.EventHandler(this.StatisticTab_Headteacher_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).EndInit();
@@ -310,5 +368,10 @@
         private Guna.UI2.WinForms.Guna2ComboBox SchoolYear_ComboBox;
         private Guna.UI2.WinForms.Guna2ComboBox Subject_ComboBox;
         private System.Windows.Forms.BindingSource dataGridViewBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thuTuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lopDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siSoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDatDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tiLeDatDataGridViewTextBoxColumn;
     }
 }

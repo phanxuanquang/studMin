@@ -32,13 +32,7 @@ namespace studMin
         {
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                /*List<string> @class = studMin.Database.TeacherServices.Instance.GetAllClassTeaching().Select(item => item.CLASSNAME).ToList();
-                @class.Add("Mọi lớp");
-                if (this.InvokeRequired)
-                {
-                    this.Invoke(new System.Action(() => { Class_ComboBox.DataSource = @class; }));
-                }
-                else Class_ComboBox.DataSource = @class;*/
+                
 
                 List<string> schoolYear = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID).Select(item => item.SCHOOLYEAR).Distinct().ToList();
                 if (this.InvokeRequired)
@@ -310,14 +304,14 @@ namespace studMin
 
             subject.SetFomular();
 
-            subject.ShowExcel();
+            //subject.ShowExcel();
 
             subject.Save((string)e.Argument);
 
-            if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                subject.ShowPrintPreview();
-            }
+            //if (MessageBox.Show("Bạn có muốn xem bảng tính lúc in?", "In Bảng", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            //{
+            //    subject.ShowPrintPreview();
+            //}
 
             subject.Dispose();
         }

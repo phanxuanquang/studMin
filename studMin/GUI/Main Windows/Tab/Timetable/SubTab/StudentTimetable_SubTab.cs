@@ -549,6 +549,7 @@ namespace studMin
             if (findSchedule == null) return;
 
             Guid idTeacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID;
+            //dựa vào teach load ra các lớp
             List<CLASS> classesOfTeacher = studMin.Database.DataProvider.Instance.Database.LESSONs.Where(item => item.IDSCHEDULE == findSchedule.ID && (item.IDTEACHER == idTeacher || item.CLASS.IDTEACHER == idTeacher)).Select(item => item.CLASS).Distinct().ToList();
 
             List<CLASS4GRIDVIEW> sourceBinding = classesOfTeacher.Select(item => new CLASS4GRIDVIEW(item.ID, item.CLASSNAME)).ToList();

@@ -20,6 +20,13 @@ namespace studMin
         private BindingSource listSchoolYear = null;
         private BindingSource listSubject = null;
 
+        private List<String> subjects = new List<string>();
+        private List<String> schoolyears = new List<string>();
+        private List<String> semesters = new List<string>();
+
+        List<SUBJECT> listSub = new List<SUBJECT>();
+        List<SEMESTER> listSem = new List<SEMESTER>();
+
         private GUI.LoadingWindow loadingWindow = null;
 
         private class TEACH4COMBOBOX
@@ -119,7 +126,7 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
-            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = Methods.ParseSemester(listSemester.Current as string), MonHoc = listSubject.Current as string, NamHoc = (listSchoolYear.Current as TEACH4COMBOBOX).NamHoc };
+            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = Methods.ParseSemester(Semester_ComboBox.SelectedItem as string), MonHoc = Subject_ComboBox.SelectedItem as string, NamHoc = SchoolYear_ComboBox.SelectedItem as String };
 
             Action.Excel.ReportSubject reportSubject = new studMin.Action.Excel.ReportSubject();
 
@@ -143,38 +150,18 @@ namespace studMin
             reportSubject.Dispose();
         }
 
-        private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, BindingSource binding, object data, string displayMember, string valueMember)
+        private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, List<String> list)
         {
             userControl.Invoke(new System.Action(() =>
             {
-                binding.DataSource = data;
-                userControl.DisplayMember = displayMember;
-                userControl.ValueMember = valueMember;
+                userControl.DataSource = list;
             }));
         }
 
         private void StatisticTab_Headteacher_Load(object sender, EventArgs e)
         {
             loadingWindow = new GUI.LoadingWindow(this.ParentForm, "ĐANG TẢI BẢNG TỔNG KẾT MÔN HỌC");
-
-            listSemester = new BindingSource();
-            listSchoolYear = new BindingSource();
-            listSubject = new BindingSource();
-
-            Subject_ComboBox.DataSource = listSubject;
-            Semester_ComboBox.DataSource = listSemester;
-            SchoolYear_ComboBox.DataSource = listSchoolYear;
-
-            listSemester.DataSource = typeof(string);
-            listSchoolYear.DataSource = typeof(TEACH4COMBOBOX);
-            listSubject.DataSource = typeof(string);
-
-            listSchoolYear.CurrentChanged += ListSchoolYear_CurrentChanged;
-
-            listSemester.CurrentChanged += UpdateReportSubject_CurrentChanged;
-            listSubject.CurrentChanged += UpdateReportSubject_CurrentChanged;
-            listSchoolYear.CurrentChanged += UpdateReportSubject_CurrentChanged;
-
+           
             if (backgroundWorker == null)
             {
                 backgroundWorker = new BackgroundWorker();
@@ -190,84 +177,155 @@ namespace studMin
                 return;
             }
 
+            SchoolYear_ComboBox.SelectedIndexChanged += ListSchoolYear_CurrentChanged;
+
+            Semester_ComboBox.SelectedIndexChanged += ListSemester_CurrentChanged;
+
+            Subject_ComboBox.SelectedIndexChanged += Subject_ComboBox_SelectedIndexChanged;
+            Semester_ComboBox.SelectedIndexChanged += Semester_ComboBox_SelectedIndexChanged;
+            SchoolYear_ComboBox.SelectedIndexChanged += SchoolYear_ComboBox_SelectedIndexChanged;
+           
             backgroundWorker.DoWork += LoadSubjectFromDatabase_DoWork;
             backgroundWorker.RunWorkerCompleted += LoadSubjectFromDatabase_RunWorkerCompleted;
             backgroundWorker.RunWorkerAsync();
             loadingWindow.ShowDialog();
         }
-
-        private void UpdateReportSubject_CurrentChanged(object sender, EventArgs e)
+        private void ListSchoolYear_CurrentChanged(object sender, EventArgs e)
         {
-            string schoolYear = (listSchoolYear.Current as TEACH4COMBOBOX).NamHoc;
-            string _semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            string _subject = (listSubject.Current as string);
+            AssignDataToComboBox(Semester_ComboBox, semesters);
+        }
+
+        private void ListSemester_CurrentChanged(object sender, EventArgs e)
+        {
+            AssignDataToComboBox(Subject_ComboBox, subjects);
+        }
+
+        private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateReportSubject_CurrentChanged();
+        }
+
+        private void Subject_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateReportSubject_CurrentChanged();
+        }
+
+        private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateReportSubject_CurrentChanged();
+        }
+
+        private void UpdateReportSubject_CurrentChanged()
+        {
+            string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+            string _semester = Semester_ComboBox.SelectedItem.ToString();
+            string _subject = Subject_ComboBox.SelectedItem.ToString();
+            SEMESTER sEMESTERs = listSem.Where(x => x.NAME == _semester).FirstOrDefault();
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(_semester) || String.IsNullOrEmpty(_subject)) return;
 
-            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(item => item.SCHOOLYEAR == schoolYear && item.SEMESTER.NAME == _semester).Select(item => item.CLASS).Distinct().ToList();
-            SUBJECT subject = studMin.Database.DataProvider.Instance.Database.SUBJECTs.FirstOrDefault(item => item.DisplayName == _subject);
-            Guid idSemester = studMin.Database.DataProvider.Instance.Database.SEMESTERs.FirstOrDefault(item => item.NAME == _semester).ID;
+           
+            SUBJECT subject = listSub.FirstOrDefault(item => item.DisplayName == _subject);
+            int coefficientOralMark = 1;
+            int coefficientRegularMark = 1;
+            int coefficientMidTermMark = 1;
+            int coefficientFinalMark = 1;
 
-            int coefficientOralMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "M").FirstOrDefault().COEFFICIENT.Value;
-            int coefficientRegularMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "15M").FirstOrDefault().COEFFICIENT.Value;
-            int coefficientMidTermMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "45M").FirstOrDefault().COEFFICIENT.Value;
-            int coefficientFinalMark = studMin.Database.DataProvider.Instance.Database.ROLESCOREs.Where(role => role.ROLE == "FINAL").FirstOrDefault().COEFFICIENT.Value;
+            var listRolescore = Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
+            foreach (var item in listRolescore)
+            {
+                switch(item.ROLE)
+                {
+                    case "M":
+                        coefficientFinalMark = item.COEFFICIENT.Value;
+                        break;
+                    case "15M":
+                        coefficientRegularMark = item.COEFFICIENT.Value;
+                        break;
+                    case "45M":
+                        coefficientMidTermMark = item.COEFFICIENT.Value;
+                        break;
+                    default:
+                        coefficientFinalMark = item.COEFFICIENT.Value;
+                        break;
+                }
+            }
 
             if (data == null) data = new List<GRIDVIEW4REPORT>();
             else data.Clear();
-
-            for (int indexClass = 0; indexClass < classes.Count; indexClass++)
+            //foreach (var itemSEM in sEMESTERs)
             {
-                Guid idClass = classes[indexClass].ID;
-                string className = classes[indexClass].CLASSNAME;
-                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
-                List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.SEMESTER.ID == idSemester && item.SCHOOLYEAR == schoolYear/* && item.STUDENT.IDCLASS == idClass*/ && item.IDSUBJECT == subject.Id).ToList();
-                if (students.Count == 0 || scores.Count == 0) continue;
-
-                List<double> avgScoreStudent = new List<double>();
-
-                for (int indexStudent = 0; indexStudent < students.Count; indexStudent++)
+                List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == sEMESTERs.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
+                for (int indexClass = 0; indexClass < classes.Count; indexClass++)
                 {
-                    List<double> oralMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
-                    List<double> regularMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "15M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
-                    List<double> midTermMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "45M").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
-                    List<double> finalMark = scores.Where(item => item.IDSTUDENT == students[indexStudent].ID && item.ROLESCORE.ROLE == "FINAL").Select(score => score.SCORE1.Value * score.ROLESCORE.COEFFICIENT.Value).ToList();
+                    Guid idClass = classes[indexClass].ID;
+                    string className = classes[indexClass].CLASSNAME;
 
-                    double avg = (oralMark.Sum() + regularMark.Sum() + midTermMark.Sum() + finalMark.Sum()) / (coefficientOralMark * oralMark.Count + coefficientRegularMark * regularMark.Count + coefficientMidTermMark * midTermMark.Count + coefficientFinalMark * finalMark.Count);
+                    List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
 
-                    if (!double.IsNaN(avg) && avg >= subject.PASSSCORE)
+                    if (students.Count == 0) continue;
+
+                    List<double> avgScoreStudent = new List<double>();
+
+                    //for (int indexStudent = 0; indexStudent < students.Count; indexStudent++)
                     {
-                        avgScoreStudent.Add(avg);
-                    }
-                }
+                        foreach (STUDENT student in students)
+                        {
+                            List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSEMESTER == sEMESTERs.ID && item.SCHOOLYEAR == schoolYear && item.IDSTUDENT == student.ID && item.IDSUBJECT == subject.Id).ToList();
+                            if (scores.Count == 0) continue;
+                            List<double> oralMark = new List<double>();
+                            List<double> regularMark = new List<double>();
+                            List<double> midTermMark = new List<double>();
+                            List<double> finalMark = new List<double>();
+                            foreach(var x in scores)
+                            {
+                                switch (x.ROLESCORE.ROLE)
+                                {
+                                    case "M":
+                                        oralMark.Add(x.SCORE1.Value);
+                                        break;
+                                    case "15M":
+                                        regularMark.Add(x.SCORE1.Value);
+                                        break;
+                                    case "45M":
+                                        midTermMark.Add(x.SCORE1.Value);
+                                        break;
+                                    default:
+                                        finalMark.Add(x.SCORE1.Value);
+                                        break;
+                                }
+                            }
+                            double avg = (oralMark.Sum() + regularMark.Sum() + midTermMark.Sum() + finalMark.Sum()) / (coefficientOralMark * oralMark.Count + coefficientRegularMark * regularMark.Count + coefficientMidTermMark * midTermMark.Count + coefficientFinalMark * finalMark.Count);
 
-                data.Add(new GRIDVIEW4REPORT(classes[indexClass].ID, idSemester, subject.Id) { ThuTu = indexClass + 1, Lop = classes[indexClass].CLASSNAME, SiSo = students.Count, SoLuongDat = avgScoreStudent.Count });
+                            if (!double.IsNaN(avg) && avg >= subject.PASSSCORE)
+                            {
+                                avgScoreStudent.Add(avg);
+                            }
+                        }
+                    }
+                    data.Add(new GRIDVIEW4REPORT(classes[indexClass].ID, sEMESTERs.ID, subject.Id) { ThuTu = indexClass + 1, Lop = classes[indexClass].CLASSNAME, SiSo = students.Count, SoLuongDat = avgScoreStudent.Count });
+                }    
             }
 
-            this.Invoke(new System.Action(() => { dataGridViewBindingSource.DataSource = data.ToList(); }));
+            this.Invoke(new System.Action(() => { dataGridViewBindingSource.DataSource = data.ToList();}));
         }
 
 
         private void LoadSubjectFromDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            /*ListSchoolYear_CurrentChanged(null, null);
-            LoadSubjectFromDatabase_DoWork(null, null);*/
+            
             loadingWindow.Close();
         }
 
         private void LoadSubjectFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
-            List<string> subjects = studMin.Database.SubjectServices.Instance.GetSubjects().Select(item => item.DisplayName).ToList();
-            List<IGrouping<string, TEACH>> schoolYear = studMin.Database.DataProvider.Instance.Database.TEACHes.GroupBy(item => item.SCHOOLYEAR).ToList();
-
-            AssignDataToComboBox(SchoolYear_ComboBox, listSchoolYear, schoolYear.Select(item => new TEACH4COMBOBOX(item.Key, item.ToList())).ToList(), "NamHoc", "NamHoc");
-            AssignDataToComboBox(Subject_ComboBox, listSubject, subjects, "", "");
-        }
-
-        private void ListSchoolYear_CurrentChanged(object sender, EventArgs e)
-        {
-            List<TEACH> schedule = (listSchoolYear.Current as TEACH4COMBOBOX).GiangDay;
-            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
+            listSub = studMin.Database.SubjectServices.Instance.GetSubjects();
+            listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.Where(x => x.NAME != "0").ToList();
+            subjects = listSub.Select(item => item.DisplayName).ToList();
+            schoolyears = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(x => x.SCHOOLYEAR).Distinct().ToList();
+            semesters = listSem.Select(y => y.NAME).ToList();
+            AssignDataToComboBox(SchoolYear_ComboBox, schoolyears);
+           
         }
 
         private string HocKy(int msg)
@@ -307,5 +365,7 @@ namespace studMin
                 MessageBox.Show(ex.Message);
             }
         }
+
+       
     }
 }
