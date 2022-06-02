@@ -77,6 +77,11 @@ namespace studMin
             }
 
             Guid headTeacherId = new Guid((SubjectHead_ComboBox.SelectedItem as ComboboxItem).Value.ToString());
+            TEACHER selectedHeadTeacher = TeacherServices.Instance.GetTeacherById(headTeacherId);
+
+            Guid headTeacherRoleId = DataProvider.Instance.Database.TEACHERROLEs.Where(item => item.ROLE == "Trưởng bộ môn").FirstOrDefault().ID;
+            selectedHeadTeacher.IDTEACHERROLE = headTeacherRoleId;
+
             SubjectServices.Instance.AddSubject(subjectName, headTeacherId);
 
             SUBJECT addedSubject = SubjectServices.Instance.GetSubjectByName(subjectName);
@@ -129,6 +134,26 @@ namespace studMin
             }
 
             DataTable.Rows.Add(teacherId.ToString().Substring(0, 8).ToUpper(), selectedTeacher.INFOR.FIRSTNAME + " " + selectedTeacher.INFOR.LASTNAME, selectedTeacher.TEACHERROLE.ROLE);
+        }
+
+        private void SubjectHead_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SubjectHead_ComboBox.SelectedIndex == 0) return;
+
+            Guid teacherId = new Guid((SubjectHead_ComboBox.SelectedItem as ComboboxItem).Value.ToString());
+            TEACHER selectedHeadTeacher = TeacherServices.Instance.GetTeacherById(teacherId);
+
+            foreach (DataGridViewRow row in DataTable.Rows)
+            {
+                if (row.Cells[2].Value.ToString() == "Trưởng bộ môn")
+                {
+                    row.Cells[0].Value = selectedHeadTeacher.ID.ToString().Substring(0, 8).ToUpper();
+                    row.Cells[1].Value = selectedHeadTeacher.INFOR.FIRSTNAME + " " + selectedHeadTeacher.INFOR.LASTNAME;
+                    return;
+                }
+            }
+
+            DataTable.Rows.Add(selectedHeadTeacher.ID.ToString().Substring(0, 8).ToUpper(), selectedHeadTeacher.INFOR.FIRSTNAME + " " + selectedHeadTeacher.INFOR.LASTNAME, "Trưởng bộ môn");
         }
     }
 }
