@@ -49,5 +49,19 @@ namespace studMin.Database
 
             return true;
         }
+
+        public void AddSubject(string subjectName, Guid headTeacherId)
+        {
+            SUBJECT newSubject = new SUBJECT()
+            {
+                Id = Guid.NewGuid(),
+                DisplayName = subjectName,
+                IDHEADTEACHER = headTeacherId,
+                PASSSCORE = 5,
+            };
+
+            DataProvider.Instance.Database.SUBJECTs.Add(newSubject);
+            DataProvider.Instance.Database.SaveChanges();
+        }
     }
 }
