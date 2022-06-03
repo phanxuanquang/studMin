@@ -16,13 +16,9 @@ namespace studMin
         private BackgroundWorker backgroundWorker = null;
         private List<GRIDVIEW4REPORT> data = null;
 
-        private BindingSource listSemester = null;
-        private BindingSource listSchoolYear = null;
-        private BindingSource listSubject = null;
-
-        private List<String> subjects = new List<string>();
-        private List<String> schoolyears = new List<string>();
-        private List<String> semesters = new List<string>();
+        private List<string> subjects = new List<string>();
+        private List<string> schoolyears = new List<string>();
+        private List<string> semesters = new List<string>();
 
         List<SUBJECT> listSub = new List<SUBJECT>();
         List<SEMESTER> listSem = new List<SEMESTER>();
@@ -126,7 +122,27 @@ namespace studMin
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
         {
-            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = Methods.ParseSemester(Semester_ComboBox.SelectedItem as string), MonHoc = Subject_ComboBox.SelectedItem as string, NamHoc = SchoolYear_ComboBox.SelectedItem as String };
+            int semester = -1;
+            string subject = string.Empty;
+            string schoolYear = string.Empty;
+
+            void GetValue()
+            {
+                semester = Methods.ParseSemester(Semester_ComboBox.SelectedItem as string);
+                subject = Subject_ComboBox.SelectedItem as string;
+                schoolYear = SchoolYear_ComboBox.SelectedItem as string;
+            }
+
+            if (Semester_ComboBox.InvokeRequired)
+            {
+                this.Invoke(new System.Action(() =>
+                {
+                    GetValue();
+                }));
+            }
+            else GetValue();
+
+            Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = semester, MonHoc = subject, NamHoc = schoolYear };
 
             Action.Excel.ReportSubject reportSubject = new studMin.Action.Excel.ReportSubject();
 
@@ -152,10 +168,11 @@ namespace studMin
 
         private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, List<String> list)
         {
-            userControl.Invoke(new System.Action(() =>
+            if (userControl.InvokeRequired)
             {
-                userControl.DataSource = list;
-            }));
+                userControl.Invoke(new System.Action(() => { userControl.DataSource = list; }));
+            }
+            else userControl.DataSource = list;
         }
 
         private void StatisticTab_Headteacher_Load(object sender, EventArgs e)
@@ -218,7 +235,7 @@ namespace studMin
         private void UpdateReportSubject_CurrentChanged()
         {
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
-            string _semester = Semester_ComboBox.SelectedItem.ToString();
+            string _semester = Methods.ParseSemester(Semester_ComboBox.SelectedItem.ToString()).ToString();
             string _subject = Subject_ComboBox.SelectedItem.ToString();
             SEMESTER sEMESTERs = listSem.Where(x => x.NAME == _semester).FirstOrDefault();
 
@@ -307,13 +324,16 @@ namespace studMin
                 }    
             }
 
-            this.Invoke(new System.Action(() => { dataGridViewBindingSource.DataSource = data.ToList();}));
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new System.Action(() => { dataGridViewBindingSource.DataSource = data.ToList(); }));
+            }
+            else dataGridViewBindingSource.DataSource = data.ToList();
         }
 
 
         private void LoadSubjectFromDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
             loadingWindow.Close();
         }
 
@@ -323,7 +343,7 @@ namespace studMin
             listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.Where(x => x.NAME != "0").ToList();
             subjects = listSub.Select(item => item.DisplayName).ToList();
             schoolyears = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(x => x.SCHOOLYEAR).Distinct().ToList();
-            semesters = listSem.Select(y => y.NAME).ToList();
+            semesters = listSem.Select(y => HocKy(int.Parse(y.NAME))).ToList();
             AssignDataToComboBox(SchoolYear_ComboBox, schoolyears);
            
         }
@@ -365,7 +385,5 @@ namespace studMin
                 MessageBox.Show(ex.Message);
             }
         }
-
-       
     }
 }
