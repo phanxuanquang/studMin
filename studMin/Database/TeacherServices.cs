@@ -70,7 +70,7 @@ namespace studMin.Database
 
         public List<TEACHER> GetTeachersIsNotAssigned()
         {
-            return DataProvider.Instance.Database.TEACHERs.Where(item => item.TEACHERROLE.ROLE != "Hiệu trưởng" && item.TEACHERROLE.ROLE != "Phó hiệu trưởng" && item.TEACHERROLE.ROLE != "Trưởng bộ môn" && item.IDSUBJECT == null).ToList();
+            return DataProvider.Instance.Database.TEACHERs.Where(item => item.TEACHERROLE.ROLE != "Hiệu trưởng" && item.TEACHERROLE.ROLE != "Phó hiệu trưởng" && item.TEACHERROLE.ROLE != "Trưởng bộ môn" && item.IDSUBJECT == null && item.USER.ISDELETED == false).ToList();
         }
     }
 }
