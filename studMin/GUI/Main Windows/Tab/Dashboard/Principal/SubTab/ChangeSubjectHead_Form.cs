@@ -23,6 +23,17 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
         }
 
+        public class ComboboxItem
+        {
+            public string Text { get; set; }
+            public object Value { get; set; }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+
         public ChangeSubjectHead_Form(string _subjectName, SubjectManage_Form _subjectManageForm)
         {
             InitializeComponent();
@@ -58,7 +69,7 @@ namespace studMin
 
             try
             {
-                Guid teacherId = TeacherServices.Instance.GetTeacherByName(SubjectTeacher_ComboBox.SelectedItem.ToString()).ID;
+                Guid teacherId = new Guid((SubjectTeacher_ComboBox.SelectedItem as ComboboxItem).Value.ToString());
                 bool isChanged = SubjectServices.Instance.ChangeSubjectHeadTeacher(subjectName, teacherId);
 
                 if (isChanged)
@@ -84,7 +95,13 @@ namespace studMin
 
             foreach (TEACHER teacher in listTeacher)
             {
-                SubjectTeacher_ComboBox.Items.Add(teacher.INFOR.FIRSTNAME + " " + teacher.INFOR.LASTNAME);
+                ComboboxItem item = new ComboboxItem
+                {
+                    Text = teacher.INFOR.FIRSTNAME + " " + teacher.INFOR.LASTNAME,
+                    Value = teacher.ID
+                };
+
+                SubjectTeacher_ComboBox.Items.Add(item);
             }
         }
     }

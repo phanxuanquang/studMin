@@ -66,14 +66,14 @@ namespace studMin
             foreach (SUBJECT subject in listSubjects)
             {
                 int quantityOfTeacher = TeacherServices.Instance.GetTeachersBySubject(subject.Id).Count;
-                if (subject.IDHEADTEACHER == null)
+                if (subject.IDHEADTEACHER == null || subject.TEACHER.USER.ISDELETED == true)
                 {
-                    dataSource.Rows.Add(subject.Id.ToString().Substring(0, 7).ToUpper(), subject.DisplayName, "Chưa có", quantityOfTeacher);
+                    dataSource.Rows.Add(subject.Id.ToString().Substring(0, 8).ToUpper(), subject.DisplayName, "Chưa có", quantityOfTeacher);
                 }
                 else
                 {
                     TEACHER headTeacher = TeacherServices.Instance.GetTeacherById((Guid)subject.IDHEADTEACHER);
-                    dataSource.Rows.Add(subject.Id.ToString().Substring(0,7).ToUpper(), subject.DisplayName, headTeacher.INFOR.FIRSTNAME + " " + headTeacher.INFOR.LASTNAME, quantityOfTeacher);
+                    dataSource.Rows.Add(subject.Id.ToString().Substring(0,8).ToUpper(), subject.DisplayName, headTeacher.INFOR.FIRSTNAME + " " + headTeacher.INFOR.LASTNAME, quantityOfTeacher);
                 }
             }
 

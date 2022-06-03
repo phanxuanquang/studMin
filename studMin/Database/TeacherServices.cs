@@ -44,7 +44,7 @@ namespace studMin.Database
 
         public List<TEACHER> GetTeachersBySubject(Guid idSubject)
         {
-            return DataProvider.Instance.Database.TEACHERs.Where(item => item.IDSUBJECT == idSubject).ToList();
+            return DataProvider.Instance.Database.TEACHERs.Where(item => item.IDSUBJECT == idSubject && item.USER.ISDELETED == false).ToList();
         }
 
         public List<CLASS> GetAllClassTeaching(string schoolYear = null)
