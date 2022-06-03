@@ -196,7 +196,7 @@ namespace studMin
 
             foreach (var classItem in listClasses)
             {
-                if (classItem.TEACHER == null)
+                if (classItem.TEACHER == null || classItem.TEACHER.USER.ISDELETED == true)
                 {
                     continue;
                 }

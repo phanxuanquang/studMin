@@ -80,6 +80,12 @@ namespace studMin
 
         private void ComboBoxesSelectedIndexChangedHandler()
         {
+            if (Semester_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex == 0)
+            {
+                LoadReportsForAllSemesterAllSchoolYear();
+                return;
+            }
+
             if (Semester_ComboBox.SelectedIndex == 0 || SchoolYear_ComboBox.SelectedIndex == 0) return;
 
             List<Action.Excel.ReportSemester.Item> list = GetListReportSemesterItem();
@@ -102,6 +108,7 @@ namespace studMin
             }
 
             DataTable.DataSource = dataSource;
+            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
         }
 
         private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,6 +186,30 @@ namespace studMin
                 SchoolYear_ComboBox.Items.Add(schoolYear);
             }
 
+            LoadReportsForAllSemesterAllSchoolYear();
+        }
+
+        private void LoadReportsForAllSemesterAllSchoolYear()
+        {
+            DataTable dataSource = new DataTable();
+            dataSource.Columns.Add("Thứ tự");
+            dataSource.Columns.Add("Lớp");
+            dataSource.Columns.Add("Sỉ số");
+            dataSource.Columns.Add("Số lượng đạt");
+            dataSource.Columns.Add("Tỉ lệ đạt");
+
+            List<REPORTSEMESTER> listReports = ReportSemesterServices.Instance.GetReports();
+            List<CLASS> listClass = ClassServices.Instance.GetClasss();
+
+            foreach (var report in listReports)
+            {
+                CLASS currentClass = listClass.Find(classItem => classItem.ID == report.IDCLASS);
+                double ratio = Math.Round((double)(100.0 * report.PASSQUANTITY / currentClass.STUDENTs.Count), 2);
+                dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, currentClass.STUDENTs.Count, report.PASSQUANTITY, ratio + "%");
+            }
+
+            DataTable.DataSource = dataSource;
+            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ, NĂM HỌC";
         }
     }
 }
