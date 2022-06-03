@@ -190,6 +190,8 @@ namespace studMin
 
         private void DataTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
+
             STUDYING studentCurrent;
             if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {

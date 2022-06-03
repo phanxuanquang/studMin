@@ -189,9 +189,10 @@ namespace studMin
             DataTable_Info.Columns.Add("Column1", "Mã giáo viên");
             DataTable_Info.Columns.Add("Column2", "Họ tên");
             DataTable_Info.Columns.Add("Column3", "Lớp phụ trách");
-            DataTable_Info.Columns.Add("Column4", "Giới tính");
-            DataTable_Info.Columns.Add("Column5", "Ngày sinh");
-            DataTable_Info.Columns.Add("Column6", "Địa chỉ");
+            DataTable_Info.Columns.Add("Column4", "Năm phụ trách");
+            DataTable_Info.Columns.Add("Column5", "Giới tính");
+            DataTable_Info.Columns.Add("Column6", "Ngày sinh");
+            DataTable_Info.Columns.Add("Column7", "Địa chỉ");
 
             foreach (var classItem in listClasses)
             {
@@ -208,25 +209,25 @@ namespace studMin
                 {
                     if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
                     }
                 }
                 else if (!filterByClass && !filterBySchoolYear)
                 {
-                    DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                    DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
                 }
                 else if (filterByClass && !filterBySchoolYear)
                 {
                     if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
                     }
                 }
                 else if (filterByClass && filterBySchoolYear)
                 {
                     if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, sex, dayOfBirth, inforTeacher.ADDRESS);
+                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
                     }
                 }
             }
