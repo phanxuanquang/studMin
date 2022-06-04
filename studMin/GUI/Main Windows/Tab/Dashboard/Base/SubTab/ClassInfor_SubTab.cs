@@ -267,16 +267,9 @@ namespace studMin
             DataTable_Info.Columns.Add("Column6", "Số điện thoại");
             DataTable_Info.Columns.Add("Column7", "Email");
 
-            List<STUDENT> listStudents = new List<STUDENT>();
-
-            foreach (var classItem in listClasses)
-            {
-                if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
-                {
-                    listStudents = classItem.STUDENTs.ToList();
-                }
-            }
-
+            string className = Class_ComboBox.SelectedItem.ToString();
+            string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
             foreach (var student in listStudents)
             {
                 string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
