@@ -72,8 +72,6 @@ namespace studMin
                 list.Add(temp);
             }
 
-            
-
             INFOR inforTeacher = currentClass.TEACHER.INFOR;
 
             Action.Excel.ListStudent.Info info = new Action.Excel.ListStudent.Info()

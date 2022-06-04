@@ -162,25 +162,16 @@ namespace studMin
             Class_Box.Text = student.CLASS.CLASSNAME;
             Genre_Box.Text = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
             Bloodline_Box.Text = student.BLOODLINE;
-            Email_Box.Text = student.EMAIL;
+            Email_Box.Text = student.EMAIL.ToLower();
             Address_Box.Text = student.INFOR.ADDRESS;
-            ParentNumber_Box.Text = student.EMAILPARENT;
+            ParentNumber_Box.Text = student.EMAILPARENT.ToLower();
         }
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                DataTable.Rows.Clear();
-                if (string.IsNullOrWhiteSpace(Search_Box.Text))
-                {
-                    BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
-                }
-                else
-                {
-                    var students = GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.STUDENT.INFOR.FIRSTNAME + " " + item.STUDENT.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.STUDENT.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
-                    BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
-                }
+                Search_Button_Click(sender, null);
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
