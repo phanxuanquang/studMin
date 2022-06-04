@@ -43,6 +43,7 @@
             this.NameClassHeadTeacher = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaxQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SCHOOLYEAR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +76,8 @@
             this.cLASSNAMEDataGridViewTextBoxColumn,
             this.NameClassHeadTeacher,
             this.Quantity,
-            this.MaxQuantity});
+            this.MaxQuantity,
+            this.SCHOOLYEAR});
             this.GridView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GridView.DataSource = this.cLASSBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -243,6 +245,13 @@
             this.MaxQuantity.Name = "MaxQuantity";
             this.MaxQuantity.ReadOnly = true;
             // 
+            // SCHOOLYEAR
+            // 
+            this.SCHOOLYEAR.DataPropertyName = "SCHOOLYEAR";
+            this.SCHOOLYEAR.HeaderText = "Năm học";
+            this.SCHOOLYEAR.Name = "SCHOOLYEAR";
+            this.SCHOOLYEAR.ReadOnly = true;
+            // 
             // ClassManage_SubTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,5 +281,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NameClassHeadTeacher;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SCHOOLYEAR;
     }
 }
