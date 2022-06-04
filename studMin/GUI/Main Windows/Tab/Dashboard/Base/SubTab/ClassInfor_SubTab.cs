@@ -54,9 +54,6 @@ namespace studMin
                 return;
             }
 
-            
-            
-
             List<Action.Excel.ListStudent.Item> list = new List<Action.Excel.ListStudent.Item>();
 
             foreach (var student in listStudents)
@@ -150,7 +147,7 @@ namespace studMin
 
                     if (SchoolYear_ComboBox.SelectedIndex == 0)
                     {
-                        MessageBox.Show("Vui lòng chọn niên khóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Vui lòng chọn năm học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
@@ -238,7 +235,7 @@ namespace studMin
             DataTable_Info.Columns.Add("Column1", "Mã lớp");
             DataTable_Info.Columns.Add("Column2", "Tên lớp");
             DataTable_Info.Columns.Add("Column3", "Khối");
-            DataTable_Info.Columns.Add("Column4", "Giáo viên");
+            DataTable_Info.Columns.Add("Column4", "Chủ nhiệm");
             DataTable_Info.Columns.Add("Column5", "Năm học");
 
             foreach (var classItem in listClasses)
@@ -260,12 +257,12 @@ namespace studMin
         private void GetListStudents(List<CLASS> listClasses)
         {
             DataTable_Info.Columns.Add("Column1", "Mã học sinh");
-            DataTable_Info.Columns.Add("Column2", "Họ tên");
+            DataTable_Info.Columns.Add("Column2", "Họ và tên");
             DataTable_Info.Columns.Add("Column3", "Giới tính");
             DataTable_Info.Columns.Add("Column4", "Ngày sinh");
             DataTable_Info.Columns.Add("Column5", "Địa chỉ");
             DataTable_Info.Columns.Add("Column6", "Số điện thoại");
-            DataTable_Info.Columns.Add("Column7", "Email");
+            DataTable_Info.Columns.Add("Column7", "E-mail");
 
             List<STUDENT> listStudents = new List<STUDENT>();
 
