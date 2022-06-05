@@ -14,6 +14,8 @@ namespace studMin
 {
     public partial class StatisticTab : UserControl
     {
+        List<REPORTSEMESTER> listReports;
+        DataTable dataSource;
         string schoolYear;
         string semesterName;
 
@@ -24,23 +26,9 @@ namespace studMin
 
         private void DataGridViewExport_Button_Click(object sender, EventArgs e)
         {
-            if (Semester_ComboBox.SelectedIndex == 0)
+            if (DataTable.Rows.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn học kỳ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (SchoolYear_ComboBox.SelectedIndex == 0)
-            {
-                MessageBox.Show("Vui lòng chọn năm học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            List<Action.Excel.ReportSemester.Item> list = GetListReportSemesterItem();
-
-            if (list.Count == 0)
-            {
-                MessageBox.Show("Hiện tại chưa có dữ liệu tương ứng với học kỳ và năm học bạn đã chọn, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không có báo cáo tổng kết của bất kỳ lớp nào được tìm thấy, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -54,20 +42,46 @@ namespace studMin
             }
             else return;
 
-            string formattedSchoolYear = int.Parse(schoolYear) + " - " + (int.Parse(schoolYear) + 1);
-            Action.Excel.ReportSemester.Info info = new Action.Excel.ReportSemester.Info()
-            {
-                HocKy = int.Parse(semesterName),
-                NamHoc = formattedSchoolYear
-            };
-
             Action.Excel.ReportSemester ReportSemester = new Action.Excel.ReportSemester();
-            ReportSemester.InsertInfo(info);
-
-            foreach (Action.Excel.ReportSemester.Item item in list)
+            
+            foreach (DataGridViewRow row in DataTable.Rows)
             {
+                Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
+                {
+                    Lop = row.Cells[1].Value.ToString(),
+                    SiSo = int.Parse(row.Cells[4].Value.ToString()),
+                    SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
+                };
                 ReportSemester.InsertItem(item);
             }
+
+            string exportSchoolYear = DataTable.Rows[0].Cells[3].Value.ToString();
+            for (int i = 0; i < DataTable.Rows.Count - 1; i++)
+            {
+                if (exportSchoolYear != DataTable.Rows[i + 1].Cells[3].Value.ToString())
+                {
+                    exportSchoolYear = "Mọi năm học";
+                    break;
+                }
+            }
+
+            string exportSemester = DataTable.Rows[0].Cells[2].Value.ToString();
+            for (int i = 0; i < DataTable.Rows.Count - 1; i++)
+            {
+                if (exportSemester != DataTable.Rows[i + 1].Cells[2].Value.ToString())
+                {
+                    exportSemester = "3";
+                    break;
+                }
+            }
+
+            string formattedSchoolYear = int.Parse(exportSchoolYear) + " - " + (int.Parse(exportSchoolYear) + 1);
+            Action.Excel.ReportSemester.Info info = new Action.Excel.ReportSemester.Info()
+            {
+                HocKy = int.Parse(exportSemester),
+                NamHoc = formattedSchoolYear
+            };
+            ReportSemester.InsertInfo(info);
 
             ReportSemester.ShowExcel();
             ReportSemester.Save(exportPath);
@@ -95,16 +109,11 @@ namespace studMin
                 return;
             }
 
-            DataTable dataSource = new DataTable();
-            dataSource.Columns.Add("Thứ tự");
-            dataSource.Columns.Add("Lớp");
-            dataSource.Columns.Add("Sỉ số");
-            dataSource.Columns.Add("Số lượng đạt");
-            dataSource.Columns.Add("Tỉ lệ đạt");
+            dataSource.Rows.Clear();
 
             foreach (Action.Excel.ReportCommon.Item item in list)
             {
-                dataSource.Rows.Add(dataSource.Rows.Count + 1, item.Lop, item.SiSo, item.SoLuongDat, item.TiLeDat + "%");
+                dataSource.Rows.Add(dataSource.Rows.Count + 1, item.Lop, semesterName, schoolYear, item.SiSo, item.SoLuongDat, item.TiLeDat + "%");
             }
 
             DataTable.DataSource = dataSource;
@@ -127,19 +136,17 @@ namespace studMin
         {
             List<Action.Excel.ReportSemester.Item> list = new List<Action.Excel.ReportSemester.Item>();
 
-            List<REPORTSEMESTER> listReports = ReportSemesterServices.Instance.GetReports();
-
             semesterName = Semester_ComboBox.SelectedIndex == 1 ? "1" : "2";
             SEMESTER selectedSemester = GetSelectedSemester(semesterName);
 
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
-            List<CLASS> listClassesOfSchoolYear = ClassServices.Instance.GetClassBySchoolYear(schoolYear);
+            List<CLASS> listClass = ClassServices.Instance.GetClassBySchoolYear(schoolYear);
 
 
 
             foreach (var report in listReports)
             {
-                CLASS currentClass = listClassesOfSchoolYear.Find(item => item.ID == report.IDCLASS);
+                CLASS currentClass = listClass.Find(item => item.ID == report.IDCLASS);
                 if (report.IDSEMESTER == selectedSemester.ID && currentClass != null)
                 {
                     Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
@@ -157,6 +164,7 @@ namespace studMin
 
         private void StatisticTab_Load(object sender, EventArgs e)
         {
+            listReports = ReportSemesterServices.Instance.GetReports();
             List<SEMESTER> listSemesters = DataProvider.Instance.Database.SEMESTERs.Select(item => item).ToList();
 
             foreach (SEMESTER semester in listSemesters)
@@ -186,30 +194,67 @@ namespace studMin
                 SchoolYear_ComboBox.Items.Add(schoolYear);
             }
 
-            LoadReportsForAllSemesterAllSchoolYear();
-        }
-
-        private void LoadReportsForAllSemesterAllSchoolYear()
-        {
-            DataTable dataSource = new DataTable();
+            dataSource = new DataTable();
             dataSource.Columns.Add("Thứ tự");
             dataSource.Columns.Add("Lớp");
+            dataSource.Columns.Add("Học kỳ");
+            dataSource.Columns.Add("Năm học");
             dataSource.Columns.Add("Sỉ số");
             dataSource.Columns.Add("Số lượng đạt");
             dataSource.Columns.Add("Tỉ lệ đạt");
+            LoadReportsForAllSemesterAllSchoolYear();
+        }
 
-            List<REPORTSEMESTER> listReports = ReportSemesterServices.Instance.GetReports();
+        private void LoadReportsForAllSemesterAllSchoolYear(string enteredText = null)
+        {
             List<CLASS> listClass = ClassServices.Instance.GetClasss();
+
+            dataSource.Rows.Clear();
 
             foreach (var report in listReports)
             {
                 CLASS currentClass = listClass.Find(classItem => classItem.ID == report.IDCLASS);
+
+                int order = dataSource.Rows.Count + 1;
+                string className = currentClass.CLASSNAME;
+                int quantity = currentClass.STUDENTs.Count;
+                int passQuantity = (int)report.PASSQUANTITY;
                 double ratio = Math.Round((double)(100.0 * report.PASSQUANTITY / currentClass.STUDENTs.Count), 2);
-                dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, currentClass.STUDENTs.Count, report.PASSQUANTITY, ratio + "%");
+
+                if (enteredText != null)
+                {
+                    if (className.ToLower().Contains(enteredText.ToLower()))
+                    {
+                        dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, report.SEMESTER.NAME, currentClass.SCHOOLYEAR, currentClass.STUDENTs.Count, report.PASSQUANTITY, ratio + "%");
+                    }
+                }
+                else
+                {
+                    dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, report.SEMESTER.NAME, currentClass.SCHOOLYEAR, currentClass.STUDENTs.Count, report.PASSQUANTITY, ratio + "%");
+                }
             }
 
             DataTable.DataSource = dataSource;
-            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ, NĂM HỌC";
+            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ VÀ NĂM HỌC";
+        }
+
+        private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                string enteredText = Search_Box.Text;
+                if (String.IsNullOrEmpty(enteredText))
+                {
+                    LoadReportsForAllSemesterAllSchoolYear();
+                    return;
+                }
+
+                LoadReportsForAllSemesterAllSchoolYear(enteredText.Trim());
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Search_Box.Text = String.Empty;
+            }
         }
     }
 }

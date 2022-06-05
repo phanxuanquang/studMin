@@ -38,6 +38,9 @@ namespace studMin
                 case 2:
                     convert = "II";
                     break;
+                default:
+                    convert = "Mọi học kỳ";
+                    break ;
             }
             return convert;
         }
