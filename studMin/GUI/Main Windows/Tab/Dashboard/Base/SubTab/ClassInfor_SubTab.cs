@@ -14,6 +14,7 @@ namespace studMin
 {
     public partial class ClassInfor_SubTab : UserControl
     {
+        List<CLASS> listClasses;
 
         public ClassInfor_SubTab()
         {
@@ -22,7 +23,12 @@ namespace studMin
 
         void DataExport_toExcel()
         {
-            if (Filter_ComboBox.SelectedIndex != 1)
+            if (DataTable_Info.Rows.Count == 0)
+            {
+                LoadSearchingInfor();
+            }
+
+            if (DataTable_Info.Rows.Count > 0 && DataTable_Info.Columns[0].HeaderCell.Value.ToString() != "Mã học sinh")
             {
                 MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -39,6 +45,8 @@ namespace studMin
                 MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
+            
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -126,10 +134,13 @@ namespace studMin
         #region Buttons
         private void Search_Button_Click(object sender, EventArgs e)
         {
+            LoadSearchingInfor();
+        }
+
+        private void LoadSearchingInfor()
+        {
             DataTable_Info.Columns.Clear();
             DataTable_Info.Rows.Clear();
-
-            List<CLASS> listClasses = Database.ClassServices.Instance.GetClasss();
 
             switch (Filter_ComboBox.SelectedIndex)
             {
@@ -149,7 +160,7 @@ namespace studMin
                         return;
                     }
 
-                    GetListStudents(listClasses);
+                    GetListStudents();
                     break;
                 case 2:
                     if (Class_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex == 0)
@@ -232,27 +243,30 @@ namespace studMin
         {
             DataTable_Info.Columns.Add("Column1", "Mã lớp");
             DataTable_Info.Columns.Add("Column2", "Tên lớp");
-            DataTable_Info.Columns.Add("Column3", "Khối");
-            DataTable_Info.Columns.Add("Column4", "Chủ nhiệm");
-            DataTable_Info.Columns.Add("Column5", "Năm học");
+            DataTable_Info.Columns.Add("Column3", "Năm học");
+            DataTable_Info.Columns.Add("Column4", "Sỉ số");
+            DataTable_Info.Columns.Add("Column5", "Khối");
+            DataTable_Info.Columns.Add("Column6", "Chủ nhiệm");
 
             foreach (var classItem in listClasses)
             {
+                int quantityOfClass = classItem.STUDYINGs.Where(item => item.IDCLASS == classItem.ID).Distinct().ToList().Count() / 2;
+
                 if (SchoolYear_ComboBox.SelectedIndex != 0)
                 {
                     if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                        DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.SCHOOLYEAR, quantityOfClass, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME);
                     }
                 }
                 else
                 {
-                    DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME, classItem.SCHOOLYEAR);
+                    DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.SCHOOLYEAR, quantityOfClass, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME);
                 }
             }
         }
 
-        private void GetListStudents(List<CLASS> listClasses)
+        private void GetListStudents()
         {
             DataTable_Info.Columns.Add("Column1", "Mã học sinh");
             DataTable_Info.Columns.Add("Column2", "Họ và tên");
@@ -264,25 +278,38 @@ namespace studMin
 
             string className = Class_ComboBox.SelectedItem.ToString();
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
-            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
-            foreach (var student in listStudents)
+
+            CLASS tempClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear == null ? ClassServices.Instance.GetCurrentSchoolYear() : schoolYear);
+            if (tempClass == null) return;
+
+            List<STUDYING> listStudying = tempClass.STUDYINGs.ToList();
+
+            var listStudents = new List<STUDENT>();
+            foreach (var studying in listStudying)
             {
-                string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
-                string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.INFOR.DAYOFBIRTH);
-                DataTable_Info.Rows.Add(student.ID.ToString().Substring(0, 8).ToUpper(), student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
+                STUDENT student = DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault();
+                if (!listStudents.Contains(student))
+                {
+                    listStudents.Add(student);
+                    string sex = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
+                    string dayOfBirth = String.Format("{0:dd/MM/yyyy}", student.INFOR.DAYOFBIRTH);
+                    DataTable_Info.Rows.Add(student.ID.ToString().Substring(0, 8).ToUpper(), student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME, sex, dayOfBirth, student.INFOR.ADDRESS, student.TEL, student.EMAIL);
+                }
             }
         }
 
         private void DataGridViewExport_Button_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 DataExport_toExcel();
             }
             catch
             {
                 MessageBox.Show("Xuất dữ liệu không thành công.", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            }*/
+
+            DataExport_toExcel();
         }
         #endregion
 
@@ -291,7 +318,7 @@ namespace studMin
             this.BeginInvoke((System.Action)(() =>
             {
 
-                List<CLASS> listClasses = ClassServices.Instance.GetClasss();
+                listClasses = ClassServices.Instance.GetClasss();
 
                 List<string> ListClass = new List<string>();
                 List<string> ListSchoolYear = new List<string>();
@@ -311,7 +338,6 @@ namespace studMin
                     }
                 }
 
-                List<SEMESTER> listSemesters = DataProvider.Instance.Database.SEMESTERs.Select(item => item).ToList();
             }));
         }
     }

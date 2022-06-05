@@ -47,16 +47,20 @@ namespace studMin.Database
         public List<STUDENT> GetListStudentOfClass(string className, string schoolYear = null)
         {
             CLASS tempClass = GetClassByClassNameAndSchoolYear(className, schoolYear == null ? GetCurrentSchoolYear() : schoolYear);
+            if (tempClass == null)
+            {
+                return new List<STUDENT>();
+            }
+
             var listStudying = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID).ToList();
             var listStudents = new List<STUDENT>();
             foreach (var studying in listStudying)
             {
+                STUDENT student = DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault();
+                if (!listStudents.Contains(student))
                 {
-                    if (!listStudents.Contains(DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault()))
-                    {
-                        listStudents.Add(DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT ).FirstOrDefault());
+                    listStudents.Add(student);
 
-                    }
                 }
             }
             return listStudents;
