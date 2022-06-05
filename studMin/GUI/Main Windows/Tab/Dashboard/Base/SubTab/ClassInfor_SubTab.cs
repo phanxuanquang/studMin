@@ -208,32 +208,37 @@ namespace studMin
                 }
 
                 INFOR inforTeacher = classItem.TEACHER.INFOR;
+                string id = classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper();
+                string teacherName = inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME;
+                string className = classItem.CLASSNAME;
+                string schoolYear = classItem.SCHOOLYEAR;
                 string sex = inforTeacher.SEX == 0 ? "Nam" : "Nữ";
                 string dayOfBirth = String.Format("{0:dd/MM/yyyy}", inforTeacher.DAYOFBIRTH);
+                string address = inforTeacher.ADDRESS;
 
                 if (!filterByClass && filterBySchoolYear)
                 {
                     if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
+                        DataTable_Info.Rows.Add(id, teacherName, className, schoolYear, sex, dayOfBirth, address);
                     }
                 }
                 else if (!filterByClass && !filterBySchoolYear)
                 {
-                    DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
+                    DataTable_Info.Rows.Add(id, teacherName, className, schoolYear, sex, dayOfBirth, address);
                 }
                 else if (filterByClass && !filterBySchoolYear)
                 {
                     if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
+                        DataTable_Info.Rows.Add(id, teacherName, className, schoolYear, sex, dayOfBirth, address);
                     }
                 }
                 else if (filterByClass && filterBySchoolYear)
                 {
                     if (classItem.CLASSNAME == Class_ComboBox.SelectedItem.ToString() && classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.TEACHER.ID.ToString().Substring(0, 8).ToUpper(), inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME, classItem.CLASSNAME, classItem.SCHOOLYEAR, sex, dayOfBirth, inforTeacher.ADDRESS);
+                        DataTable_Info.Rows.Add(id, teacherName, className, schoolYear, sex, dayOfBirth, address);
                     }
                 }
             }
@@ -250,18 +255,23 @@ namespace studMin
 
             foreach (var classItem in listClasses)
             {
+                string id = classItem.ID.ToString().Substring(0, 8).ToUpper();
+                string className = classItem.CLASSNAME;
+                string schoolYear = classItem.SCHOOLYEAR;
                 int quantityOfClass = classItem.STUDYINGs.Where(item => item.IDCLASS == classItem.ID).Distinct().ToList().Count() / 2;
+                string grade = classItem.GRADE.NAME;
+                string teacherName = classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME;
 
                 if (SchoolYear_ComboBox.SelectedIndex != 0)
                 {
                     if (classItem.SCHOOLYEAR == SchoolYear_ComboBox.SelectedItem.ToString())
                     {
-                        DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.SCHOOLYEAR, quantityOfClass, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME);
+                        DataTable_Info.Rows.Add(id, className, schoolYear, quantityOfClass, grade, teacherName);
                     }
                 }
                 else
                 {
-                    DataTable_Info.Rows.Add(classItem.ID.ToString().Substring(0, 8).ToUpper(), classItem.CLASSNAME, classItem.SCHOOLYEAR, quantityOfClass, classItem.GRADE.NAME, classItem.TEACHER.INFOR.FIRSTNAME + " " + classItem.TEACHER.INFOR.LASTNAME);
+                    DataTable_Info.Rows.Add(id, className, schoolYear, quantityOfClass, grade, teacherName);
                 }
             }
         }
@@ -284,8 +294,8 @@ namespace studMin
 
             List<STUDYING> listStudying = tempClass.STUDYINGs.ToList();
 
-            var listStudents = new List<STUDENT>();
-            foreach (var studying in listStudying)
+            List<STUDENT> listStudents = new List<STUDENT>();
+            foreach (STUDYING studying in listStudying)
             {
                 STUDENT student = DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault();
                 if (!listStudents.Contains(student))
