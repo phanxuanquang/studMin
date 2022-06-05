@@ -45,7 +45,7 @@ namespace studMin
 
         bool CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
         {
-            if (String.IsNullOrEmpty(textBox.Text) && MessageBox.Show("Bạn đã thay đổi điểm số. \nBạn có muốn tiếp tục.", "Diểm số nhập rỗng", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+            if (String.IsNullOrEmpty(textBox.Text))
             {
                 Guna.UI2.WinForms.Guna2ComboBox targetCall = null;
                 if (textBox != null)
@@ -64,7 +64,17 @@ namespace studMin
                     }
                 }
 
-                if (targetCall != null) targetCall.SelectedIndex = 0;
+                if (targetCall != null && targetCall.SelectedIndex != 0)
+                {
+                    if (MessageBox.Show("Bạn đã thay đổi điểm số. \nBạn có muốn tiếp tục.", "Điểm số nhập rỗng", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                    {
+                        targetCall.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        textBox.Focus();
+                    }
+                }
 
                 return false;
             }
@@ -567,7 +577,7 @@ namespace studMin
             else
             {
                 TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
-                CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassName(className);
+                CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
                 TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
                 studMin.Database.StudentServices.Instance.SaveScoreToDB((sTUDENTBindingSource.Current as STUDENT4GRIDVIEW).ID, score, @class.SCHOOLYEAR, teach.SEMESTER.NAME, roleScore);
             }
