@@ -102,9 +102,9 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null || listClass.Current == null) return;
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            DateTime dateApply = DateTime.ParseExact((listDateApply.Current as string), "dd/MM/yyyy", null);
+            (DateTime, string) dateApply_scheduleName = Methods.DateApplyParse(listDateApply.Current as string);
 
-            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue)
+            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply_scheduleName.Item1 == DateTime.MinValue || String.IsNullOrEmpty(dateApply_scheduleName.Item2))
             {
                 MessageBox.Show("Vui lòng chọn đầy đủ thông tin");
                 return;
@@ -113,7 +113,8 @@ namespace studMin
             SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
                 schedule => schedule.SCHOOLYEAR == schoolYear
                 && schedule.SEMESTER.NAME == semester
-                && schedule.DATEAPPLY.Value.Equals(dateApply))
+                && schedule.DATEAPPLY.Value.Equals(dateApply_scheduleName.Item1)
+                && schedule.SCHEDULENAME == dateApply_scheduleName.Item2)
                 .FirstOrDefault();
 
             if (findSchedule == null)
@@ -126,9 +127,9 @@ namespace studMin
             {
                 //Dữ liệu mẫu
                 //tạm thời để số 1 do database chưa chính xác
-                BieuMauSo = 1,
+                BieuMauSo = int.Parse(dateApply_scheduleName.Item2),
                 HocKy = int.Parse(semester),
-                NgayApDung = dateApply,
+                NgayApDung = dateApply_scheduleName.Item1,
                 NamHoc = schoolYear,
                 Truong = "Trường THPT Di Linh"
             };
@@ -189,10 +190,10 @@ namespace studMin
 
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            DateTime dateApply = DateTime.ParseExact((listDateApply.Current as string), "dd/MM/yyyy", null);
+            (DateTime, string) dateApply_scheduleName = Methods.DateApplyParse(listDateApply.Current as string);
             CLASS4GRIDVIEW @class = (listClass.Current as CLASS4GRIDVIEW);
 
-            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue)
+            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply_scheduleName.Item1 == DateTime.MinValue || String.IsNullOrEmpty(dateApply_scheduleName.Item2))
             {
                 MessageBox.Show("Vui lòng chọn đầy đủ thông tin");
                 return;
@@ -201,7 +202,8 @@ namespace studMin
             SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
                 schedule => schedule.SCHOOLYEAR == schoolYear
                 && schedule.SEMESTER.NAME == semester
-                && schedule.DATEAPPLY.Value.Equals(dateApply))
+                && schedule.DATEAPPLY.Value.Equals(dateApply_scheduleName.Item1)
+                && schedule.SCHEDULENAME == dateApply_scheduleName.Item2)
                 .FirstOrDefault();
 
             if (findSchedule == null)
@@ -385,6 +387,18 @@ namespace studMin
         {
             if (data == null) return;
 
+            if (data != null && data.Count > 0)
+            {
+                this.BeginInvoke(new System.Action(() =>
+                {
+                    (DateTime, string) get = Methods.DateApplyParse(listDateApply.Current as string);
+                    string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
+                    int semester = Methods.ParseSemester(listSemester.Current as string);
+                    string @class = (listClass.Current as CLASS4GRIDVIEW).Lop;
+                    ApplyDate_Label.Text = TitleSchedule(get.Item1, get.Item2, @class, schoolYear, semester);
+                }));
+            }
+
             DataTable dataSource = new DataTable();
 
             dataSource.Columns.Add("TIẾT");
@@ -432,6 +446,7 @@ namespace studMin
             if (listClass.Count > 1 && idClass == Guid.Empty && MessageBox.Show("Xuất Excel để xem thời khóa biểu của mọi lớp!", "Có muốn xem thời khóa biểu mọi lớp không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 TimetableExport_Button_Click(null, null);
+                return;
             }
 
             /*if (@class == null)
@@ -534,16 +549,15 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null) return;
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            DateTime dateApply = DateTime.ParseExact((listDateApply.Current as string), "dd/MM/yyyy", null);
+            (DateTime, string) dateApply_scheduleName = Methods.DateApplyParse(listDateApply.Current as string);
 
-            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply == DateTime.MinValue) return;
-
-            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ " + DateApply_ComboBox.SelectedItem.ToString();
+            if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply_scheduleName.Item1 == DateTime.MinValue || String.IsNullOrEmpty(dateApply_scheduleName.Item2)) return;
 
             SCHEDULE findSchedule = studMin.Database.DataProvider.Instance.Database.SCHEDULEs.Where(
                 schedule => schedule.SCHOOLYEAR == schoolYear
                 && schedule.SEMESTER.NAME == semester
-                && schedule.DATEAPPLY.Value.Equals(dateApply))
+                && schedule.DATEAPPLY.Value.Equals(dateApply_scheduleName.Item1)
+                && schedule.SCHEDULENAME == dateApply_scheduleName.Item2)
                 .FirstOrDefault();
 
             if (findSchedule == null) return;
@@ -587,14 +601,14 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null) return;
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Where(sche => sche.SEMESTER.NAME == semester).Select(item => item.DATEAPPLY.Value.ToString("dd/MM/yyyy")).ToList(), "", "");
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Where(sche => sche.SEMESTER.NAME == semester).Select(item => Methods.DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
         }
 
         private void ListSchoolYear_CurrentChanged(object sender, EventArgs e)
         {
             if (listSchoolYear.Current == null) return;
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
-            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => item.DATEAPPLY.Value.ToString("dd/MM/yyyy")).ToList(), "", "");
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => Methods.DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
             AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
         }
 
@@ -602,7 +616,6 @@ namespace studMin
         {
             //ListSchoolYear_CurrentChanged(null, null);
             loadingWindow.Close();
-            ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ " + DateApply_ComboBox.SelectedItem.ToString();
         }
 
         private void LoadScheduleFromDatabase_DoWork(object sender, DoWorkEventArgs e)
@@ -613,17 +626,31 @@ namespace studMin
 
         private void AssignDataToComboBox(Guna.UI2.WinForms.Guna2ComboBox userControl, BindingSource binding, object data, string displayMember, string valueMember)
         {
-            userControl.Invoke(new System.Action(() =>
+            if (userControl.InvokeRequired)
+            {
+                userControl.Invoke(new System.Action(() =>
+                {
+                    binding.DataSource = data;
+                    userControl.DisplayMember = displayMember;
+                    userControl.ValueMember = valueMember;
+                }));
+            }
+            else
             {
                 binding.DataSource = data;
                 userControl.DisplayMember = displayMember;
                 userControl.ValueMember = valueMember;
-            }));
+            }
         }
 
         private string HocKy(int msg)
         {
             return String.Format("Học kỳ: {0}", Methods.Semester(msg));
+        }
+
+        private string TitleSchedule(DateTime dateApply, string scheduleName, string @class, string schoolYear, int semester)
+        {
+            return String.Format("THỜI KHÓA BIỂU LỚP {0} - SỐ {1}, HỌC KỲ {2}, NĂM HỌC {3}\nNGÀY ÁP DỤNG {4}", @class, scheduleName, Methods.Semester(semester), schoolYear, dateApply.ToString("dd/MM/yyyy")).ToUpper();
         }
     }
 }

@@ -65,5 +65,16 @@ namespace studMin
             }
             return convert;
         }
+
+        public static string DateApply(DateTime date, string scheduleName)
+        {
+            return String.Format("{0} - {1}", date.ToString("dd/MM/yyyy"), scheduleName);
+        }
+
+        public static (DateTime, string) DateApplyParse(string msg)
+        {
+            string[] split = msg.Split(new string[] { " - " }, StringSplitOptions.None);
+            return (Methods.TryParse(split[0]), split[1]);
+        }
     }
 }

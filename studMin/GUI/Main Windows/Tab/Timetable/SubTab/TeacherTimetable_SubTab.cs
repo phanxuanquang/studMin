@@ -96,7 +96,7 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null && listTeacher.Current == null) return;
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            (DateTime, string) dateApply_scheduleName = DateApplyParse(listDateApply.Current as string);
+            (DateTime, string) dateApply_scheduleName = Methods.DateApplyParse(listDateApply.Current as string);
             TEACHER4COMBOBOX teacher = (listTeacher.Current as TEACHER4COMBOBOX);
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply_scheduleName.Item1 == DateTime.MinValue || String.IsNullOrEmpty(dateApply_scheduleName.Item2))
@@ -180,7 +180,7 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null) return;
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            (DateTime, string) dateApply_scheduleName = DateApplyParse(listDateApply.Current as string);
+            (DateTime, string) dateApply_scheduleName = Methods.DateApplyParse(listDateApply.Current as string);
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply_scheduleName.Item1 == DateTime.MinValue || String.IsNullOrEmpty(dateApply_scheduleName.Item2))
             {
@@ -398,7 +398,7 @@ namespace studMin
             {
                 this.BeginInvoke(new System.Action(() =>
                 {
-                    (DateTime, string) get = DateApplyParse(listDateApply.Current as string);
+                    (DateTime, string) get = Methods.DateApplyParse(listDateApply.Current as string);
                     string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
                     int semester = Methods.ParseSemester(listSemester.Current as string);
                     string teacher = (listTeacher.Current as TEACHER4COMBOBOX).GiaoVien;
@@ -543,7 +543,7 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null || listDateApply.Current == null) return;
             string schoolYear = (listSchoolYear.Current as SCHEDULE4COMBOBOX).NamHoc;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            (DateTime, string) dateApply_scheduleName = DateApplyParse(listDateApply.Current as string);
+            (DateTime, string) dateApply_scheduleName = Methods.DateApplyParse(listDateApply.Current as string);
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(semester) || dateApply_scheduleName.Item1 == DateTime.MinValue || String.IsNullOrEmpty(dateApply_scheduleName.Item2)) return;
 
@@ -612,7 +612,7 @@ namespace studMin
             if (listSchoolYear.Current == null || listSemester.Current == null) return;
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
             string semester = Methods.ParseSemester(listSemester.Current as string).ToString();
-            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Where(sche => sche.SEMESTER.NAME == semester).Select(item => DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Where(sche => sche.SEMESTER.NAME == semester).Select(item => Methods.DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
         }
 
         private void LoadScheduleFromDatabase_DoWork(object sender, DoWorkEventArgs e)
@@ -625,7 +625,7 @@ namespace studMin
         {
             if (listSchoolYear.Current == null) return;
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
-            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
+            AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => Methods.DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
             AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
         }
 
@@ -653,20 +653,9 @@ namespace studMin
             return String.Format("Học kỳ: {0}", Methods.Semester(msg));
         }
 
-        private string DateApply(DateTime date, string scheduleName)
-        {
-            return String.Format("{0} - {1}", date.ToString("dd/MM/yyyy"), scheduleName);
-        }
-
-        private (DateTime, string) DateApplyParse(string msg)
-        {
-            string[] split = msg.Split(new string[] { " - " }, StringSplitOptions.None);
-            return (Methods.TryParse(split[0]), split[1]);
-        }
-
         private string TitleSchedule(DateTime dateApply, string scheduleName, string teacherName, string schoolYear, int semester)
         {
-            return String.Format("THỜI KHÓA GIÁO VIÊN {0} - SỐ {1}, HỌC KỲ {2}, NĂM HỌC {3}\nNGÀY ÁP DỤNG {4}", teacherName, scheduleName, Methods.Semester(semester), schoolYear, dateApply.ToString("dd/MM/yyyy")).ToUpper();
+            return String.Format("THỜI KHÓA BIỂU GIÁO VIÊN {0} - SỐ {1}, HỌC KỲ {2}, NĂM HỌC {3}\nNGÀY ÁP DỤNG {4}", teacherName, scheduleName, Methods.Semester(semester), schoolYear, dateApply.ToString("dd/MM/yyyy")).ToUpper();
         }
     }
 }
