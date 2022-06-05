@@ -113,7 +113,7 @@ namespace studMin
             foreach (STUDENT student in listStudent)
             {
                 string studentName = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME;
-                if (studentName.ToLower().Contains(enteredText.ToLower()) || student.ID.ToString().Contains(enteredText))
+                if (studentName.ToLower().Contains(enteredText.ToLower()) || student.ID.ToString().ToLower().Contains(enteredText.ToLower()))
                 {
                     list.Add(student);
                 }

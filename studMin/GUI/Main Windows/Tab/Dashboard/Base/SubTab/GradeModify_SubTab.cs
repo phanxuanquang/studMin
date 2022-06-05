@@ -314,7 +314,7 @@ namespace studMin
 
             subject.SetFomular();
 
-            //subject.ShowExcel();
+            subject.ShowExcel();
 
             subject.Save((string)e.Argument);
 
@@ -323,7 +323,7 @@ namespace studMin
             //    subject.ShowPrintPreview();
             //}
 
-            subject.Dispose();
+            /*subject.Dispose();*/
         }
 
         private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
