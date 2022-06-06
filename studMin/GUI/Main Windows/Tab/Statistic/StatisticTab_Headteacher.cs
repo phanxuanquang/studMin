@@ -15,6 +15,8 @@ namespace studMin
     {
         private BackgroundWorker backgroundWorker = null;
         private List<GRIDVIEW4REPORT> data = null;
+        List<REPORTSUBJECT> recordExists = null;
+        List<int> SiSo = null;
 
         private List<string> subjects = new List<string>();
         private List<string> schoolyears = new List<string>();
@@ -49,6 +51,7 @@ namespace studMin
             private string _class;
             private int _quantity;
             private int _quantityPassed;
+            private double ratio;
 
             public Guid IdClass { get { return _idClass; } }
             public Guid IdSemester { get { return _idSemester; } }
@@ -74,13 +77,20 @@ namespace studMin
                 get { return _quantityPassed; }
                 set { _quantityPassed = value; }
             }
-            public string TiLeDat { get { return String.Format("{0}%", Math.Round(SoLuongDat * 100.0 / SiSo, 2)); } }
+            public double _TiLeDat
+            {
+                get { return ratio; }
+                set { ratio = value; }
+            }
+
+            public string TiLeDat { get { return String.Format("{0}%", ratio != -1 ? ratio : Math.Round(SoLuongDat * 100.0 / SiSo, 2)); } }
 
             public GRIDVIEW4REPORT(Guid IdClass, Guid IdSemester, Guid IdSubject)
             {
                 _idClass = IdClass;
                 _idSemester = IdSemester;
                 _idSubject = IdSubject;
+                ratio = -1.0;
             }
         }
 
@@ -237,11 +247,10 @@ namespace studMin
             string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             string _semester = Methods.ParseSemester(Semester_ComboBox.SelectedItem.ToString()).ToString();
             string _subject = Subject_ComboBox.SelectedItem.ToString();
-            SEMESTER sEMESTERs = listSem.Where(x => x.NAME == _semester).FirstOrDefault();
+            SEMESTER semester = listSem.Where(x => x.NAME == _semester).FirstOrDefault();
 
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(_semester) || String.IsNullOrEmpty(_subject)) return;
 
-           
             SUBJECT subject = listSub.FirstOrDefault(item => item.DisplayName == _subject);
             int coefficientOralMark = 1;
             int coefficientRegularMark = 1;
@@ -270,58 +279,22 @@ namespace studMin
 
             if (data == null) data = new List<GRIDVIEW4REPORT>();
             else data.Clear();
-            //foreach (var itemSEM in sEMESTERs)
+
+            
+
+            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
+            for (int indexClass = 0; indexClass < classes.Count; indexClass++)
             {
-                List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == sEMESTERs.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
-                for (int indexClass = 0; indexClass < classes.Count; indexClass++)
+                Guid idClass = classes[indexClass].ID;
+                string className = classes[indexClass].CLASSNAME;
+
+                REPORTSUBJECT filter = recordExists.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).FirstOrDefault();
+
+                if (filter != null)
                 {
-                    Guid idClass = classes[indexClass].ID;
-                    string className = classes[indexClass].CLASSNAME;
-
-                    List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
-
-                    if (students.Count == 0) continue;
-
-                    List<double> avgScoreStudent = new List<double>();
-
-                    //for (int indexStudent = 0; indexStudent < students.Count; indexStudent++)
-                    {
-                        foreach (STUDENT student in students)
-                        {
-                            List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSEMESTER == sEMESTERs.ID && item.SCHOOLYEAR == schoolYear && item.IDSTUDENT == student.ID && item.IDSUBJECT == subject.Id).ToList();
-                            if (scores.Count == 0) continue;
-                            List<double> oralMark = new List<double>();
-                            List<double> regularMark = new List<double>();
-                            List<double> midTermMark = new List<double>();
-                            List<double> finalMark = new List<double>();
-                            foreach(var x in scores)
-                            {
-                                switch (x.ROLESCORE.ROLE)
-                                {
-                                    case "M":
-                                        oralMark.Add(x.SCORE1.Value);
-                                        break;
-                                    case "15M":
-                                        regularMark.Add(x.SCORE1.Value);
-                                        break;
-                                    case "45M":
-                                        midTermMark.Add(x.SCORE1.Value);
-                                        break;
-                                    default:
-                                        finalMark.Add(x.SCORE1.Value);
-                                        break;
-                                }
-                            }
-                            double avg = (oralMark.Sum() + regularMark.Sum() + midTermMark.Sum() + finalMark.Sum()) / (coefficientOralMark * oralMark.Count + coefficientRegularMark * regularMark.Count + coefficientMidTermMark * midTermMark.Count + coefficientFinalMark * finalMark.Count);
-
-                            if (!double.IsNaN(avg) && avg >= subject.PASSSCORE)
-                            {
-                                avgScoreStudent.Add(avg);
-                            }
-                        }
-                    }
-                    data.Add(new GRIDVIEW4REPORT(classes[indexClass].ID, sEMESTERs.ID, subject.Id) { ThuTu = indexClass + 1, Lop = classes[indexClass].CLASSNAME, SiSo = students.Count, SoLuongDat = avgScoreStudent.Count });
-                }    
+                    int indexSiSo = recordExists.IndexOf(filter);
+                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = filter.RATIO.Value });
+                }
             }
 
             if (this.InvokeRequired)
@@ -339,13 +312,130 @@ namespace studMin
 
         private void LoadSubjectFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
+            recordExists = studMin.Database.DataProvider.Instance.Database.REPORTSUBJECTs.ToList();
+            List<Guid> listClass = recordExists.Select(item => item.IDCLASS).ToList();
+            SiSo = listClass.Select(item => studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(study => study.IDCLASS == item).Distinct().Count() / 2).ToList();
+
             listSub = studMin.Database.SubjectServices.Instance.GetSubjects();
-            listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.Where(x => x.NAME != "0").ToList();
+            listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.ToList();
             subjects = listSub.Select(item => item.DisplayName).ToList();
             schoolyears = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(x => x.SCHOOLYEAR).Distinct().ToList();
             semesters = listSem.Select(y => HocKy(int.Parse(y.NAME))).ToList();
             AssignDataToComboBox(SchoolYear_ComboBox, schoolyears);
-           
+
+            int coefficientOralMark = 1;
+            int coefficientRegularMark = 1;
+            int coefficientMidTermMark = 1;
+            int coefficientFinalMark = 1;
+
+            var listRolescore = Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
+            foreach (var item in listRolescore)
+            {
+                switch (item.ROLE)
+                {
+                    case "M":
+                        coefficientFinalMark = item.COEFFICIENT.Value;
+                        break;
+                    case "15M":
+                        coefficientRegularMark = item.COEFFICIENT.Value;
+                        break;
+                    case "45M":
+                        coefficientMidTermMark = item.COEFFICIENT.Value;
+                        break;
+                    default:
+                        coefficientFinalMark = item.COEFFICIENT.Value;
+                        break;
+                }
+            }
+
+            Task.Factory.StartNew(() =>
+            {
+                List<int> tempSiSo = new List<int>();
+                List<REPORTSUBJECT> tempRecordExists = new List<REPORTSUBJECT>();
+                foreach (var subject in listSub)
+                {
+                    foreach (var semester in listSem)
+                    {
+                        foreach (var schoolYear in schoolyears)
+                        {
+                            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
+                            for (int indexClass = 0; indexClass < classes.Count; indexClass++)
+                            {
+                                Guid idClass = classes[indexClass].ID;
+                                string className = classes[indexClass].CLASSNAME;
+
+                                List<Guid> students = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(item => item.IDCLASS == idClass).Select(item => item.IDSTUDENT).Distinct().ToList();
+
+                                if (students.Count == 0) continue;
+
+                                List<double> avgScoreStudent = new List<double>();
+
+                                foreach (Guid student in students)
+                                {
+                                    List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSEMESTER == semester.ID && item.SCHOOLYEAR == schoolYear && item.IDSTUDENT == student && item.IDSUBJECT == subject.Id).ToList();
+                                    if (scores.Count == 0) continue;
+                                    List<double> oralMark = new List<double>();
+                                    List<double> regularMark = new List<double>();
+                                    List<double> midTermMark = new List<double>();
+                                    List<double> finalMark = new List<double>();
+                                    foreach (var x in scores)
+                                    {
+                                        switch (x.ROLESCORE.ROLE)
+                                        {
+                                            case "M":
+                                                oralMark.Add(x.SCORE1.Value);
+                                                break;
+                                            case "15M":
+                                                regularMark.Add(x.SCORE1.Value);
+                                                break;
+                                            case "45M":
+                                                midTermMark.Add(x.SCORE1.Value);
+                                                break;
+                                            default:
+                                                finalMark.Add(x.SCORE1.Value);
+                                                break;
+                                        }
+                                    }
+                                    double avg = (oralMark.Sum() + regularMark.Sum() + midTermMark.Sum() + finalMark.Sum()) / (coefficientOralMark * oralMark.Count + coefficientRegularMark * regularMark.Count + coefficientMidTermMark * midTermMark.Count + coefficientFinalMark * finalMark.Count);
+
+                                    if (!double.IsNaN(avg) && avg >= subject.PASSSCORE)
+                                    {
+                                        avgScoreStudent.Add(avg);
+                                    }
+                                }
+                                tempSiSo.Add(students.Count);
+                                tempRecordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 1.0 / students.Count });
+
+                                List<REPORTSUBJECT> filters = studMin.Database.DataProvider.Instance.Database.REPORTSUBJECTs.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).ToList();
+
+                                if (filters.Count > 0)
+                                {
+                                    foreach (var filter in filters)
+                                    {
+                                        if (filter.PASSQUANTITY.Value != avgScoreStudent.Count || filter.RATIO.Value != avgScoreStudent.Count * 1.0 / students.Count)
+                                        {
+                                            filter.PASSQUANTITY = avgScoreStudent.Count;
+                                            filter.RATIO = avgScoreStudent.Count * 1.0 / students.Count;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    studMin.Database.DataProvider.Instance.Database.REPORTSUBJECTs.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 1.0 / students.Count });
+                                }
+                                studMin.Database.DataProvider.Instance.Database.SaveChangesAsync();
+                            }
+                        }
+                    }
+                }
+                
+
+                SiSo.Clear();
+                recordExists.Clear();
+
+                SiSo.AddRange(tempSiSo);
+                recordExists.AddRange(tempRecordExists);
+            });
         }
 
         private string HocKy(int msg)
