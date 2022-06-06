@@ -43,7 +43,7 @@ namespace studMin
 
         private void AddSubject_Button_Click(object sender, EventArgs e)
         {
-            AddSubject_Form addSubject_Form = new AddSubject_Form();
+            AddSubject_Form addSubject_Form = new AddSubject_Form(this);
             addSubject_Form.ShowDialog();
         }
 

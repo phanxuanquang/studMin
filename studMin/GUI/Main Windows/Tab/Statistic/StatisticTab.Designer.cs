@@ -182,7 +182,7 @@
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
-            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataTable.Size = new System.Drawing.Size(1232, 767);
             this.DataTable.TabIndex = 110;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;

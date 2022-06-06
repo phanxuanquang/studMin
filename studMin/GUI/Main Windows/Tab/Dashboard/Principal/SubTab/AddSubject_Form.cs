@@ -17,7 +17,7 @@ namespace studMin
         Guid selectedHeadTeacherId;
         int atLeastOneNormalTeacher = 0;
         List<TEACHER> teacherList;
-
+        SubjectManage_Form subjectManageForm;
         
         public class ComboboxItem
         {
@@ -36,6 +36,15 @@ namespace studMin
             ShadowForm.SetShadowForm(this);
 
         }
+
+        public AddSubject_Form(SubjectManage_Form subjectManage_Form)
+        {
+            InitializeComponent();
+            ShadowForm.SetShadowForm(this);
+            subjectManageForm = subjectManage_Form;
+
+        }
+
         protected override CreateParams CreateParams
         {
             get
@@ -98,7 +107,9 @@ namespace studMin
 
             DataProvider.Instance.Database.SaveChanges();
             MessageBox.Show("Bổ sung môn học thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             LoadInforFromDatabase();
+            subjectManageForm.LoadSubjectsInfor();
         }
 
         private void AddSubject_Form_Load(object sender, EventArgs e)

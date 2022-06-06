@@ -18,6 +18,7 @@ namespace studMin
         DataTable dataSource;
         string schoolYear;
         string semesterName;
+        bool isSelectedRows = false;
 
         public StatisticTab()
         {
@@ -32,6 +33,25 @@ namespace studMin
                 return;
             }
 
+            if (DataTable.SelectedRows.Count >= 1)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn muốn in các hàng đã chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    isSelectedRows = true;
+                    ExportExcel();
+                    return;
+                }
+            }
+
+            isSelectedRows = false;
+            ExportExcel();
+
+            
+        }
+
+        private void ExportExcel()
+        {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel | *.xlsx";
 
@@ -43,16 +63,32 @@ namespace studMin
             else return;
 
             Action.Excel.ReportSemester ReportSemester = new Action.Excel.ReportSemester();
-            
-            foreach (DataGridViewRow row in DataTable.Rows)
+
+            if (isSelectedRows)
             {
-                Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
+                foreach (DataGridViewRow row in DataTable.SelectedRows)
                 {
-                    Lop = row.Cells[1].Value.ToString(),
-                    SiSo = int.Parse(row.Cells[4].Value.ToString()),
-                    SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
-                };
-                ReportSemester.InsertItem(item);
+                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
+                    {
+                        Lop = row.Cells[1].Value.ToString(),
+                        SiSo = int.Parse(row.Cells[4].Value.ToString()),
+                        SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
+                    };
+                    ReportSemester.InsertItem(item);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in DataTable.Rows)
+                {
+                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
+                    {
+                        Lop = row.Cells[1].Value.ToString(),
+                        SiSo = int.Parse(row.Cells[4].Value.ToString()),
+                        SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
+                    };
+                    ReportSemester.InsertItem(item);
+                }
             }
 
             string exportSchoolYear = DataTable.Rows[0].Cells[3].Value.ToString();
@@ -203,6 +239,7 @@ namespace studMin
             dataSource.Columns.Add("Số lượng đạt");
             dataSource.Columns.Add("Tỉ lệ đạt");
             LoadReportsForAllSemesterAllSchoolYear();
+            DataTable.ClearSelection();
         }
 
         private void LoadReportsForAllSemesterAllSchoolYear(string enteredText = null)
