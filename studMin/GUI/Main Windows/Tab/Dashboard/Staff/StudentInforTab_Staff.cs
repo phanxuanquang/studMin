@@ -227,6 +227,7 @@ namespace studMin
         private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             STUDYING studentCurrent;
+            if (e.RowIndex < 0) return;
             if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 studentCurrent = sTUDYINGBindingSource.Current as STUDYING;
@@ -262,7 +263,7 @@ namespace studMin
 
         private void DataTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            StudentInforModify_Form studentInforModify_Form = new StudentInforModify_Form();
+            StudentInforModify_Form studentInforModify_Form = new StudentInforModify_Form(sTUDYINGBindingSource.Current);
             studentInforModify_Form.ShowDialog();
         }
     }

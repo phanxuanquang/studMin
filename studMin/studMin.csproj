@@ -585,6 +585,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\studMin.Database.Models.CLASS.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.CONDUCT.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.INFOR.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.SCORE.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.STUDENT2.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.STUDYING.datasource" />

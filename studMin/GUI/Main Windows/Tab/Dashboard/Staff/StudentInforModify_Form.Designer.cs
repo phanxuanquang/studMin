@@ -30,7 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.PhoneNumber_Box = new Guna.UI2.WinForms.Guna2TextBox();
+            this.sTUDENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Address_Box = new Guna.UI2.WinForms.Guna2TextBox();
+            this.iNFORBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ParentEmail_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.Bloodline_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.FirstName_Box = new Guna.UI2.WinForms.Guna2TextBox();
@@ -47,6 +49,7 @@
             this.Exit_Button = new Guna.UI2.WinForms.Guna2Button();
             this.Sex_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.Class_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cLASSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Birthday_ComboBox = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.Elipse = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
@@ -55,6 +58,9 @@
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel2 = new Guna.UI.WinForms.GunaLabel();
             this.Status_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNFORBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // PhoneNumber_Box
@@ -65,6 +71,7 @@
             this.PhoneNumber_Box.BorderRadius = 5;
             this.PhoneNumber_Box.BorderThickness = 2;
             this.PhoneNumber_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.PhoneNumber_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTUDENTBindingSource, "TEL", true));
             this.PhoneNumber_Box.DefaultText = "";
             this.PhoneNumber_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.PhoneNumber_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -92,6 +99,10 @@
             this.PhoneNumber_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.PhoneNumber_Box.TabIndex = 4;
             // 
+            // sTUDENTBindingSource
+            // 
+            this.sTUDENTBindingSource.DataSource = typeof(studMin.Database.Models.STUDENT);
+            // 
             // Address_Box
             // 
             this.Address_Box.Animated = true;
@@ -100,6 +111,7 @@
             this.Address_Box.BorderRadius = 5;
             this.Address_Box.BorderThickness = 2;
             this.Address_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Address_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNFORBindingSource, "ADDRESS", true));
             this.Address_Box.DefaultText = "";
             this.Address_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.Address_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -127,6 +139,10 @@
             this.Address_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.Address_Box.TabIndex = 3;
             // 
+            // iNFORBindingSource
+            // 
+            this.iNFORBindingSource.DataSource = typeof(studMin.Database.Models.INFOR);
+            // 
             // ParentEmail_Box
             // 
             this.ParentEmail_Box.Animated = true;
@@ -135,6 +151,7 @@
             this.ParentEmail_Box.BorderRadius = 5;
             this.ParentEmail_Box.BorderThickness = 2;
             this.ParentEmail_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ParentEmail_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTUDENTBindingSource, "EMAILPARENT", true));
             this.ParentEmail_Box.DefaultText = "";
             this.ParentEmail_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.ParentEmail_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -170,6 +187,7 @@
             this.Bloodline_Box.BorderRadius = 5;
             this.Bloodline_Box.BorderThickness = 2;
             this.Bloodline_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Bloodline_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTUDENTBindingSource, "BLOODLINE", true));
             this.Bloodline_Box.DefaultText = "";
             this.Bloodline_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.Bloodline_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -205,6 +223,7 @@
             this.FirstName_Box.BorderRadius = 5;
             this.FirstName_Box.BorderThickness = 2;
             this.FirstName_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.FirstName_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNFORBindingSource, "FIRSTNAME", true));
             this.FirstName_Box.DefaultText = "";
             this.FirstName_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.FirstName_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -378,7 +397,7 @@
             this.Complete_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Complete_Button.ForeColor = System.Drawing.Color.White;
             this.Complete_Button.HoverState.Parent = this.Complete_Button;
-            this.Complete_Button.Location = new System.Drawing.Point(166, 300);
+            this.Complete_Button.Location = new System.Drawing.Point(166, 312);
             this.Complete_Button.Name = "Complete_Button";
             this.Complete_Button.ShadowDecoration.Parent = this.Complete_Button;
             this.Complete_Button.Size = new System.Drawing.Size(217, 41);
@@ -401,13 +420,14 @@
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Exit_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(402, 300);
+            this.Exit_Button.Location = new System.Drawing.Point(402, 312);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
             this.Exit_Button.Size = new System.Drawing.Size(217, 41);
             this.Exit_Button.TabIndex = 11;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
             // Sex_ComboBox
             // 
@@ -448,6 +468,8 @@
             this.Class_ComboBox.BorderRadius = 5;
             this.Class_ComboBox.BorderThickness = 2;
             this.Class_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Class_ComboBox.DataSource = this.cLASSBindingSource;
+            this.Class_ComboBox.DisplayMember = "CLASSNAME";
             this.Class_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.Class_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Class_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
@@ -459,16 +481,18 @@
             this.Class_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Class_ComboBox.HoverState.Parent = this.Class_ComboBox;
             this.Class_ComboBox.ItemHeight = 30;
-            this.Class_ComboBox.Items.AddRange(new object[] {
-            "Chọn lớp học"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Location = new System.Drawing.Point(118, 193);
             this.Class_ComboBox.Name = "Class_ComboBox";
             this.Class_ComboBox.ShadowDecoration.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Size = new System.Drawing.Size(209, 36);
-            this.Class_ComboBox.StartIndex = 0;
             this.Class_ComboBox.TabIndex = 4;
             this.Class_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            this.Class_ComboBox.ValueMember = "ID";
+            // 
+            // cLASSBindingSource
+            // 
+            this.cLASSBindingSource.DataSource = typeof(studMin.Database.Models.CLASS);
             // 
             // Birthday_ComboBox
             // 
@@ -479,6 +503,7 @@
             this.Birthday_ComboBox.CheckedState.Parent = this.Birthday_ComboBox;
             this.Birthday_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Birthday_ComboBox.CustomFormat = "dd/mm/yyyy";
+            this.Birthday_ComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iNFORBindingSource, "DAYOFBIRTH", true));
             this.Birthday_ComboBox.FillColor = System.Drawing.Color.White;
             this.Birthday_ComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.Birthday_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
@@ -507,6 +532,7 @@
             this.LastName_Box.BorderRadius = 5;
             this.LastName_Box.BorderThickness = 2;
             this.LastName_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.LastName_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iNFORBindingSource, "LASTNAME", true));
             this.LastName_Box.DefaultText = "";
             this.LastName_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.LastName_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -542,6 +568,7 @@
             this.Email_Box.BorderRadius = 5;
             this.Email_Box.BorderThickness = 2;
             this.Email_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Email_Box.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sTUDENTBindingSource, "EMAIL", true));
             this.Email_Box.DefaultText = "";
             this.Email_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.Email_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
@@ -635,7 +662,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(785, 369);
+            this.ClientSize = new System.Drawing.Size(785, 389);
             this.Controls.Add(this.Status_ComboBox);
             this.Controls.Add(this.gunaLabel2);
             this.Controls.Add(this.Email_Box);
@@ -666,6 +693,9 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddStudent_Form";
+            ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iNFORBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -698,5 +728,8 @@
         private Guna.UI.WinForms.GunaLabel gunaLabel1;
         private Guna.UI.WinForms.GunaLabel gunaLabel2;
         private Guna.UI2.WinForms.Guna2ComboBox Status_ComboBox;
+        private System.Windows.Forms.BindingSource sTUDENTBindingSource;
+        private System.Windows.Forms.BindingSource iNFORBindingSource;
+        private System.Windows.Forms.BindingSource cLASSBindingSource;
     }
 }
