@@ -274,6 +274,8 @@ namespace studMin
                     DataTable_Info.Rows.Add(id, className, schoolYear, quantityOfClass, grade, teacherName);
                 }
             }
+
+            Class_ComboBox.SelectedIndex = 0;
         }
 
         private void GetListStudents()
