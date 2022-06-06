@@ -259,5 +259,11 @@ namespace studMin
                 Search_Box.Text = String.Empty;
             }
         }
+
+        private void DataTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StudentInforModify_Form studentInforModify_Form = new StudentInforModify_Form();
+            studentInforModify_Form.ShowDialog();
+        }
     }
 }

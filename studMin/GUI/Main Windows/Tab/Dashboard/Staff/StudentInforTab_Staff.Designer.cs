@@ -55,8 +55,8 @@
             this.gunaLabel12 = new Guna.UI.WinForms.GunaLabel();
             this.Class_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.Search_Button = new Guna.UI2.WinForms.Guna2Button();
             this.sTUDYINGBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Search_Button = new Guna.UI2.WinForms.Guna2Button();
             this.SchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -742,6 +742,11 @@
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.DataTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataTable_CellContentClick);
+            this.DataTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataTable_CellDoubleClick);
+            // 
+            // sTUDYINGBindingSource
+            // 
+            this.sTUDYINGBindingSource.DataSource = typeof(studMin.Database.Models.STUDYING);
             // 
             // Search_Button
             // 
@@ -769,10 +774,6 @@
             this.Search_Button.Text = "TÌM KIẾM";
             this.Search_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.Search_Button.Click += new System.EventHandler(this.Search_Button_Click);
-            // 
-            // sTUDYINGBindingSource
-            // 
-            this.sTUDYINGBindingSource.DataSource = typeof(studMin.Database.Models.STUDYING);
             // 
             // SchoolYear
             // 
@@ -873,11 +874,11 @@
         private Guna.UI2.WinForms.Guna2ComboBox Class_ComboBox;
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
         protected Guna.UI2.WinForms.Guna2Button Search_Button;
+        private System.Windows.Forms.BindingSource sTUDYINGBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn SchoolYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Class;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.BindingSource sTUDYINGBindingSource;
     }
 }

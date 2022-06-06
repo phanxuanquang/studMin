@@ -41,6 +41,7 @@
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.SubjectName_Label = new System.Windows.Forms.Label();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.changeGeneralPassScore_Button = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,10 +126,10 @@
             this.Close_Button.ForeColor = System.Drawing.Color.White;
             this.Close_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Close_Button.HoverState.Parent = this.Close_Button;
-            this.Close_Button.Location = new System.Drawing.Point(731, 58);
+            this.Close_Button.Location = new System.Drawing.Point(818, 58);
             this.Close_Button.Name = "Close_Button";
             this.Close_Button.ShadowDecoration.Parent = this.Close_Button;
-            this.Close_Button.Size = new System.Drawing.Size(234, 36);
+            this.Close_Button.Size = new System.Drawing.Size(150, 36);
             this.Close_Button.TabIndex = 129;
             this.Close_Button.Text = "THOÁT";
             this.Close_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -152,13 +153,13 @@
             this.ChangeSubjectName_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.ChangeSubjectName_Button.HoverState.Parent = this.ChangeSubjectName_Button;
             this.ChangeSubjectName_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeSubjectName_Button.Location = new System.Drawing.Point(251, 58);
+            this.ChangeSubjectName_Button.Location = new System.Drawing.Point(432, 58);
             this.ChangeSubjectName_Button.Name = "ChangeSubjectName_Button";
             this.ChangeSubjectName_Button.PressedDepth = 20;
             this.ChangeSubjectName_Button.ShadowDecoration.Parent = this.ChangeSubjectName_Button;
-            this.ChangeSubjectName_Button.Size = new System.Drawing.Size(234, 36);
+            this.ChangeSubjectName_Button.Size = new System.Drawing.Size(187, 36);
             this.ChangeSubjectName_Button.TabIndex = 128;
-            this.ChangeSubjectName_Button.Text = "THAY ĐỔI TÊN MÔN HỌC";
+            this.ChangeSubjectName_Button.Text = "ĐỔI TÊN MÔN HỌC";
             this.ChangeSubjectName_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.ChangeSubjectName_Button.Click += new System.EventHandler(this.ChangeSubjectName_Button_Click);
             // 
@@ -180,13 +181,13 @@
             this.AddSubject_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.AddSubject_Button.HoverState.Parent = this.AddSubject_Button;
             this.AddSubject_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.AddSubject_Button.Location = new System.Drawing.Point(11, 58);
+            this.AddSubject_Button.Location = new System.Drawing.Point(239, 58);
             this.AddSubject_Button.Name = "AddSubject_Button";
             this.AddSubject_Button.PressedDepth = 20;
             this.AddSubject_Button.ShadowDecoration.Parent = this.AddSubject_Button;
-            this.AddSubject_Button.Size = new System.Drawing.Size(234, 36);
+            this.AddSubject_Button.Size = new System.Drawing.Size(187, 36);
             this.AddSubject_Button.TabIndex = 131;
-            this.AddSubject_Button.Text = "BỔ SUNG THÊM MÔN HỌC";
+            this.AddSubject_Button.Text = "THÊM MÔN HỌC";
             this.AddSubject_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.AddSubject_Button.Click += new System.EventHandler(this.AddSubject_Button_Click);
             // 
@@ -208,13 +209,13 @@
             this.ChangeSubjectHead_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.ChangeSubjectHead_Button.HoverState.Parent = this.ChangeSubjectHead_Button;
             this.ChangeSubjectHead_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeSubjectHead_Button.Location = new System.Drawing.Point(491, 58);
+            this.ChangeSubjectHead_Button.Location = new System.Drawing.Point(625, 58);
             this.ChangeSubjectHead_Button.Name = "ChangeSubjectHead_Button";
             this.ChangeSubjectHead_Button.PressedDepth = 20;
             this.ChangeSubjectHead_Button.ShadowDecoration.Parent = this.ChangeSubjectHead_Button;
-            this.ChangeSubjectHead_Button.Size = new System.Drawing.Size(234, 36);
+            this.ChangeSubjectHead_Button.Size = new System.Drawing.Size(187, 36);
             this.ChangeSubjectHead_Button.TabIndex = 132;
-            this.ChangeSubjectHead_Button.Text = "THAY ĐỔI TRƯỞNG BỘ MÔN";
+            this.ChangeSubjectHead_Button.Text = "ĐỔI TRƯỞNG BỘ MÔN";
             this.ChangeSubjectHead_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.ChangeSubjectHead_Button.Click += new System.EventHandler(this.ChangeSubjectHead_Button_Click);
             // 
@@ -241,12 +242,41 @@
             // 
             this.guna2DragControl1.TargetControl = this.SubjectName_Label;
             // 
+            // changeGeneralPassScore_Button
+            // 
+            this.changeGeneralPassScore_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.changeGeneralPassScore_Button.Animated = true;
+            this.changeGeneralPassScore_Button.BackColor = System.Drawing.Color.White;
+            this.changeGeneralPassScore_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.changeGeneralPassScore_Button.BorderRadius = 5;
+            this.changeGeneralPassScore_Button.BorderThickness = 2;
+            this.changeGeneralPassScore_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.changeGeneralPassScore_Button.CheckedState.Parent = this.changeGeneralPassScore_Button;
+            this.changeGeneralPassScore_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changeGeneralPassScore_Button.CustomImages.Parent = this.changeGeneralPassScore_Button;
+            this.changeGeneralPassScore_Button.FillColor = System.Drawing.Color.White;
+            this.changeGeneralPassScore_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.changeGeneralPassScore_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.changeGeneralPassScore_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.changeGeneralPassScore_Button.HoverState.Parent = this.changeGeneralPassScore_Button;
+            this.changeGeneralPassScore_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.changeGeneralPassScore_Button.Location = new System.Drawing.Point(9, 58);
+            this.changeGeneralPassScore_Button.Name = "changeGeneralPassScore_Button";
+            this.changeGeneralPassScore_Button.PressedDepth = 20;
+            this.changeGeneralPassScore_Button.ShadowDecoration.Parent = this.changeGeneralPassScore_Button;
+            this.changeGeneralPassScore_Button.Size = new System.Drawing.Size(224, 36);
+            this.changeGeneralPassScore_Button.TabIndex = 134;
+            this.changeGeneralPassScore_Button.Text = "THAY ĐỔI ĐIỂM LÊN LỚP";
+            this.changeGeneralPassScore_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.changeGeneralPassScore_Button.Click += new System.EventHandler(this.changeGeneralPassScore_Button_Click);
+            // 
             // SubjectManage_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(977, 536);
+            this.Controls.Add(this.changeGeneralPassScore_Button);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.ChangeSubjectHead_Button);
             this.Controls.Add(this.AddSubject_Button);
@@ -276,5 +306,6 @@
         private Guna.UI2.WinForms.Guna2ShadowForm ShadowForm;
         private System.Windows.Forms.Label SubjectName_Label;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        protected Guna.UI2.WinForms.Guna2Button changeGeneralPassScore_Button;
     }
 }

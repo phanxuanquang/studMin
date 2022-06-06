@@ -86,5 +86,11 @@ namespace studMin
             ChangeSubjectHead_Form changeSubjectHead_Form = new ChangeSubjectHead_Form(subjectName, this);
             changeSubjectHead_Form.ShowDialog();
         }
+
+        private void changeGeneralPassScore_Button_Click(object sender, EventArgs e)
+        {
+            ChangeGeneralPassScore_Form changeGeneralPassScore_Form = new ChangeGeneralPassScore_Form();
+            changeGeneralPassScore_Form.ShowDialog();
+        }
     }
 }

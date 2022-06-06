@@ -110,5 +110,11 @@ namespace studMin
                 entity.Reload();
             }
         }
+
+        private void changeClassMaxCapacity_Button_Click(object sender, EventArgs e)
+        {
+            ChangeClassMaxCapacity_Form changeClassMaxCapacity_Form = new ChangeClassMaxCapacity_Form();
+            changeClassMaxCapacity_Form.ShowDialog();
+        }
     }
 }
