@@ -24,7 +24,7 @@ namespace studMin
 
         private void ClassManage_SubTab_Load(object sender, EventArgs e)
         {
-            BidingClass();
+            BindingClass();
         }
 
         private void AddClass_Button_Click(object sender, EventArgs e)
@@ -39,11 +39,10 @@ namespace studMin
             changeAgeRange_Form.ShowDialog();
         }
 
-        private void BidingClass()
+        private void BindingClass()
         {
             cLASSBindingSource.ResetBindings(true);
             cLASSBindingSource.DataSource = Database.ClassServices.Instance.GetClasss();
-            var maxQuantity = Database.ParameterServices.Instance.GetParameterByName("MAXQUANTITY").MAX;
             foreach (DataGridViewRow row in GridView.Rows)
             {
                 CLASS selected = row.DataBoundItem as CLASS;
@@ -51,8 +50,7 @@ namespace studMin
                 {
                     row.Cells["ClassId"].Value = selected.ID.ToString().Substring(0, 8).ToUpper();
                     row.Cells["NameClassHeadTeacher"].Value = selected.TEACHER.INFOR.FIRSTNAME + " " + selected.TEACHER.INFOR.LASTNAME;
-                    row.Cells["Quantity"].Value = Database.ClassServices.Instance.GetQuantityOfClass(selected.ID);
-                    row.Cells["MaxQuantity"].Value = maxQuantity;
+                    row.Cells["Quantity"].Value = selected.STUDYINGs.Where(item => item.IDCLASS == selected.ID).Distinct().ToList().Count() / 2;
                 }
             }
         }
@@ -100,7 +98,7 @@ namespace studMin
         private void ReloadDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
             RefreshAll();
-            BidingClass();
+            BindingClass();
         }
 
         public void RefreshAll()

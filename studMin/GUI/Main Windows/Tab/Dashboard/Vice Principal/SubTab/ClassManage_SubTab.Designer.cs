@@ -34,17 +34,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GridView = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.ClassId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLASSNAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameClassHeadTeacher = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SCHOOLYEAR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLASSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Update_Button = new Guna.UI2.WinForms.Guna2Button();
             this.AddClass_Button = new Guna.UI2.WinForms.Guna2Button();
             this.ChangeAgeRange_Button = new Guna.UI2.WinForms.Guna2Button();
             this.changeClassMaxCapacity_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.cLASSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ClassId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cLASSNAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameClassHeadTeacher = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SCHOOLYEAR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +76,6 @@
             this.cLASSNAMEDataGridViewTextBoxColumn,
             this.NameClassHeadTeacher,
             this.Quantity,
-            this.MaxQuantity,
             this.SCHOOLYEAR});
             this.GridView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.GridView.DataSource = this.cLASSBindingSource;
@@ -92,7 +90,8 @@
             this.GridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.GridView.EnableHeadersVisualStyles = false;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.GridView.Location = new System.Drawing.Point(0, 85);
+            this.GridView.Location = new System.Drawing.Point(0, 105);
+            this.GridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridView.Name = "GridView";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -104,8 +103,8 @@
             this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.GridView.RowHeadersVisible = false;
             this.GridView.RowHeadersWidth = 51;
-            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.GridView.Size = new System.Drawing.Size(924, 603);
+            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridView.Size = new System.Drawing.Size(1232, 742);
             this.GridView.TabIndex = 104;
             this.GridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.GridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -129,6 +128,118 @@
             this.GridView.ThemeStyle.RowsStyle.Height = 22;
             this.GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            // 
+            // Update_Button
+            // 
+            this.Update_Button.Animated = true;
+            this.Update_Button.BackColor = System.Drawing.Color.Transparent;
+            this.Update_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Update_Button.BorderRadius = 5;
+            this.Update_Button.CheckedState.Parent = this.Update_Button;
+            this.Update_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Update_Button.CustomImages.Parent = this.Update_Button;
+            this.Update_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Update_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Update_Button.ForeColor = System.Drawing.Color.White;
+            this.Update_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.Update_Button.HoverState.Parent = this.Update_Button;
+            this.Update_Button.Location = new System.Drawing.Point(973, 39);
+            this.Update_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Update_Button.Name = "Update_Button";
+            this.Update_Button.ShadowDecoration.Parent = this.Update_Button;
+            this.Update_Button.Size = new System.Drawing.Size(253, 44);
+            this.Update_Button.TabIndex = 105;
+            this.Update_Button.Text = "CẬP NHẬT";
+            this.Update_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Update_Button.Click += new System.EventHandler(this.Update_Button_Click);
+            // 
+            // AddClass_Button
+            // 
+            this.AddClass_Button.Animated = true;
+            this.AddClass_Button.BackColor = System.Drawing.Color.White;
+            this.AddClass_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.AddClass_Button.BorderRadius = 5;
+            this.AddClass_Button.BorderThickness = 2;
+            this.AddClass_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.AddClass_Button.CheckedState.Parent = this.AddClass_Button;
+            this.AddClass_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddClass_Button.CustomImages.Parent = this.AddClass_Button;
+            this.AddClass_Button.FillColor = System.Drawing.Color.White;
+            this.AddClass_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.AddClass_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.AddClass_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.AddClass_Button.HoverState.Parent = this.AddClass_Button;
+            this.AddClass_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.AddClass_Button.Location = new System.Drawing.Point(679, 39);
+            this.AddClass_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddClass_Button.Name = "AddClass_Button";
+            this.AddClass_Button.PressedDepth = 20;
+            this.AddClass_Button.ShadowDecoration.Parent = this.AddClass_Button;
+            this.AddClass_Button.Size = new System.Drawing.Size(281, 44);
+            this.AddClass_Button.TabIndex = 106;
+            this.AddClass_Button.Text = "THÊM LỚP HỌC";
+            this.AddClass_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.AddClass_Button.Click += new System.EventHandler(this.AddClass_Button_Click);
+            // 
+            // ChangeAgeRange_Button
+            // 
+            this.ChangeAgeRange_Button.Animated = true;
+            this.ChangeAgeRange_Button.BackColor = System.Drawing.Color.White;
+            this.ChangeAgeRange_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.ChangeAgeRange_Button.BorderRadius = 5;
+            this.ChangeAgeRange_Button.BorderThickness = 2;
+            this.ChangeAgeRange_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.ChangeAgeRange_Button.CheckedState.Parent = this.ChangeAgeRange_Button;
+            this.ChangeAgeRange_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ChangeAgeRange_Button.CustomImages.Parent = this.ChangeAgeRange_Button;
+            this.ChangeAgeRange_Button.FillColor = System.Drawing.Color.White;
+            this.ChangeAgeRange_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.ChangeAgeRange_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.ChangeAgeRange_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.ChangeAgeRange_Button.HoverState.Parent = this.ChangeAgeRange_Button;
+            this.ChangeAgeRange_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ChangeAgeRange_Button.Location = new System.Drawing.Point(384, 39);
+            this.ChangeAgeRange_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChangeAgeRange_Button.Name = "ChangeAgeRange_Button";
+            this.ChangeAgeRange_Button.PressedDepth = 20;
+            this.ChangeAgeRange_Button.ShadowDecoration.Parent = this.ChangeAgeRange_Button;
+            this.ChangeAgeRange_Button.Size = new System.Drawing.Size(281, 44);
+            this.ChangeAgeRange_Button.TabIndex = 152;
+            this.ChangeAgeRange_Button.Text = "THAY ĐỔI KHOẢNG TUỔI";
+            this.ChangeAgeRange_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.ChangeAgeRange_Button.Click += new System.EventHandler(this.ChangeAgeRange_Button_Click);
+            // 
+            // changeClassMaxCapacity_Button
+            // 
+            this.changeClassMaxCapacity_Button.Animated = true;
+            this.changeClassMaxCapacity_Button.BackColor = System.Drawing.Color.White;
+            this.changeClassMaxCapacity_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.changeClassMaxCapacity_Button.BorderRadius = 5;
+            this.changeClassMaxCapacity_Button.BorderThickness = 2;
+            this.changeClassMaxCapacity_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
+            this.changeClassMaxCapacity_Button.CheckedState.Parent = this.changeClassMaxCapacity_Button;
+            this.changeClassMaxCapacity_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.changeClassMaxCapacity_Button.CustomImages.Parent = this.changeClassMaxCapacity_Button;
+            this.changeClassMaxCapacity_Button.FillColor = System.Drawing.Color.White;
+            this.changeClassMaxCapacity_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.changeClassMaxCapacity_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.changeClassMaxCapacity_Button.HoverState.FillColor = System.Drawing.Color.White;
+            this.changeClassMaxCapacity_Button.HoverState.Parent = this.changeClassMaxCapacity_Button;
+            this.changeClassMaxCapacity_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.changeClassMaxCapacity_Button.Location = new System.Drawing.Point(4, 39);
+            this.changeClassMaxCapacity_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.changeClassMaxCapacity_Button.Name = "changeClassMaxCapacity_Button";
+            this.changeClassMaxCapacity_Button.PressedDepth = 20;
+            this.changeClassMaxCapacity_Button.ShadowDecoration.Parent = this.changeClassMaxCapacity_Button;
+            this.changeClassMaxCapacity_Button.Size = new System.Drawing.Size(367, 44);
+            this.changeClassMaxCapacity_Button.TabIndex = 153;
+            this.changeClassMaxCapacity_Button.Text = "THAY ĐỔI SỈ SỐ TỐI ĐA CỦA LỚP HỌC";
+            this.changeClassMaxCapacity_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.changeClassMaxCapacity_Button.Click += new System.EventHandler(this.changeClassMaxCapacity_Button_Click);
+            // 
+            // cLASSBindingSource
+            // 
+            this.cLASSBindingSource.DataSource = typeof(studMin.Database.Models.CLASS);
             // 
             // ClassId
             // 
@@ -158,131 +269,17 @@
             this.Quantity.Name = "Quantity";
             this.Quantity.ReadOnly = true;
             // 
-            // MaxQuantity
-            // 
-            this.MaxQuantity.HeaderText = "Sỉ số tối đa";
-            this.MaxQuantity.MinimumWidth = 6;
-            this.MaxQuantity.Name = "MaxQuantity";
-            this.MaxQuantity.ReadOnly = true;
-            // 
             // SCHOOLYEAR
             // 
             this.SCHOOLYEAR.DataPropertyName = "SCHOOLYEAR";
             this.SCHOOLYEAR.HeaderText = "Năm học";
+            this.SCHOOLYEAR.MinimumWidth = 6;
             this.SCHOOLYEAR.Name = "SCHOOLYEAR";
             this.SCHOOLYEAR.ReadOnly = true;
             // 
-            // cLASSBindingSource
-            // 
-            this.cLASSBindingSource.DataSource = typeof(studMin.Database.Models.CLASS);
-            // 
-            // Update_Button
-            // 
-            this.Update_Button.Animated = true;
-            this.Update_Button.BackColor = System.Drawing.Color.Transparent;
-            this.Update_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Update_Button.BorderRadius = 5;
-            this.Update_Button.CheckedState.Parent = this.Update_Button;
-            this.Update_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Update_Button.CustomImages.Parent = this.Update_Button;
-            this.Update_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Update_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Update_Button.ForeColor = System.Drawing.Color.White;
-            this.Update_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.Update_Button.HoverState.Parent = this.Update_Button;
-            this.Update_Button.Location = new System.Drawing.Point(730, 32);
-            this.Update_Button.Name = "Update_Button";
-            this.Update_Button.ShadowDecoration.Parent = this.Update_Button;
-            this.Update_Button.Size = new System.Drawing.Size(190, 36);
-            this.Update_Button.TabIndex = 105;
-            this.Update_Button.Text = "CẬP NHẬT";
-            this.Update_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.Update_Button.Click += new System.EventHandler(this.Update_Button_Click);
-            // 
-            // AddClass_Button
-            // 
-            this.AddClass_Button.Animated = true;
-            this.AddClass_Button.BackColor = System.Drawing.Color.White;
-            this.AddClass_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.AddClass_Button.BorderRadius = 5;
-            this.AddClass_Button.BorderThickness = 2;
-            this.AddClass_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.AddClass_Button.CheckedState.Parent = this.AddClass_Button;
-            this.AddClass_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AddClass_Button.CustomImages.Parent = this.AddClass_Button;
-            this.AddClass_Button.FillColor = System.Drawing.Color.White;
-            this.AddClass_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.AddClass_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.AddClass_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.AddClass_Button.HoverState.Parent = this.AddClass_Button;
-            this.AddClass_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.AddClass_Button.Location = new System.Drawing.Point(509, 32);
-            this.AddClass_Button.Name = "AddClass_Button";
-            this.AddClass_Button.PressedDepth = 20;
-            this.AddClass_Button.ShadowDecoration.Parent = this.AddClass_Button;
-            this.AddClass_Button.Size = new System.Drawing.Size(211, 36);
-            this.AddClass_Button.TabIndex = 106;
-            this.AddClass_Button.Text = "THÊM LỚP HỌC";
-            this.AddClass_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.AddClass_Button.Click += new System.EventHandler(this.AddClass_Button_Click);
-            // 
-            // ChangeAgeRange_Button
-            // 
-            this.ChangeAgeRange_Button.Animated = true;
-            this.ChangeAgeRange_Button.BackColor = System.Drawing.Color.White;
-            this.ChangeAgeRange_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.ChangeAgeRange_Button.BorderRadius = 5;
-            this.ChangeAgeRange_Button.BorderThickness = 2;
-            this.ChangeAgeRange_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.ChangeAgeRange_Button.CheckedState.Parent = this.ChangeAgeRange_Button;
-            this.ChangeAgeRange_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ChangeAgeRange_Button.CustomImages.Parent = this.ChangeAgeRange_Button;
-            this.ChangeAgeRange_Button.FillColor = System.Drawing.Color.White;
-            this.ChangeAgeRange_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ChangeAgeRange_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.ChangeAgeRange_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.ChangeAgeRange_Button.HoverState.Parent = this.ChangeAgeRange_Button;
-            this.ChangeAgeRange_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ChangeAgeRange_Button.Location = new System.Drawing.Point(288, 32);
-            this.ChangeAgeRange_Button.Name = "ChangeAgeRange_Button";
-            this.ChangeAgeRange_Button.PressedDepth = 20;
-            this.ChangeAgeRange_Button.ShadowDecoration.Parent = this.ChangeAgeRange_Button;
-            this.ChangeAgeRange_Button.Size = new System.Drawing.Size(211, 36);
-            this.ChangeAgeRange_Button.TabIndex = 152;
-            this.ChangeAgeRange_Button.Text = "THAY ĐỔI KHOẢNG TUỔI";
-            this.ChangeAgeRange_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.ChangeAgeRange_Button.Click += new System.EventHandler(this.ChangeAgeRange_Button_Click);
-            // 
-            // changeClassMaxCapacity_Button
-            // 
-            this.changeClassMaxCapacity_Button.Animated = true;
-            this.changeClassMaxCapacity_Button.BackColor = System.Drawing.Color.White;
-            this.changeClassMaxCapacity_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.changeClassMaxCapacity_Button.BorderRadius = 5;
-            this.changeClassMaxCapacity_Button.BorderThickness = 2;
-            this.changeClassMaxCapacity_Button.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
-            this.changeClassMaxCapacity_Button.CheckedState.Parent = this.changeClassMaxCapacity_Button;
-            this.changeClassMaxCapacity_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.changeClassMaxCapacity_Button.CustomImages.Parent = this.changeClassMaxCapacity_Button;
-            this.changeClassMaxCapacity_Button.FillColor = System.Drawing.Color.White;
-            this.changeClassMaxCapacity_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.changeClassMaxCapacity_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.changeClassMaxCapacity_Button.HoverState.FillColor = System.Drawing.Color.White;
-            this.changeClassMaxCapacity_Button.HoverState.Parent = this.changeClassMaxCapacity_Button;
-            this.changeClassMaxCapacity_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.changeClassMaxCapacity_Button.Location = new System.Drawing.Point(3, 32);
-            this.changeClassMaxCapacity_Button.Name = "changeClassMaxCapacity_Button";
-            this.changeClassMaxCapacity_Button.PressedDepth = 20;
-            this.changeClassMaxCapacity_Button.ShadowDecoration.Parent = this.changeClassMaxCapacity_Button;
-            this.changeClassMaxCapacity_Button.Size = new System.Drawing.Size(275, 36);
-            this.changeClassMaxCapacity_Button.TabIndex = 153;
-            this.changeClassMaxCapacity_Button.Text = "THAY ĐỔI SỈ SỐ TỐI ĐA CỦA LỚP HỌC";
-            this.changeClassMaxCapacity_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.changeClassMaxCapacity_Button.Click += new System.EventHandler(this.changeClassMaxCapacity_Button_Click);
-            // 
             // ClassManage_SubTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.changeClassMaxCapacity_Button);
@@ -290,8 +287,9 @@
             this.Controls.Add(this.AddClass_Button);
             this.Controls.Add(this.Update_Button);
             this.Controls.Add(this.GridView);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ClassManage_SubTab";
-            this.Size = new System.Drawing.Size(924, 688);
+            this.Size = new System.Drawing.Size(1232, 847);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -305,12 +303,11 @@
         private Guna.UI2.WinForms.Guna2Button AddClass_Button;
         private Guna.UI2.WinForms.Guna2Button ChangeAgeRange_Button;
         private System.Windows.Forms.BindingSource cLASSBindingSource;
+        private Guna.UI2.WinForms.Guna2Button changeClassMaxCapacity_Button;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClassId;
         private System.Windows.Forms.DataGridViewTextBoxColumn cLASSNAMEDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameClassHeadTeacher;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn SCHOOLYEAR;
-        private Guna.UI2.WinForms.Guna2Button changeClassMaxCapacity_Button;
     }
 }
