@@ -50,7 +50,7 @@ namespace studMin
                 {
                     row.Cells["ClassId"].Value = selected.ID.ToString().Substring(0, 8).ToUpper();
                     row.Cells["NameClassHeadTeacher"].Value = selected.TEACHER.INFOR.FIRSTNAME + " " + selected.TEACHER.INFOR.LASTNAME;
-                    row.Cells["Quantity"].Value = selected.STUDYINGs.Where(item => item.IDCLASS == selected.ID).Distinct().ToList().Count() / 2;
+                    row.Cells["Quantity"].Value = Database.ClassServices.Instance.GetQuantityOfClass(selected);
                 }
             }
         }
