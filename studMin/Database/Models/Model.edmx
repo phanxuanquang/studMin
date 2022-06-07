@@ -101,16 +101,6 @@
           <Property Name="ROLE" Type="nvarchar(max)" />
           <Property Name="COEFFICIENT" Type="int" />
         </EntityType>
-        <EntityType Name="SCHEDULE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DATEAPPLY" Type="smalldatetime" />
-          <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
-          <Property Name="SCHEDULENAME" Type="nvarchar(max)" />
-          <Property Name="IDSEMESTER" Type="uniqueidentifier" />
-        </EntityType>
         <EntityType Name="SCORE">
           <Key>
             <PropertyRef Name="ID" />
@@ -121,6 +111,16 @@
           <Property Name="SCORE" Type="float" />
           <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
           <Property Name="IDROLESCORE" Type="uniqueidentifier" />
+          <Property Name="IDSEMESTER" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SCHEDULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DATEAPPLY" Type="smalldatetime" />
+          <Property Name="SCHOOLYEAR" Type="varchar" MaxLength="20" />
+          <Property Name="SCHEDULENAME" Type="nvarchar(max)" />
           <Property Name="IDSEMESTER" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="SEMESTER">
@@ -374,18 +374,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SCHEDULE__IDSEME__282DF8C2">
-          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="0..1" />
-          <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SEMESTER">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SCHEDULE">
-              <PropertyRef Name="IDSEMESTER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SCORE__IDROLESCO__29221CFB">
           <End Role="ROLESCORE" Type="Self.ROLESCORE" Multiplicity="0..1" />
           <End Role="SCORE" Type="Self.SCORE" Multiplicity="*" />
@@ -431,6 +419,18 @@
             </Principal>
             <Dependent Role="SCORE">
               <PropertyRef Name="IDSUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SCHEDULE__IDSEME__282DF8C2">
+          <End Role="SEMESTER" Type="Self.SEMESTER" Multiplicity="0..1" />
+          <End Role="SCHEDULE" Type="Self.SCHEDULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEMESTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SCHEDULE">
+              <PropertyRef Name="IDSEMESTER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -602,6 +602,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TEACHER__IDSUBJE__57DD0BE4">
+          <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+          <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBJECT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TEACHER">
+              <PropertyRef Name="IDSUBJECT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__TEACHER__IDTEACH__3A4CA8FD">
           <End Role="TEACHERROLE" Type="Self.TEACHERROLE" Multiplicity="0..1" />
           <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
@@ -709,8 +721,8 @@
           <EntitySet Name="REPORTSEMESTER" EntityType="Self.REPORTSEMESTER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REPORTSUBJECT" EntityType="Self.REPORTSUBJECT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLESCORE" EntityType="Self.ROLESCORE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SCORE" EntityType="Self.SCORE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCHEDULE" EntityType="Self.SCHEDULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEMESTER" EntityType="Self.SEMESTER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFF" EntityType="Self.STAFF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STAFFROLE" EntityType="Self.STAFFROLE" Schema="dbo" store:Type="Tables" />
@@ -767,10 +779,6 @@
             <End Role="SUBJECT" EntitySet="SUBJECT" />
             <End Role="REPORTSUBJECT" EntitySet="REPORTSUBJECT" />
           </AssociationSet>
-          <AssociationSet Name="FK__SCHEDULE__IDSEME__282DF8C2" Association="Self.FK__SCHEDULE__IDSEME__282DF8C2">
-            <End Role="SEMESTER" EntitySet="SEMESTER" />
-            <End Role="SCHEDULE" EntitySet="SCHEDULE" />
-          </AssociationSet>
           <AssociationSet Name="FK__SCORE__IDROLESCO__29221CFB" Association="Self.FK__SCORE__IDROLESCO__29221CFB">
             <End Role="ROLESCORE" EntitySet="ROLESCORE" />
             <End Role="SCORE" EntitySet="SCORE" />
@@ -786,6 +794,10 @@
           <AssociationSet Name="FK__SCORE__IDSUBJECT__2BFE89A6" Association="Self.FK__SCORE__IDSUBJECT__2BFE89A6">
             <End Role="SUBJECT" EntitySet="SUBJECT" />
             <End Role="SCORE" EntitySet="SCORE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SCHEDULE__IDSEME__282DF8C2" Association="Self.FK__SCHEDULE__IDSEME__282DF8C2">
+            <End Role="SEMESTER" EntitySet="SEMESTER" />
+            <End Role="SCHEDULE" EntitySet="SCHEDULE" />
           </AssociationSet>
           <AssociationSet Name="FK__STAFF__IDINFOR__2CF2ADDF" Association="Self.FK__STAFF__IDINFOR__2CF2ADDF">
             <End Role="INFOR" EntitySet="INFOR" />
@@ -841,6 +853,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__TEACHER__IDINFOR__395884C4" Association="Self.FK__TEACHER__IDINFOR__395884C4">
             <End Role="INFOR" EntitySet="INFOR" />
+            <End Role="TEACHER" EntitySet="TEACHER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACHER__IDSUBJE__57DD0BE4" Association="Self.FK__TEACHER__IDSUBJE__57DD0BE4">
+            <End Role="SUBJECT" EntitySet="SUBJECT" />
             <End Role="TEACHER" EntitySet="TEACHER" />
           </AssociationSet>
           <AssociationSet Name="FK__TEACHER__IDTEACH__3A4CA8FD" Association="Self.FK__TEACHER__IDTEACH__3A4CA8FD">
@@ -1056,6 +1072,10 @@
           <AssociationSet Name="FK__USERS__IDUSERROL__40F9A68C" Association="StudMinDBModel.FK__USERS__IDUSERROL__40F9A68C">
             <End Role="USERROLE" EntitySet="USERROLEs" />
             <End Role="USER" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TEACHER__IDSUBJE__57DD0BE4" Association="StudMinDBModel.FK__TEACHER__IDSUBJE__57DD0BE4">
+            <End Role="SUBJECT" EntitySet="SUBJECTs" />
+            <End Role="TEACHER" EntitySet="TEACHERs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CLASS">
@@ -1286,6 +1306,7 @@
           <NavigationProperty Name="SCOREs" Relationship="StudMinDBModel.FK__SCORE__IDSUBJECT__2BFE89A6" FromRole="SUBJECT" ToRole="SCORE" />
           <NavigationProperty Name="TEACHER" Relationship="StudMinDBModel.FK__SUBJECT__IDHEADT__3493CFA7" FromRole="SUBJECT" ToRole="TEACHER" />
           <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDSUBJECT__37703C52" FromRole="SUBJECT" ToRole="TEACH" />
+          <NavigationProperty Name="TEACHERs" Relationship="StudMinDBModel.FK__TEACHER__IDSUBJE__57DD0BE4" FromRole="SUBJECT" ToRole="TEACHER" />
         </EntityType>
         <EntityType Name="TEACH">
           <Key>
@@ -1320,6 +1341,7 @@
           <NavigationProperty Name="TEACHes" Relationship="StudMinDBModel.FK__TEACH__IDTEACHER__3864608B" FromRole="TEACHER" ToRole="TEACH" />
           <NavigationProperty Name="TEACHERROLE" Relationship="StudMinDBModel.FK__TEACHER__IDTEACH__3A4CA8FD" FromRole="TEACHER" ToRole="TEACHERROLE" />
           <NavigationProperty Name="USER" Relationship="StudMinDBModel.FK__TEACHER__IDUSER__3B40CD36" FromRole="TEACHER" ToRole="USER" />
+          <NavigationProperty Name="SUBJECT" Relationship="StudMinDBModel.FK__TEACHER__IDSUBJE__57DD0BE4" FromRole="TEACHER" ToRole="SUBJECT" />
         </EntityType>
         <EntityType Name="TEACHERROLE">
           <Key>
@@ -1824,6 +1846,18 @@
             </Principal>
             <Dependent Role="USER">
               <PropertyRef Name="IDUSERROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TEACHER__IDSUBJE__57DD0BE4">
+          <End Type="StudMinDBModel.SUBJECT" Role="SUBJECT" Multiplicity="0..1" />
+          <End Type="StudMinDBModel.TEACHER" Role="TEACHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBJECT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TEACHER">
+              <PropertyRef Name="IDSUBJECT" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

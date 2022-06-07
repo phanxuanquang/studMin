@@ -40,5 +40,6 @@ namespace studMin.Database.Models
         public virtual ICollection<TEACH> TEACHes { get; set; }
         public virtual TEACHERROLE TEACHERROLE { get; set; }
         public virtual USER USER { get; set; }
+        public virtual SUBJECT SUBJECT { get; set; }
     }
 }

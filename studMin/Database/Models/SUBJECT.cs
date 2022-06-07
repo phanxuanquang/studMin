@@ -21,6 +21,7 @@ namespace studMin.Database.Models
             this.REPORTSUBJECTs = new HashSet<REPORTSUBJECT>();
             this.SCOREs = new HashSet<SCORE>();
             this.TEACHes = new HashSet<TEACH>();
+            this.TEACHERs = new HashSet<TEACHER>();
         }
     
         public System.Guid Id { get; set; }
@@ -37,5 +38,7 @@ namespace studMin.Database.Models
         public virtual TEACHER TEACHER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEACH> TEACHes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEACHER> TEACHERs { get; set; }
     }
 }
