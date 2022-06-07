@@ -129,6 +129,18 @@
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
     <Compile Include="Action\Excel\ReportCommon.cs" />
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeGeneralPassScore_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeGeneralPassScore_Form.Designer.cs">
+      <DependentUpon>ChangeGeneralPassScore_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeClassMaxCapacity_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeClassMaxCapacity_Form.Designer.cs">
+      <DependentUpon>ChangeClassMaxCapacity_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,17 +447,32 @@
     <Compile Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.Designer.cs">
       <DependentUpon>TimeTableTab_Staff.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforModify_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforModify_Form.Designer.cs">
+      <DependentUpon>StudentInforModify_Form.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\AddSubject_Form.resx">
       <DependentUpon>AddSubject_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeGeneralPassScore_Form.resx">
+      <DependentUpon>ChangeGeneralPassScore_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.resx">
       <DependentUpon>ChangeSubjectHead_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforModify_Form.resx">
+      <DependentUpon>StudentInforModify_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeAgeRange_Form.resx">
       <DependentUpon>ChangeAgeRange_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\AddClass_Form.resx">
       <DependentUpon>AddClass_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeClassMaxCapacity_Form.resx">
+      <DependentUpon>ChangeClassMaxCapacity_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ClassManage_SubTab.resx">
       <DependentUpon>ClassManage_SubTab.cs</DependentUpon>
@@ -558,6 +585,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\studMin.Database.Models.CLASS.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.CONDUCT.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.INFOR.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.SCORE.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.STUDENT2.datasource" />
     <None Include="Properties\DataSources\studMin.Database.Models.STUDYING.datasource" />

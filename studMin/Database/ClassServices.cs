@@ -52,18 +52,25 @@ namespace studMin.Database
                 return new List<STUDENT>();
             }
 
-            var listStudying = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID).ToList();
-            var listStudents = new List<STUDENT>();
-            foreach (var studying in listStudying)
-            {
-                STUDENT student = DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault();
-                if (!listStudents.Contains(student))
-                {
-                    listStudents.Add(student);
+            var listStudent = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID).Select(item => item.STUDENT).Distinct().ToList();
+            //var listStudents = new List<STUDENT>();
+            //foreach (var studying in listStudying)
+            //{
+            //    STUDENT student = DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault();
+            //    if (!listStudents.Contains(student))
+            //    {
+            //        listStudents.Add(student);
 
-                }
-            }
-            return listStudents;
+            //    }
+            //}
+            //return listStudents;
+            return listStudent;
+        }
+
+        public List<STUDENT> GetListStudentOfClass(CLASS Class)
+        {
+            var listStudent = Class.STUDYINGs.Select(x => x.STUDENT).Distinct().ToList();
+            return listStudent;
         }
 
         public List<STUDYING> GetListStudyingOfClass(string className, string schoolYear)
@@ -115,11 +122,14 @@ namespace studMin.Database
             }
         }
 
-        public int GetQuantityOfClass(Guid idClass)
+        public int GetQuantityOfClass(CLASS Class)
         {
-            CLASS tmp = GetClassById(idClass);
-            List <STUDENT> listStudent = GetListStudentOfClass(tmp.CLASSNAME, tmp.SCHOOLYEAR);
-            return listStudent.Count();
+            return Class.STUDYINGs.Where(item => item.IDCLASS == Class.ID).Distinct(new STUDYINGCompare()).ToList().Count();
+        }
+
+        public int GetQuantityOfClass(string className, string schoolYear = null)
+        {
+            return GetListStudentOfClass(className, schoolYear).Count();
         }
 
         public class STUDYINGCompare : IEqualityComparer<STUDYING>

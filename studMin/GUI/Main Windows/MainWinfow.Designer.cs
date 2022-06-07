@@ -42,6 +42,7 @@
             this.Minimize_Button = new Guna.UI2.WinForms.Guna2ImageButton();
             this.Exit_Button = new Guna.UI2.WinForms.Guna2ImageButton();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.TeacherInfor_Label = new System.Windows.Forms.Label();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             this.menuBar.ShadowColor = System.Drawing.Color.Black;
             this.menuBar.ShadowDepth = 0;
             this.menuBar.ShadowShift = 0;
-            this.menuBar.Size = new System.Drawing.Size(60, 750);
+            this.menuBar.Size = new System.Drawing.Size(60, 789);
             this.menuBar.TabIndex = 0;
             // 
             // Dashboard_MenuButton
@@ -140,7 +141,7 @@
             this.Logout_Button.Image = ((System.Drawing.Image)(resources.GetObject("Logout_Button.Image")));
             this.Logout_Button.ImageOffset = new System.Drawing.Point(1, 0);
             this.Logout_Button.ImageSize = new System.Drawing.Size(35, 35);
-            this.Logout_Button.Location = new System.Drawing.Point(8, 696);
+            this.Logout_Button.Location = new System.Drawing.Point(8, 735);
             this.Logout_Button.Name = "Logout_Button";
             this.Logout_Button.ShadowDecoration.Parent = this.Logout_Button;
             this.Logout_Button.Size = new System.Drawing.Size(44, 44);
@@ -174,11 +175,12 @@
             // 
             // ContainerPanel
             // 
+            this.ContainerPanel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.ContainerPanel.BorderRadius = 15;
             this.ContainerPanel.FillColor = System.Drawing.Color.White;
             this.ContainerPanel.FillColor2 = System.Drawing.Color.White;
-            this.ContainerPanel.Location = new System.Drawing.Point(97, 36);
+            this.ContainerPanel.Location = new System.Drawing.Point(97, 75);
             this.ContainerPanel.Name = "ContainerPanel";
             this.ContainerPanel.ShadowDecoration.Parent = this.ContainerPanel;
             this.ContainerPanel.Size = new System.Drawing.Size(924, 740);
@@ -216,12 +218,27 @@
             this.Exit_Button.TabIndex = 0;
             this.Exit_Button.Click += new System.EventHandler(this.Exit_Button_Click);
             // 
+            // TeacherInfor_Label
+            // 
+            this.TeacherInfor_Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.TeacherInfor_Label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.TeacherInfor_Label.ForeColor = System.Drawing.Color.White;
+            this.TeacherInfor_Label.Location = new System.Drawing.Point(97, 28);
+            this.TeacherInfor_Label.Name = "TeacherInfor_Label";
+            this.TeacherInfor_Label.Size = new System.Drawing.Size(923, 33);
+            this.TeacherInfor_Label.TabIndex = 142;
+            this.TeacherInfor_Label.Text = "Họ và tên: NGUYỄN VĂN A | Môn học phụ trách: NGỮ VĂN | Vai trò chính: GIÁO VIÊN C" +
+    "HỦ NHIỆM";
+            this.TeacherInfor_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TeacherInfor_Label.UseCompatibleTextRendering = true;
+            // 
             // MainWinfow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(1058, 800);
+            this.ClientSize = new System.Drawing.Size(1058, 839);
+            this.Controls.Add(this.TeacherInfor_Label);
             this.Controls.Add(this.ContainerPanel);
             this.Controls.Add(this.Minimize_Button);
             this.Controls.Add(this.Exit_Button);
@@ -250,5 +267,6 @@
         private Guna.UI2.WinForms.Guna2ImageButton Minimize_Button;
         private Guna.UI2.WinForms.Guna2GradientPanel ContainerPanel;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label TeacherInfor_Label;
     }
 }

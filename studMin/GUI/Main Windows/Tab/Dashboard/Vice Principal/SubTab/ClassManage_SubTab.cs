@@ -24,7 +24,7 @@ namespace studMin
 
         private void ClassManage_SubTab_Load(object sender, EventArgs e)
         {
-            BidingClass();
+            BindingClass();
         }
 
         private void AddClass_Button_Click(object sender, EventArgs e)
@@ -39,11 +39,9 @@ namespace studMin
             changeAgeRange_Form.ShowDialog();
         }
 
-        private void BidingClass()
+        private void BindingClass()
         {
-            cLASSBindingSource.ResetBindings(true);
             cLASSBindingSource.DataSource = Database.ClassServices.Instance.GetClasss();
-            var maxQuantity = Database.ParameterServices.Instance.GetParameterByName("MAXQUANTITY").MAX;
             foreach (DataGridViewRow row in GridView.Rows)
             {
                 CLASS selected = row.DataBoundItem as CLASS;
@@ -51,42 +49,41 @@ namespace studMin
                 {
                     row.Cells["ClassId"].Value = selected.ID.ToString().Substring(0, 8).ToUpper();
                     row.Cells["NameClassHeadTeacher"].Value = selected.TEACHER.INFOR.FIRSTNAME + " " + selected.TEACHER.INFOR.LASTNAME;
-                    row.Cells["Quantity"].Value = Database.ClassServices.Instance.GetQuantityOfClass(selected.ID);
-                    row.Cells["MaxQuantity"].Value = maxQuantity;
+                    row.Cells["Quantity"].Value = Database.ClassServices.Instance.GetQuantityOfClass(selected);
                 }
             }
         }
 
         private void Update_Button_Click(object sender, EventArgs e)
         {
-            var listClass = Database.ClassServices.Instance.GetClasss().Select(item => item.CLASSNAME);
+            var listClass = Database.ClassServices.Instance.GetClasss().Select(item => new { item.CLASSNAME, item.SCHOOLYEAR });
             if (listClass.Count() != listClass.Distinct().Count())
             {
                 MessageBox.Show("Tên lớp đã tồn tại!");
-                //Database.DataProvider.Instance.Database.Entry(Database.DataProvider.Instance.Database.CLASSes).Reload();
 
-                if (backgroundWorker == null)
-                {
-                    backgroundWorker = new BackgroundWorker();
-                }
-                else if (!backgroundWorker.IsBusy)
-                {
-                    backgroundWorker.Dispose();
-                    backgroundWorker = new BackgroundWorker();
-                }
-                else
-                {
-                    MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
-                    return;
-                }
+                //if (backgroundWorker == null)
+                //{
+                //    backgroundWorker = new BackgroundWorker();
+                //}
+                //else if (!backgroundWorker.IsBusy)
+                //{
+                //    backgroundWorker.Dispose();
+                //    backgroundWorker = new BackgroundWorker();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                //    return;
+                //}
 
-                if (loadingWindow == null) loadingWindow = new GUI.LoadingWindow(this.ParentForm);
+                //if (loadingWindow == null) loadingWindow = new GUI.LoadingWindow(this.ParentForm);
 
-                backgroundWorker.DoWork += ReloadDatabase_DoWork;
-                backgroundWorker.RunWorkerCompleted += ReloadDatabase_RunrWorkerCompleted;
-                backgroundWorker.RunWorkerAsync();
-                loadingWindow.ShowDialog();
-                
+                //backgroundWorker.DoWork += ReloadDatabase_DoWork;
+                //backgroundWorker.RunWorkerCompleted += ReloadDatabase_RunrWorkerCompleted;
+                //backgroundWorker.RunWorkerAsync();
+                //loadingWindow.ShowDialog();
+                RefreshAll();
+                BindingClass();
                 return;
             }
             Database.DataProvider.Instance.Database.SaveChanges();
@@ -100,15 +97,21 @@ namespace studMin
         private void ReloadDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
             RefreshAll();
-            BidingClass();
+            cLASSBindingSource.ResetBindings(false);
         }
 
         public void RefreshAll()
         {
-            foreach (var entity in Database.DataProvider.Instance.Database.ChangeTracker.Entries())
+            foreach (var entity in Database.DataProvider.Instance.Database.CLASSes)
             {
-                entity.Reload();
+                Database.DataProvider.Instance.Database.Entry(entity).Reload();
             }
+        }
+
+        private void changeClassMaxCapacity_Button_Click(object sender, EventArgs e)
+        {
+            ChangeClassMaxCapacity_Form changeClassMaxCapacity_Form = new ChangeClassMaxCapacity_Form();
+            changeClassMaxCapacity_Form.ShowDialog();
         }
     }
 }
