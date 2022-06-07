@@ -96,11 +96,13 @@ namespace studMin.Action.Excel
 
         List<ScheduleAllTeacher.Item> data;
 
-        public ScheduleStudent()
+        public ScheduleStudent(string sheetNamePrimary = "")
         {
             this.template = StoragePath.TemplateScheduleStudent;
             data = new List<ScheduleAllTeacher.Item>();
             InitExcel();
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)

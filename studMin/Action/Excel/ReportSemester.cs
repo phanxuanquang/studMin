@@ -27,11 +27,13 @@ namespace studMin.Action.Excel
             }
         }
 
-        public ReportSemester()
+        public ReportSemester(string sheetNamePrimary = "")
         {
             locationSemester = "B2";
             locationSchoolYear = "C2";
             title = "BẢNG BÁO CÁO TỔNG KẾT HỌC KỲ";
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)

@@ -32,8 +32,6 @@ namespace studMin
         {
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                
-
                 List<string> schoolYear = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID).Select(item => item.SCHOOLYEAR).Distinct().ToList();
                 if (this.InvokeRequired)
                 {
