@@ -30,9 +30,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MaxQuantity_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.ClassName_Box = new Guna.UI2.WinForms.Guna2TextBox();
-            this.gunaLabel6 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel10 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel11 = new Guna.UI.WinForms.GunaLabel();
             this.tittleLabel = new System.Windows.Forms.Label();
@@ -43,44 +41,6 @@
             this.ShadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.DragControl = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.SuspendLayout();
-            // 
-            // MaxQuantity_Box
-            // 
-            this.MaxQuantity_Box.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.MaxQuantity_Box.Animated = true;
-            this.MaxQuantity_Box.BackColor = System.Drawing.Color.Transparent;
-            this.MaxQuantity_Box.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.MaxQuantity_Box.BorderRadius = 5;
-            this.MaxQuantity_Box.BorderThickness = 2;
-            this.MaxQuantity_Box.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.MaxQuantity_Box.DefaultText = "";
-            this.MaxQuantity_Box.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.MaxQuantity_Box.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.MaxQuantity_Box.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.MaxQuantity_Box.DisabledState.Parent = this.MaxQuantity_Box;
-            this.MaxQuantity_Box.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.MaxQuantity_Box.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxQuantity_Box.FocusedState.Parent = this.MaxQuantity_Box;
-            this.MaxQuantity_Box.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.MaxQuantity_Box.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxQuantity_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxQuantity_Box.HoverState.Parent = this.MaxQuantity_Box;
-            this.MaxQuantity_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.MaxQuantity_Box.Location = new System.Drawing.Point(399, 73);
-            this.MaxQuantity_Box.Margin = new System.Windows.Forms.Padding(0);
-            this.MaxQuantity_Box.Name = "MaxQuantity_Box";
-            this.MaxQuantity_Box.PasswordChar = '\0';
-            this.MaxQuantity_Box.PlaceholderText = "Không xác định";
-            this.MaxQuantity_Box.SelectedText = "";
-            this.MaxQuantity_Box.ShadowDecoration.BorderRadius = 12;
-            this.MaxQuantity_Box.ShadowDecoration.Depth = 5;
-            this.MaxQuantity_Box.ShadowDecoration.Parent = this.MaxQuantity_Box;
-            this.MaxQuantity_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.MaxQuantity_Box.Size = new System.Drawing.Size(152, 22);
-            this.MaxQuantity_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.MaxQuantity_Box.TabIndex = 158;
-            this.MaxQuantity_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MaxQuantity_Box.TextChanged += new System.EventHandler(this.MaxQuantity_Box_TextChanged);
             // 
             // ClassName_Box
             // 
@@ -104,36 +64,20 @@
             this.ClassName_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.ClassName_Box.HoverState.Parent = this.ClassName_Box;
             this.ClassName_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.ClassName_Box.Location = new System.Drawing.Point(135, 70);
+            this.ClassName_Box.Location = new System.Drawing.Point(180, 86);
             this.ClassName_Box.Margin = new System.Windows.Forms.Padding(0);
             this.ClassName_Box.Name = "ClassName_Box";
             this.ClassName_Box.PasswordChar = '\0';
-            this.ClassName_Box.PlaceholderText = "Không xác định";
+            this.ClassName_Box.PlaceholderText = "Nhập tên lớp học, ví dụ: 10A1, 12A2, ...";
             this.ClassName_Box.SelectedText = "";
             this.ClassName_Box.ShadowDecoration.BorderRadius = 12;
             this.ClassName_Box.ShadowDecoration.Depth = 5;
             this.ClassName_Box.ShadowDecoration.Parent = this.ClassName_Box;
             this.ClassName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.ClassName_Box.Size = new System.Drawing.Size(134, 22);
+            this.ClassName_Box.Size = new System.Drawing.Size(553, 27);
             this.ClassName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.ClassName_Box.TabIndex = 154;
             this.ClassName_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // gunaLabel6
-            // 
-            this.gunaLabel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gunaLabel6.AutoEllipsis = true;
-            this.gunaLabel6.BackColor = System.Drawing.Color.White;
-            this.gunaLabel6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.gunaLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.gunaLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.gunaLabel6.Location = new System.Drawing.Point(305, 73);
-            this.gunaLabel6.Name = "gunaLabel6";
-            this.gunaLabel6.Size = new System.Drawing.Size(91, 22);
-            this.gunaLabel6.TabIndex = 149;
-            this.gunaLabel6.Text = "• Sỉ số tối đa:";
-            this.gunaLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.gunaLabel6.UseCompatibleTextRendering = true;
             // 
             // gunaLabel10
             // 
@@ -143,9 +87,10 @@
             this.gunaLabel10.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gunaLabel10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gunaLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.gunaLabel10.Location = new System.Drawing.Point(37, 115);
+            this.gunaLabel10.Location = new System.Drawing.Point(49, 142);
+            this.gunaLabel10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel10.Name = "gunaLabel10";
-            this.gunaLabel10.Size = new System.Drawing.Size(96, 22);
+            this.gunaLabel10.Size = new System.Drawing.Size(128, 27);
             this.gunaLabel10.TabIndex = 146;
             this.gunaLabel10.Text = "• Chủ nhiệm:";
             this.gunaLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,9 +104,10 @@
             this.gunaLabel11.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gunaLabel11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gunaLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.gunaLabel11.Location = new System.Drawing.Point(37, 73);
+            this.gunaLabel11.Location = new System.Drawing.Point(49, 90);
+            this.gunaLabel11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel11.Name = "gunaLabel11";
-            this.gunaLabel11.Size = new System.Drawing.Size(96, 22);
+            this.gunaLabel11.Size = new System.Drawing.Size(128, 27);
             this.gunaLabel11.TabIndex = 145;
             this.gunaLabel11.Text = "• Tên lớp học:";
             this.gunaLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,8 +120,9 @@
             this.tittleLabel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
             this.tittleLabel.ForeColor = System.Drawing.Color.White;
             this.tittleLabel.Location = new System.Drawing.Point(0, 0);
+            this.tittleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tittleLabel.Name = "tittleLabel";
-            this.tittleLabel.Size = new System.Drawing.Size(589, 52);
+            this.tittleLabel.Size = new System.Drawing.Size(785, 64);
             this.tittleLabel.TabIndex = 162;
             this.tittleLabel.Text = "BỔ SUNG LỚP HỌC MỚI";
             this.tittleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -193,10 +140,11 @@
             this.Complete_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Complete_Button.ForeColor = System.Drawing.Color.White;
             this.Complete_Button.HoverState.Parent = this.Complete_Button;
-            this.Complete_Button.Location = new System.Drawing.Point(66, 168);
+            this.Complete_Button.Location = new System.Drawing.Point(88, 207);
+            this.Complete_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Complete_Button.Name = "Complete_Button";
             this.Complete_Button.ShadowDecoration.Parent = this.Complete_Button;
-            this.Complete_Button.Size = new System.Drawing.Size(217, 41);
+            this.Complete_Button.Size = new System.Drawing.Size(289, 50);
             this.Complete_Button.TabIndex = 163;
             this.Complete_Button.Text = "HOÀN TẤT";
             this.Complete_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -217,10 +165,11 @@
             this.Exit_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Exit_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(305, 168);
+            this.Exit_Button.Location = new System.Drawing.Point(407, 207);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(217, 41);
+            this.Exit_Button.Size = new System.Drawing.Size(289, 50);
             this.Exit_Button.TabIndex = 164;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -249,10 +198,11 @@
             this.Teacher_ComboBox.Items.AddRange(new object[] {
             "Chọn giáo viên"});
             this.Teacher_ComboBox.ItemsAppearance.Parent = this.Teacher_ComboBox;
-            this.Teacher_ComboBox.Location = new System.Drawing.Point(135, 108);
+            this.Teacher_ComboBox.Location = new System.Drawing.Point(180, 133);
+            this.Teacher_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Teacher_ComboBox.Name = "Teacher_ComboBox";
             this.Teacher_ComboBox.ShadowDecoration.Parent = this.Teacher_ComboBox;
-            this.Teacher_ComboBox.Size = new System.Drawing.Size(416, 36);
+            this.Teacher_ComboBox.Size = new System.Drawing.Size(553, 36);
             this.Teacher_ComboBox.StartIndex = 0;
             this.Teacher_ComboBox.TabIndex = 166;
             this.Teacher_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -268,20 +218,19 @@
             // 
             // AddClass_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(589, 231);
+            this.ClientSize = new System.Drawing.Size(785, 284);
             this.Controls.Add(this.Teacher_ComboBox);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Complete_Button);
             this.Controls.Add(this.tittleLabel);
-            this.Controls.Add(this.MaxQuantity_Box);
             this.Controls.Add(this.ClassName_Box);
-            this.Controls.Add(this.gunaLabel6);
             this.Controls.Add(this.gunaLabel10);
             this.Controls.Add(this.gunaLabel11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AddClass_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -292,9 +241,7 @@
         }
 
         #endregion
-        protected Guna.UI2.WinForms.Guna2TextBox MaxQuantity_Box;
         protected Guna.UI2.WinForms.Guna2TextBox ClassName_Box;
-        private Guna.UI.WinForms.GunaLabel gunaLabel6;
         private Guna.UI.WinForms.GunaLabel gunaLabel10;
         private Guna.UI.WinForms.GunaLabel gunaLabel11;
         private System.Windows.Forms.Label tittleLabel;

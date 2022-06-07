@@ -29,7 +29,7 @@ namespace studMin
 
         private void AddClass_Button_Click(object sender, EventArgs e)
         {
-            AddClass_Form addClass_Form = new AddClass_Form();
+            AddClass_Form addClass_Form = new AddClass_Form(this);
             addClass_Form.ShowDialog();
         }
 
@@ -39,7 +39,7 @@ namespace studMin
             changeAgeRange_Form.ShowDialog();
         }
 
-        private void BindingClass()
+        public void BindingClass()
         {
             cLASSBindingSource.DataSource = Database.ClassServices.Instance.GetClasss();
             foreach (DataGridViewRow row in GridView.Rows)
