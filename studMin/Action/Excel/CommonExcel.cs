@@ -23,6 +23,9 @@ namespace studMin.Action.Excel
         {
             excel = new Microsoft.Office.Interop.Excel.Application();
             workbook = excel.Workbooks.Open(template);
+            /*var xlSheets = workbook.Sheets;
+            var xlNewSheet = xlSheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            xlNewSheet.Name = "newsheet";*/
             sheet = excel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
         }
 
