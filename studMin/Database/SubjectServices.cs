@@ -35,7 +35,7 @@ namespace studMin.Database
             return DataProvider.Instance.Database.ROLESCOREs.Where(item => item.ROLE == role).FirstOrDefault();
         }
 
-        public bool ChangeSubjectHeadTeacher(string subjectName, Guid teacherId)
+        public bool ChangeSubjectHeadTeacher(string subjectName, Guid teacherId, List<Guid> otherTeachersId)
         {
             SUBJECT currentSubject = GetSubjectByName(subjectName);
 
@@ -44,7 +44,34 @@ namespace studMin.Database
                 return false;
             }
 
+            TEACHER currentTeacher = TeacherServices.Instance.GetTeacherById(teacherId);
+            if (currentTeacher == null)
+            {
+                return false;
+            }
+
+            Guid normalTeacherRoleId = DataProvider.Instance.Database.TEACHERROLEs.Where(item => item.ROLE == "Giáo viên").FirstOrDefault().ID;
+            Guid assignedTeacherRoleId = DataProvider.Instance.Database.TEACHERROLEs.Where(item => item.ROLE == "Chủ nhiệm").FirstOrDefault().ID;
+            Guid headTeacherRoleId = DataProvider.Instance.Database.TEACHERROLEs.Where(item => item.ROLE == "Trưởng bộ môn").FirstOrDefault().ID;
+            Guid vicePrincipalRoleId = DataProvider.Instance.Database.TEACHERROLEs.Where(item => item.ROLE == "Phó hiệu trưởng").FirstOrDefault().ID;
+            Guid principalRoleId = DataProvider.Instance.Database.TEACHERROLEs.Where(item => item.ROLE == "Hiệu trưởng").FirstOrDefault().ID;
+
+            foreach (Guid id in otherTeachersId)
+            {
+                TEACHER teacher = TeacherServices.Instance.GetTeacherById(id);
+                if (teacher.IDTEACHERROLE == assignedTeacherRoleId || teacher.IDTEACHERROLE == vicePrincipalRoleId || teacher.IDTEACHERROLE == principalRoleId)
+                {
+                    continue;
+                } 
+                else
+                {
+                    teacher.IDTEACHERROLE = normalTeacherRoleId;
+                }
+            }
+
             currentSubject.IDHEADTEACHER = teacherId;
+            currentTeacher.IDTEACHERROLE = headTeacherRoleId;
+
             DataProvider.Instance.Database.SaveChanges();
 
             return true;
