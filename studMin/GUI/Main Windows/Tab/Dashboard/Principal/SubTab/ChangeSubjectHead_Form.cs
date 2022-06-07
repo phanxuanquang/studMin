@@ -69,8 +69,20 @@ namespace studMin
 
             try
             {
-                Guid teacherId = new Guid((SubjectTeacher_ComboBox.SelectedItem as ComboboxItem).Value.ToString());
-                bool isChanged = SubjectServices.Instance.ChangeSubjectHeadTeacher(subjectName, teacherId);
+                string selectedTeacherId = (SubjectTeacher_ComboBox.SelectedItem as ComboboxItem).Value.ToString();
+                Guid teacherId = new Guid(selectedTeacherId);
+
+                List<Guid> otherTeachersId = new List<Guid>();
+
+                foreach (ComboboxItem item in SubjectTeacher_ComboBox.Items.OfType<ComboboxItem>())
+                {
+                    if (item.Value.ToString() != selectedTeacherId)
+                    {
+                        otherTeachersId.Add(new Guid(item.Value.ToString()));
+                    }
+                }
+
+                bool isChanged = SubjectServices.Instance.ChangeSubjectHeadTeacher(subjectName, teacherId, otherTeachersId);
 
                 if (isChanged)
                 {
@@ -81,11 +93,13 @@ namespace studMin
                 {
                     MessageBox.Show("Giáo viên bạn chọn hiện đã là trưởng bộ môn, vui lòng chọn giáo viên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            } 
+            }
             catch
             {
                 MessageBox.Show("Đã có lỗi xảy ra, vui lòng thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
 
         private void ChangeSubjectHead_Form_Load(object sender, EventArgs e)

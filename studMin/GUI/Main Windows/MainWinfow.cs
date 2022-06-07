@@ -137,6 +137,27 @@ namespace studMin
 
             LoadMainTab(Dashboard);
             changeButtonColor(Dashboard_MenuButton);
+
+            if (studMin.Database.LoginServices.LoginServices.Instance.CurrentUser != null)
+            {
+                Database.Models.INFOR info = studMin.Database.LoginServices.LoginServices.Instance.CurrentUser.INFOR;
+                if (studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher != null)
+                {
+                    Database.Models.SUBJECT subject = studMin.Database.TeacherServices.Instance.GetSubjectOfTeacher();
+                    TeacherInfor_Label.Text = Title(info.FIRSTNAME + " " + info.LASTNAME, studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID.ToString(), studMin.Database.LoginServices.LoginServices.Instance.CurrentUser.DISPLAYNAME, subject.DisplayName);
+                }
+                else if (studMin.Database.LoginServices.LoginServices.Instance.CurrentStaff != null)
+                {
+                    TeacherInfor_Label.Text = Title(info.FIRSTNAME + " " + info.LASTNAME, studMin.Database.LoginServices.LoginServices.Instance.CurrentStaff.ID.ToString(), studMin.Database.LoginServices.LoginServices.Instance.CurrentUser.DISPLAYNAME, "");
+                }
+                else TeacherInfor_Label.Text = Title(info.FIRSTNAME + " " + info.LASTNAME, studMin.Database.LoginServices.LoginServices.Instance.CurrentUser.ID.ToString(), studMin.Database.LoginServices.LoginServices.Instance.CurrentUser.DISPLAYNAME, "");
+            }
+        }
+
+        private string Title(string user, string id, string purpose, string subject)
+        {
+            // {Name} | {id} | {purpose} | {subject (if exists)}
+            return String.Format("{0} | ID: {1} | Vai trò: {2}", user, id.Substring(0, 8), purpose) + (String.IsNullOrEmpty(subject) == true ? string.Empty : " | Giảng dạy: " + subject);
         }
     }
 }

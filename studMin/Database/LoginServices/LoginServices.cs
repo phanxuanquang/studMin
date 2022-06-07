@@ -13,7 +13,7 @@ namespace studMin.Database.LoginServices
     {
         private USER currentUser;
 
-        public  USER CurrentUser => currentUser;
+        public USER CurrentUser => currentUser;
 
         private TEACHER currentTeacher;
 
@@ -28,7 +28,7 @@ namespace studMin.Database.LoginServices
         public CLASS ClassOfHeadTeacher => classOfHeadTeacher;
 
         private static LoginServices instance;
-        
+
         public static LoginServices Instance => instance ?? (instance = new LoginServices());
 
         private static string FilePathRememberAccount = Application.StartupPath + @"/Document/accRe.studMin";
@@ -148,18 +148,36 @@ namespace studMin.Database.LoginServices
         {
             currentUser = UserServices.Instance.GetUserByUserName(userName);
 
-            if (currentUser.USERROLE.ROLE == "Giáo viên")
+            currentTeacher = null;
+            classOfHeadTeacher = null;
+            currentStaff = null;
+
+            switch (currentUser.USERROLE.ROLE)
+            {
+                case "Giáo viên":
+                    currentTeacher = TeacherServices.Instance.GetTeacherByUsername(userName);
+                    if (currentTeacher.TEACHERROLE.ROLE == "Chủ nhiệm")
+                    {
+                        classOfHeadTeacher = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.IDTEACHER == currentTeacher.ID).FirstOrDefault();
+                    }
+                    break;
+                case "Nhân viên":
+                    currentStaff = StaffServices.Instance.GetStaffByUsername(userName);
+                    break;
+            }
+
+            /*if (currentUser.USERROLE.ROLE == "Giáo viên")
             {
                 currentTeacher = TeacherServices.Instance.GetTeacherByUsername(userName);
                 if (currentTeacher.TEACHERROLE.ROLE == "Chủ nhiệm")
                 {
                     classOfHeadTeacher = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.IDTEACHER == currentTeacher.ID).FirstOrDefault();
-                }    
+                }
             }
             if (currentUser.USERROLE.ROLE == "Nhân viên")
             {
                 currentStaff = StaffServices.Instance.GetStaffByUsername(userName);
-            }
+            }*/
         }
 
     }

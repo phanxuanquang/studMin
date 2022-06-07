@@ -169,13 +169,36 @@ namespace studMin
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                Search_Button_Click(sender, null);
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
+            if (e.KeyChar == (char)Keys.Escape)
             {
                 Search_Box.Text = String.Empty;
+            }
+            try
+            {
+                CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
+                cm.SuspendBinding();
+
+                for (int i = 0; i < DataTable.RowCount; i++)
+                {
+                    if (DataTable.Rows[i].Cells[1].Value != null &&
+                        DataTable.Rows[i].Cells[3].Value != null)
+                    {
+                        if (DataTable.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || DataTable.Rows[i].Cells[3].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
+                        {
+                            DataTable.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            DataTable.Rows[i].Visible = false;
+                        }
+                    }
+                }
+
+                cm.ResumeBinding();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -26,6 +26,24 @@ namespace studMin.Action.Excel
             sheet = excel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
         }
 
+        public void NewSheets(string[] sheetsName)
+        {
+            if (sheetsName != null)
+            {
+                Sheets xlSheets = workbook.Sheets;
+                for(int index = 0; index < sheetsName.Length; index++)
+                {
+                    sheet.Copy(Type.Missing, xlSheets[xlSheets.Count]);
+                    xlSheets[xlSheets.Count].Name = sheetsName[index];
+                }
+            }
+        }
+
+        public void FocusToSheetName(string sheetName)
+        {
+            sheet = excel.Sheets[sheetName];
+        }
+
         public abstract void InsertItem(dynamic item);
 
         public abstract void InsertInfo(dynamic info);
