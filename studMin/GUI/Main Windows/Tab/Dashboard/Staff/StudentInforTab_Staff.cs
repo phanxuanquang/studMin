@@ -92,7 +92,7 @@ namespace studMin
 
         public void BindingStudent(List<STUDYING> sTUDENTs)
         {
-            sTUDYINGBindingSource.ResetBindings(true);
+            sTUDYINGBindingSource.ResetBindings(false);
             sTUDYINGBindingSource.DataSource = sTUDENTs;
             foreach (DataGridViewRow row in DataTable.Rows)
             {
@@ -265,6 +265,7 @@ namespace studMin
         {
             StudentInforModify_Form studentInforModify_Form = new StudentInforModify_Form(sTUDYINGBindingSource.Current);
             studentInforModify_Form.ShowDialog();
+            BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
         }
     }
 }

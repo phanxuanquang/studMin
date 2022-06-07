@@ -404,6 +404,7 @@
             this.Complete_Button.TabIndex = 10;
             this.Complete_Button.Text = "HOÀN TẤT";
             this.Complete_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+            this.Complete_Button.Click += new System.EventHandler(this.Complete_Button_Click);
             // 
             // Exit_Button
             // 
