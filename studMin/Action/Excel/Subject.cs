@@ -187,7 +187,7 @@ namespace studMin.Action.Excel
 
         List<Item> data;
 
-        public Subject(bool isReadOnly, string pathFile = "")
+        public Subject(bool isReadOnly, string pathFile = "", string sheetNamePrimary = "")
         {
             if (isReadOnly && String.IsNullOrEmpty(pathFile)) throw new Exception("Path file unavailable");
             this.template = isReadOnly ? pathFile : StoragePath.TemplateSubject;
@@ -195,6 +195,8 @@ namespace studMin.Action.Excel
             data = new List<Item>();
             coefficient = new Coefficient();
             InitExcel();
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)

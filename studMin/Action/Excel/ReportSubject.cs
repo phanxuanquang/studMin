@@ -39,11 +39,13 @@ namespace studMin.Action.Excel
             return (locationSubject, String.Format("Môn học: {0}", msg));
         }
 
-        public ReportSubject()
+        public ReportSubject(string sheetNamePrimary = "")
         {
             locationSchoolYear = "D2";
             locationSemester = "C2";
             title = "BẢNG BÁO CÁO TỔNG KẾT MÔN HỌC";
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)

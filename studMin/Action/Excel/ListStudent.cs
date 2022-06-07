@@ -139,11 +139,13 @@ namespace studMin.Action.Excel
 
         List<Item> data;
 
-        public ListStudent()
+        public ListStudent(string sheetNamePrimary = "")
         {
             template = StoragePath.TemplateStudent;
             data = new List<Item>();
             InitExcel();
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)

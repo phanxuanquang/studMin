@@ -252,35 +252,9 @@ namespace studMin
             if (String.IsNullOrEmpty(schoolYear) || String.IsNullOrEmpty(_semester) || String.IsNullOrEmpty(_subject)) return;
 
             SUBJECT subject = listSub.FirstOrDefault(item => item.DisplayName == _subject);
-            int coefficientOralMark = 1;
-            int coefficientRegularMark = 1;
-            int coefficientMidTermMark = 1;
-            int coefficientFinalMark = 1;
-
-            var listRolescore = Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
-            foreach (var item in listRolescore)
-            {
-                switch(item.ROLE)
-                {
-                    case "M":
-                        coefficientFinalMark = item.COEFFICIENT.Value;
-                        break;
-                    case "15M":
-                        coefficientRegularMark = item.COEFFICIENT.Value;
-                        break;
-                    case "45M":
-                        coefficientMidTermMark = item.COEFFICIENT.Value;
-                        break;
-                    default:
-                        coefficientFinalMark = item.COEFFICIENT.Value;
-                        break;
-                }
-            }
 
             if (data == null) data = new List<GRIDVIEW4REPORT>();
             else data.Clear();
-
-            
 
             List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
             for (int indexClass = 0; indexClass < classes.Count; indexClass++)
@@ -348,23 +322,26 @@ namespace studMin
                 }
             }
 
-            Task.Factory.StartNew(() =>
+            Task<bool> updateReportSubject = Task<bool>.Factory.StartNew(() =>
             {
                 List<int> tempSiSo = new List<int>();
                 List<REPORTSUBJECT> tempRecordExists = new List<REPORTSUBJECT>();
+                List<STUDYING> studying = studMin.Database.DataProvider.Instance.Database.STUDYINGs.ToList();
+                List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.ToList();
+                bool isUpdate = false;
                 foreach (var subject in listSub)
                 {
                     foreach (var semester in listSem)
                     {
                         foreach (var schoolYear in schoolyears)
                         {
-                            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
+                            List<CLASS> classes = studying.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
                             for (int indexClass = 0; indexClass < classes.Count; indexClass++)
                             {
                                 Guid idClass = classes[indexClass].ID;
                                 string className = classes[indexClass].CLASSNAME;
 
-                                List<Guid> students = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(item => item.IDCLASS == idClass).Select(item => item.IDSTUDENT).Distinct().ToList();
+                                List<Guid> students = studying.Where(item => item.IDCLASS == idClass).Select(item => item.IDSTUDENT).Distinct().ToList();
 
                                 if (students.Count == 0) continue;
 
@@ -372,13 +349,13 @@ namespace studMin
 
                                 foreach (Guid student in students)
                                 {
-                                    List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.Where(item => item.IDSEMESTER == semester.ID && item.SCHOOLYEAR == schoolYear && item.IDSTUDENT == student && item.IDSUBJECT == subject.Id).ToList();
+                                    List<SCORE> scoreFilter = scores.Where(item => item.IDSEMESTER == semester.ID && item.SCHOOLYEAR == schoolYear && item.IDSTUDENT == student && item.IDSUBJECT == subject.Id).ToList();
                                     if (scores.Count == 0) continue;
                                     List<double> oralMark = new List<double>();
                                     List<double> regularMark = new List<double>();
                                     List<double> midTermMark = new List<double>();
                                     List<double> finalMark = new List<double>();
-                                    foreach (var x in scores)
+                                    foreach (var x in scoreFilter)
                                     {
                                         switch (x.ROLESCORE.ROLE)
                                         {
@@ -404,38 +381,50 @@ namespace studMin
                                     }
                                 }
                                 tempSiSo.Add(students.Count);
-                                tempRecordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 1.0 / students.Count });
+                                tempRecordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 100.0 / students.Count });
 
-                                List<REPORTSUBJECT> filters = studMin.Database.DataProvider.Instance.Database.REPORTSUBJECTs.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).ToList();
+                                List<REPORTSUBJECT> filters = recordExists.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).ToList();
 
                                 if (filters.Count > 0)
                                 {
                                     foreach (var filter in filters)
                                     {
-                                        if (filter.PASSQUANTITY.Value != avgScoreStudent.Count || filter.RATIO.Value != avgScoreStudent.Count * 1.0 / students.Count)
+                                        if (filter.PASSQUANTITY.Value != avgScoreStudent.Count || filter.RATIO.Value != avgScoreStudent.Count * 100.0 / students.Count)
                                         {
                                             filter.PASSQUANTITY = avgScoreStudent.Count;
-                                            filter.RATIO = avgScoreStudent.Count * 1.0 / students.Count;
+                                            filter.RATIO = avgScoreStudent.Count * 100.0 / students.Count;
+                                            isUpdate = true;
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    studMin.Database.DataProvider.Instance.Database.REPORTSUBJECTs.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 1.0 / students.Count });
+                                    recordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 100.0 / students.Count });
+                                    isUpdate = true;
                                 }
-                                studMin.Database.DataProvider.Instance.Database.SaveChangesAsync();
                             }
                         }
                     }
                 }
-                
+
 
                 SiSo.Clear();
                 recordExists.Clear();
 
                 SiSo.AddRange(tempSiSo);
                 recordExists.AddRange(tempRecordExists);
+
+                return isUpdate;
             });
+
+            updateReportSubject.GetAwaiter().OnCompleted(new System.Action(() =>
+            {
+                studMin.Database.DataProvider.Instance.Database.SaveChangesAsync();
+                if (updateReportSubject.Result)
+                {
+                    MessageBox.Show("Đã có sự thay đổi trong bảng thống kê! Hiện tại đã được cập nhật.");
+                }
+            }));
         }
 
         private string HocKy(int msg)

@@ -23,12 +23,13 @@ namespace studMin.Action.Excel
 
         List<Item> data = new List<Item>();
 
-        public ScheduleAllTeacher(bool isReadOnly = false, string pathFile = "")
+        public ScheduleAllTeacher(bool isReadOnly = false, string pathFile = "", string sheetNamePrimary = "")
         {
             if (isReadOnly && String.IsNullOrEmpty(pathFile)) throw new Exception("Path file unavailable");
             this.template = isReadOnly ? pathFile : StoragePath.TemplateScheduleAllTeacher;
             this.isReadOnly = isReadOnly;
             InitExcel();
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public class Info
