@@ -1,4 +1,5 @@
-﻿using studMin.Database.Models;
+﻿using studMin.Database;
+using studMin.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +47,10 @@ namespace studMin
 
         private void LoadTeacher()
         {
-            var teachers = Database.TeacherServices.Instance.GetTeachers().Where(item => item.TEACHERROLE.ROLE == "Giáo viên").Select(item => new
+            List<CLASS> listClassesOfCurrentYear = ClassServices.Instance.GetClassBySchoolYear(DateTime.Now.Year.ToString());
+
+
+            var teachers = Database.TeacherServices.Instance.GetTeachers().Where(item => item.TEACHERROLE.ROLE == "Giáo viên" && listClassesOfCurrentYear.Find(classItem => classItem.TEACHER.ID == item.ID) == null).Select(item => new
             {
                 ID = item.ID,
                 NAME = item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME
