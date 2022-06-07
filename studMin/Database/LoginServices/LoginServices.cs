@@ -39,13 +39,13 @@ namespace studMin.Database.LoginServices
         {
             //string passHashed = Hash.Encrypt(passWord);
             string passHashed = passWord;
-            int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed).Count();
+            int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed && user.ISDELETED == false).Count();
             return accCount > 0;
         }
 
         public bool CheckUser(string userName)
         {
-            int countUser = DataProvider.Instance.Database.USERS.Where((user) => user.USERNAME == userName).Count();
+            int countUser = DataProvider.Instance.Database.USERS.Where((user) => user.USERNAME == userName && user.ISDELETED == false).Count();
             return countUser > 0;
         }
 
