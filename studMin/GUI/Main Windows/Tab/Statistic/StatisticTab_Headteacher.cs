@@ -267,7 +267,7 @@ namespace studMin
                 if (filter != null)
                 {
                     int indexSiSo = recordExists.IndexOf(filter);
-                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = filter.RATIO.Value });
+                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = Math.Round(filter.RATIO.Value, 2) });
                 }
             }
 

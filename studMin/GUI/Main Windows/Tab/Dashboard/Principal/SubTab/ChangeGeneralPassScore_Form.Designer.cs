@@ -54,10 +54,11 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(253, 133);
+            this.Exit_Button.Location = new System.Drawing.Point(337, 164);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
+            this.Exit_Button.Size = new System.Drawing.Size(191, 44);
             this.Exit_Button.TabIndex = 130;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -81,11 +82,12 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(75, 133);
+            this.Confirm_Button.Location = new System.Drawing.Point(100, 164);
+            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
-            this.Confirm_Button.Size = new System.Drawing.Size(143, 36);
+            this.Confirm_Button.Size = new System.Drawing.Size(191, 44);
             this.Confirm_Button.TabIndex = 129;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -97,8 +99,9 @@
             this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
+            this.SubjectName_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(470, 44);
+            this.SubjectName_Label.Size = new System.Drawing.Size(627, 54);
             this.SubjectName_Label.TabIndex = 131;
             this.SubjectName_Label.Text = "THAY ĐỔI ĐIỂM ĐẠT ĐỂ LÊN LỚP";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -117,13 +120,15 @@
             // 
             this.PassScoreTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.PassScoreTrackBar.HoverState.Parent = this.PassScoreTrackBar;
-            this.PassScoreTrackBar.Location = new System.Drawing.Point(33, 86);
-            this.PassScoreTrackBar.Maximum = 20;
+            this.PassScoreTrackBar.Location = new System.Drawing.Point(44, 106);
+            this.PassScoreTrackBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassScoreTrackBar.Maximum = 6;
+            this.PassScoreTrackBar.Minimum = 2;
             this.PassScoreTrackBar.Name = "PassScoreTrackBar";
-            this.PassScoreTrackBar.Size = new System.Drawing.Size(368, 23);
+            this.PassScoreTrackBar.Size = new System.Drawing.Size(491, 28);
             this.PassScoreTrackBar.TabIndex = 133;
             this.PassScoreTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.PassScoreTrackBar.Value = 15;
+            this.PassScoreTrackBar.Value = 6;
             this.PassScoreTrackBar.ValueChanged += new System.EventHandler(this.PassScoreTrackBar_ValueChanged);
             // 
             // PassScoreLabel
@@ -131,9 +136,10 @@
             this.PassScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.PassScoreLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.PassScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.PassScoreLabel.Location = new System.Drawing.Point(33, 57);
+            this.PassScoreLabel.Location = new System.Drawing.Point(44, 70);
+            this.PassScoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PassScoreLabel.Name = "PassScoreLabel";
-            this.PassScoreLabel.Size = new System.Drawing.Size(368, 28);
+            this.PassScoreLabel.Size = new System.Drawing.Size(491, 34);
             this.PassScoreLabel.TabIndex = 136;
             this.PassScoreLabel.Text = "Điểm lên lớp hiện tại:";
             this.PassScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,16 +147,17 @@
             // 
             // ChangeGeneralPassScore_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(470, 184);
+            this.ClientSize = new System.Drawing.Size(627, 226);
             this.Controls.Add(this.PassScoreLabel);
             this.Controls.Add(this.PassScoreTrackBar);
             this.Controls.Add(this.SubjectName_Label);
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Confirm_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChangeGeneralPassScore_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
