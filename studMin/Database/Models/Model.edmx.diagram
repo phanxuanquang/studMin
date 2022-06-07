@@ -67,6 +67,7 @@
         <AssociationConnector Association="StudMinDBModel.FK__TEACHER__IDTEACH__3A4CA8FD" />
         <AssociationConnector Association="StudMinDBModel.FK__TEACHER__IDUSER__3B40CD36" />
         <AssociationConnector Association="StudMinDBModel.FK__USERS__IDUSERROL__40F9A68C" />
+        <AssociationConnector Association="StudMinDBModel.FK__TEACHER__IDSUBJE__57DD0BE4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
