@@ -83,7 +83,7 @@ namespace studMin
                 set { ratio = value; }
             }
 
-            public string TiLeDat { get { return String.Format("{0}%", ratio != -1 ? ratio : Math.Round(SoLuongDat * 100.0 / SiSo, 2)); } }
+            public string TiLeDat { get { return String.Format("{0}%", ratio != -1 ? Math.Round(ratio, 2) : Math.Round(SoLuongDat * 100.0 / SiSo, 2)); } }
 
             public GRIDVIEW4REPORT(Guid IdClass, Guid IdSemester, Guid IdSubject)
             {
@@ -256,6 +256,11 @@ namespace studMin
             if (data == null) data = new List<GRIDVIEW4REPORT>();
             else data.Clear();
 
+            this.BeginInvoke(new System.Action(() =>
+            {
+                tittleLabel.Text = TitleSchedule(_subject, int.Parse(_semester), int.Parse(schoolYear));
+            }));
+
             List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
             for (int indexClass = 0; indexClass < classes.Count; indexClass++)
             {
@@ -267,7 +272,7 @@ namespace studMin
                 if (filter != null)
                 {
                     int indexSiSo = recordExists.IndexOf(filter);
-                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = Math.Round(filter.RATIO.Value, 2) });
+                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = filter.RATIO.Value });
                 }
             }
 
@@ -278,6 +283,10 @@ namespace studMin
             else dataGridViewBindingSource.DataSource = data.ToList();
         }
 
+        private string TitleSchedule(string subject, int semester, int schoolYear)
+        {
+            return String.Format("BẢNG TỔNG KẾT MÔN {0} - {1} - NĂM HỌC {2} - {3}", subject, HocKy(semester), schoolYear, schoolYear + 1).ToUpper();
+        }
 
         private void LoadSubjectFromDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {

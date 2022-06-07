@@ -240,24 +240,36 @@ namespace studMin
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                DataTable.Rows.Clear();
-                if (string.IsNullOrWhiteSpace(Search_Box.Text))
-                {
-                    //LoadToDataTable(GetListStudent(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
-                    BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
-                }
-                else
-                {
-                    var students = GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.STUDENT.INFOR.FIRSTNAME + " " + item.STUDENT.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.STUDENT.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
-                    BindingStudent(students);
-                    //LoadToDataTable(students);
-                }
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
+            if (e.KeyChar == (char)Keys.Escape)
             {
                 Search_Box.Text = String.Empty;
+            }
+            try
+            {
+                CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
+                cm.SuspendBinding();
+
+                for (int i = 0; i < DataTable.RowCount; i++)
+                {
+                    if (DataTable.Rows[i].Cells[1].Value != null &&
+                        DataTable.Rows[i].Cells[3].Value != null)
+                    {
+                        if (DataTable.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || DataTable.Rows[i].Cells[3].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
+                        {
+                            DataTable.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            DataTable.Rows[i].Visible = false;
+                        }
+                    }
+                }
+
+                cm.ResumeBinding();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
