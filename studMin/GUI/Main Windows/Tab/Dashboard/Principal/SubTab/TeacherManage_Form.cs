@@ -62,12 +62,11 @@ namespace studMin
             if (dialog == DialogResult.Yes)
             {
                 string staffId = DataTable.SelectedRows[0].Cells[0].Value.ToString();
-                STAFF selectedStaff = StaffServices.Instance.GetStaffById(staffId);
+                STAFF selectedStaff = DataProvider.Instance.Database.STAFFs.Where(item => item.ID.ToString().ToLower().Contains(staffId.ToLower())).FirstOrDefault();
 
                 if (selectedStaff == null)
                 {
-                    Guid teacherId = new Guid(staffId);
-                    TEACHER selectedTeacher = TeacherServices.Instance.GetTeacherById(teacherId);
+                    TEACHER selectedTeacher = DataProvider.Instance.Database.TEACHERs.Where(item => item.ID.ToString().ToLower().Contains(staffId.ToLower())).FirstOrDefault();
 
                     selectedTeacher.USER.ISDELETED = true;
                 }
@@ -125,7 +124,7 @@ namespace studMin
                         {
                             staffList.Add(item);
                         }
-                        DataTable.Rows.Add(item.ID, teacherName, gender, item.USER.EMAIL, role);
+                        DataTable.Rows.Add(item.ID.ToString().Substring(0, 8).ToUpper(), teacherName, gender, item.USER.EMAIL, role);
                     }
                 }
                 else
@@ -140,7 +139,7 @@ namespace studMin
                         {
                             staffList.Add(item);
                         }
-                        DataTable.Rows.Add(item.ID, teacherName, gender, item.USER.EMAIL, role);
+                        DataTable.Rows.Add(item.ID.ToString().Substring(0, 8).ToUpper(), teacherName, gender, item.USER.EMAIL, role);
                     }
                 }
             }
