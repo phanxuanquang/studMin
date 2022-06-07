@@ -34,16 +34,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GridView = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.Update_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.AddClass_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.ChangeAgeRange_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.changeClassMaxCapacity_Button = new Guna.UI2.WinForms.Guna2Button();
-            this.cLASSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ClassId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLASSNAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameClassHeadTeacher = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SCHOOLYEAR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cLASSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Update_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.AddClass_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.ChangeAgeRange_Button = new Guna.UI2.WinForms.Guna2Button();
+            this.changeClassMaxCapacity_Button = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -91,8 +91,9 @@
             this.GridView.EnableHeadersVisualStyles = false;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.GridView.Location = new System.Drawing.Point(0, 105);
-            this.GridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GridView.Margin = new System.Windows.Forms.Padding(4);
             this.GridView.Name = "GridView";
+            this.GridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,7 +121,7 @@
             this.GridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.GridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.GridView.ThemeStyle.HeaderStyle.Height = 25;
-            this.GridView.ThemeStyle.ReadOnly = false;
+            this.GridView.ThemeStyle.ReadOnly = true;
             this.GridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.GridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.GridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -128,6 +129,47 @@
             this.GridView.ThemeStyle.RowsStyle.Height = 22;
             this.GridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.GridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            // 
+            // ClassId
+            // 
+            this.ClassId.HeaderText = "Mã lớp";
+            this.ClassId.MinimumWidth = 6;
+            this.ClassId.Name = "ClassId";
+            this.ClassId.ReadOnly = true;
+            // 
+            // cLASSNAMEDataGridViewTextBoxColumn
+            // 
+            this.cLASSNAMEDataGridViewTextBoxColumn.DataPropertyName = "CLASSNAME";
+            this.cLASSNAMEDataGridViewTextBoxColumn.HeaderText = "Tên lớp";
+            this.cLASSNAMEDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.cLASSNAMEDataGridViewTextBoxColumn.Name = "cLASSNAMEDataGridViewTextBoxColumn";
+            this.cLASSNAMEDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // NameClassHeadTeacher
+            // 
+            this.NameClassHeadTeacher.HeaderText = "Giáo viên chủ nhiệm";
+            this.NameClassHeadTeacher.MinimumWidth = 6;
+            this.NameClassHeadTeacher.Name = "NameClassHeadTeacher";
+            this.NameClassHeadTeacher.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Sỉ số";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // SCHOOLYEAR
+            // 
+            this.SCHOOLYEAR.DataPropertyName = "SCHOOLYEAR";
+            this.SCHOOLYEAR.HeaderText = "Năm học";
+            this.SCHOOLYEAR.MinimumWidth = 6;
+            this.SCHOOLYEAR.Name = "SCHOOLYEAR";
+            this.SCHOOLYEAR.ReadOnly = true;
+            // 
+            // cLASSBindingSource
+            // 
+            this.cLASSBindingSource.DataSource = typeof(studMin.Database.Models.CLASS);
             // 
             // Update_Button
             // 
@@ -144,7 +186,7 @@
             this.Update_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Update_Button.HoverState.Parent = this.Update_Button;
             this.Update_Button.Location = new System.Drawing.Point(973, 39);
-            this.Update_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Update_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Update_Button.Name = "Update_Button";
             this.Update_Button.ShadowDecoration.Parent = this.Update_Button;
             this.Update_Button.Size = new System.Drawing.Size(253, 44);
@@ -171,7 +213,7 @@
             this.AddClass_Button.HoverState.Parent = this.AddClass_Button;
             this.AddClass_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.AddClass_Button.Location = new System.Drawing.Point(679, 39);
-            this.AddClass_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddClass_Button.Margin = new System.Windows.Forms.Padding(4);
             this.AddClass_Button.Name = "AddClass_Button";
             this.AddClass_Button.PressedDepth = 20;
             this.AddClass_Button.ShadowDecoration.Parent = this.AddClass_Button;
@@ -199,7 +241,7 @@
             this.ChangeAgeRange_Button.HoverState.Parent = this.ChangeAgeRange_Button;
             this.ChangeAgeRange_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.ChangeAgeRange_Button.Location = new System.Drawing.Point(384, 39);
-            this.ChangeAgeRange_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ChangeAgeRange_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ChangeAgeRange_Button.Name = "ChangeAgeRange_Button";
             this.ChangeAgeRange_Button.PressedDepth = 20;
             this.ChangeAgeRange_Button.ShadowDecoration.Parent = this.ChangeAgeRange_Button;
@@ -227,7 +269,7 @@
             this.changeClassMaxCapacity_Button.HoverState.Parent = this.changeClassMaxCapacity_Button;
             this.changeClassMaxCapacity_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.changeClassMaxCapacity_Button.Location = new System.Drawing.Point(4, 39);
-            this.changeClassMaxCapacity_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.changeClassMaxCapacity_Button.Margin = new System.Windows.Forms.Padding(4);
             this.changeClassMaxCapacity_Button.Name = "changeClassMaxCapacity_Button";
             this.changeClassMaxCapacity_Button.PressedDepth = 20;
             this.changeClassMaxCapacity_Button.ShadowDecoration.Parent = this.changeClassMaxCapacity_Button;
@@ -236,46 +278,6 @@
             this.changeClassMaxCapacity_Button.Text = "THAY ĐỔI SỈ SỐ TỐI ĐA CỦA LỚP HỌC";
             this.changeClassMaxCapacity_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.changeClassMaxCapacity_Button.Click += new System.EventHandler(this.changeClassMaxCapacity_Button_Click);
-            // 
-            // cLASSBindingSource
-            // 
-            this.cLASSBindingSource.DataSource = typeof(studMin.Database.Models.CLASS);
-            // 
-            // ClassId
-            // 
-            this.ClassId.HeaderText = "Mã lớp";
-            this.ClassId.MinimumWidth = 6;
-            this.ClassId.Name = "ClassId";
-            this.ClassId.ReadOnly = true;
-            // 
-            // cLASSNAMEDataGridViewTextBoxColumn
-            // 
-            this.cLASSNAMEDataGridViewTextBoxColumn.DataPropertyName = "CLASSNAME";
-            this.cLASSNAMEDataGridViewTextBoxColumn.HeaderText = "Tên lớp";
-            this.cLASSNAMEDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.cLASSNAMEDataGridViewTextBoxColumn.Name = "cLASSNAMEDataGridViewTextBoxColumn";
-            // 
-            // NameClassHeadTeacher
-            // 
-            this.NameClassHeadTeacher.HeaderText = "Giáo viên chủ nhiệm";
-            this.NameClassHeadTeacher.MinimumWidth = 6;
-            this.NameClassHeadTeacher.Name = "NameClassHeadTeacher";
-            this.NameClassHeadTeacher.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Sỉ số";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // SCHOOLYEAR
-            // 
-            this.SCHOOLYEAR.DataPropertyName = "SCHOOLYEAR";
-            this.SCHOOLYEAR.HeaderText = "Năm học";
-            this.SCHOOLYEAR.MinimumWidth = 6;
-            this.SCHOOLYEAR.Name = "SCHOOLYEAR";
-            this.SCHOOLYEAR.ReadOnly = true;
             // 
             // ClassManage_SubTab
             // 
@@ -287,7 +289,7 @@
             this.Controls.Add(this.AddClass_Button);
             this.Controls.Add(this.Update_Button);
             this.Controls.Add(this.GridView);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ClassManage_SubTab";
             this.Size = new System.Drawing.Size(1232, 847);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
