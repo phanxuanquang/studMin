@@ -54,7 +54,7 @@ namespace studMin.Action.Excel
             {
                 try
                 {
-                    sheet.Protect("doanxempassword");
+                    //sheet.Protect("doanxempassword");
                     excel.Visible = true;
                     excel.EditDirectlyInCell = false;
                 }
