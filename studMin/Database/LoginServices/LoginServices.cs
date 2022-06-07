@@ -148,6 +148,10 @@ namespace studMin.Database.LoginServices
         {
             currentUser = UserServices.Instance.GetUserByUserName(userName);
 
+            currentTeacher = null;
+            classOfHeadTeacher = null;
+            currentStaff = null;
+
             switch (currentUser.USERROLE.ROLE)
             {
                 case "Giáo viên":
@@ -156,12 +160,9 @@ namespace studMin.Database.LoginServices
                     {
                         classOfHeadTeacher = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.IDTEACHER == currentTeacher.ID).FirstOrDefault();
                     }
-                    else classOfHeadTeacher = null;
                     break;
                 case "Nhân viên":
                     currentStaff = StaffServices.Instance.GetStaffByUsername(userName);
-                    currentTeacher = null;
-                    classOfHeadTeacher = null;
                     break;
             }
 
