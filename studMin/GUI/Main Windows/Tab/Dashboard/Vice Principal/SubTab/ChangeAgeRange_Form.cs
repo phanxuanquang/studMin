@@ -87,7 +87,7 @@ namespace studMin
         private void MinTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MinLabel.Text = String.Format("Tuổi nhập học tối thiểu: {0} tuổi", MinTrackBar.Value.ToString());
-            MaxTrackBar.Minimum = MinTrackBar.Value;
+            MaxTrackBar.Minimum = MinTrackBar.Value + 2;
         }
 
         private void MaxTrackBar_ValueChanged(object sender, EventArgs e)
