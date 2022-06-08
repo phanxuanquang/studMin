@@ -79,5 +79,10 @@ namespace studMin
             string[] split = msg.Split(new string[] { " - " }, StringSplitOptions.None);
             return (Methods.TryParse(split[0]), split[1]);
         }
+
+        public static string HocKy(int msg)
+        {
+            return String.Format("Học kỳ: {0}", Methods.Semester(msg));
+        }
     }
 }
