@@ -254,7 +254,6 @@ namespace studMin
             dataSource.Columns.Add("Số lượng đạt");
             dataSource.Columns.Add("Tỉ lệ đạt");
             LoadReportsForAllSemesterAllSchoolYear();
-            DataTable.ClearSelection();
         }
 
         private void LoadReportsForAllSemesterAllSchoolYear(string enteredText = null)
@@ -289,6 +288,7 @@ namespace studMin
             }
 
             DataTable.DataSource = dataSource;
+            DataTable.Rows[0].Selected = false;
             TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ VÀ NĂM HỌC";
         }
 

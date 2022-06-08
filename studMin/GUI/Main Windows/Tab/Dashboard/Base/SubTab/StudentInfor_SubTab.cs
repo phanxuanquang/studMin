@@ -156,7 +156,7 @@ namespace studMin
             }    
             else
             {
-                var students = GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.STUDENT.INFOR.FIRSTNAME + " " + item.STUDENT.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.STUDENT.ID.ToString().ToLower().Contains(Search_Box.Text.ToLower()))).ToList();
+                var students = GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()).Where(item => (item.STUDENT.INFOR.FIRSTNAME + " " + item.STUDENT.INFOR.LASTNAME).ToLower().Contains(Search_Box.Text.ToLower()) || (item.STUDENT.ID.ToString().ToLower().StartsWith(Search_Box.Text.ToLower()))).ToList();
                 BindingStudent(students);
             }    
         }
@@ -180,33 +180,7 @@ namespace studMin
             {
                 Search_Box.Text = String.Empty;
             }
-            try
-            {
-                CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
-                cm.SuspendBinding();
-
-                for (int i = 0; i < DataTable.RowCount; i++)
-                {
-                    if (DataTable.Rows[i].Cells[1].Value != null &&
-                        DataTable.Rows[i].Cells[3].Value != null)
-                    {
-                        if (DataTable.Rows[i].Cells[1].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()) || DataTable.Rows[i].Cells[3].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
-                        {
-                            DataTable.Rows[i].Visible = true;
-                        }
-                        else
-                        {
-                            DataTable.Rows[i].Visible = false;
-                        }
-                    }
-                }
-
-                cm.ResumeBinding();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void DataTable_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -232,6 +206,37 @@ namespace studMin
         private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Search_Button_Click(sender, e);
+        }
+
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
+                cm.SuspendBinding();
+
+                for (int i = 0; i < DataTable.RowCount; i++)
+                {
+                    if (DataTable.Rows[i].Cells[1].Value != null &&
+                        DataTable.Rows[i].Cells[3].Value != null)
+                    {
+                        if (DataTable.Rows[i].Cells[1].Value.ToString().ToLower().StartsWith(Search_Box.Text.ToLower()) || DataTable.Rows[i].Cells[3].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
+                        {
+                            DataTable.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            DataTable.Rows[i].Visible = false;
+                        }
+                    }
+                }
+
+                cm.ResumeBinding();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
