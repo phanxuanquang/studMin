@@ -64,7 +64,7 @@ namespace studMin
 
                 if (targetCall != null && targetCall.SelectedIndex != 0)
                 {
-                    if (MessageBox.Show("Bạn đã thay đổi điểm số. \nBạn có muốn tiếp tục.", "Điểm số nhập rỗng", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                    if (MessageBox.Show("Điểm số đã được thay đổi. \nBạn có muốn tiếp tục?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                     {
                         targetCall.SelectedIndex = 0;
                     }
@@ -81,7 +81,7 @@ namespace studMin
 
             if (textBox.Enabled && !isValid)
             {
-                MessageBox.Show("Điểm chỉ bao gồm chữ số và dấu chấm thập phân. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Điểm số chỉ bao gồm chữ số và dấu chấm thập phân. \nVui lòng nhập lại điểm.", "Điểm số không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
                 textBox.Focus();
                 return false;
@@ -100,7 +100,7 @@ namespace studMin
 
             if (numericTest < minScore || numericTest > maxScore)
             {
-                MessageBox.Show($"Điểm phải nằm trong khoảng từ {minScore} đến {maxScore}. \nVui lòng nhập lại điểm số.", "Điểm số nhập vào không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Điểm phải nằm trong khoảng từ {minScore} đến {maxScore}. \nVui lòng nhập lại điểm.", "Điểm số không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBox.Text = String.Empty;
                 textBox.Focus();
                 return false;
@@ -153,7 +153,7 @@ namespace studMin
             }
             else
             {
-                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                MessageBox.Show("Đang truy xuất danh sách. Vui lòng đợi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -178,7 +178,7 @@ namespace studMin
 
         private void ImportExcel_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (MessageBox.Show("đưa điểm vào csdl?", "IMPORT DATABASE", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Cập nhật điềm vào cơ sở dữ liệu?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
                 string schoolYear = importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0];
@@ -246,7 +246,7 @@ namespace studMin
             }
             else
             {
-                MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
+                MessageBox.Show("Đang có tiến trình đang chạy. Vui lòng đợi trong giây lát!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -258,7 +258,7 @@ namespace studMin
         {
             if (className == "Mọi lớp")
             {
-                MessageBox.Show("Chọn lớp để xuất");
+                MessageBox.Show("Hãy chọn lớp học để xuất danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -560,7 +560,7 @@ namespace studMin
                 else MidTermTestScore_Box.Text = string.Empty;
             }
             LoadScore();
-            MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void UpdateScore(BindingSource binding, int index, double score, string roleScore)

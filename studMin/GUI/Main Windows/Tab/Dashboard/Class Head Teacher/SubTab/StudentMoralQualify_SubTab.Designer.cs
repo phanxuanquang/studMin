@@ -41,7 +41,6 @@
             this.iDCONDUCTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.cONDUCTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tRANSCRIPTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.UpdateData_Button = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).BeginInit();
@@ -70,8 +69,8 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(13, 39);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Search_Box.Location = new System.Drawing.Point(11, 32);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập họ tên hoặc mã học sinh . . .";
@@ -80,7 +79,7 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(857, 44);
+            this.Search_Box.Size = new System.Drawing.Size(789, 36);
             this.Search_Box.TabIndex = 0;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
@@ -128,13 +127,12 @@
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 106);
-            this.DataTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataTable.Location = new System.Drawing.Point(0, 86);
             this.DataTable.Name = "DataTable";
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(1232, 741);
+            this.DataTable.Size = new System.Drawing.Size(924, 602);
             this.DataTable.TabIndex = 78;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -208,29 +206,6 @@
             // 
             this.tRANSCRIPTBindingSource.DataSource = typeof(studMin.Database.Models.TRANSCRIPT);
             // 
-            // DataGridViewExport_Button
-            // 
-            this.DataGridViewExport_Button.Animated = true;
-            this.DataGridViewExport_Button.BackColor = System.Drawing.Color.Transparent;
-            this.DataGridViewExport_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.DataGridViewExport_Button.BorderRadius = 5;
-            this.DataGridViewExport_Button.CheckedState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DataGridViewExport_Button.CustomImages.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.DataGridViewExport_Button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.DataGridViewExport_Button.ForeColor = System.Drawing.Color.White;
-            this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Location = new System.Drawing.Point(1029, 39);
-            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
-            this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Size = new System.Drawing.Size(191, 44);
-            this.DataGridViewExport_Button.TabIndex = 82;
-            this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
-            this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            // 
             // UpdateData_Button
             // 
             this.UpdateData_Button.Animated = true;
@@ -248,12 +223,11 @@
             this.UpdateData_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.UpdateData_Button.HoverState.Parent = this.UpdateData_Button;
             this.UpdateData_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.UpdateData_Button.Location = new System.Drawing.Point(880, 39);
-            this.UpdateData_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UpdateData_Button.Location = new System.Drawing.Point(807, 32);
             this.UpdateData_Button.Name = "UpdateData_Button";
             this.UpdateData_Button.PressedDepth = 20;
             this.UpdateData_Button.ShadowDecoration.Parent = this.UpdateData_Button;
-            this.UpdateData_Button.Size = new System.Drawing.Size(143, 44);
+            this.UpdateData_Button.Size = new System.Drawing.Size(107, 36);
             this.UpdateData_Button.TabIndex = 1;
             this.UpdateData_Button.Text = "CẬP NHẬT";
             this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -261,16 +235,14 @@
             // 
             // StudentMoralQualify_SubTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.UpdateData_Button);
-            this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.DataTable);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StudentMoralQualify_SubTab";
-            this.Size = new System.Drawing.Size(1232, 847);
+            this.Size = new System.Drawing.Size(924, 688);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).EndInit();
@@ -281,7 +253,6 @@
         #endregion
         protected Guna.UI2.WinForms.Guna2TextBox Search_Box;
         private Guna.UI2.WinForms.Guna2DataGridView DataTable;
-        private Guna.UI2.WinForms.Guna2Button DataGridViewExport_Button;
         private Guna.UI2.WinForms.Guna2Button UpdateData_Button;
         private System.Windows.Forms.BindingSource cONDUCTBindingSource;
         private System.Windows.Forms.BindingSource tRANSCRIPTBindingSource;

@@ -29,7 +29,7 @@ namespace studMin.GUI.Login
                     OTPServices.Instance.DeleteOTPOverTime();
                     if (!OTPServices.Instance.CheckOTPGetFromEmail(this.userName, OTP_Box.Text))
                     {
-                        MessageBox.Show("Mã xác thực không chính xác. Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Mã xác thực không chính xác. Vui lòng nhập lại.", "Xác thực thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         OTP_Box.Text = String.Empty;
                         return;
                     }
@@ -44,7 +44,7 @@ namespace studMin.GUI.Login
             }
             else
             {
-                MessageBox.Show("Mật khẩu xác nhập lại không trùng khớp. Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Mật khẩu xác nhập lại không trùng khớp. Vui lòng nhập lại.", "Xác thực thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ConfirmNewPassword_Box.Text = String.Empty;
             }
         }

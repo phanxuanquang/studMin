@@ -50,13 +50,13 @@ namespace studMin
         {
             if (SubjectName_Box.Text.Trim().Length == 0 || ConfirmSubjectName_Box.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin trước khi lưu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin trước khi lưu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (SubjectName_Box.Text != ConfirmSubjectName_Box.Text)
             {
-                MessageBox.Show("Vui lòng xác nhận lại tên mới của môn học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng xác nhận lại tên mới của môn học.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace studMin
 
             /*DataProvider.Instance.Database.SUBJECTs.Where(item => item.Id == currentSubject.Id).FirstOrDefault().DisplayName = SubjectName_Box.Text.Trim();*/
 
-            MessageBox.Show("Thay đổi tên môn học thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Thay đổi tên môn học thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }

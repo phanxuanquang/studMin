@@ -37,7 +37,7 @@ namespace studMin
             }
             else
             {
-                MessageBox.Show("Đang nhập danh sách, vui lòng đợi!");
+                MessageBox.Show("Đang nhập danh sách, vui lòng đợi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             backgroundWorker.DoWork += LoadFromDB_DoWork;
