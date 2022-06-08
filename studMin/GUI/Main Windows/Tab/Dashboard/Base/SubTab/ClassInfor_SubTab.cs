@@ -30,7 +30,7 @@ namespace studMin
 
             if (DataTable_Info.Rows.Count > 0 && DataTable_Info.Columns[0].HeaderCell.Value.ToString() != "Mã học sinh")
             {
-                MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh.", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace studMin
             if (currentClass == null || listStudents.Count == 0)
             {
                 string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
-                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -192,10 +192,10 @@ namespace studMin
 
         private void GetTeachersByClassesBySchoolYear(List<CLASS> listClasses, bool filterByClass, bool filterBySchoolYear)
         {
-            DataTable_Info.Columns.Add("Column1", "Mã giáo viên");
-            DataTable_Info.Columns.Add("Column2", "Họ tên");
+            DataTable_Info.Columns.Add("Column1", "Mã định danh");
+            DataTable_Info.Columns.Add("Column2", "Họ và tên");
             DataTable_Info.Columns.Add("Column3", "Lớp phụ trách");
-            DataTable_Info.Columns.Add("Column4", "Năm phụ trách");
+            DataTable_Info.Columns.Add("Column4", "Năm học");
             DataTable_Info.Columns.Add("Column5", "Giới tính");
             DataTable_Info.Columns.Add("Column6", "Ngày sinh");
             DataTable_Info.Columns.Add("Column7", "Địa chỉ");

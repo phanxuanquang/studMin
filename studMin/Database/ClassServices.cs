@@ -125,7 +125,7 @@ namespace studMin.Database
 
         public int GetQuantityOfClass(CLASS Class)
         {
-            return Class.STUDYINGs.Where(item => item.IDCLASS == Class.ID).Distinct(new STUDYINGCompare()).ToList().Count();
+            return Class.STUDYINGs.Distinct(new STUDYINGCompare()).ToList().Count();
         }
 
         public int GetQuantityOfClass(string className, string schoolYear = null)

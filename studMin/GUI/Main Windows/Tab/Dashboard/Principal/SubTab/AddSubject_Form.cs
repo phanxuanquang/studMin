@@ -63,19 +63,20 @@ namespace studMin
         {
             if (String.IsNullOrEmpty(SubjectName_Box.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên môn học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng nhập tên môn học.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                SubjectName_Box.Focus();
                 return;
             }
 
             if (selectedHeadTeacherId.ToString().StartsWith("00000000"))
             {
-                MessageBox.Show("Vui lòng chọn trưởng bộ môn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn trưởng bộ môn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (atLeastOneNormalTeacher == 0)
             {
-                MessageBox.Show("Vui lòng chọn ít nhất 1 giáo viên phụ trách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn ít nhất một giáo viên phụ trách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -84,7 +85,7 @@ namespace studMin
             SUBJECT existingSubject = SubjectServices.Instance.GetSubjectByName(subjectName.ToLower());
             if (existingSubject != null)
             {
-                MessageBox.Show("Môn học này đã tồn tại, vui lòng chọn tên môn học khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Môn học này đã tồn tại, vui lòng chọn tên môn học khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -106,7 +107,7 @@ namespace studMin
             }
 
             DataProvider.Instance.Database.SaveChanges();
-            MessageBox.Show("Bổ sung môn học thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Bổ sung môn học thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             LoadInforFromDatabase();
             subjectManageForm.LoadSubjectsInfor();
@@ -148,7 +149,7 @@ namespace studMin
         {
             if (SubjectTeacher_ComboBox.SelectedIndex == 0)
             {
-                MessageBox.Show("Vui lòng chọn giáo viên phụ trách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn giáo viên phụ trách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -159,7 +160,7 @@ namespace studMin
             {
                 if (row.Cells[0].Value.ToString().ToLower() == teacherId.ToString().Substring(0, 8).ToLower())
                 {
-                    MessageBox.Show("Giáo viên này đã được chọn, vui lòng chọn giáo viên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Giáo viên này đã được chọn, vui lòng chọn giáo viên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -183,7 +184,7 @@ namespace studMin
                 {
                     if (cellId == headTeacherSubId) return;
 
-                    MessageBox.Show("Bạn chỉ có thể phân công tối đa 1 trưởng bộ môn, vui lòng hủy giáo viên đã phân công để chọn giáo viên mới", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Bạn chỉ có thể phân công tối đa một trưởng bộ môn. Vui lòng hủy giáo viên đã phân công để chọn giáo viên mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 

@@ -53,7 +53,7 @@ namespace studMin
         {
             if ((staffList == null || staffList.Count == 0) && (teacherList == null || teacherList.Count == 0))
             {
-                MessageBox.Show("Không tìm thấy nhân viên nào, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không tìm thấy nhân viên, vui lòng thử lại sau.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -78,7 +78,7 @@ namespace studMin
                 DataProvider.Instance.Database.SaveChanges();
 
                 LoadDataToDataTable(Search_Box.Text, false);
-                MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa nhân viên thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

@@ -24,6 +24,10 @@ namespace studMin.Action.Excel
 
         protected (string, string) NamHoc(string msg)
         {
+            if (msg == "Mọi năm học")
+            {
+                return (locationSchoolYear, String.Format("Năm học: {0}", msg));
+            }
             return (locationSchoolYear, String.Format("Năm học: {0} - {1}", msg, int.Parse(msg) + 1));
         }
 

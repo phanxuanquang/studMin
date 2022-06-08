@@ -93,7 +93,7 @@ namespace studMin
         private void MaxTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MaxLabel.Text = String.Format("Tuổi nhập học tối đa: {0} tuổi", MaxTrackBar.Value.ToString());
-            MinTrackBar.Maximum = MaxTrackBar.Value;
+            MinTrackBar.Maximum = MaxTrackBar.Value + 2;
         }
     }
 }

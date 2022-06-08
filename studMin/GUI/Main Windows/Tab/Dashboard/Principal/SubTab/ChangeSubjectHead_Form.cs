@@ -63,7 +63,7 @@ namespace studMin
         {
             if (SubjectTeacher_ComboBox.SelectedIndex == 0)
             {
-                MessageBox.Show("Vui lòng chọn giáo viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn giáo viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -91,12 +91,12 @@ namespace studMin
                 }
                 else
                 {
-                    MessageBox.Show("Giáo viên bạn chọn hiện đã là trưởng bộ môn, vui lòng chọn giáo viên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Giáo viên bạn chọn hiện đã là trưởng bộ môn, vui lòng chọn giáo viên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             catch
             {
-                MessageBox.Show("Đã có lỗi xảy ra, vui lòng thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi, vui lòng thử lại sau.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 

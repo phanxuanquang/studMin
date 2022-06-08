@@ -81,14 +81,14 @@ namespace studMin
         {
             if (Username_Box.Text == String.Empty || Password_Box.Text == String.Empty)
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (isInternetAvailable())
             {
                 bool isValidAccount = false;
                 string accountRole = String.Empty;
 
-                GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this, "ĐANG XÁC THỰC \n VUI LÒNG ĐỢI");
+                GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this, "ĐANG XÁC THỰC TÀI KHOẢN \n VUI LÒNG ĐỢI");
                 loadingWindow.Show();
                 this.Enabled = false;
 
