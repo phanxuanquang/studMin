@@ -51,7 +51,7 @@ namespace studMin
 
         private void FirePerson_Button_Click(object sender, EventArgs e)
         {
-            if ((staffList == null || staffList.Count == 0) && (teacherList == null || teacherList.Count == 0))
+            if (((staffList == null || staffList.Count == 0) && (teacherList == null || teacherList.Count == 0)) || DataTable.Rows.GetRowCount(DataGridViewElementStates.Visible) == 0)
             {
                 MessageBox.Show("Không tìm thấy nhân viên, vui lòng thử lại sau.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -77,6 +77,7 @@ namespace studMin
 
                 DataProvider.Instance.Database.SaveChanges();
 
+                Search_Box.Text = "";
                 LoadDataToDataTable(Search_Box.Text, false);
                 MessageBox.Show("Xóa nhân viên thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -84,11 +85,7 @@ namespace studMin
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                LoadDataToDataTable(Search_Box.Text.Trim(), false);
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
+            if (e.KeyChar == (char)Keys.Escape)
             {
                 Search_Box.Text = String.Empty;
             }
@@ -114,7 +111,7 @@ namespace studMin
 
                 if (!loadInitData)
                 {
-                    if ((teacherName.ToLower().Contains(enteredText.ToLower()) || item.ID.ToString().ToLower().Contains(enteredText.ToLower())) && !item.USER.ISDELETED)
+                    if ((teacherName.ToLower().Contains(enteredText.ToLower()) || item.ID.ToString().ToLower().StartsWith(enteredText.ToLower())) && !item.USER.ISDELETED)
                     {
                         if (item is TEACHER)
                         {
@@ -142,6 +139,38 @@ namespace studMin
                         DataTable.Rows.Add(item.ID.ToString().Substring(0, 8).ToUpper(), teacherName, gender, item.USER.EMAIL, role);
                     }
                 }
+            }
+        }
+
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+            /*LoadDataToDataTable(Search_Box.Text.Trim(), false);*/
+            string enteredText = Search_Box.Text.Trim().ToLower();
+
+            foreach (DataGridViewRow row in DataTable.Rows)
+            {
+                string staffId = row.Cells[0].Value.ToString();
+                string staffName = row.Cells[1].Value.ToString();
+
+                if (staffId != null && staffName != null)
+                {
+                    if (staffId.ToLower().StartsWith(enteredText) || staffName.ToLower().Contains(enteredText))
+                    {
+                        row.Visible = true;
+                    }
+                    else
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+
+            DataGridViewElementStates state = DataGridViewElementStates.Visible;
+            int i = DataTable.Rows.GetFirstRow(state);
+
+            if (i >= 0)
+            {
+                DataTable.Rows[i].Selected = true;
             }
         }
     }

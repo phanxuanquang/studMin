@@ -432,7 +432,7 @@ namespace studMin
                 studMin.Database.DataProvider.Instance.Database.SaveChangesAsync();
                 if (updateReportSubject.Result)
                 {
-                    MessageBox.Show("Đã có sự thay đổi trong bảng thống kê! Hiện tại đã được cập nhật.");
+                    MessageBox.Show("Đã có sự thay đổi trong bảng thống kê! Hiện tại đã được cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }));
         }
