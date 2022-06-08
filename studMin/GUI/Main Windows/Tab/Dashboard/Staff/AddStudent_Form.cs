@@ -44,10 +44,16 @@ namespace studMin
         private void AddStudent_Form_Load(object sender, EventArgs e)
         {
             string shoolYear = Database.ClassServices.Instance.GetCurrentSchoolYear();
-            List<CLASS> cLASSes = Database.ClassServices.Instance.GetClassBySchoolYear(shoolYear);
+            List<CLASS> cLASSes = Database.ClassServices.Instance.GetClassBySchoolYear(shoolYear);//Them
+
+            PARAMETER maxQuantity = Database.ParameterServices.Instance.GetParameterByName("MAXQUANTITY");
             foreach (var item in cLASSes)
             {
-                Class_ComboBox.Items.Add(item.CLASSNAME);
+                if (Database.ClassServices.Instance.GetQuantityOfClass(item) < maxQuantity.MAX)
+                {
+                    Class_ComboBox.Items.Add(item.CLASSNAME);
+
+                }
             }
         }
 
