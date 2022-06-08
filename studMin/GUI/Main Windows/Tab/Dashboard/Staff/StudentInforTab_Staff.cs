@@ -99,12 +99,19 @@ namespace studMin
                 STUDYING selected = row.DataBoundItem as STUDYING;
                 if (selected != null)
                 {
-                    row.Cells["SchoolYear"].Value = selected.CLASS.SCHOOLYEAR;
+                    row.Cells["SchoolYear"].Value = selected.SCHOOLYEAR;
                     row.Cells["Class"].Value = selected.CLASS.CLASSNAME;
 
                     row.Cells["Id"].Value = selected.IDSTUDENT.ToString().Substring(0, 8).ToUpper();
                     row.Cells["FullName"].Value = selected.STUDENT.INFOR.FIRSTNAME + " " + selected.STUDENT.INFOR.LASTNAME;
-                    row.Cells["Status"].Value = selected.STUDENT.Status == 1 ? "Đang học" : "Đã nghỉ học";
+                    if (int.Parse(selected.SCHOOLYEAR) < int.Parse(Database.ClassServices.Instance.GetCurrentSchoolYear()))
+                    {
+                        row.Cells["Status"].Value = "Đã nghỉ học";
+                    }
+                    else
+                    {
+                        row.Cells["Status"].Value = selected.STUDENT.Status == 1 ? "Đang học" : "Đã nghỉ học";
+                    }
                 }
             }
         }

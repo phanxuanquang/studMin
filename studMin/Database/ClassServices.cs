@@ -53,17 +53,18 @@ namespace studMin.Database
             }
 
             var listStudent = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID).Select(item => item.STUDENT).Distinct().ToList();
-            //var listStudents = new List<STUDENT>();
-            //foreach (var studying in listStudying)
-            //{
-            //    STUDENT student = DataProvider.Instance.Database.STUDENTs.Where(x => x.ID == studying.IDSTUDENT).FirstOrDefault();
-            //    if (!listStudents.Contains(student))
-            //    {
-            //        listStudents.Add(student);
+            return listStudent;
+        }
 
-            //    }
-            //}
-            //return listStudents;
+        public List<STUDENT> GetListStudentOfClass(string className, string schoolYear, string semester)
+        {
+            CLASS tempClass = GetClassByClassNameAndSchoolYear(className, schoolYear == null ? GetCurrentSchoolYear() : schoolYear);
+            if (tempClass == null)
+            {
+                return new List<STUDENT>();
+            }
+
+            var listStudent = DataProvider.Instance.Database.STUDYINGs.Where(x => x.IDCLASS == tempClass.ID && x.SEMESTER.NAME == semester).Select(item => item.STUDENT).Distinct().ToList();
             return listStudent;
         }
 
