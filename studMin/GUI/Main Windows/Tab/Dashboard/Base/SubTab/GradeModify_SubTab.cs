@@ -199,8 +199,6 @@ namespace studMin
 
                 List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(@class.CLASSNAME, schoolYear);
 
-                
-
                 for (int index = 0; index < data.Count; index++)
                 {
                     STUDENT student = students.Where(item => item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME == data[index].HoTen).FirstOrDefault();
@@ -624,26 +622,11 @@ namespace studMin
             {
                 Search_Box.Text = String.Empty;
             }
-            CurrencyManager cm = (CurrencyManager)BindingContext[GridView.DataSource];
-            cm.SuspendBinding();
+        }
 
-            for (int i = 0; i < GridView.RowCount; i++)
-            {
-                if (GridView.Rows[i].Cells[0].Value != null &&
-                    GridView.Rows[i].Cells[1].Value != null)
-                {
-                    string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
-
-                    if (fullName.Contains(Search_Box.Text.ToLower()) || GridView.Rows[i].Cells[0].Value.ToString().ToLower().Contains(Search_Box.Text.ToLower()))
-                    {
-                        GridView.Rows[i].Visible = true;
-                    }
-                    else
-                    {
-                        GridView.Rows[i].Visible = false;
-                    }
-                }
-            }      
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+            Search_Button_Click(null, null);
         }
 
         private void DetailScore_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -759,9 +742,10 @@ namespace studMin
                     if (GridView.Rows[i].Cells[0].Value != null &&
                         GridView.Rows[i].Cells[1].Value != null)
                     {
-                        string fullName = GridView.Rows[i].Cells[0].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[1].Value.ToString().ToLower();
+                        string fullName = GridView.Rows[i].Cells[1].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[2].Value.ToString().ToLower();
+                        string searching = Search_Box.Text.ToLower();
 
-                        if (fullName.Contains(Search_Box.Text.ToLower()))
+                        if (fullName.Contains(searching) || GridView.Rows[i].Cells[0].Value.ToString().ToLower().StartsWith(searching))
                         {
                             GridView.Rows[i].Visible = true;
                         }

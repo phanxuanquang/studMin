@@ -216,6 +216,7 @@
             this.Search_Box.TabIndex = 0;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
+            this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
             // 
             // OralTest_GroupBox
             // 
