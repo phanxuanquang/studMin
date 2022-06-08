@@ -55,7 +55,7 @@
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
             this.Exit_Button.Location = new System.Drawing.Point(337, 164);
-            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
             this.Exit_Button.Size = new System.Drawing.Size(191, 44);
@@ -83,7 +83,7 @@
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Confirm_Button.Location = new System.Drawing.Point(100, 164);
-            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
@@ -91,6 +91,7 @@
             this.Confirm_Button.TabIndex = 129;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.Confirm_Button.Click += new System.EventHandler(this.Confirm_Button_Click);
             // 
             // SubjectName_Label
             // 
@@ -121,7 +122,7 @@
             this.PassScoreTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.PassScoreTrackBar.HoverState.Parent = this.PassScoreTrackBar;
             this.PassScoreTrackBar.Location = new System.Drawing.Point(44, 106);
-            this.PassScoreTrackBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassScoreTrackBar.Margin = new System.Windows.Forms.Padding(4);
             this.PassScoreTrackBar.Maximum = 6;
             this.PassScoreTrackBar.Minimum = 2;
             this.PassScoreTrackBar.Name = "PassScoreTrackBar";
@@ -157,12 +158,13 @@
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Confirm_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ChangeGeneralPassScore_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChangeSubjectName_Form";
+            this.Load += new System.EventHandler(this.ChangeGeneralPassScore_Form_Load);
             this.ResumeLayout(false);
 
         }
