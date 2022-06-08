@@ -64,8 +64,14 @@ namespace studMin
 
             Action.Excel.ReportSemester ReportSemester = new Action.Excel.ReportSemester();
 
+            string exportSchoolYear;
+            string exportSemester;
+
             if (isSelectedRows)
             {
+                exportSchoolYear = DataTable.SelectedRows[0].Cells[3].Value.ToString();
+                exportSemester = DataTable.SelectedRows[0].Cells[2].Value.ToString();
+
                 foreach (DataGridViewRow row in DataTable.SelectedRows)
                 {
                     Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
@@ -75,10 +81,27 @@ namespace studMin
                         SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
                     };
                     ReportSemester.InsertItem(item);
+
+                    if (row.Index + 1 < DataTable.SelectedRows.Count)
+                    {
+                        if (exportSchoolYear != DataTable.SelectedRows[row.Index + 1].Cells[3].Value.ToString())
+                        {
+                            exportSchoolYear = "Mọi năm học";
+                        }
+
+                        if (exportSemester != DataTable.SelectedRows[row.Index + 1].Cells[2].Value.ToString())
+                        {
+                            exportSemester = "3";
+                        }
+                    }
+                    
                 }
             }
             else
             {
+                exportSchoolYear = DataTable.Rows[0].Cells[3].Value.ToString();
+                exportSemester = DataTable.Rows[0].Cells[2].Value.ToString();
+
                 foreach (DataGridViewRow row in DataTable.Rows)
                 {
                     Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
@@ -88,34 +111,26 @@ namespace studMin
                         SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
                     };
                     ReportSemester.InsertItem(item);
+
+                    if (row.Index + 1 < DataTable.Rows.Count)
+                    {
+                        if (exportSchoolYear != DataTable.Rows[row.Index + 1].Cells[3].Value.ToString())
+                        {
+                            exportSchoolYear = "Mọi năm học";
+                        }
+
+                        if (exportSemester != DataTable.Rows[row.Index + 1].Cells[2].Value.ToString())
+                        {
+                            exportSemester = "3";
+                        }
+                    }
                 }
             }
 
-            string exportSchoolYear = DataTable.Rows[0].Cells[3].Value.ToString();
-            for (int i = 0; i < DataTable.Rows.Count - 1; i++)
-            {
-                if (exportSchoolYear != DataTable.Rows[i + 1].Cells[3].Value.ToString())
-                {
-                    exportSchoolYear = "Mọi năm học";
-                    break;
-                }
-            }
-
-            string exportSemester = DataTable.Rows[0].Cells[2].Value.ToString();
-            for (int i = 0; i < DataTable.Rows.Count - 1; i++)
-            {
-                if (exportSemester != DataTable.Rows[i + 1].Cells[2].Value.ToString())
-                {
-                    exportSemester = "3";
-                    break;
-                }
-            }
-
-            string formattedSchoolYear = int.Parse(exportSchoolYear) + " - " + (int.Parse(exportSchoolYear) + 1);
             Action.Excel.ReportSemester.Info info = new Action.Excel.ReportSemester.Info()
             {
                 HocKy = int.Parse(exportSemester),
-                NamHoc = formattedSchoolYear
+                NamHoc = exportSchoolYear
             };
             ReportSemester.InsertInfo(info);
 
@@ -188,7 +203,7 @@ namespace studMin
                     Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
                     {
                         Lop = currentClass.CLASSNAME,
-                        SiSo = currentClass.STUDENTs.Count,
+                        SiSo = ClassServices.Instance.GetQuantityOfClass(currentClass),
                         SoLuongDat = (int)report.PASSQUANTITY
                     };
                     list.Add(item);
@@ -254,20 +269,22 @@ namespace studMin
 
                 int order = dataSource.Rows.Count + 1;
                 string className = currentClass.CLASSNAME;
-                int quantity = currentClass.STUDENTs.Count;
+                string semesterName = report.SEMESTER.NAME;
+                string schoolYear = currentClass.SCHOOLYEAR;
+                int quantity = ClassServices.Instance.GetQuantityOfClass(currentClass);
                 int passQuantity = (int)report.PASSQUANTITY;
-                double ratio = Math.Round((double)(100.0 * report.PASSQUANTITY / currentClass.STUDENTs.Count), 2);
+                double ratio = Math.Round((double)(100.0 * passQuantity / quantity), 2);
 
                 if (enteredText != null)
                 {
                     if (className.ToLower().Contains(enteredText.ToLower()))
                     {
-                        dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, report.SEMESTER.NAME, currentClass.SCHOOLYEAR, currentClass.STUDENTs.Count, report.PASSQUANTITY, ratio + "%");
+                        dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
                     }
                 }
                 else
                 {
-                    dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, report.SEMESTER.NAME, currentClass.SCHOOLYEAR, currentClass.STUDENTs.Count, report.PASSQUANTITY, ratio + "%");
+                    dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
                 }
             }
 
