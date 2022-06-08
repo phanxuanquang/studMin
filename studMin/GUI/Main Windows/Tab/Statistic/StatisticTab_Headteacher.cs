@@ -24,6 +24,7 @@ namespace studMin
 
         List<SUBJECT> listSub = new List<SUBJECT>();
         List<SEMESTER> listSem = new List<SEMESTER>();
+        List<STUDYING> studying = null;
 
         private GUI.LoadingWindow loadingWindow = null;
 
@@ -261,7 +262,7 @@ namespace studMin
                 tittleLabel.Text = TitleSchedule(_subject, int.Parse(_semester), int.Parse(schoolYear));
             }));
 
-            List<CLASS> classes = studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
+            List<CLASS> classes = studying.Where(itemx => itemx.SCHOOLYEAR == schoolYear && itemx.IDSEMESTER == semester.ID).Select(itemy => itemy.CLASS).Distinct().ToList();
             for (int indexClass = 0; indexClass < classes.Count; indexClass++)
             {
                 Guid idClass = classes[indexClass].ID;
@@ -304,6 +305,7 @@ namespace studMin
             listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.ToList();
             subjects = listSub.Select(item => item.DisplayName).ToList();
             schoolyears = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(x => x.SCHOOLYEAR).Distinct().ToList();
+            studying = studMin.Database.DataProvider.Instance.Database.STUDYINGs.ToList();
 
             SEMESTER temp = listSem[0];
             listSem.Remove(temp);
