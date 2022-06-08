@@ -157,7 +157,7 @@ namespace studMin
         private string Title(string user, string id, string purpose, string subject)
         {
             // {Name} | {id} | {purpose} | {subject (if exists)}
-            return String.Format("{0} | ID: {1} | Vai trò: {2}", user, id.Substring(0, 8), purpose) + (String.IsNullOrEmpty(subject) == true ? string.Empty : " | Giảng dạy: " + subject);
+            return String.Format("{0} | ID: {1} | Vai trò: {2}", user, id.Substring(0, 8).ToUpper(), purpose) + (String.IsNullOrEmpty(subject) == true ? string.Empty : " | Giảng dạy: " + subject);
         }
     }
 }
