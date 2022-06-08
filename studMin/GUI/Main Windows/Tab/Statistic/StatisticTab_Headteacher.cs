@@ -296,8 +296,9 @@ namespace studMin
         private void LoadSubjectFromDatabase_DoWork(object sender, DoWorkEventArgs e)
         {
             recordExists = studMin.Database.DataProvider.Instance.Database.REPORTSUBJECTs.ToList();
-            List<Guid> listClass = recordExists.Select(item => item.IDCLASS).ToList();
-            SiSo = listClass.Select(item => studMin.Database.DataProvider.Instance.Database.STUDYINGs.Where(study => study.IDCLASS == item).Distinct().Count() / 2).ToList();
+            List<(Guid, int)> listClass = (recordExists.Select(item => item.CLASS).Distinct().ToList()).Select(item => (item.ID, studMin.Database.ClassServices.Instance.GetQuantityOfClass(item))).ToList();
+
+            SiSo = recordExists.Select(item => listClass.Where(list => list.Item1 == item.IDCLASS).First().Item2).ToList();
 
             listSub = studMin.Database.SubjectServices.Instance.GetSubjects();
             listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.ToList();
