@@ -22,6 +22,8 @@ namespace studMin
         private string semester = string.Empty;
         private Timer timer = null;
 
+        private bool isAllowEdit = false;
+        private int lastestSchoolYear = -1;
 
         public GradeModify_SubTab()
         {
@@ -33,13 +35,20 @@ namespace studMin
         {
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
+                lastestSchoolYear = int.Parse(studMin.Database.ClassServices.Instance.GetCurrentSchoolYear());
                 List<string> schoolYear = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID).Select(item => item.SCHOOLYEAR).Distinct().ToList();
                 if (this.InvokeRequired)
                 {
                     this.Invoke(new System.Action(() => { SchoolYear_ComboBox.DataSource = schoolYear; }));
                 }
                 else SchoolYear_ComboBox.DataSource = schoolYear;
-                var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => Methods.HocKy(int.Parse(item.NAME))).ToList();
+                var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
+
+                string temp = listSemester[0];
+                listSemester[0] = listSemester[1];
+                listSemester[1] = temp;
+
+                listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
 
                 SemesterComboBox.DataSource = listSemester;
             });
@@ -372,9 +381,12 @@ namespace studMin
             RegularTestScore_ComboBox.Items.AddRange(regulars.Select(item => String.Format("Lần {0}", regulars.IndexOf(item) + 1)).ToArray());
             MidTermTestScore_ComboBox.Items.AddRange(midterms.Select(item => String.Format("Lần {0}", midterms.IndexOf(item) + 1)).ToArray());
 
-            OralTestScore_ComboBox.Items.Add("Thêm...");
-            RegularTestScore_ComboBox.Items.Add("Thêm...");
-            MidTermTestScore_ComboBox.Items.Add("Thêm...");
+            if (isAllowEdit)
+            {
+                OralTestScore_ComboBox.Items.Add("Thêm...");
+                RegularTestScore_ComboBox.Items.Add("Thêm...");
+                MidTermTestScore_ComboBox.Items.Add("Thêm...");
+            }
 
             ResetComboBox();
         }
@@ -384,7 +396,13 @@ namespace studMin
             ResetComboBox();
             ResetDataGridView();
             className = Class_ComboBox.SelectedItem.ToString();
-            var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => Methods.HocKy(int.Parse(item.NAME))).ToList();
+            var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
+
+            string temp = listSemester[0];
+            listSemester[0] = listSemester[1];
+            listSemester[1] = temp;
+
+            listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
 
             SemesterComboBox.DataSource = listSemester;
             //if (className != "Mọi lớp")
@@ -411,6 +429,9 @@ namespace studMin
         {
             ResetDataGridView();
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+
+            isAllowEdit = lastestSchoolYear == int.Parse(schoolYear);
+
             if (!String.IsNullOrEmpty(schoolYear))
             {
                 List<string> @class = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.SCHOOLYEAR == schoolYear && item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID).Select(item => item.CLASS.CLASSNAME).Distinct().ToList();
@@ -504,9 +525,17 @@ namespace studMin
             }
             else if (index > 0 && index <= count)
             {
-                textBox.Enabled = true;
-                textBox.ReadOnly = false;
                 textBox.Text = ((SCORE4GRIDVIEW)binding.List[index - 1]).Score.ToString();
+                if (!isAllowEdit)
+                {
+                    textBox.ReadOnly = true;
+                    textBox.Enabled = false;
+                }
+                else
+                {
+                    textBox.Enabled = true;
+                    textBox.ReadOnly = false;
+                }
             }
         }
 
