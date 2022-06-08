@@ -56,10 +56,11 @@
             this.Exit_Button.ForeColor = System.Drawing.Color.White;
             this.Exit_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.Exit_Button.HoverState.Parent = this.Exit_Button;
-            this.Exit_Button.Location = new System.Drawing.Point(235, 198);
+            this.Exit_Button.Location = new System.Drawing.Point(313, 244);
+            this.Exit_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Exit_Button.Name = "Exit_Button";
             this.Exit_Button.ShadowDecoration.Parent = this.Exit_Button;
-            this.Exit_Button.Size = new System.Drawing.Size(143, 36);
+            this.Exit_Button.Size = new System.Drawing.Size(191, 44);
             this.Exit_Button.TabIndex = 130;
             this.Exit_Button.Text = "THOÁT";
             this.Exit_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -83,11 +84,12 @@
             this.Confirm_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.Confirm_Button.HoverState.Parent = this.Confirm_Button;
             this.Confirm_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Confirm_Button.Location = new System.Drawing.Point(57, 198);
+            this.Confirm_Button.Location = new System.Drawing.Point(76, 244);
+            this.Confirm_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Confirm_Button.Name = "Confirm_Button";
             this.Confirm_Button.PressedDepth = 20;
             this.Confirm_Button.ShadowDecoration.Parent = this.Confirm_Button;
-            this.Confirm_Button.Size = new System.Drawing.Size(143, 36);
+            this.Confirm_Button.Size = new System.Drawing.Size(191, 44);
             this.Confirm_Button.TabIndex = 129;
             this.Confirm_Button.Text = "XÁC NHẬN";
             this.Confirm_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -100,8 +102,9 @@
             this.SubjectName_Label.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectName_Label.ForeColor = System.Drawing.Color.White;
             this.SubjectName_Label.Location = new System.Drawing.Point(0, 0);
+            this.SubjectName_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SubjectName_Label.Name = "SubjectName_Label";
-            this.SubjectName_Label.Size = new System.Drawing.Size(434, 44);
+            this.SubjectName_Label.Size = new System.Drawing.Size(579, 54);
             this.SubjectName_Label.TabIndex = 131;
             this.SubjectName_Label.Text = "THAY ĐỔI GIỚI HẠN TUỔI";
             this.SubjectName_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -120,11 +123,12 @@
             // 
             this.MinTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.MinTrackBar.HoverState.Parent = this.MinTrackBar;
-            this.MinTrackBar.Location = new System.Drawing.Point(33, 86);
+            this.MinTrackBar.Location = new System.Drawing.Point(44, 106);
+            this.MinTrackBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinTrackBar.Maximum = 50;
-            this.MinTrackBar.Minimum = 5;
+            this.MinTrackBar.Minimum = 10;
             this.MinTrackBar.Name = "MinTrackBar";
-            this.MinTrackBar.Size = new System.Drawing.Size(368, 23);
+            this.MinTrackBar.Size = new System.Drawing.Size(491, 28);
             this.MinTrackBar.TabIndex = 133;
             this.MinTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.MinTrackBar.Value = 15;
@@ -134,11 +138,12 @@
             // 
             this.MaxTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.MaxTrackBar.HoverState.Parent = this.MaxTrackBar;
-            this.MaxTrackBar.Location = new System.Drawing.Point(33, 154);
+            this.MaxTrackBar.Location = new System.Drawing.Point(44, 190);
+            this.MaxTrackBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaxTrackBar.Maximum = 50;
-            this.MaxTrackBar.Minimum = 5;
+            this.MaxTrackBar.Minimum = 10;
             this.MaxTrackBar.Name = "MaxTrackBar";
-            this.MaxTrackBar.Size = new System.Drawing.Size(368, 23);
+            this.MaxTrackBar.Size = new System.Drawing.Size(491, 28);
             this.MaxTrackBar.TabIndex = 134;
             this.MaxTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.MaxTrackBar.Value = 18;
@@ -149,9 +154,10 @@
             this.MaxLabel.BackColor = System.Drawing.Color.Transparent;
             this.MaxLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.MaxLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MaxLabel.Location = new System.Drawing.Point(33, 127);
+            this.MaxLabel.Location = new System.Drawing.Point(44, 156);
+            this.MaxLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MaxLabel.Name = "MaxLabel";
-            this.MaxLabel.Size = new System.Drawing.Size(368, 28);
+            this.MaxLabel.Size = new System.Drawing.Size(491, 34);
             this.MaxLabel.TabIndex = 135;
             this.MaxLabel.Text = "Tuổi nhập học tối đa:";
             this.MaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,9 +168,10 @@
             this.MinLabel.BackColor = System.Drawing.Color.Transparent;
             this.MinLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.MinLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.MinLabel.Location = new System.Drawing.Point(33, 57);
+            this.MinLabel.Location = new System.Drawing.Point(44, 70);
+            this.MinLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MinLabel.Name = "MinLabel";
-            this.MinLabel.Size = new System.Drawing.Size(368, 28);
+            this.MinLabel.Size = new System.Drawing.Size(491, 34);
             this.MinLabel.TabIndex = 136;
             this.MinLabel.Text = "Tuổi nhập học tối thiểu:";
             this.MinLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -172,10 +179,10 @@
             // 
             // ChangeAgeRange_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(434, 249);
+            this.ClientSize = new System.Drawing.Size(579, 306);
             this.Controls.Add(this.MinLabel);
             this.Controls.Add(this.MaxLabel);
             this.Controls.Add(this.MaxTrackBar);
@@ -184,6 +191,7 @@
             this.Controls.Add(this.Exit_Button);
             this.Controls.Add(this.Confirm_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChangeAgeRange_Form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

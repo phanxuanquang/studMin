@@ -53,9 +53,17 @@ namespace studMin
 
         private void Confirm_Button_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Có chắc chắn muốn thay đổi hay không?", "XÁC NHẬN", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MinTrackBar.Value > MaxTrackBar.Value)
+            {
+                MessageBox.Show("Tuổi tối thiểu phải nhỏ hơn hoặc bằng tuổi tối đa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show("Có chắc chắn muốn thay đổi hay không?", "XÁC NHẬN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 SaveAgeLimit(MinTrackBar.Value, MaxTrackBar.Value);
+
+                MessageBox.Show("Thay đổi khoảng tuổi thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Exit_Button_Click(null, null);
             }
         }
@@ -75,7 +83,7 @@ namespace studMin
 
         private void SaveAgeLimit(int min, int max)
         {
-            if (min >= max) return;
+            if (min > max) return;
 
             var param = Database.ParameterServices.Instance.GetParameterByName("AGE");
             param.MAX = max;
@@ -87,13 +95,11 @@ namespace studMin
         private void MinTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MinLabel.Text = String.Format("Tuổi nhập học tối thiểu: {0} tuổi", MinTrackBar.Value.ToString());
-            MaxTrackBar.Minimum = MinTrackBar.Value;
         }
 
         private void MaxTrackBar_ValueChanged(object sender, EventArgs e)
         {
             MaxLabel.Text = String.Format("Tuổi nhập học tối đa: {0} tuổi", MaxTrackBar.Value.ToString());
-            MinTrackBar.Maximum = MaxTrackBar.Value + 2;
         }
     }
 }
