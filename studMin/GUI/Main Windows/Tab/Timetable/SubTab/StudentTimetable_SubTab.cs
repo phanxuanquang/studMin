@@ -609,7 +609,7 @@ namespace studMin
             if (listSchoolYear.Current == null) return;
             List<SCHEDULE> schedule = (listSchoolYear.Current as SCHEDULE4COMBOBOX).TKB_Nam;
             AssignDataToComboBox(DateApply_ComboBox, listDateApply, schedule.Select(item => Methods.DateApply(item.DATEAPPLY.Value, item.SCHEDULENAME)).ToList(), "", "");
-            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => HocKy(int.Parse(semester))).ToList(), "", "");
+            AssignDataToComboBox(Semester_ComboBox, listSemester, schedule.Select(item => item.SEMESTER.NAME).Distinct().Select(semester => Methods.HocKy(int.Parse(semester))).ToList(), "", "");
         }
 
         private void LoadScheduleFromDatabase_RunrWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -641,11 +641,6 @@ namespace studMin
                 userControl.DisplayMember = displayMember;
                 userControl.ValueMember = valueMember;
             }
-        }
-
-        private string HocKy(int msg)
-        {
-            return String.Format("Học kỳ: {0}", Methods.Semester(msg));
         }
 
         private string TitleSchedule(DateTime dateApply, string scheduleName, string @class, string schoolYear, int semester)
