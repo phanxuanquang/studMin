@@ -45,8 +45,8 @@ namespace studMin
                 var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
 
                 string temp = listSemester[0];
-                listSemester[0] = listSemester[1];
-                listSemester[1] = temp;
+                listSemester.Remove(temp);
+                listSemester.Add(temp);
 
                 listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
 
@@ -397,8 +397,8 @@ namespace studMin
             var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
 
             string temp = listSemester[0];
-            listSemester[0] = listSemester[1];
-            listSemester[1] = temp;
+            listSemester.Remove(temp);
+            listSemester.Add(temp);
 
             listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
 

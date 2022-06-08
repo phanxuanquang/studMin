@@ -285,7 +285,7 @@ namespace studMin
 
         private string TitleSchedule(string subject, int semester, int schoolYear)
         {
-            return String.Format("BẢNG TỔNG KẾT MÔN {0} - {1} - NĂM HỌC {2} - {3}", subject, HocKy(semester), schoolYear, schoolYear + 1).ToUpper();
+            return String.Format("BẢNG TỔNG KẾT MÔN {0} - {1} - NĂM HỌC {2} - {3}", subject, Methods.HocKy(semester), schoolYear, schoolYear + 1).ToUpper();
         }
 
         private void LoadSubjectFromDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -304,33 +304,13 @@ namespace studMin
             listSem = studMin.Database.DataProvider.Instance.Database.SEMESTERs.ToList();
             subjects = listSub.Select(item => item.DisplayName).ToList();
             schoolyears = studMin.Database.DataProvider.Instance.Database.CLASSes.Select(x => x.SCHOOLYEAR).Distinct().ToList();
-            semesters = listSem.Select(y => HocKy(int.Parse(y.NAME))).ToList();
+
+            SEMESTER temp = listSem[0];
+            listSem.Remove(temp);
+            listSem.Add(temp);
+
+            semesters = listSem.Select(y => Methods.HocKy(int.Parse(y.NAME))).ToList();
             AssignDataToComboBox(SchoolYear_ComboBox, schoolyears);
-
-            int coefficientOralMark = 1;
-            int coefficientRegularMark = 1;
-            int coefficientMidTermMark = 1;
-            int coefficientFinalMark = 1;
-
-            var listRolescore = Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
-            foreach (var item in listRolescore)
-            {
-                switch (item.ROLE)
-                {
-                    case "M":
-                        coefficientFinalMark = item.COEFFICIENT.Value;
-                        break;
-                    case "15M":
-                        coefficientRegularMark = item.COEFFICIENT.Value;
-                        break;
-                    case "45M":
-                        coefficientMidTermMark = item.COEFFICIENT.Value;
-                        break;
-                    default:
-                        coefficientFinalMark = item.COEFFICIENT.Value;
-                        break;
-                }
-            }
 
             Task<bool> updateReportSubject = Task<bool>.Factory.StartNew(() =>
             {
@@ -338,7 +318,34 @@ namespace studMin
                 List<REPORTSUBJECT> tempRecordExists = new List<REPORTSUBJECT>();
                 List<STUDYING> studying = studMin.Database.DataProvider.Instance.Database.STUDYINGs.ToList();
                 List<SCORE> scores = studMin.Database.DataProvider.Instance.Database.SCOREs.ToList();
+                int currentSchoolYear = int.Parse(studMin.Database.ClassServices.Instance.GetCurrentSchoolYear());
                 bool isUpdate = false;
+
+                int coefficientOralMark = 1;
+                int coefficientRegularMark = 1;
+                int coefficientMidTermMark = 1;
+                int coefficientFinalMark = 1;
+
+                var listRolescore = Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
+                foreach (var item in listRolescore)
+                {
+                    switch (item.ROLE)
+                    {
+                        case "M":
+                            coefficientFinalMark = item.COEFFICIENT.Value;
+                            break;
+                        case "15M":
+                            coefficientRegularMark = item.COEFFICIENT.Value;
+                            break;
+                        case "45M":
+                            coefficientMidTermMark = item.COEFFICIENT.Value;
+                            break;
+                        default:
+                            coefficientFinalMark = item.COEFFICIENT.Value;
+                            break;
+                    }
+                }
+
                 foreach (var subject in listSub)
                 {
                     foreach (var semester in listSem)
@@ -393,24 +400,27 @@ namespace studMin
                                 tempSiSo.Add(students.Count);
                                 tempRecordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 100.0 / students.Count });
 
-                                List<REPORTSUBJECT> filters = recordExists.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).ToList();
-
-                                if (filters.Count > 0)
+                                if (currentSchoolYear == int.Parse(schoolYear))
                                 {
-                                    foreach (var filter in filters)
+                                    List<REPORTSUBJECT> filters = recordExists.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).ToList();
+
+                                    if (filters.Count > 0)
                                     {
-                                        if (filter.PASSQUANTITY.Value != avgScoreStudent.Count || filter.RATIO.Value != avgScoreStudent.Count * 100.0 / students.Count)
+                                        foreach (var filter in filters)
                                         {
-                                            filter.PASSQUANTITY = avgScoreStudent.Count;
-                                            filter.RATIO = avgScoreStudent.Count * 100.0 / students.Count;
-                                            isUpdate = true;
+                                            if (filter.PASSQUANTITY.Value != avgScoreStudent.Count || filter.RATIO.Value != avgScoreStudent.Count * 100.0 / students.Count)
+                                            {
+                                                filter.PASSQUANTITY = avgScoreStudent.Count;
+                                                filter.RATIO = avgScoreStudent.Count * 100.0 / students.Count;
+                                                isUpdate = true;
+                                            }
                                         }
                                     }
-                                }
-                                else
-                                {
-                                    recordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 100.0 / students.Count });
-                                    isUpdate = true;
+                                    else
+                                    {
+                                        recordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 100.0 / students.Count });
+                                        isUpdate = true;
+                                    }
                                 }
                             }
                         }
@@ -437,11 +447,6 @@ namespace studMin
             }));
         }
 
-        private string HocKy(int msg)
-        {
-            return String.Format("Học kỳ: {0}", Methods.Semester(msg));
-        }
-
         private void Search_Box_TextChanged(object sender, EventArgs e)
         {
             try
@@ -451,8 +456,7 @@ namespace studMin
 
                 for (int i = 0; i < DataTable.RowCount; i++)
                 {
-                    if (DataTable.Rows[i].Cells[0].Value != null &&
-                        DataTable.Rows[i].Cells[1].Value != null)
+                    if (DataTable.Rows[i].Cells[1].Value != null)
                     {
                         string @class = DataTable.Rows[i].Cells[1].Value.ToString().ToLower();
 
