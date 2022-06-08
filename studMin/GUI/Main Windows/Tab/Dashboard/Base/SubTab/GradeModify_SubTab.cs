@@ -739,8 +739,8 @@ namespace studMin
 
                 for (int i = 0; i < GridView.RowCount; i++)
                 {
-                    if (GridView.Rows[i].Cells[0].Value != null &&
-                        GridView.Rows[i].Cells[1].Value != null)
+                    if (GridView.Rows[i].Cells[1].Value != null &&
+                        GridView.Rows[i].Cells[2].Value != null)
                     {
                         string fullName = GridView.Rows[i].Cells[1].Value.ToString().ToLower() + " " + GridView.Rows[i].Cells[2].Value.ToString().ToLower();
                         string searching = Search_Box.Text.ToLower();
