@@ -27,7 +27,7 @@ namespace studMin
 
         private void DataGridViewExport_Button_Click(object sender, EventArgs e)
         {
-            if (DataTable.Rows.Count == 0)
+            if (DataTable.Rows.Count == 0 || DataTable.Rows.GetRowCount(DataGridViewElementStates.Visible) == 0)
             {
                 MessageBox.Show("Không có báo cáo tổng kết của bất kỳ lớp nào được tìm thấy, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -147,28 +147,27 @@ namespace studMin
         {
             if (Semester_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex == 0)
             {
-                LoadReportsForAllSemesterAllSchoolYear();
-                return;
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP MỌI HỌC KỲ, MỌI NĂM HỌC";
+                LoadReportsForAllSemesterAllSchoolYear(null, true, true);
             }
 
-            if (Semester_ComboBox.SelectedIndex == 0 || SchoolYear_ComboBox.SelectedIndex == 0) return;
-
-            List<Action.Excel.ReportSemester.Item> list = GetListReportSemesterItem();
-            if (list.Count == 0)
+            else if (Semester_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex != 0)
             {
-                MessageBox.Show("Hiện tại chưa có dữ liệu tương ứng với học kỳ và năm học bạn đã chọn, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP MỌI HỌC KỲ NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
+                LoadReportsForAllSemesterAllSchoolYear(null, true, false);
             }
 
-            dataSource.Rows.Clear();
-
-            foreach (Action.Excel.ReportCommon.Item item in list)
+            else if (Semester_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex == 0)
             {
-                dataSource.Rows.Add(dataSource.Rows.Count + 1, item.Lop, semesterName, schoolYear, item.SiSo, item.SoLuongDat, item.TiLeDat + "%");
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " MỌI NĂM HỌC";
+                LoadReportsForAllSemesterAllSchoolYear(null, false, true);
             }
 
-            DataTable.DataSource = dataSource;
-            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
+            else if (Semester_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
+            {
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
+                LoadReportsForAllSemesterAllSchoolYear(null, false, false);
+            }
         }
 
         private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -245,6 +244,8 @@ namespace studMin
                 SchoolYear_ComboBox.Items.Add(schoolYear);
             }
 
+            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ, NĂM HỌC";
+
             dataSource = new DataTable();
             dataSource.Columns.Add("Thứ tự");
             dataSource.Columns.Add("Lớp");
@@ -253,10 +254,10 @@ namespace studMin
             dataSource.Columns.Add("Sỉ số");
             dataSource.Columns.Add("Số lượng đạt");
             dataSource.Columns.Add("Tỉ lệ đạt");
-            LoadReportsForAllSemesterAllSchoolYear();
+            LoadReportsForAllSemesterAllSchoolYear(null, true, true);
         }
 
-        private void LoadReportsForAllSemesterAllSchoolYear(string enteredText = null)
+        private void LoadReportsForAllSemesterAllSchoolYear(string enteredText = null, bool forAllSemester = false, bool forAllSchoolYear = false)
         {
             List<CLASS> listClass = ClassServices.Instance.GetClasss();
 
@@ -281,33 +282,82 @@ namespace studMin
                         dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
                     }
                 }
-                else
+                else if (forAllSemester && forAllSchoolYear)
                 {
                     dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
+                }
+                else if (forAllSemester && !forAllSchoolYear)
+                {
+                    if (this.schoolYear == schoolYear)
+                    {
+                        dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
+                    }
+                }
+                else if (!forAllSemester && forAllSchoolYear)
+                {
+                    if (this.semesterName == semesterName)
+                    {
+                        dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
+                    }
+                }
+                else if (!forAllSemester && !forAllSchoolYear)
+                {
+                    if (this.semesterName == semesterName && this.schoolYear == schoolYear)
+                    {
+                        dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
+                    }
                 }
             }
 
             DataTable.DataSource = dataSource;
-            DataTable.Rows[0].Selected = false;
-            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ VÀ NĂM HỌC";
+            /*DataTable.Rows[0].Selected = false;*/
         }
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                string enteredText = Search_Box.Text;
-                if (String.IsNullOrEmpty(enteredText))
-                {
-                    LoadReportsForAllSemesterAllSchoolYear();
-                    return;
-                }
-
-                LoadReportsForAllSemesterAllSchoolYear(enteredText.Trim());
-            }
-            else if (e.KeyChar == (char)Keys.Escape)
+            if (e.KeyChar == (char)Keys.Escape)
             {
                 Search_Box.Text = String.Empty;
+            }
+        }
+
+        private void Search_Box_TextChanged(object sender, EventArgs e)
+        {
+            string enteredText = Search_Box.Text;
+           /* if (String.IsNullOrEmpty(enteredText))
+            {
+                LoadReportsForAllSemesterAllSchoolYear(null, true, true);
+                return;
+            }*/
+
+            CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[DataTable.DataSource];
+            currencyManager1.SuspendBinding();
+
+            foreach (DataGridViewRow row in DataTable.Rows)
+            {
+                string className = row.Cells[1].Value.ToString();
+
+                if (className != null)
+                {
+                    if (className.ToLower().Contains(enteredText))
+                    {
+                        row.Visible = true;
+                    }
+                    else
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+
+            currencyManager1.ResumeBinding();
+
+            DataGridViewElementStates state = DataGridViewElementStates.Visible;
+            int i = DataTable.Rows.GetFirstRow(state);
+
+            if (i >= 0)
+            {
+                DataTable.Rows[i].Selected = true;
             }
         }
     }
