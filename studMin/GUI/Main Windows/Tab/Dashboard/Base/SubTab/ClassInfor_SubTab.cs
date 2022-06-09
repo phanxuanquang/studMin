@@ -73,7 +73,7 @@ namespace studMin
                 {
                     Action.Excel.ListStudent.Item temp = new studMin.Action.Excel.ListStudent.Item()
                     {
-                        MaHocSinh = student.ID.ToString(),
+                        MaHocSinh = student.ID.ToString().Substring(0, 8).ToUpper(),
                         HoTen = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME,
                         NgaySinh = (DateTime)student.INFOR.DAYOFBIRTH,
                         GioiTinh = student.INFOR.SEX == 1,
@@ -331,8 +331,20 @@ namespace studMin
                     }
                 }
 
+                Filter_ComboBox.SelectedIndex = 1;
             }));
         }
 
+        private void Filter_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Filter_ComboBox.SelectedIndex == 0 || Filter_ComboBox.SelectedIndex == 2)
+            {
+                DataGridViewExport_Button.Enabled = false;
+            }
+            else
+            {
+                DataGridViewExport_Button.Enabled = true;
+            }
+        }
     }
 }
