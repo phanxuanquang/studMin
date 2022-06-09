@@ -42,16 +42,16 @@ namespace studMin
                     this.Invoke(new System.Action(() => { SchoolYear_ComboBox.DataSource = schoolYear; }));
                 }
                 else SchoolYear_ComboBox.DataSource = schoolYear;
-                var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
-
-                string temp = listSemester[0];
-                listSemester.Remove(temp);
-                listSemester.Add(temp);
-
-                listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
-
-                SemesterComboBox.DataSource = listSemester;
             });
+
+            sCOREMBindingSource.DataSource = new SCORE4GRIDVIEW(Guid.Empty, 0);
+            sCOREMBindingSource.DataSource = null;
+            sCORE15MBindingSource.DataSource = new SCORE4GRIDVIEW(Guid.Empty, 0);
+            sCORE15MBindingSource.DataSource = null;
+            sCORE45MBindingSource.DataSource = new SCORE4GRIDVIEW(Guid.Empty, 0);
+            sCORE45MBindingSource.DataSource = null;
+            sCOREFinalBindingSource.DataSource = new SCORE4GRIDVIEW(Guid.Empty, 0);
+            sCOREFinalBindingSource.DataSource = null;
         }
 
         bool CheckValidGrade(Guna.UI2.WinForms.Guna2TextBox textBox)
@@ -394,15 +394,10 @@ namespace studMin
             ResetComboBox();
             ResetDataGridView();
             className = Class_ComboBox.SelectedItem.ToString();
-            var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
 
-            string temp = listSemester[0];
-            listSemester.Remove(temp);
-            listSemester.Add(temp);
+            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear, semester);
+            sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
 
-            listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
-
-            SemesterComboBox.DataSource = listSemester;
             //if (className != "Mọi lớp")
             //{
             //    List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
@@ -429,6 +424,16 @@ namespace studMin
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
 
             isAllowEdit = lastestSchoolYear == int.Parse(schoolYear);
+
+            var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
+
+            string temp = listSemester[0];
+            listSemester.Remove(temp);
+            listSemester.Add(temp);
+
+            listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
+
+            SemesterComboBox.DataSource = listSemester;
 
             if (!String.IsNullOrEmpty(schoolYear))
             {
@@ -769,14 +774,9 @@ namespace studMin
             ResetComboBox();
             ResetDataGridView();
             semester = Methods.ParseSemester(SemesterComboBox.SelectedItem.ToString()).ToString();
-            if (className != "Mọi học kỳ")
-            {
-                List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear, semester);
-               
-                {
-                    sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
-                }    
-            }
+
+            List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear, semester);
+            sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
         }
     }
 }

@@ -95,7 +95,8 @@ namespace studMin.Database
                 }    
             }
             return false;
-        }    
+        }
+
         public string GetCurrentSchoolYear()
         {
             return DataProvider.Instance.Database.CLASSes.Select(item => item.SCHOOLYEAR).Max();
