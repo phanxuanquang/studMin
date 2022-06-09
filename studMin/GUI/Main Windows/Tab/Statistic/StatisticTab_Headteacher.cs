@@ -147,10 +147,10 @@ namespace studMin
 
                 CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
                 cm.SuspendBinding();
-                for (int index = 0; index < DataTable.SelectedRows.Count; index++)
+                /*for (int index = 0; index < DataTable.SelectedRows.Count; index++)
                 {
                     selectRows.Add(DataTable.SelectedRows[index].DataBoundItem as GRIDVIEW4REPORT);
-                }
+                }*/
 
                 if (selectRows.Count == 0)
                 {
@@ -160,6 +160,7 @@ namespace studMin
                             selectRows.Add(DataTable.Rows[index].DataBoundItem as GRIDVIEW4REPORT);
                     }
                 }
+
                 cm.ResumeBinding();
             }
 
@@ -311,13 +312,13 @@ namespace studMin
                 this.Invoke(new System.Action(() =>
                 {
                     dataGridViewBindingSource.DataSource = data.ToList();
-                    DataTable.ClearSelection();
+                    //DataTable.ClearSelection();
                 }));
             }
             else
             {
                 dataGridViewBindingSource.DataSource = data.ToList();
-                DataTable.ClearSelection();
+                //DataTable.ClearSelection();
             }
         }
 
