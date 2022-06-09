@@ -271,18 +271,6 @@ namespace studMin
 
         private void TimetableImport_Button_Click(object sender, EventArgs e)
         {
-            if (Semester_ComboBox.SelectedIndex == 0)
-            {
-                MessageBox.Show("Vui lòng chọn học kỳ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (SchoolYear_ComboBox.SelectedIndex == 0)
-            {
-                MessageBox.Show("Vui lòng chọn năm học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
             if (backgroundWorker == null)
             {
                 backgroundWorker = new BackgroundWorker();
