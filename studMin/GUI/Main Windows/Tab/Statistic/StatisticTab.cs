@@ -49,41 +49,25 @@ namespace studMin
 
             Action.Excel.ReportSemester ReportSemester = new Action.Excel.ReportSemester();
 
-            var visibleRowsCount = DataTable.DisplayedRowCount(true);
-            var firstDisplayedRowIndex = DataTable.FirstDisplayedCell.RowIndex;
-            var lastvisibleRowIndex = (firstDisplayedRowIndex + visibleRowsCount) - 1;
-
-            string exportSchoolYear = DataTable.Rows[firstDisplayedRowIndex].Cells[3].Value.ToString();
-            string exportSemester = DataTable.Rows[firstDisplayedRowIndex].Cells[2].Value.ToString();
-
-            for (int rowIndex = firstDisplayedRowIndex; rowIndex <= lastvisibleRowIndex; rowIndex++)
+            foreach (DataGridViewRow row in DataTable.Rows)
             {
-                Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
+                if (row.Visible == true)
                 {
-                    Lop = DataTable.Rows[rowIndex].Cells[1].Value.ToString(),
-                    SiSo = int.Parse(DataTable.Rows[rowIndex].Cells[4].Value.ToString()),
-                    SoLuongDat = int.Parse(DataTable.Rows[rowIndex].Cells[5].Value.ToString()),
-                };
-                ReportSemester.InsertItem(item);
-
-                if (rowIndex + 1 <= lastvisibleRowIndex)
-                {
-                    if (exportSchoolYear != DataTable.Rows[rowIndex + 1].Cells[3].Value.ToString())
+                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
                     {
-                        exportSchoolYear = "Mọi năm học";
-                    }
-
-                    if (exportSemester != DataTable.Rows[rowIndex + 1].Cells[2].Value.ToString())
-                    {
-                        exportSemester = "3";
-                    }
+                        Lop = row.Cells[1].Value.ToString(),
+                        SiSo = int.Parse(row.Cells[4].Value.ToString()),
+                        SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
+                    };
+                    ReportSemester.InsertItem(item);
                 }
+                
             }
 
             Action.Excel.ReportSemester.Info info = new Action.Excel.ReportSemester.Info()
             {
-                HocKy = int.Parse(exportSemester),
-                NamHoc = exportSchoolYear
+                HocKy = int.Parse(semesterName),
+                NamHoc = schoolYear
             };
             ReportSemester.InsertInfo(info);
 
@@ -93,58 +77,79 @@ namespace studMin
 
         private void ComboBoxesSelectedIndexChangedHandler()
         {
-            if (Semester_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex == 0)
+            if (Semester_ComboBox.SelectedIndex == 0)
             {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP MỌI HỌC KỲ, MỌI NĂM HỌC";
-                LoadReportsForAllSemesterAllSchoolYear(null, true, true);
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ HÈ NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
             }
-
-            else if (Semester_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex != 0)
+            else if (Semester_ComboBox.SelectedIndex == 1)
             {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP MỌI HỌC KỲ CỦA NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
-                LoadReportsForAllSemesterAllSchoolYear(null, true, false);
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ I NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
             }
-
-            else if (Semester_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex == 0)
+            else if (Semester_ComboBox.SelectedIndex == 2)
             {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " CỦA MỌI NĂM HỌC";
-                LoadReportsForAllSemesterAllSchoolYear(null, false, true);
-            }
-
-            else if (Semester_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
-            {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " CỦA NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
-                LoadReportsForAllSemesterAllSchoolYear(null, false, false);
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ II NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
             }
         }
 
         private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            semesterName = Semester_ComboBox.SelectedIndex == 1 ? "1" : "2";
-            ComboBoxesSelectedIndexChangedHandler();
+            if (Semester_ComboBox.SelectedIndex == 0)
+            {
+                semesterName = "0";
+            }
+            else if (Semester_ComboBox.SelectedIndex == 1)
+            {
+                semesterName = "1";
+            }
+            else
+            {
+                semesterName = "2";
+            }
+
+            if (schoolYear != null)
+            {
+                ComboBoxesSelectedIndexChangedHandler();
+            }
+
+            if (dataSource != null)
+            {
+                LoadReportsForAllSemesterAllSchoolYear(null, true, true);
+            }
         }
 
         private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             ComboBoxesSelectedIndexChangedHandler();
+            if (dataSource != null)
+            {
+                LoadReportsForAllSemesterAllSchoolYear(null, true, true);
+            }
         }
 
         private void StatisticTab_Load(object sender, EventArgs e)
         {
             listReports = ReportSemesterServices.Instance.GetReports();
             List<SEMESTER> listSemesters = DataProvider.Instance.Database.SEMESTERs.Select(item => item).ToList();
+            List<string> listSem = new List<string>();
 
             foreach (SEMESTER semester in listSemesters)
             {
                 if (semester.NAME == "1")
                 {
-                    Semester_ComboBox.Items.Add("Học kỳ 1");
-                } else if (semester.NAME == "2")
+                    listSem.Add("Học kỳ 1");
+                }
+                else if (semester.NAME == "2")
                 {
-                    Semester_ComboBox.Items.Add("Học kỳ 2");
+                    listSem.Add("Học kỳ 2");
+                }
+                else
+                {
+                    listSem.Add("Học kỳ hè");
                 }
             }
+
+            Semester_ComboBox.DataSource = listSem;
 
             List<string> listSchoolYear = new List<string>();
             List<CLASS> listClass = ClassServices.Instance.GetClasss();
@@ -157,10 +162,8 @@ namespace studMin
                 }
             }
 
-            foreach (string schoolYear in listSchoolYear)
-            {
-                SchoolYear_ComboBox.Items.Add(schoolYear);
-            }
+            SchoolYear_ComboBox.DataSource = listSchoolYear;
+
 
             TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ VÀ NĂM HỌC";
 
@@ -177,11 +180,92 @@ namespace studMin
 
         private void LoadReportsForAllSemesterAllSchoolYear(string enteredText = null, bool forAllSemester = false, bool forAllSchoolYear = false)
         {
-            List<CLASS> listClass = ClassServices.Instance.GetClasss();
+            List<CLASS> listClass = ClassServices.Instance.GetClassBySchoolYear(schoolYear);
+            List<SUBJECT> listSubject = SubjectServices.Instance.GetSubjects();
+            List<SCORE> scores = DataProvider.Instance.Database.SCOREs.ToList();
+            PARAMETER param = DataProvider.Instance.Database.PARAMETERs.Where(item => item.NAME == "PASSSCORE").FirstOrDefault();
 
             dataSource.Rows.Clear();
 
-            foreach (var report in listReports)
+            int coefficientOralMark = 1;
+            int coefficientRegularMark = 1;
+            int coefficientMidTermMark = 1;
+            int coefficientFinalMark = 1;
+
+            var listRolescore = Database.DataProvider.Instance.Database.ROLESCOREs.ToList();
+            foreach (var item in listRolescore)
+            {
+                switch (item.ROLE)
+                {
+                    case "M":
+                        coefficientOralMark = item.COEFFICIENT.Value;
+                        break;
+                    case "15M":
+                        coefficientRegularMark = item.COEFFICIENT.Value;
+                        break;
+                    case "45M":
+                        coefficientMidTermMark = item.COEFFICIENT.Value;
+                        break;
+                    case "FINAL":
+                        coefficientFinalMark = item.COEFFICIENT.Value;
+                        break;
+                }
+            }
+
+            foreach (CLASS currentClass in listClass)
+            {
+                int passQuantity = 0;
+                List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(currentClass);
+                if (listStudents.Count == 0) continue;
+
+                foreach (STUDENT student in listStudents)
+                {
+                    List<double> listAvgAllSubject = new List<double>();
+
+                    foreach (SUBJECT subject in listSubject)
+                    {
+                        List<SCORE> scoreFilter = scores.Where(item => item.SEMESTER.NAME == semesterName && item.SCHOOLYEAR == schoolYear && item.IDSTUDENT == student.ID && item.IDSUBJECT == subject.Id).ToList();
+                        if (scores.Count == 0) continue;
+                        List<double> oralMark = new List<double>();
+                        List<double> regularMark = new List<double>();
+                        List<double> midTermMark = new List<double>();
+                        List<double> finalMark = new List<double>();
+                        foreach (var x in scoreFilter)
+                        {
+                            switch (x.ROLESCORE.ROLE)
+                            {
+                                case "M":
+                                    oralMark.Add(x.SCORE1.Value);
+                                    break;
+                                case "15M":
+                                    regularMark.Add(x.SCORE1.Value);
+                                    break;
+                                case "45M":
+                                    midTermMark.Add(x.SCORE1.Value);
+                                    break;
+                                default:
+                                    finalMark.Add(x.SCORE1.Value);
+                                    break;
+                            }
+                        }
+                        double avg = (oralMark.Sum() + regularMark.Sum() + midTermMark.Sum() + finalMark.Sum()) / (coefficientOralMark * oralMark.Count + coefficientRegularMark * regularMark.Count + coefficientMidTermMark * midTermMark.Count + coefficientFinalMark * finalMark.Count);
+                        if (!double.IsNaN(avg))
+                        {
+                            listAvgAllSubject.Add(avg);
+                        }
+                    }
+
+                    if ((listAvgAllSubject.Sum() / listSubject.Count) >= param.MAX)
+                    {
+                        passQuantity++;
+                    }
+                }
+
+                string sem = semesterName == "0" ? "Hè" : semesterName;
+                dataSource.Rows.Add(dataSource.Rows.Count + 1, currentClass.CLASSNAME, sem, schoolYear, listStudents.Count, passQuantity, Math.Round(passQuantity * 100.0 / listStudents.Count, 2).ToString() + "%");
+            }
+
+           /* foreach (var report in listReports)
             {
                 CLASS currentClass = listClass.Find(classItem => classItem.ID == report.IDCLASS);
 
@@ -225,10 +309,9 @@ namespace studMin
                         dataSource.Rows.Add(order, className, semesterName, schoolYear, quantity, passQuantity, ratio + "%");
                     }
                 }
-            }
+            }*/
 
             DataTable.DataSource = dataSource;
-            DataTable.ClearSelection();
         }
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
@@ -266,7 +349,6 @@ namespace studMin
                         row.Visible = false;
                     }
                 }
-                row.Selected = false;
             }
 
             currencyManager1.ResumeBinding();

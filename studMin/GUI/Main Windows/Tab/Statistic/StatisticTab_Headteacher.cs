@@ -369,7 +369,7 @@ namespace studMin
                     switch (item.ROLE)
                     {
                         case "M":
-                            coefficientFinalMark = item.COEFFICIENT.Value;
+                            coefficientOralMark = item.COEFFICIENT.Value;
                             break;
                         case "15M":
                             coefficientRegularMark = item.COEFFICIENT.Value;

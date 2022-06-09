@@ -27,9 +27,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataGridViewExport_Button = new Guna.UI2.WinForms.Guna2Button();
             this.TittleLabel = new System.Windows.Forms.Label();
             this.Semester_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -53,11 +53,11 @@
             this.DataGridViewExport_Button.ForeColor = System.Drawing.Color.White;
             this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Location = new System.Drawing.Point(1544, 127);
-            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DataGridViewExport_Button.Location = new System.Drawing.Point(1029, 81);
+            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
             this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Size = new System.Drawing.Size(286, 69);
+            this.DataGridViewExport_Button.Size = new System.Drawing.Size(191, 44);
             this.DataGridViewExport_Button.TabIndex = 112;
             this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
             this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -70,9 +70,9 @@
             this.TittleLabel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
             this.TittleLabel.ForeColor = System.Drawing.Color.White;
             this.TittleLabel.Location = new System.Drawing.Point(0, 0);
-            this.TittleLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.TittleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TittleLabel.Name = "TittleLabel";
-            this.TittleLabel.Size = new System.Drawing.Size(1848, 100);
+            this.TittleLabel.Size = new System.Drawing.Size(1232, 64);
             this.TittleLabel.TabIndex = 109;
             this.TittleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -95,14 +95,12 @@
             this.Semester_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Semester_ComboBox.HoverState.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.ItemHeight = 30;
-            this.Semester_ComboBox.Items.AddRange(new object[] {
-            "Mọi học kỳ"});
             this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Location = new System.Drawing.Point(988, 127);
-            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Semester_ComboBox.Location = new System.Drawing.Point(659, 81);
+            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Semester_ComboBox.Name = "Semester_ComboBox";
             this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Size = new System.Drawing.Size(258, 36);
+            this.Semester_ComboBox.Size = new System.Drawing.Size(173, 36);
             this.Semester_ComboBox.StartIndex = 0;
             this.Semester_ComboBox.TabIndex = 113;
             this.Semester_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -127,14 +125,12 @@
             this.SchoolYear_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.SchoolYear_ComboBox.HoverState.Parent = this.SchoolYear_ComboBox;
             this.SchoolYear_ComboBox.ItemHeight = 30;
-            this.SchoolYear_ComboBox.Items.AddRange(new object[] {
-            "Mọi niên khóa"});
             this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(1258, 127);
-            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(839, 81);
+            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
             this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(276, 36);
+            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(185, 36);
             this.SchoolYear_ComboBox.StartIndex = 0;
             this.SchoolYear_ComboBox.TabIndex = 114;
             this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
@@ -145,44 +141,44 @@
             this.DataTable.AllowDrop = true;
             this.DataTable.AllowUserToAddRows = false;
             this.DataTable.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.DataTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DataTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DataTable.BackgroundColor = System.Drawing.Color.White;
             this.DataTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.DataTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DataTable.ColumnHeadersHeight = 25;
             this.DataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataTable.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataTable.DefaultCellStyle = dataGridViewCellStyle12;
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 225);
-            this.DataTable.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DataTable.Location = new System.Drawing.Point(0, 144);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
             this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataTable.Size = new System.Drawing.Size(1848, 1198);
+            this.DataTable.Size = new System.Drawing.Size(1232, 767);
             this.DataTable.TabIndex = 110;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -229,8 +225,8 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(20, 127);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Search_Box.Location = new System.Drawing.Point(13, 81);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập lớp để tìm kiếm ...";
@@ -239,7 +235,7 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(958, 69);
+            this.Search_Box.Size = new System.Drawing.Size(639, 44);
             this.Search_Box.TabIndex = 115;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
@@ -247,7 +243,7 @@
             // 
             // StatisticTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.Search_Box);
@@ -256,9 +252,9 @@
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.DataTable);
             this.Controls.Add(this.TittleLabel);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StatisticTab";
-            this.Size = new System.Drawing.Size(1848, 1423);
+            this.Size = new System.Drawing.Size(1232, 911);
             this.Load += new System.EventHandler(this.StatisticTab_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             this.ResumeLayout(false);
