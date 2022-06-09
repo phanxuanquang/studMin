@@ -69,8 +69,8 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(11, 32);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Search_Box.Location = new System.Drawing.Point(22, 62);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập họ tên hoặc mã học sinh . . .";
@@ -79,7 +79,7 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(789, 36);
+            this.Search_Box.Size = new System.Drawing.Size(1578, 69);
             this.Search_Box.TabIndex = 0;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Search_Box_KeyPress);
@@ -127,12 +127,13 @@
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 86);
+            this.DataTable.Location = new System.Drawing.Point(0, 165);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DataTable.Name = "DataTable";
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
-            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(924, 602);
+            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataTable.Size = new System.Drawing.Size(1848, 1158);
             this.DataTable.TabIndex = 78;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -223,11 +224,12 @@
             this.UpdateData_Button.HoverState.FillColor = System.Drawing.Color.White;
             this.UpdateData_Button.HoverState.Parent = this.UpdateData_Button;
             this.UpdateData_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.UpdateData_Button.Location = new System.Drawing.Point(807, 32);
+            this.UpdateData_Button.Location = new System.Drawing.Point(1614, 62);
+            this.UpdateData_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.UpdateData_Button.Name = "UpdateData_Button";
             this.UpdateData_Button.PressedDepth = 20;
             this.UpdateData_Button.ShadowDecoration.Parent = this.UpdateData_Button;
-            this.UpdateData_Button.Size = new System.Drawing.Size(107, 36);
+            this.UpdateData_Button.Size = new System.Drawing.Size(214, 69);
             this.UpdateData_Button.TabIndex = 1;
             this.UpdateData_Button.Text = "CẬP NHẬT";
             this.UpdateData_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -235,14 +237,15 @@
             // 
             // StudentMoralQualify_SubTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.UpdateData_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.DataTable);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "StudentMoralQualify_SubTab";
-            this.Size = new System.Drawing.Size(924, 688);
+            this.Size = new System.Drawing.Size(1848, 1323);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cONDUCTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tRANSCRIPTBindingSource)).EndInit();

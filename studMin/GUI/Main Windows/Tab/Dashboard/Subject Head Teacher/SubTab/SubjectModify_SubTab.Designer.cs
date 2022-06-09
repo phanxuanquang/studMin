@@ -57,10 +57,11 @@
             this.OralTest_GroupBox.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.OralTest_GroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.OralTest_GroupBox.ForeColor = System.Drawing.Color.White;
-            this.OralTest_GroupBox.Location = new System.Drawing.Point(626, 14);
+            this.OralTest_GroupBox.Location = new System.Drawing.Point(1252, 27);
+            this.OralTest_GroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.OralTest_GroupBox.Name = "OralTest_GroupBox";
             this.OralTest_GroupBox.ShadowDecoration.Parent = this.OralTest_GroupBox;
-            this.OralTest_GroupBox.Size = new System.Drawing.Size(285, 100);
+            this.OralTest_GroupBox.Size = new System.Drawing.Size(570, 192);
             this.OralTest_GroupBox.TabIndex = 85;
             this.OralTest_GroupBox.Text = "Điểm đạt tối thiểu của môn học";
             this.OralTest_GroupBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -82,11 +83,12 @@
             this.PassGrade_SaveButton.HoverState.FillColor = System.Drawing.Color.White;
             this.PassGrade_SaveButton.HoverState.Parent = this.PassGrade_SaveButton;
             this.PassGrade_SaveButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.PassGrade_SaveButton.Location = new System.Drawing.Point(184, 51);
+            this.PassGrade_SaveButton.Location = new System.Drawing.Point(368, 98);
+            this.PassGrade_SaveButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.PassGrade_SaveButton.Name = "PassGrade_SaveButton";
             this.PassGrade_SaveButton.PressedDepth = 20;
             this.PassGrade_SaveButton.ShadowDecoration.Parent = this.PassGrade_SaveButton;
-            this.PassGrade_SaveButton.Size = new System.Drawing.Size(67, 36);
+            this.PassGrade_SaveButton.Size = new System.Drawing.Size(134, 69);
             this.PassGrade_SaveButton.TabIndex = 86;
             this.PassGrade_SaveButton.Text = "LƯU";
             this.PassGrade_SaveButton.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -114,8 +116,8 @@
             this.PassGrade_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.PassGrade_Box.HoverState.Parent = this.PassGrade_Box;
             this.PassGrade_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.PassGrade_Box.Location = new System.Drawing.Point(34, 52);
-            this.PassGrade_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassGrade_Box.Location = new System.Drawing.Point(68, 100);
+            this.PassGrade_Box.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.PassGrade_Box.Name = "PassGrade_Box";
             this.PassGrade_Box.PasswordChar = '\0';
             this.PassGrade_Box.PlaceholderText = "";
@@ -124,7 +126,7 @@
             this.PassGrade_Box.ShadowDecoration.Depth = 5;
             this.PassGrade_Box.ShadowDecoration.Parent = this.PassGrade_Box;
             this.PassGrade_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.PassGrade_Box.Size = new System.Drawing.Size(140, 36);
+            this.PassGrade_Box.Size = new System.Drawing.Size(280, 69);
             this.PassGrade_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.PassGrade_Box.TabIndex = 42;
             this.PassGrade_Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -169,7 +171,8 @@
             this.GridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.GridView.EnableHeadersVisualStyles = false;
             this.GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.GridView.Location = new System.Drawing.Point(0, 172);
+            this.GridView.Location = new System.Drawing.Point(0, 331);
+            this.GridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -182,8 +185,8 @@
             this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.GridView.RowHeadersVisible = false;
             this.GridView.RowHeadersWidth = 51;
-            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.GridView.Size = new System.Drawing.Size(924, 516);
+            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridView.Size = new System.Drawing.Size(1848, 992);
             this.GridView.TabIndex = 103;
             this.GridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.GridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -248,9 +251,10 @@
             this.SubjectLabel.BackColor = System.Drawing.Color.Transparent;
             this.SubjectLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.SubjectLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.SubjectLabel.Location = new System.Drawing.Point(0, 128);
+            this.SubjectLabel.Location = new System.Drawing.Point(0, 246);
+            this.SubjectLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SubjectLabel.Name = "SubjectLabel";
-            this.SubjectLabel.Size = new System.Drawing.Size(924, 41);
+            this.SubjectLabel.Size = new System.Drawing.Size(1848, 79);
             this.SubjectLabel.TabIndex = 113;
             this.SubjectLabel.Text = "DANH SÁCH GIÁO VIÊN PHỤ TRÁCH MÔN NGỮ VĂN";
             this.SubjectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -258,14 +262,15 @@
             // 
             // SubjectModify_SubTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.SubjectLabel);
             this.Controls.Add(this.GridView);
             this.Controls.Add(this.OralTest_GroupBox);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "SubjectModify_SubTab";
-            this.Size = new System.Drawing.Size(924, 688);
+            this.Size = new System.Drawing.Size(1848, 1323);
             this.Load += new System.EventHandler(this.SubjectModify_SubTab_Load);
             this.OralTest_GroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();

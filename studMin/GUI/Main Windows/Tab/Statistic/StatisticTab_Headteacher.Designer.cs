@@ -36,15 +36,15 @@
             this.Search_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.tittleLabel = new System.Windows.Forms.Label();
             this.DataTable = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dataGridViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Semester_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.SchoolYear_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.Subject_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.thuTuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.siSoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuongDatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tiLeDatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Semester_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.SchoolYear_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.Subject_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -63,11 +63,11 @@
             this.DataGridViewExport_Button.ForeColor = System.Drawing.Color.White;
             this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Location = new System.Drawing.Point(1029, 81);
-            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.DataGridViewExport_Button.Location = new System.Drawing.Point(1544, 127);
+            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
             this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
-            this.DataGridViewExport_Button.Size = new System.Drawing.Size(191, 44);
+            this.DataGridViewExport_Button.Size = new System.Drawing.Size(286, 69);
             this.DataGridViewExport_Button.TabIndex = 108;
             this.DataGridViewExport_Button.Text = "XUẤT DANH SÁCH";
             this.DataGridViewExport_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -95,8 +95,8 @@
             this.Search_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Search_Box.Location = new System.Drawing.Point(13, 81);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(5);
+            this.Search_Box.Location = new System.Drawing.Point(20, 127);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập lớp để tìm kiếm ...";
@@ -105,7 +105,7 @@
             this.Search_Box.ShadowDecoration.Depth = 5;
             this.Search_Box.ShadowDecoration.Parent = this.Search_Box;
             this.Search_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Search_Box.Size = new System.Drawing.Size(451, 44);
+            this.Search_Box.Size = new System.Drawing.Size(676, 69);
             this.Search_Box.TabIndex = 107;
             this.Search_Box.TextOffset = new System.Drawing.Point(6, 0);
             this.Search_Box.TextChanged += new System.EventHandler(this.Search_Box_TextChanged);
@@ -117,9 +117,9 @@
             this.tittleLabel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold);
             this.tittleLabel.ForeColor = System.Drawing.Color.White;
             this.tittleLabel.Location = new System.Drawing.Point(0, 0);
-            this.tittleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.tittleLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.tittleLabel.Name = "tittleLabel";
-            this.tittleLabel.Size = new System.Drawing.Size(1232, 64);
+            this.tittleLabel.Size = new System.Drawing.Size(1848, 100);
             this.tittleLabel.TabIndex = 105;
             this.tittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ 1 NĂM HỌC 2021-2022 CỦA LỚP 10A1";
             this.tittleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,14 +167,14 @@
             this.DataTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            this.DataTable.Location = new System.Drawing.Point(0, 144);
-            this.DataTable.Margin = new System.Windows.Forms.Padding(4);
+            this.DataTable.Location = new System.Drawing.Point(0, 225);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
             this.DataTable.RowHeadersWidth = 51;
-            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DataTable.Size = new System.Drawing.Size(1232, 767);
+            this.DataTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataTable.Size = new System.Drawing.Size(1848, 1198);
             this.DataTable.TabIndex = 111;
             this.DataTable.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DataTable.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -198,103 +198,6 @@
             this.DataTable.ThemeStyle.RowsStyle.Height = 22;
             this.DataTable.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(228)))), ((int)(((byte)(232)))));
             this.DataTable.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
-            // 
-            // dataGridViewBindingSource
-            // 
-            this.dataGridViewBindingSource.DataSource = typeof(studMin.StatisticTab_Headteacher.GRIDVIEW4REPORT);
-            // 
-            // Semester_ComboBox
-            // 
-            this.Semester_ComboBox.Animated = true;
-            this.Semester_ComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.Semester_ComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.Semester_ComboBox.BorderRadius = 5;
-            this.Semester_ComboBox.BorderThickness = 2;
-            this.Semester_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Semester_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.Semester_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Semester_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Semester_ComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Semester_ComboBox.FocusedState.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Semester_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.Semester_ComboBox.FormattingEnabled = true;
-            this.Semester_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Semester_ComboBox.HoverState.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.ItemHeight = 30;
-            this.Semester_ComboBox.Items.AddRange(new object[] {
-            "Mọi niên khóa"});
-            this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Location = new System.Drawing.Point(653, 81);
-            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.Semester_ComboBox.Name = "Semester_ComboBox";
-            this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
-            this.Semester_ComboBox.Size = new System.Drawing.Size(188, 36);
-            this.Semester_ComboBox.StartIndex = 0;
-            this.Semester_ComboBox.TabIndex = 116;
-            this.Semester_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
-            // 
-            // SchoolYear_ComboBox
-            // 
-            this.SchoolYear_ComboBox.Animated = true;
-            this.SchoolYear_ComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.SchoolYear_ComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.SchoolYear_ComboBox.BorderRadius = 5;
-            this.SchoolYear_ComboBox.BorderThickness = 2;
-            this.SchoolYear_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SchoolYear_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.SchoolYear_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SchoolYear_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.SchoolYear_ComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.SchoolYear_ComboBox.FocusedState.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.SchoolYear_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.SchoolYear_ComboBox.FormattingEnabled = true;
-            this.SchoolYear_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.SchoolYear_ComboBox.HoverState.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.ItemHeight = 30;
-            this.SchoolYear_ComboBox.Items.AddRange(new object[] {
-            "Mọi học kỳ"});
-            this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(851, 81);
-            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
-            this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
-            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(171, 36);
-            this.SchoolYear_ComboBox.StartIndex = 0;
-            this.SchoolYear_ComboBox.TabIndex = 115;
-            this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
-            // 
-            // Subject_ComboBox
-            // 
-            this.Subject_ComboBox.Animated = true;
-            this.Subject_ComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.Subject_ComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
-            this.Subject_ComboBox.BorderRadius = 5;
-            this.Subject_ComboBox.BorderThickness = 2;
-            this.Subject_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Subject_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.Subject_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Subject_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Subject_ComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Subject_ComboBox.FocusedState.Parent = this.Subject_ComboBox;
-            this.Subject_ComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Subject_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.Subject_ComboBox.FormattingEnabled = true;
-            this.Subject_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.Subject_ComboBox.HoverState.Parent = this.Subject_ComboBox;
-            this.Subject_ComboBox.ItemHeight = 30;
-            this.Subject_ComboBox.Items.AddRange(new object[] {
-            "Mọi môn học"});
-            this.Subject_ComboBox.ItemsAppearance.Parent = this.Subject_ComboBox;
-            this.Subject_ComboBox.Location = new System.Drawing.Point(472, 81);
-            this.Subject_ComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.Subject_ComboBox.Name = "Subject_ComboBox";
-            this.Subject_ComboBox.ShadowDecoration.Parent = this.Subject_ComboBox;
-            this.Subject_ComboBox.Size = new System.Drawing.Size(172, 36);
-            this.Subject_ComboBox.StartIndex = 0;
-            this.Subject_ComboBox.TabIndex = 117;
-            this.Subject_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
             // thuTuDataGridViewTextBoxColumn
             // 
@@ -336,9 +239,106 @@
             this.tiLeDatDataGridViewTextBoxColumn.Name = "tiLeDatDataGridViewTextBoxColumn";
             this.tiLeDatDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // dataGridViewBindingSource
+            // 
+            this.dataGridViewBindingSource.DataSource = typeof(studMin.StatisticTab_Headteacher.GRIDVIEW4REPORT);
+            // 
+            // Semester_ComboBox
+            // 
+            this.Semester_ComboBox.Animated = true;
+            this.Semester_ComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.Semester_ComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.Semester_ComboBox.BorderRadius = 5;
+            this.Semester_ComboBox.BorderThickness = 2;
+            this.Semester_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Semester_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Semester_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Semester_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Semester_ComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Semester_ComboBox.FocusedState.Parent = this.Semester_ComboBox;
+            this.Semester_ComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Semester_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.Semester_ComboBox.FormattingEnabled = true;
+            this.Semester_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Semester_ComboBox.HoverState.Parent = this.Semester_ComboBox;
+            this.Semester_ComboBox.ItemHeight = 30;
+            this.Semester_ComboBox.Items.AddRange(new object[] {
+            "Mọi niên khóa"});
+            this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
+            this.Semester_ComboBox.Location = new System.Drawing.Point(980, 127);
+            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Semester_ComboBox.Name = "Semester_ComboBox";
+            this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
+            this.Semester_ComboBox.Size = new System.Drawing.Size(280, 36);
+            this.Semester_ComboBox.StartIndex = 0;
+            this.Semester_ComboBox.TabIndex = 116;
+            this.Semester_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            // 
+            // SchoolYear_ComboBox
+            // 
+            this.SchoolYear_ComboBox.Animated = true;
+            this.SchoolYear_ComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.SchoolYear_ComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.SchoolYear_ComboBox.BorderRadius = 5;
+            this.SchoolYear_ComboBox.BorderThickness = 2;
+            this.SchoolYear_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SchoolYear_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.SchoolYear_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SchoolYear_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.SchoolYear_ComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.SchoolYear_ComboBox.FocusedState.Parent = this.SchoolYear_ComboBox;
+            this.SchoolYear_ComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.SchoolYear_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.SchoolYear_ComboBox.FormattingEnabled = true;
+            this.SchoolYear_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.SchoolYear_ComboBox.HoverState.Parent = this.SchoolYear_ComboBox;
+            this.SchoolYear_ComboBox.ItemHeight = 30;
+            this.SchoolYear_ComboBox.Items.AddRange(new object[] {
+            "Mọi học kỳ"});
+            this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
+            this.SchoolYear_ComboBox.Location = new System.Drawing.Point(1276, 127);
+            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
+            this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
+            this.SchoolYear_ComboBox.Size = new System.Drawing.Size(254, 36);
+            this.SchoolYear_ComboBox.StartIndex = 0;
+            this.SchoolYear_ComboBox.TabIndex = 115;
+            this.SchoolYear_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            // 
+            // Subject_ComboBox
+            // 
+            this.Subject_ComboBox.Animated = true;
+            this.Subject_ComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.Subject_ComboBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
+            this.Subject_ComboBox.BorderRadius = 5;
+            this.Subject_ComboBox.BorderThickness = 2;
+            this.Subject_ComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Subject_ComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Subject_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Subject_ComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Subject_ComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Subject_ComboBox.FocusedState.Parent = this.Subject_ComboBox;
+            this.Subject_ComboBox.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Subject_ComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.Subject_ComboBox.FormattingEnabled = true;
+            this.Subject_ComboBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
+            this.Subject_ComboBox.HoverState.Parent = this.Subject_ComboBox;
+            this.Subject_ComboBox.ItemHeight = 30;
+            this.Subject_ComboBox.Items.AddRange(new object[] {
+            "Mọi môn học"});
+            this.Subject_ComboBox.ItemsAppearance.Parent = this.Subject_ComboBox;
+            this.Subject_ComboBox.Location = new System.Drawing.Point(708, 127);
+            this.Subject_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Subject_ComboBox.Name = "Subject_ComboBox";
+            this.Subject_ComboBox.ShadowDecoration.Parent = this.Subject_ComboBox;
+            this.Subject_ComboBox.Size = new System.Drawing.Size(256, 36);
+            this.Subject_ComboBox.StartIndex = 0;
+            this.Subject_ComboBox.TabIndex = 117;
+            this.Subject_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
+            // 
             // StatisticTab_Headteacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.Subject_ComboBox);
@@ -348,9 +348,9 @@
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.tittleLabel);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "StatisticTab_Headteacher";
-            this.Size = new System.Drawing.Size(1232, 911);
+            this.Size = new System.Drawing.Size(1848, 1423);
             this.Load += new System.EventHandler(this.StatisticTab_Headteacher_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBindingSource)).EndInit();
