@@ -202,6 +202,11 @@ namespace studMin
                 for (int index = 0; index < data.Count; index++)
                 {
                     STUDENT student = students.Where(item => item.INFOR.FIRSTNAME + " " + item.INFOR.LASTNAME == data[index].HoTen).FirstOrDefault();
+                    if (student == null)
+                    {
+                        MessageBox.Show("Học sinh {0} không tồn tại trong hệ thống!", "Không tìm thấy học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        continue;
+                    }
                     for (int oral = 0; oral < data[index].DiemMieng.Count; oral++)
                     {
                         studMin.Database.StudentServices.Instance.SaveScoreToDB(student.ID, data[index].DiemMieng[oral], schoolYear, importInfo.HocKy.ToString(), "M");
@@ -225,8 +230,15 @@ namespace studMin
 
             importInfo = (Action.Excel.Subject.Info)subject.SelectInfo();
 
-            data = (List<Action.Excel.Subject.Item>)subject.SelectItem(null);
-
+            if (lastestSchoolYear == Convert.ToInt32(importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0]))
+            {
+                data = (List<Action.Excel.Subject.Item>)subject.SelectItem(null);
+            }
+            else
+            {
+                MessageBox.Show("Bảng điểm đẫ hết thời gian nhập!", "Từ chối nhập điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                backgroundWorker.RunWorkerCompleted -= ImportExcel_RunrWorkerCompleted;
+            }
             subject.Dispose();
         }
 
