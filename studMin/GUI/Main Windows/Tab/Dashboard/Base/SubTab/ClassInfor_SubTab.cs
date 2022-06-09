@@ -19,6 +19,7 @@ namespace studMin
         public ClassInfor_SubTab()
         {
             InitializeComponent();
+            DataGridViewExport_Button.Enabled = false;
         }
 
         void DataExport_toExcel()
@@ -50,8 +51,6 @@ namespace studMin
                     MessageBox.Show("Hiện tại lớp " + className + " bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-
-
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -108,8 +107,8 @@ namespace studMin
                 students.Save(exportPath);
                 return;
             }
-
-            MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh.", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            //MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh.", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #region Buttons
@@ -126,9 +125,11 @@ namespace studMin
             switch (Filter_ComboBox.SelectedIndex)
             {
                 case 0:
+                    DataGridViewExport_Button.Enabled = false;
                     GetListClasses(listClasses);
                     break;
                 case 1:
+                    DataGridViewExport_Button.Enabled = true;
                     if (Class_ComboBox.SelectedIndex == 0)
                     {
                         MessageBox.Show("Vui lòng chọn lớp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -144,6 +145,7 @@ namespace studMin
                     GetListStudents();
                     break;
                 case 2:
+                    DataGridViewExport_Button.Enabled = false;
                     if (Class_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex == 0)
                     {
                         GetTeachersByClassesBySchoolYear(listClasses, false, false);

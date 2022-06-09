@@ -28,7 +28,7 @@ namespace studMin
         {
             if (DataTable.Rows.Count == 0 || DataTable.Rows.GetRowCount(DataGridViewElementStates.Visible) == 0)
             {
-                MessageBox.Show("Không có báo cáo tổng kết của bất kỳ lớp nào được tìm thấy, vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không có báo cáo tổng kết của bất kỳ lớp nào được tìm thấy.\nVui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -101,19 +101,19 @@ namespace studMin
 
             else if (Semester_ComboBox.SelectedIndex == 0 && SchoolYear_ComboBox.SelectedIndex != 0)
             {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP MỌI HỌC KỲ NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP MỌI HỌC KỲ CỦA NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
                 LoadReportsForAllSemesterAllSchoolYear(null, true, false);
             }
 
             else if (Semester_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex == 0)
             {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " MỌI NĂM HỌC";
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " CỦA MỌI NĂM HỌC";
                 LoadReportsForAllSemesterAllSchoolYear(null, false, true);
             }
 
             else if (Semester_ComboBox.SelectedIndex != 0 && SchoolYear_ComboBox.SelectedIndex != 0)
             {
-                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
+                TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ " + semesterName + " CỦA NĂM HỌC " + schoolYear + " - " + (int.Parse(schoolYear) + 1);
                 LoadReportsForAllSemesterAllSchoolYear(null, false, false);
             }
         }
@@ -162,11 +162,11 @@ namespace studMin
                 SchoolYear_ComboBox.Items.Add(schoolYear);
             }
 
-            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ, NĂM HỌC";
+            TittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP THEO HỌC KỲ VÀ NĂM HỌC";
 
             dataSource = new DataTable();
             dataSource.Columns.Add("Thứ tự");
-            dataSource.Columns.Add("Lớp");
+            dataSource.Columns.Add("Lớp học");
             dataSource.Columns.Add("Học kỳ");
             dataSource.Columns.Add("Năm học");
             dataSource.Columns.Add("Sỉ số");

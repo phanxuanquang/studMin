@@ -62,6 +62,15 @@ namespace studMin
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
+            if(ClassName_Box.Text != "" || Teacher_ComboBox.Text != "Chọn giáo viên")
+            {
+                DialogResult dialogResult = MessageBox.Show("Thay đổi chưa được lưu, bạn có chắc chắn muốn thoát?", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                    return;
+                }
+            }
             this.Close();
         }
 

@@ -225,7 +225,7 @@ namespace studMin
             }
             else
             {
-                MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!");
+                MessageBox.Show("Đang có tiến trình đang chạy, vui lòng đợi trong giây lát!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -479,7 +479,7 @@ namespace studMin
                 studMin.Database.DataProvider.Instance.Database.SaveChangesAsync();
                 if (updateReportSubject.Result)
                 {
-                    MessageBox.Show("Đã có sự thay đổi trong bảng thống kê! Hiện tại đã được cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Có thay đổi trong bảng thống kê.\n Hiện tại đã được cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }));
         }
