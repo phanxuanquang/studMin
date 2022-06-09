@@ -129,6 +129,8 @@ namespace studMin
                 backgroundWorker.DoWork += ExportExcel_DoWork;
                 backgroundWorker.RunWorkerAsync(exportPath);
             }
+
+            
         }
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
@@ -136,12 +138,19 @@ namespace studMin
             int semester = -1;
             string subject = string.Empty;
             string schoolYear = string.Empty;
+            List<GRIDVIEW4REPORT> selectRows = new List<GRIDVIEW4REPORT>();
+            List<Action.Excel.ReportCommon.Item> items = null;
 
             void GetValue()
             {
                 semester = Methods.ParseSemester(Semester_ComboBox.SelectedItem as string);
                 subject = Subject_ComboBox.SelectedItem as string;
                 schoolYear = SchoolYear_ComboBox.SelectedItem as string;
+
+                for (int index = 0; index < DataTable.SelectedRows.Count; index++)
+                {
+                    selectRows.Add(DataTable.SelectedRows[index].DataBoundItem as GRIDVIEW4REPORT);
+                }
             }
 
             if (Semester_ComboBox.InvokeRequired)
@@ -159,7 +168,16 @@ namespace studMin
 
             reportSubject.InsertInfo(info);
 
-            List<Action.Excel.ReportCommon.Item> items = data.Select(item => new Action.Excel.ReportCommon.Item() { Lop = item.Lop, SiSo = item.SiSo, SoLuongDat = item.SoLuongDat }).ToList();
+
+            if (selectRows != null && selectRows.Count > 0)
+            {
+                items = selectRows.Select(item => new Action.Excel.ReportCommon.Item() { Lop = item.Lop, SiSo = item.SiSo, SoLuongDat = item.SoLuongDat }).ToList();
+            }
+            else
+            {
+                items = data.Select(item => new Action.Excel.ReportCommon.Item() { Lop = item.Lop, SiSo = item.SiSo, SoLuongDat = item.SoLuongDat }).ToList();
+            }
+
             for (int index = 0; index < items.Count; index++)
             {
                 reportSubject.InsertItem(items[index]);
@@ -279,9 +297,17 @@ namespace studMin
 
             if (this.InvokeRequired)
             {
-                this.Invoke(new System.Action(() => { dataGridViewBindingSource.DataSource = data.ToList(); }));
+                this.Invoke(new System.Action(() =>
+                {
+                    dataGridViewBindingSource.DataSource = data.ToList();
+                    DataTable.ClearSelection();
+                }));
             }
-            else dataGridViewBindingSource.DataSource = data.ToList();
+            else
+            {
+                dataGridViewBindingSource.DataSource = data.ToList();
+                DataTable.ClearSelection();
+            }
         }
 
         private string TitleSchedule(string subject, int semester, int schoolYear)
