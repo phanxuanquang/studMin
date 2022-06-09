@@ -49,7 +49,7 @@
             this.PeopleManage_Button.ShadowDecoration.Parent = this.PeopleManage_Button;
             this.PeopleManage_Button.Size = new System.Drawing.Size(531, 94);
             this.PeopleManage_Button.TabIndex = 3;
-            this.PeopleManage_Button.Text = "QUẢN LÝ NHÂN VIÊN";
+            this.PeopleManage_Button.Text = "QUẢN LÝ NHÂN SỰ";
             this.PeopleManage_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
             this.PeopleManage_Button.Click += new System.EventHandler(this.PeopleManage_Button_Click);
             // 
