@@ -395,6 +395,16 @@ namespace studMin
             ResetDataGridView();
             className = Class_ComboBox.SelectedItem.ToString();
 
+            var listSemester = Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDTEACHER == studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher.ID && item.CLASS.CLASSNAME == className && item.SCHOOLYEAR == schoolYear).Select(item => item.SEMESTER.NAME).ToList();
+
+            string temp = listSemester[0];
+            listSemester.Remove(temp);
+            listSemester.Add(temp);
+
+            listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
+
+            SemesterComboBox.DataSource = listSemester;
+
             List<STUDENT> students = studMin.Database.ClassServices.Instance.GetListStudentOfClass(className, schoolYear, semester);
             sTUDENTBindingSource.DataSource = students.Select(student => new STUDENT4GRIDVIEW(student.ID, student.INFOR.FIRSTNAME, student.INFOR.LASTNAME)).ToList();
 
@@ -424,16 +434,6 @@ namespace studMin
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
 
             isAllowEdit = lastestSchoolYear == int.Parse(schoolYear);
-
-            var listSemester = Database.DataProvider.Instance.Database.SEMESTERs.ToList().Select(item => item.NAME).ToList();
-
-            string temp = listSemester[0];
-            listSemester.Remove(temp);
-            listSemester.Add(temp);
-
-            listSemester = listSemester.Select(item => Methods.HocKy(int.Parse(item))).ToList();
-
-            SemesterComboBox.DataSource = listSemester;
 
             if (!String.IsNullOrEmpty(schoolYear))
             {
