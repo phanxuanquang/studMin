@@ -331,9 +331,9 @@ namespace studMin.Action.Excel
 
                 Item newItem = item.Clone();
 
-                if (CheckBusyTeacher(newItem))
+                if (CheckBusyTeacher(data, newItem))
                 {
-                    //MessageBox.Show("giao vien ban");
+                    MessageBox.Show("Lỗi! TKB có giáo viên bị trùng lịch.");
                     return;
                 }
 
@@ -408,18 +408,18 @@ namespace studMin.Action.Excel
             return (false, StartColumnClass);
         }
 
-        private bool CheckBusyTeacher(Item itemCheck)
+        private bool CheckBusyTeacher(List<Item> currentItem, Item itemCheck)
         {
             if (itemCheck == null) return false;
-            for (int index = 0; index < data.Count; index++)
+            for (int index = 0; index < currentItem.Count; index++)
             {
-                if (itemCheck.Buoi == data[index].Buoi && itemCheck.NgayHoc == data[index].NgayHoc && itemCheck.GiaoVien == data[index].GiaoVien)
+                if (itemCheck.Buoi == currentItem[index].Buoi && itemCheck.NgayHoc == currentItem[index].NgayHoc && itemCheck.GiaoVien == currentItem[index].GiaoVien)
                 {
-                    if (itemCheck.TietBatDau >= data[index].TietBatDau && itemCheck.TietBatDau < data[index].TietBatDau + data[index].TietKeoDai)
+                    if (itemCheck.TietBatDau >= currentItem[index].TietBatDau && itemCheck.TietBatDau < currentItem[index].TietBatDau + currentItem[index].TietKeoDai)
                     {
                         return true;
                     }
-                    if (itemCheck.TietBatDau <= data[index].TietBatDau && itemCheck.TietBatDau + itemCheck.TietKeoDai > data[index].TietBatDau)
+                    if (itemCheck.TietBatDau <= currentItem[index].TietBatDau && itemCheck.TietBatDau + itemCheck.TietKeoDai > currentItem[index].TietBatDau)
                     {
                         return true;
                     }
@@ -499,7 +499,14 @@ namespace studMin.Action.Excel
                             row += merge - 1;
                         }
 
-                        list.Add(item);
+                        if (CheckBusyTeacher(list, item))
+                        {
+                            return new object[] { false, null };
+                        }
+                        else
+                        {
+                            list.Add(item);
+                        }
                     }
                 }
             }
@@ -507,7 +514,7 @@ namespace studMin.Action.Excel
             /*Marshal.ReleaseComObject(sheet);
             workbook.Close();*/
 
-            return list;
+            return new object[] { true, list };
         }
     }
 }

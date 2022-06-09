@@ -377,9 +377,16 @@ namespace studMin
 
             importInfo = (Action.Excel.ScheduleAllTeacher.Info)scheduleAllTeacher.SelectInfo();
 
-            data = (List<Action.Excel.ScheduleAllTeacher.Item>)scheduleAllTeacher.SelectItem(importInfo.NgayApDung);
+            object[] select = scheduleAllTeacher.SelectItem(importInfo.NgayApDung) as object[];
 
             scheduleAllTeacher.Dispose();
+
+            if ((bool)select[0]) data = (List<Action.Excel.ScheduleAllTeacher.Item>)select[1];
+            else
+            {
+                MessageBox.Show("Lỗi tập tin Excel! Có lớp bị trùng lịch giáo viên");
+                backgroundWorker.RunWorkerCompleted -= ImportExcel_RunrWorkerCompleted;
+            }
         }
 
         private void FilterTimeTableByClass(Guid idClass)
