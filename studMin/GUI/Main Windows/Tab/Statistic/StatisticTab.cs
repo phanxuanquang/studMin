@@ -18,7 +18,6 @@ namespace studMin
         DataTable dataSource;
         string schoolYear;
         string semesterName;
-        /*bool isSelectedRows;*/
 
         public StatisticTab()
         {
@@ -33,19 +32,6 @@ namespace studMin
                 return;
             }
 
-            /*if (DataTable.SelectedRows.Count > 0)
-            {
-                DialogResult dialogResult = MessageBox.Show("Bạn có muốn in các hàng đã chọn? (Chọn Yes để để in các hàng đang được chọn, chọn No để in tất cả các hàng đang hiển thị trên bảng", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                
-                if (dialogResult == DialogResult.OK)
-                {
-                    isSelectedRows = true;
-                    ExportExcel();
-                    return;
-                }
-            }
-
-            isSelectedRows = false;*/
             ExportExcel();
         }
 
@@ -72,8 +58,6 @@ namespace studMin
 
             for (int rowIndex = firstDisplayedRowIndex; rowIndex <= lastvisibleRowIndex; rowIndex++)
             {
-                /*if (isSelectedRows && DataTable.Rows[rowIndex].Selected == false) continue;*/
-
                 Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
                 {
                     Lop = DataTable.Rows[rowIndex].Cells[1].Value.ToString(),
