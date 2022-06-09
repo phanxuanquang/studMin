@@ -18,7 +18,6 @@ namespace studMin
         DataTable dataSource;
         string schoolYear;
         string semesterName;
-        bool isSelectedRows = false;
 
         public StatisticTab()
         {
@@ -33,21 +32,7 @@ namespace studMin
                 return;
             }
 
-            if (DataTable.SelectedRows.Count >= 1)
-            {
-                DialogResult dialogResult = MessageBox.Show("Bạn muốn in các hàng đã chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    isSelectedRows = true;
-                    ExportExcel();
-                    return;
-                }
-            }
-
-            isSelectedRows = false;
             ExportExcel();
-
-            
         }
 
         private void ExportExcel()
@@ -64,65 +49,35 @@ namespace studMin
 
             Action.Excel.ReportSemester ReportSemester = new Action.Excel.ReportSemester();
 
-            string exportSchoolYear;
-            string exportSemester;
+            
 
-            if (isSelectedRows)
+            var visibleRowsCount = DataTable.DisplayedRowCount(true);
+            var firstDisplayedRowIndex = DataTable.FirstDisplayedCell.RowIndex;
+            var lastvisibleRowIndex = (firstDisplayedRowIndex + visibleRowsCount) - 1;
+
+            string exportSchoolYear = DataTable.Rows[firstDisplayedRowIndex].Cells[3].Value.ToString();
+            string exportSemester = DataTable.Rows[firstDisplayedRowIndex].Cells[2].Value.ToString();
+
+            for (int rowIndex = firstDisplayedRowIndex; rowIndex <= lastvisibleRowIndex; rowIndex++)
             {
-                exportSchoolYear = DataTable.SelectedRows[0].Cells[3].Value.ToString();
-                exportSemester = DataTable.SelectedRows[0].Cells[2].Value.ToString();
-
-                foreach (DataGridViewRow row in DataTable.SelectedRows)
+                Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
                 {
-                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
-                    {
-                        Lop = row.Cells[1].Value.ToString(),
-                        SiSo = int.Parse(row.Cells[4].Value.ToString()),
-                        SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
-                    };
-                    ReportSemester.InsertItem(item);
+                    Lop = DataTable.Rows[rowIndex].Cells[1].Value.ToString(),
+                    SiSo = int.Parse(DataTable.Rows[rowIndex].Cells[4].Value.ToString()),
+                    SoLuongDat = int.Parse(DataTable.Rows[rowIndex].Cells[5].Value.ToString()),
+                };
+                ReportSemester.InsertItem(item);
 
-                    if (row.Index + 1 < DataTable.SelectedRows.Count)
+                if (rowIndex + 1 <= lastvisibleRowIndex)
+                {
+                    if (exportSchoolYear != DataTable.Rows[rowIndex + 1].Cells[3].Value.ToString())
                     {
-                        if (exportSchoolYear != DataTable.SelectedRows[row.Index + 1].Cells[3].Value.ToString())
-                        {
-                            exportSchoolYear = "Mọi năm học";
-                        }
-
-                        if (exportSemester != DataTable.SelectedRows[row.Index + 1].Cells[2].Value.ToString())
-                        {
-                            exportSemester = "3";
-                        }
+                        exportSchoolYear = "Mọi năm học";
                     }
-                    
-                }
-            }
-            else
-            {
-                exportSchoolYear = DataTable.Rows[0].Cells[3].Value.ToString();
-                exportSemester = DataTable.Rows[0].Cells[2].Value.ToString();
 
-                foreach (DataGridViewRow row in DataTable.Rows)
-                {
-                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
+                    if (exportSemester != DataTable.Rows[rowIndex + 1].Cells[2].Value.ToString())
                     {
-                        Lop = row.Cells[1].Value.ToString(),
-                        SiSo = int.Parse(row.Cells[4].Value.ToString()),
-                        SoLuongDat = int.Parse(row.Cells[5].Value.ToString()),
-                    };
-                    ReportSemester.InsertItem(item);
-
-                    if (row.Index + 1 < DataTable.Rows.Count)
-                    {
-                        if (exportSchoolYear != DataTable.Rows[row.Index + 1].Cells[3].Value.ToString())
-                        {
-                            exportSchoolYear = "Mọi năm học";
-                        }
-
-                        if (exportSemester != DataTable.Rows[row.Index + 1].Cells[2].Value.ToString())
-                        {
-                            exportSemester = "3";
-                        }
+                        exportSemester = "3";
                     }
                 }
             }
@@ -136,11 +91,6 @@ namespace studMin
 
             ReportSemester.ShowExcel();
             ReportSemester.Save(exportPath);
-        }
-
-        private SEMESTER GetSelectedSemester(string semester)
-        {
-            return DataProvider.Instance.Database.SEMESTERs.Where(item => item.NAME == semester).FirstOrDefault();
         }
 
         private void ComboBoxesSelectedIndexChangedHandler()
@@ -180,36 +130,6 @@ namespace studMin
         {
             schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
             ComboBoxesSelectedIndexChangedHandler();
-        }
-
-        private List<Action.Excel.ReportSemester.Item> GetListReportSemesterItem()
-        {
-            List<Action.Excel.ReportSemester.Item> list = new List<Action.Excel.ReportSemester.Item>();
-
-            semesterName = Semester_ComboBox.SelectedIndex == 1 ? "1" : "2";
-            SEMESTER selectedSemester = GetSelectedSemester(semesterName);
-
-            schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
-            List<CLASS> listClass = ClassServices.Instance.GetClassBySchoolYear(schoolYear);
-
-
-
-            foreach (var report in listReports)
-            {
-                CLASS currentClass = listClass.Find(item => item.ID == report.IDCLASS);
-                if (report.IDSEMESTER == selectedSemester.ID && currentClass != null)
-                {
-                    Action.Excel.ReportSemester.Item item = new Action.Excel.ReportSemester.Item()
-                    {
-                        Lop = currentClass.CLASSNAME,
-                        SiSo = ClassServices.Instance.GetQuantityOfClass(currentClass),
-                        SoLuongDat = (int)report.PASSQUANTITY
-                    };
-                    list.Add(item);
-                }
-            }
-
-            return list;
         }
 
         private void StatisticTab_Load(object sender, EventArgs e)
@@ -309,8 +229,9 @@ namespace studMin
                 }
             }
 
+            
+
             DataTable.DataSource = dataSource;
-            /*DataTable.Rows[0].Selected = false;*/
         }
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
@@ -348,17 +269,18 @@ namespace studMin
                         row.Visible = false;
                     }
                 }
+                row.Selected = false;
             }
 
             currencyManager1.ResumeBinding();
 
-            DataGridViewElementStates state = DataGridViewElementStates.Visible;
+            /*DataGridViewElementStates state = DataGridViewElementStates.Visible;
             int i = DataTable.Rows.GetFirstRow(state);
 
             if (i >= 0)
             {
                 DataTable.Rows[i].Selected = true;
-            }
+            }*/
         }
     }
 }
