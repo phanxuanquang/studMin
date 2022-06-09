@@ -76,7 +76,6 @@ namespace studMin
                     dataSource.Rows.Add(subject.Id.ToString().Substring(0,8).ToUpper(), subject.DisplayName, headTeacher.INFOR.FIRSTNAME + " " + headTeacher.INFOR.LASTNAME, quantityOfTeacher);
                 }
             }
-
             DataTable.DataSource = dataSource;
         }
 

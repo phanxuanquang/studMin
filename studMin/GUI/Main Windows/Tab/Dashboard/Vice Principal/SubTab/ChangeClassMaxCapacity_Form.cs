@@ -47,7 +47,7 @@ namespace studMin
             parameter.MAX = maxCapacity;
 
             DataProvider.Instance.Database.SaveChanges();
-            MessageBox.Show("Thay đổi sỉ số tối đa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Thay đổi sỉ số tối đa thành công.\nGiới hạn sỉ số này sẽ được áp dụng khi lớp học mới được thêm vào.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }

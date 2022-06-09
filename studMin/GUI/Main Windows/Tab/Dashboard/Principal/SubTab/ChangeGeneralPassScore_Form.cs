@@ -46,6 +46,7 @@ namespace studMin
 
             DataProvider.Instance.Database.SaveChanges();
             MessageBox.Show("Thay đổi điểm đạt để lên lớp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
     }
 }
