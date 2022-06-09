@@ -129,8 +129,6 @@ namespace studMin
                 backgroundWorker.DoWork += ExportExcel_DoWork;
                 backgroundWorker.RunWorkerAsync(exportPath);
             }
-
-            
         }
 
         private void ExportExcel_DoWork(object sender, DoWorkEventArgs e)
@@ -147,10 +145,22 @@ namespace studMin
                 subject = Subject_ComboBox.SelectedItem as string;
                 schoolYear = SchoolYear_ComboBox.SelectedItem as string;
 
+                CurrencyManager cm = (CurrencyManager)BindingContext[DataTable.DataSource];
+                cm.SuspendBinding();
                 for (int index = 0; index < DataTable.SelectedRows.Count; index++)
                 {
                     selectRows.Add(DataTable.SelectedRows[index].DataBoundItem as GRIDVIEW4REPORT);
                 }
+
+                if (selectRows.Count == 0)
+                {
+                    for (int index = 0; index < DataTable.RowCount; index++)
+                    {
+                        if (DataTable.Rows[index].Visible == true)
+                            selectRows.Add(DataTable.Rows[index].DataBoundItem as GRIDVIEW4REPORT);
+                    }
+                }
+                cm.ResumeBinding();
             }
 
             if (Semester_ComboBox.InvokeRequired)
@@ -162,21 +172,19 @@ namespace studMin
             }
             else GetValue();
 
+            if (selectRows == null || selectRows.Count == 0)
+            {
+                MessageBox.Show("Dữ liệu xuất ra rỗng! Vui lòng chọn hàng cần xuất.");
+                return;
+            }
+
             Action.Excel.ReportSubject.Info info = new studMin.Action.Excel.ReportSubject.Info() { HocKy = semester, MonHoc = subject, NamHoc = schoolYear };
 
             Action.Excel.ReportSubject reportSubject = new studMin.Action.Excel.ReportSubject();
 
             reportSubject.InsertInfo(info);
 
-
-            if (selectRows != null && selectRows.Count > 0)
-            {
-                items = selectRows.Select(item => new Action.Excel.ReportCommon.Item() { Lop = item.Lop, SiSo = item.SiSo, SoLuongDat = item.SoLuongDat }).ToList();
-            }
-            else
-            {
-                items = data.Select(item => new Action.Excel.ReportCommon.Item() { Lop = item.Lop, SiSo = item.SiSo, SoLuongDat = item.SoLuongDat }).ToList();
-            }
+            items = selectRows.Select(item => new Action.Excel.ReportCommon.Item() { Lop = item.Lop, SiSo = item.SiSo, SoLuongDat = item.SoLuongDat }).ToList();
 
             for (int index = 0; index < items.Count; index++)
             {
@@ -248,16 +256,19 @@ namespace studMin
 
         private void Semester_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Search_Box.Text = String.Empty;
             UpdateReportSubject_CurrentChanged();
         }
 
         private void Subject_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Search_Box.Text = String.Empty;
             UpdateReportSubject_CurrentChanged();
         }
 
         private void SchoolYear_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Search_Box.Text = String.Empty;
             UpdateReportSubject_CurrentChanged();
         }
 
@@ -291,7 +302,7 @@ namespace studMin
                 if (filter != null)
                 {
                     int indexSiSo = recordExists.IndexOf(filter);
-                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = filter.RATIO.Value });
+                    data.Add(new GRIDVIEW4REPORT(filter.IDCLASS, filter.IDSEMESTER, filter.IDSUBJECT) { Lop = className, SiSo = SiSo[indexSiSo], SoLuongDat = filter.PASSQUANTITY.Value, _TiLeDat = filter.RATIO.Value, ThuTu = indexClass + 1 });
                 }
             }
 
