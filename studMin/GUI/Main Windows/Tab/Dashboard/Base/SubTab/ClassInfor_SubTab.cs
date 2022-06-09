@@ -23,84 +23,93 @@ namespace studMin
 
         void DataExport_toExcel()
         {
-            if (DataTable_Info.Rows.Count == 0)
+            if (Filter_ComboBox.SelectedIndex == 1)
             {
-                LoadSearchingInfor();
-            }
-
-            if (DataTable_Info.Rows.Count > 0 && DataTable_Info.Columns[0].HeaderCell.Value.ToString() != "Mã học sinh")
-            {
-                MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh.", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            string className = Class_ComboBox.SelectedItem.ToString();
-            string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
-            CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
-            List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
-
-            if (currentClass == null || listStudents.Count == 0)
-            {
-                string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
-                MessageBox.Show("Hiện tại lớp mà bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "Excel | *.xlsx";
-
-            string exportPath = string.Empty;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                exportPath = saveFileDialog.FileName;
-            }
-            else
-            {
-                return;
-            }
-
-            List<Action.Excel.ListStudent.Item> list = new List<Action.Excel.ListStudent.Item>();
-
-            foreach (var student in listStudents)
-            {
-                Action.Excel.ListStudent.Item temp = new studMin.Action.Excel.ListStudent.Item()
+                if (Class_ComboBox.SelectedIndex == 0)
                 {
-                    MaHocSinh = student.ID.ToString(),
-                    HoTen = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME,
-                    NgaySinh = (DateTime)student.INFOR.DAYOFBIRTH,
-                    GioiTinh = student.INFOR.SEX == 1,
-                    DanToc = student.BLOODLINE,
-                    DiaChi = student.INFOR.ADDRESS,
-                    Email = student.EMAIL,
-                    SDT = student.TEL
+                    MessageBox.Show("Vui lòng chọn lớp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (SchoolYear_ComboBox.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn năm học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                LoadSearchingInfor();
+
+                string className = Class_ComboBox.SelectedItem.ToString();
+                string schoolYear = SchoolYear_ComboBox.SelectedItem.ToString();
+                CLASS currentClass = ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
+                List<STUDENT> listStudents = ClassServices.Instance.GetListStudentOfClass(className, schoolYear);
+
+                if (currentClass == null || listStudents.Count == 0)
+                {
+                    string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
+                    MessageBox.Show("Hiện tại lớp " + className + " bạn chọn trong năm học " + formatedYear + " chưa có dữ liệu, vui lòng thử lại sau", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                saveFileDialog.Filter = "Excel | *.xlsx";
+
+                string exportPath = string.Empty;
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    exportPath = saveFileDialog.FileName;
+                }
+                else
+                {
+                    return;
+                }
+
+                List<Action.Excel.ListStudent.Item> list = new List<Action.Excel.ListStudent.Item>();
+
+                foreach (var student in listStudents)
+                {
+                    Action.Excel.ListStudent.Item temp = new studMin.Action.Excel.ListStudent.Item()
+                    {
+                        MaHocSinh = student.ID.ToString(),
+                        HoTen = student.INFOR.FIRSTNAME + " " + student.INFOR.LASTNAME,
+                        NgaySinh = (DateTime)student.INFOR.DAYOFBIRTH,
+                        GioiTinh = student.INFOR.SEX == 1,
+                        DanToc = student.BLOODLINE,
+                        DiaChi = student.INFOR.ADDRESS,
+                        Email = student.EMAIL,
+                        SDT = student.TEL
+                    };
+                    list.Add(temp);
+                }
+
+                INFOR inforTeacher = currentClass.TEACHER.INFOR;
+
+                Action.Excel.ListStudent.Info info = new Action.Excel.ListStudent.Info()
+                {
+                    Lop = Class_ComboBox.SelectedItem.ToString(),
+                    GiaoVien = inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME,
+                    NamHoc = SchoolYear_ComboBox.SelectedItem.ToString(),
+                    SiSo = listStudents.Count,
+                    ThongTinThem = "Danh sách lớp " + className
                 };
-                list.Add(temp);
+
+                Action.Excel.ListStudent students = new Action.Excel.ListStudent();
+
+                students.InsertInfo(info);
+                foreach (Action.Excel.ListStudent.Item item in list)
+                {
+                    students.InsertItem(item);
+                }
+
+                students.ShowExcel();
+                students.Save(exportPath);
+                return;
             }
 
-            INFOR inforTeacher = currentClass.TEACHER.INFOR;
-
-            Action.Excel.ListStudent.Info info = new Action.Excel.ListStudent.Info()
-            {
-                Lop = Class_ComboBox.SelectedItem.ToString(),
-                GiaoVien = inforTeacher.FIRSTNAME + " " + inforTeacher.LASTNAME,
-                NamHoc = SchoolYear_ComboBox.SelectedItem.ToString(),
-                SiSo = listStudents.Count,
-                ThongTinThem = "Danh sách lớp " + className
-            };
-
-            Action.Excel.ListStudent students = new Action.Excel.ListStudent();
-
-            students.InsertInfo(info);
-            foreach (Action.Excel.ListStudent.Item item in list)
-            {
-                students.InsertItem(item);
-            }
-
-            students.ShowExcel();
-            students.Save(exportPath);
+            MessageBox.Show("Bạn chỉ có thể in Danh sách học sinh.", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #region Buttons
