@@ -616,7 +616,7 @@ namespace studMin
             {
                 TEACHER teacher = studMin.Database.LoginServices.LoginServices.Instance.CurrentTeacher;
                 CLASS @class = studMin.Database.ClassServices.Instance.GetClassByClassNameAndSchoolYear(className, schoolYear);
-                TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID).FirstOrDefault();
+                TEACH teach = studMin.Database.DataProvider.Instance.Database.TEACHes.Where(item => item.IDCLASS == @class.ID && item.IDTEACHER == teacher.ID && item.SEMESTER.NAME == semester).FirstOrDefault();
                 studMin.Database.StudentServices.Instance.SaveScoreToDB((sTUDENTBindingSource.Current as STUDENT4GRIDVIEW).ID, score, @class.SCHOOLYEAR, teach.SEMESTER.NAME, roleScore);
             }
         }
