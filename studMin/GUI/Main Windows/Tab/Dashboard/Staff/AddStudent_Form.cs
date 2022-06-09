@@ -68,7 +68,7 @@ namespace studMin
         {
             if (CheckEmptyInput())
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -79,19 +79,19 @@ namespace studMin
             int minAge = (int)limitAge.MIN;
             if (CheckAge(dateOfBirth, maxAge, minAge) == false)
             {
-                MessageBox.Show(String.Format("Tuổi của học sinh phải từ {0} đến {1}", minAge, maxAge), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format("Tuổi của học sinh phải từ {0} đến {1}.", minAge, maxAge), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (Class_ComboBox.SelectedIndex == 0)
             {
-                MessageBox.Show("Vui lòng chọn lớp học", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn lớp học.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!CheckEmail(ParentEmail_Box.Text))
             {
-                MessageBox.Show("Email không hợp lệ, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("E-mail không hợp lệ. Vui lòng kiểm tra lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -113,7 +113,7 @@ namespace studMin
             } 
             else
             {
-                MessageBox.Show("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Có lỗi xảy ra. Vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             this.Close();

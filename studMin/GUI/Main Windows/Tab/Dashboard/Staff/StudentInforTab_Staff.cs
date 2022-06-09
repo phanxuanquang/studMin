@@ -22,6 +22,16 @@ namespace studMin
             InitializeComponent();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
+
         private void AddStudent_Button_Click(object sender, EventArgs e)
         {
             AddStudent_Form addStudent_Form = new AddStudent_Form(this);
@@ -226,23 +236,9 @@ namespace studMin
             Class_Box.Text = student.CLASS.CLASSNAME;
             Genre_Box.Text = student.INFOR.SEX == 0 ? "Nam" : "Nữ";
             Bloodline_Box.Text = student.BLOODLINE;
-            Email_Box.Text = student.EMAIL;
+            Email_Box.Text = student.EMAIL.ToLower();
             Address_Box.Text = student.INFOR.ADDRESS;
-            ParentNumber_Box.Text = student.EMAILPARENT;
-        }
-
-        private void DataTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            STUDYING studentCurrent;
-            if (e.RowIndex < 0) return;
-            if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-            {
-                studentCurrent = sTUDYINGBindingSource.Current as STUDYING;
-                if (studentCurrent != null)
-                {
-                    BindStudentToTextBox(studentCurrent.STUDENT);
-                }
-            }
+            ParentNumber_Box.Text = student.EMAILPARENT.ToLower();
         }
 
         private void Search_Box_KeyPress(object sender, KeyPressEventArgs e)
@@ -285,6 +281,20 @@ namespace studMin
             StudentInforModify_Form studentInforModify_Form = new StudentInforModify_Form(sTUDYINGBindingSource.Current);
             studentInforModify_Form.ShowDialog();
             BindingStudent(GetListStudying(Class_ComboBox.SelectedItem.ToString(), SchoolYear_ComboBox.SelectedItem.ToString()));
+        }
+
+        private void DataTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            STUDYING studentCurrent;
+            if (e.RowIndex < 0) return;
+            if (DataTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                studentCurrent = sTUDYINGBindingSource.Current as STUDYING;
+                if (studentCurrent != null)
+                {
+                    BindStudentToTextBox(studentCurrent.STUDENT);
+                }
+            }
         }
     }
 }

@@ -53,6 +53,7 @@
             this.LastName_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.Email_Box = new Guna.UI2.WinForms.Guna2TextBox();
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.SuspendLayout();
             // 
             // PhoneNumber_Box
@@ -226,7 +227,7 @@
             this.FirstName_Box.ShadowDecoration.Depth = 5;
             this.FirstName_Box.ShadowDecoration.Parent = this.FirstName_Box;
             this.FirstName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.FirstName_Box.Size = new System.Drawing.Size(80, 22);
+            this.FirstName_Box.Size = new System.Drawing.Size(112, 22);
             this.FirstName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.FirstName_Box.TabIndex = 0;
             // 
@@ -520,7 +521,7 @@
             this.LastName_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.LastName_Box.HoverState.Parent = this.LastName_Box;
             this.LastName_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.LastName_Box.Location = new System.Drawing.Point(206, 78);
+            this.LastName_Box.Location = new System.Drawing.Point(242, 78);
             this.LastName_Box.Margin = new System.Windows.Forms.Padding(0);
             this.LastName_Box.Name = "LastName_Box";
             this.LastName_Box.PasswordChar = '\0';
@@ -530,7 +531,7 @@
             this.LastName_Box.ShadowDecoration.Depth = 5;
             this.LastName_Box.ShadowDecoration.Parent = this.LastName_Box;
             this.LastName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.LastName_Box.Size = new System.Drawing.Size(121, 22);
+            this.LastName_Box.Size = new System.Drawing.Size(85, 22);
             this.LastName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.LastName_Box.TabIndex = 1;
             // 
@@ -583,6 +584,10 @@
             this.gunaLabel1.Text = "• E-mail cá nhân::";
             this.gunaLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.gunaLabel1.UseCompatibleTextRendering = true;
+            // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.TargetControl = this.tittleLabel;
             // 
             // AddStudent_Form
             // 
@@ -648,5 +653,6 @@
         protected Guna.UI2.WinForms.Guna2TextBox LastName_Box;
         protected Guna.UI2.WinForms.Guna2TextBox Email_Box;
         private Guna.UI.WinForms.GunaLabel gunaLabel1;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
     }
 }

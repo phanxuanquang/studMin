@@ -24,7 +24,7 @@ namespace studMin
 
         private void PassScoreTrackBar_ValueChanged(object sender, EventArgs e)
         {
-            PassScoreLabel.Text = "Điểm đạt để lên lớp: " + PassScoreTrackBar.Value.ToString();
+            PassScoreLabel.Text = "Điểm đạt để lên lớp: " + (PassScoreTrackBar.Value).ToString();
         }
 
         private void Exit_Button_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace studMin
             generalPassScore.MAX = PassScoreTrackBar.Value;
 
             DataProvider.Instance.Database.SaveChanges();
-            MessageBox.Show("Thay đổi điểm đạt để lên lớp thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Thay đổi điểm đạt để lên lớp thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

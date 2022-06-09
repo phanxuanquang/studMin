@@ -60,6 +60,14 @@ namespace studMin
                 return;
             }
 
+            SUBJECT existingSubject = DataProvider.Instance.Database.SUBJECTs.Where(item => item.DisplayName.ToLower() == SubjectName_Box.Text.Trim().ToLower()).FirstOrDefault();
+
+            if (existingSubject != null)
+            {
+                MessageBox.Show("Tên môn học này đã tồn tại, vui lòng chọn tên khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             SUBJECT currentSubject = SubjectServices.Instance.GetSubjectByName(subjectName);
             currentSubject.DisplayName = SubjectName_Box.Text.Trim();
 
