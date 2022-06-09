@@ -152,13 +152,10 @@ namespace studMin
                     selectRows.Add(DataTable.SelectedRows[index].DataBoundItem as GRIDVIEW4REPORT);
                 }*/
 
-                if (selectRows.Count == 0)
+                for (int index = 0; index < DataTable.RowCount; index++)
                 {
-                    for (int index = 0; index < DataTable.RowCount; index++)
-                    {
-                        if (DataTable.Rows[index].Visible == true)
-                            selectRows.Add(DataTable.Rows[index].DataBoundItem as GRIDVIEW4REPORT);
-                    }
+                    if (DataTable.Rows[index].Visible == true)
+                        selectRows.Add(DataTable.Rows[index].DataBoundItem as GRIDVIEW4REPORT);
                 }
 
                 cm.ResumeBinding();

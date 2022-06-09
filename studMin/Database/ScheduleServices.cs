@@ -34,7 +34,7 @@ namespace studMin.Database
             return DataProvider.Instance.Database.SCHEDULEs.OrderByDescending(schedule => schedule.SCHOOLYEAR).ThenBy(schedule => schedule.SEMESTER.NAME).ThenBy(schedule => schedule.SCHEDULENAME).Take(1).FirstOrDefault();
         }
 
-        public SCHEDULE CreateSchedule(DateTime dayApply, string schoolYear, string semester)
+        public SCHEDULE CreateSchedule(DateTime dayApply, string schoolYear, int semester, int scheduleName)
         {
             try
             {
@@ -43,8 +43,8 @@ namespace studMin.Database
                     ID = Guid.NewGuid(),
                     DATEAPPLY = dayApply,
                     SCHOOLYEAR = schoolYear,
-                    SEMESTER = DataProvider.Instance.Database.SEMESTERs.Where(item => item.NAME == semester).FirstOrDefault(),
-                    SCHEDULENAME = "TKB tao ngay 28/3"
+                    SEMESTER = DataProvider.Instance.Database.SEMESTERs.Where(item => item.NAME == semester.ToString()).FirstOrDefault(),
+                    SCHEDULENAME = scheduleName.ToString()
                 };
                 DataProvider.Instance.Database.Set<SCHEDULE>().Add(schedule);
                 DataProvider.Instance.Database.SaveChanges();

@@ -353,7 +353,8 @@ namespace studMin
             studMin.Database.Models.SCHEDULE newSchedule = studMin.Database.ScheduleServices.Instance.CreateSchedule(
                 importInfo.NgayApDung,
                 importInfo.NamHoc.Split(new string[] { " - " }, StringSplitOptions.None)[0],
-                importInfo.GetHocKy()
+                importInfo.HocKy,
+                importInfo.BieuMauSo
                 );
 
             for (int index = 0; index < data.Count; index++)
