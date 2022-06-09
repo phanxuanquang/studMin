@@ -146,6 +146,7 @@
             this.Logout_Button.ShadowDecoration.Parent = this.Logout_Button;
             this.Logout_Button.Size = new System.Drawing.Size(44, 44);
             this.Logout_Button.TabIndex = 18;
+            this.toolTip.SetToolTip(this.Logout_Button, "Đăng xuất");
             this.Logout_Button.Click += new System.EventHandler(this.Logout_Button_Click);
             // 
             // Timetable_MenuButton
@@ -223,13 +224,14 @@
             this.TeacherInfor_Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.TeacherInfor_Label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.TeacherInfor_Label.ForeColor = System.Drawing.Color.White;
-            this.TeacherInfor_Label.Location = new System.Drawing.Point(97, 25);
+            this.TeacherInfor_Label.Location = new System.Drawing.Point(97, 30);
             this.TeacherInfor_Label.Name = "TeacherInfor_Label";
             this.TeacherInfor_Label.Size = new System.Drawing.Size(924, 33);
             this.TeacherInfor_Label.TabIndex = 142;
             this.TeacherInfor_Label.Text = "Họ và tên: NGUYỄN VĂN A | Môn học phụ trách: NGỮ VĂN | Vai trò chính: GIÁO VIÊN C" +
     "HỦ NHIỆM";
             this.TeacherInfor_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip.SetToolTip(this.TeacherInfor_Label, "Thông tin người dùng");
             this.TeacherInfor_Label.UseCompatibleTextRendering = true;
             // 
             // MainWinfow
