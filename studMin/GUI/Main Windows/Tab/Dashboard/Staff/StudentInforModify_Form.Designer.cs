@@ -58,6 +58,7 @@
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel2 = new Guna.UI.WinForms.GunaLabel();
             this.Status_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sTUDENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iNFORBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLASSBindingSource)).BeginInit();
@@ -247,7 +248,7 @@
             this.FirstName_Box.ShadowDecoration.Depth = 5;
             this.FirstName_Box.ShadowDecoration.Parent = this.FirstName_Box;
             this.FirstName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.FirstName_Box.Size = new System.Drawing.Size(80, 22);
+            this.FirstName_Box.Size = new System.Drawing.Size(117, 22);
             this.FirstName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.FirstName_Box.TabIndex = 0;
             // 
@@ -547,7 +548,7 @@
             this.LastName_Box.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.LastName_Box.HoverState.Parent = this.LastName_Box;
             this.LastName_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.LastName_Box.Location = new System.Drawing.Point(206, 78);
+            this.LastName_Box.Location = new System.Drawing.Point(249, 78);
             this.LastName_Box.Margin = new System.Windows.Forms.Padding(0);
             this.LastName_Box.Name = "LastName_Box";
             this.LastName_Box.PasswordChar = '\0';
@@ -557,7 +558,7 @@
             this.LastName_Box.ShadowDecoration.Depth = 5;
             this.LastName_Box.ShadowDecoration.Parent = this.LastName_Box;
             this.LastName_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.LastName_Box.Size = new System.Drawing.Size(121, 22);
+            this.LastName_Box.Size = new System.Drawing.Size(78, 22);
             this.LastName_Box.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.LastName_Box.TabIndex = 1;
             // 
@@ -658,6 +659,10 @@
             this.Status_ComboBox.TabIndex = 171;
             this.Status_ComboBox.TextOffset = new System.Drawing.Point(5, 0);
             // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.TargetControl = this.tittleLabel;
+            // 
             // StudentInforModify_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -732,5 +737,6 @@
         private System.Windows.Forms.BindingSource sTUDENTBindingSource;
         private System.Windows.Forms.BindingSource iNFORBindingSource;
         private System.Windows.Forms.BindingSource cLASSBindingSource;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
     }
 }

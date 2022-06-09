@@ -23,6 +23,16 @@ namespace studMin
             this.Load += StudentInforModify_Form_Load;
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
+
         private void StudentInforModify_Form_Load(object sender, EventArgs e)
         {
             cLASSBindingSource.DataSource = studyingCurrent.CLASS;
@@ -65,7 +75,7 @@ namespace studMin
         {
             if (CheckEmptyInput())
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             PARAMETER limitAge = Database.ParameterServices.Instance.GetParameterByName("AGE");
@@ -75,13 +85,13 @@ namespace studMin
             int minAge = (int)limitAge.MIN;
             if (CheckAge(dateOfBirth, maxAge, minAge) == false)
             {
-                MessageBox.Show(String.Format("Tuổi của học sinh phải từ {0} đến {1}", minAge, maxAge), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format("Tuổi của học sinh phải từ {0} đến {1}", minAge, maxAge), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!CheckEmail(ParentEmail_Box.Text) || !CheckEmail(Email_Box.Text))
             {
-                MessageBox.Show("Email không hợp lệ, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("E-mail không hợp lệ. Vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -89,12 +99,12 @@ namespace studMin
                 studyingCurrent.STUDENT.Status = (int?)Status_ComboBox.SelectedValue;
                 studyingCurrent.STUDENT.INFOR.SEX = (int?)Sex_ComboBox.SelectedValue;
                 Database.DataProvider.Instance.Database.SaveChanges();
-                MessageBox.Show("Chỉnh sửa thông tin học sinh thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Chỉnh sửa thông tin học sinh thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
  
-                MessageBox.Show("Có lỗi xảy ra, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Có lỗi xảy ra. Vui lòng thử lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.Close();
         }
