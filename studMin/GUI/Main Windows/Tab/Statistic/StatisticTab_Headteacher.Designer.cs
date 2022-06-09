@@ -64,7 +64,7 @@
             this.DataGridViewExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.DataGridViewExport_Button.HoverState.Parent = this.DataGridViewExport_Button;
             this.DataGridViewExport_Button.Location = new System.Drawing.Point(1544, 127);
-            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DataGridViewExport_Button.Margin = new System.Windows.Forms.Padding(6);
             this.DataGridViewExport_Button.Name = "DataGridViewExport_Button";
             this.DataGridViewExport_Button.ShadowDecoration.Parent = this.DataGridViewExport_Button;
             this.DataGridViewExport_Button.Size = new System.Drawing.Size(286, 69);
@@ -96,7 +96,7 @@
             this.Search_Box.HoverState.Parent = this.Search_Box;
             this.Search_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
             this.Search_Box.Location = new System.Drawing.Point(20, 127);
-            this.Search_Box.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Search_Box.Margin = new System.Windows.Forms.Padding(8);
             this.Search_Box.Name = "Search_Box";
             this.Search_Box.PasswordChar = '\0';
             this.Search_Box.PlaceholderText = "Nhập lớp để tìm kiếm ...";
@@ -121,7 +121,6 @@
             this.tittleLabel.Name = "tittleLabel";
             this.tittleLabel.Size = new System.Drawing.Size(1848, 100);
             this.tittleLabel.TabIndex = 105;
-            this.tittleLabel.Text = "BẢNG THỐNG KÊ KẾT QUẢ HỌC TẬP HỌC KỲ 1 NĂM HỌC 2021-2022 CỦA LỚP 10A1";
             this.tittleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DataTable
@@ -168,7 +167,7 @@
             this.DataTable.EnableHeadersVisualStyles = false;
             this.DataTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.DataTable.Location = new System.Drawing.Point(0, 225);
-            this.DataTable.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DataTable.Margin = new System.Windows.Forms.Padding(6);
             this.DataTable.Name = "DataTable";
             this.DataTable.ReadOnly = true;
             this.DataTable.RowHeadersVisible = false;
@@ -266,7 +265,7 @@
             "Mọi niên khóa"});
             this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.Location = new System.Drawing.Point(980, 127);
-            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.Semester_ComboBox.Name = "Semester_ComboBox";
             this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.Size = new System.Drawing.Size(280, 36);
@@ -297,7 +296,7 @@
             "Mọi học kỳ"});
             this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
             this.SchoolYear_ComboBox.Location = new System.Drawing.Point(1276, 127);
-            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
             this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
             this.SchoolYear_ComboBox.Size = new System.Drawing.Size(254, 36);
@@ -328,7 +327,7 @@
             "Mọi môn học"});
             this.Subject_ComboBox.ItemsAppearance.Parent = this.Subject_ComboBox;
             this.Subject_ComboBox.Location = new System.Drawing.Point(708, 127);
-            this.Subject_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Subject_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.Subject_ComboBox.Name = "Subject_ComboBox";
             this.Subject_ComboBox.ShadowDecoration.Parent = this.Subject_ComboBox;
             this.Subject_ComboBox.Size = new System.Drawing.Size(256, 36);
@@ -348,7 +347,7 @@
             this.Controls.Add(this.DataGridViewExport_Button);
             this.Controls.Add(this.Search_Box);
             this.Controls.Add(this.tittleLabel);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "StatisticTab_Headteacher";
             this.Size = new System.Drawing.Size(1848, 1423);
             this.Load += new System.EventHandler(this.StatisticTab_Headteacher_Load);

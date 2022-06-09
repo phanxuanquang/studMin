@@ -81,7 +81,7 @@
             this.Timetable_GridView.EnableHeadersVisualStyles = false;
             this.Timetable_GridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(115)))), ((int)(((byte)(247)))));
             this.Timetable_GridView.Location = new System.Drawing.Point(0, 302);
-            this.Timetable_GridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Timetable_GridView.Margin = new System.Windows.Forms.Padding(6);
             this.Timetable_GridView.Name = "Timetable_GridView";
             this.Timetable_GridView.ReadOnly = true;
             this.Timetable_GridView.RowHeadersVisible = false;
@@ -125,7 +125,6 @@
             this.ApplyDate_Label.Name = "ApplyDate_Label";
             this.ApplyDate_Label.Size = new System.Drawing.Size(1848, 137);
             this.ApplyDate_Label.TabIndex = 113;
-            this.ApplyDate_Label.Text = "BẮT ĐẦU ÁP DỤNG TỪ THỨ HAI, NGÀY 10 THÁNG 10 NĂM 2022";
             this.ApplyDate_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ApplyDate_Label.UseCompatibleTextRendering = true;
             // 
@@ -152,7 +151,7 @@
             "Mới nhất"});
             this.DateApply_ComboBox.ItemsAppearance.Parent = this.DateApply_ComboBox;
             this.DateApply_ComboBox.Location = new System.Drawing.Point(796, 183);
-            this.DateApply_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.DateApply_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.DateApply_ComboBox.Name = "DateApply_ComboBox";
             this.DateApply_ComboBox.ShadowDecoration.Parent = this.DateApply_ComboBox;
             this.DateApply_ComboBox.Size = new System.Drawing.Size(276, 36);
@@ -184,7 +183,7 @@
             "Mọi học kỳ"});
             this.Semester_ComboBox.ItemsAppearance.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.Location = new System.Drawing.Point(560, 183);
-            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Semester_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.Semester_ComboBox.Name = "Semester_ComboBox";
             this.Semester_ComboBox.ShadowDecoration.Parent = this.Semester_ComboBox;
             this.Semester_ComboBox.Size = new System.Drawing.Size(224, 36);
@@ -216,7 +215,7 @@
             "Mọi niên khóa"});
             this.SchoolYear_ComboBox.ItemsAppearance.Parent = this.SchoolYear_ComboBox;
             this.SchoolYear_ComboBox.Location = new System.Drawing.Point(280, 183);
-            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolYear_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolYear_ComboBox.Name = "SchoolYear_ComboBox";
             this.SchoolYear_ComboBox.ShadowDecoration.Parent = this.SchoolYear_ComboBox;
             this.SchoolYear_ComboBox.Size = new System.Drawing.Size(268, 36);
@@ -240,7 +239,7 @@
             this.TimetableImport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.TimetableImport_Button.HoverState.Parent = this.TimetableImport_Button;
             this.TimetableImport_Button.Location = new System.Drawing.Point(1084, 183);
-            this.TimetableImport_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TimetableImport_Button.Margin = new System.Windows.Forms.Padding(6);
             this.TimetableImport_Button.Name = "TimetableImport_Button";
             this.TimetableImport_Button.ShadowDecoration.Parent = this.TimetableImport_Button;
             this.TimetableImport_Button.Size = new System.Drawing.Size(362, 69);
@@ -264,7 +263,7 @@
             this.TimetableExport_Button.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.TimetableExport_Button.HoverState.Parent = this.TimetableExport_Button;
             this.TimetableExport_Button.Location = new System.Drawing.Point(1458, 183);
-            this.TimetableExport_Button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TimetableExport_Button.Margin = new System.Windows.Forms.Padding(6);
             this.TimetableExport_Button.Name = "TimetableExport_Button";
             this.TimetableExport_Button.ShadowDecoration.Parent = this.TimetableExport_Button;
             this.TimetableExport_Button.Size = new System.Drawing.Size(362, 69);
@@ -296,7 +295,7 @@
             "Chọn lớp"});
             this.Class_ComboBox.ItemsAppearance.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Location = new System.Drawing.Point(28, 183);
-            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Class_ComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.Class_ComboBox.Name = "Class_ComboBox";
             this.Class_ComboBox.ShadowDecoration.Parent = this.Class_ComboBox;
             this.Class_ComboBox.Size = new System.Drawing.Size(236, 36);
@@ -318,7 +317,7 @@
             this.Controls.Add(this.Class_ComboBox);
             this.Controls.Add(this.ApplyDate_Label);
             this.Controls.Add(this.Timetable_GridView);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "TimeTableTab_Staff";
             this.Size = new System.Drawing.Size(1848, 1423);
             this.Load += new System.EventHandler(this.TimeTableTab_Staff_Load);

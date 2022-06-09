@@ -384,7 +384,8 @@ namespace studMin
             if ((bool)select[0]) data = (List<Action.Excel.ScheduleAllTeacher.Item>)select[1];
             else
             {
-                MessageBox.Show("Lỗi tập tin Excel! Có lớp bị trùng lịch giáo viên");
+                Action.Excel.ScheduleAllTeacher.Item error = (Action.Excel.ScheduleAllTeacher.Item)select[1];
+                MessageBox.Show(String.Format("Lỗi tập tin Excel! Có lớp bị trùng lịch giáo viên\nGiáo viên: {0}, Lớp {1}, Tiết dạy: {2} - {3}", error.GiaoVien, error.Lop, error.TietBatDau, error.TietKeoDai + error.TietBatDau - 1));
                 backgroundWorker.RunWorkerCompleted -= ImportExcel_RunrWorkerCompleted;
             }
         }

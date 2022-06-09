@@ -501,7 +501,7 @@ namespace studMin.Action.Excel
 
                         if (CheckBusyTeacher(list, item))
                         {
-                            return new object[] { false, null };
+                            return new object[] { false, item };
                         }
                         else
                         {
