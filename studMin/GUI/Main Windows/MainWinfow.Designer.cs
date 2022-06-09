@@ -71,7 +71,7 @@
             this.menuBar.ShadowColor = System.Drawing.Color.Black;
             this.menuBar.ShadowDepth = 0;
             this.menuBar.ShadowShift = 0;
-            this.menuBar.Size = new System.Drawing.Size(60, 789);
+            this.menuBar.Size = new System.Drawing.Size(60, 787);
             this.menuBar.TabIndex = 0;
             // 
             // Dashboard_MenuButton
@@ -141,7 +141,7 @@
             this.Logout_Button.Image = ((System.Drawing.Image)(resources.GetObject("Logout_Button.Image")));
             this.Logout_Button.ImageOffset = new System.Drawing.Point(1, 0);
             this.Logout_Button.ImageSize = new System.Drawing.Size(35, 35);
-            this.Logout_Button.Location = new System.Drawing.Point(8, 735);
+            this.Logout_Button.Location = new System.Drawing.Point(8, 733);
             this.Logout_Button.Name = "Logout_Button";
             this.Logout_Button.ShadowDecoration.Parent = this.Logout_Button;
             this.Logout_Button.Size = new System.Drawing.Size(44, 44);
@@ -180,7 +180,7 @@
             this.ContainerPanel.BorderRadius = 15;
             this.ContainerPanel.FillColor = System.Drawing.Color.White;
             this.ContainerPanel.FillColor2 = System.Drawing.Color.White;
-            this.ContainerPanel.Location = new System.Drawing.Point(97, 75);
+            this.ContainerPanel.Location = new System.Drawing.Point(97, 71);
             this.ContainerPanel.Name = "ContainerPanel";
             this.ContainerPanel.ShadowDecoration.Parent = this.ContainerPanel;
             this.ContainerPanel.Size = new System.Drawing.Size(924, 740);
@@ -223,9 +223,9 @@
             this.TeacherInfor_Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.TeacherInfor_Label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.TeacherInfor_Label.ForeColor = System.Drawing.Color.White;
-            this.TeacherInfor_Label.Location = new System.Drawing.Point(97, 28);
+            this.TeacherInfor_Label.Location = new System.Drawing.Point(97, 25);
             this.TeacherInfor_Label.Name = "TeacherInfor_Label";
-            this.TeacherInfor_Label.Size = new System.Drawing.Size(923, 33);
+            this.TeacherInfor_Label.Size = new System.Drawing.Size(924, 33);
             this.TeacherInfor_Label.TabIndex = 142;
             this.TeacherInfor_Label.Text = "Họ và tên: NGUYỄN VĂN A | Môn học phụ trách: NGỮ VĂN | Vai trò chính: GIÁO VIÊN C" +
     "HỦ NHIỆM";
@@ -237,7 +237,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(1058, 839);
+            this.ClientSize = new System.Drawing.Size(1058, 837);
             this.Controls.Add(this.TeacherInfor_Label);
             this.Controls.Add(this.ContainerPanel);
             this.Controls.Add(this.Minimize_Button);

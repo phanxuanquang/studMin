@@ -88,7 +88,7 @@ namespace studMin
                 bool isValidAccount = false;
                 string accountRole = String.Empty;
 
-                GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this, "ĐANG XÁC THỰC TÀI KHOẢN \n VUI LÒNG ĐỢI");
+                GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this, "ĐANG TẢI");
                 loadingWindow.Show();
                 this.Enabled = false;
 

@@ -37,10 +37,19 @@ namespace studMin.Database.LoginServices
 
         public bool CheckAccount(string userName, string passWord)
         {
-            //string passHashed = Hash.Encrypt(passWord);
-            string passHashed = passWord;
-            int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed && user.ISDELETED == false).Count();
-            return accCount > 0;
+            //string passHashed = Hash.Encrypt(passWord)
+            try
+            {
+                string passHashed = passWord;
+                int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed && user.ISDELETED == false).Count();
+                return accCount > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đăng nhập thất bại. Vui lòng thử lại sau.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return false;
+            }
         }
 
         public bool CheckUser(string userName)

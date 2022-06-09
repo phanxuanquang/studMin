@@ -29,9 +29,9 @@ namespace studMin
             {
                 MessageBox.Show("Điểm chỉ có thể là số nguyên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (Double.Parse(PassGrade_Box.Text) <= 0)
+            else if (Double.Parse(PassGrade_Box.Text) <= 0 || Double.Parse(PassGrade_Box.Text) >= 10)
             {
-                MessageBox.Show("Điểm không được là một số âm hoặc bằng 0", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Điểm chỉ có thể lớn hơn 0 và nhỏ hơn 10", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
