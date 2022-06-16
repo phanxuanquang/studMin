@@ -437,7 +437,7 @@ namespace studMin
                                 tempSiSo.Add(students.Count);
                                 tempRecordExists.Add(new REPORTSUBJECT() { IDCLASS = idClass, IDSEMESTER = semester.ID, IDSUBJECT = subject.Id, PASSQUANTITY = avgScoreStudent.Count, RATIO = avgScoreStudent.Count * 100.0 / students.Count });
 
-                                if (currentSchoolYear == int.Parse(schoolYear))
+                                if (currentSchoolYear == int.Parse(schoolYear) || true)
                                 {
                                     List<REPORTSUBJECT> filters = recordExists.Where(item => item.IDCLASS == idClass && item.IDSUBJECT == subject.Id && item.IDSEMESTER == semester.ID).ToList();
 

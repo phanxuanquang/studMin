@@ -438,6 +438,12 @@ namespace studMin
             if (listClass.Current == null) return;
             Guid idClass = (listClass.Current as CLASS4GRIDVIEW).ID;
 
+            if (listClass.Count > 1 && idClass == Guid.Empty && MessageBox.Show("Xuất Excel để xem thời khóa biểu của mọi lớp!", "Có muốn xem thời khóa biểu mọi lớp không?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                TimetableExport_Button_Click(null, null);
+                return;
+            }
+
             /*if (@class == null)
             {
                 string formatedYear = schoolYear.ToString() + " - " + (int.Parse(schoolYear) + 1);
