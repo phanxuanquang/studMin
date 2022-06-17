@@ -118,11 +118,11 @@
             // 
             this.PassScoreTrackBar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(190)))), ((int)(((byte)(250)))));
             this.PassScoreTrackBar.HoverState.Parent = this.PassScoreTrackBar;
-            this.PassScoreTrackBar.Location = new System.Drawing.Point(33, 86);
+            this.PassScoreTrackBar.Location = new System.Drawing.Point(38, 86);
             this.PassScoreTrackBar.Maximum = 10;
             this.PassScoreTrackBar.Minimum = 1;
             this.PassScoreTrackBar.Name = "PassScoreTrackBar";
-            this.PassScoreTrackBar.Size = new System.Drawing.Size(368, 23);
+            this.PassScoreTrackBar.Size = new System.Drawing.Size(395, 23);
             this.PassScoreTrackBar.TabIndex = 133;
             this.PassScoreTrackBar.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
             this.PassScoreTrackBar.Value = 10;
@@ -133,7 +133,7 @@
             this.PassScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.PassScoreLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.PassScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.PassScoreLabel.Location = new System.Drawing.Point(33, 57);
+            this.PassScoreLabel.Location = new System.Drawing.Point(38, 57);
             this.PassScoreLabel.Name = "PassScoreLabel";
             this.PassScoreLabel.Size = new System.Drawing.Size(368, 28);
             this.PassScoreLabel.TabIndex = 136;
