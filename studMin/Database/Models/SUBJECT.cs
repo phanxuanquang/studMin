@@ -17,9 +17,11 @@ namespace studMin.Database.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUBJECT()
         {
+            this.LESSONs = new HashSet<LESSON>();
+            this.REPORTSUBJECTs = new HashSet<REPORTSUBJECT>();
             this.SCOREs = new HashSet<SCORE>();
             this.TEACHes = new HashSet<TEACH>();
-            this.LESSONs = new HashSet<LESSON>();
+            this.TEACHERs = new HashSet<TEACHER>();
         }
     
         public System.Guid Id { get; set; }
@@ -28,11 +30,15 @@ namespace studMin.Database.Models
         public Nullable<int> PASSSCORE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LESSON> LESSONs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REPORTSUBJECT> REPORTSUBJECTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SCORE> SCOREs { get; set; }
         public virtual TEACHER TEACHER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEACH> TEACHes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LESSON> LESSONs { get; set; }
+        public virtual ICollection<TEACHER> TEACHERs { get; set; }
     }
 }

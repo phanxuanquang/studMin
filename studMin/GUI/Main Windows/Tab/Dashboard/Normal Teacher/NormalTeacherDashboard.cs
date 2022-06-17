@@ -15,6 +15,8 @@ namespace studMin
         public NormalTeacherDashboard()
         {
             InitializeComponent();
+            //Specialized_Button.Visible = false;
+            //Specialized_Button.Hide();
         }
     }
 }

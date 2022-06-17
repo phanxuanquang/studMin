@@ -102,5 +102,17 @@ namespace studMin.Database.LoginServices
             return Encoding.UTF8.GetString(decrypted, 0, decryptedByteCount);
         }
 
+
+        public static string HashOTP(string randomString)
+        {
+            var crypt = new System.Security.Cryptography.SHA256Managed();
+            var hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
+        }
     }
 }

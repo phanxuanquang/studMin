@@ -13,6 +13,9 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,11 +28,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -71,11 +71,12 @@
     <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
-    <Reference Include="Guna.UI">
-      <HintPath>C:\Users\XPS 9500\Downloads\Compressed\For Winform Designing\Guna.UI.dll</HintPath>
+    <Reference Include="Guna.UI, Version=1.9.0.1, Culture=neutral, PublicKeyToken=ad275b4be6718d4b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\bin\Debug\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>C:\Users\XPS 9500\Downloads\Compressed\For Winform Designing\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\WinTweak\WinTweak\bin\Debug\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -83,8 +84,12 @@
       <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="System" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
@@ -115,25 +120,87 @@
     <Compile Include="Action\Excel\CommonExcel.cs" />
     <Compile Include="Action\Excel\ListStudent.cs" />
     <Compile Include="Action\Excel\Methods.cs" />
+    <Compile Include="Action\Excel\ReportSemester.cs" />
+    <Compile Include="Action\Excel\ReportSubject.cs" />
     <Compile Include="Action\Excel\ScheduleStudent.cs" />
     <Compile Include="Action\Excel\ScheduleAllTeacher.cs" />
     <Compile Include="Action\Excel\ScheduleTeacher.cs" />
     <Compile Include="Action\Excel\StoragePath.cs" />
     <Compile Include="Action\Excel\Subject.cs" />
     <Compile Include="Action\Excel\Summary.cs" />
+    <Compile Include="Action\Excel\ReportCommon.cs" />
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeGeneralPassScore_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeGeneralPassScore_Form.Designer.cs">
+      <DependentUpon>ChangeGeneralPassScore_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeClassMaxCapacity_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeClassMaxCapacity_Form.Designer.cs">
+      <DependentUpon>ChangeClassMaxCapacity_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.Designer.cs">
+      <DependentUpon>ChangeSubjectHead_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeAgeRange_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeAgeRange_Form.Designer.cs">
+      <DependentUpon>ChangeAgeRange_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\AddClass_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\AddClass_Form.Designer.cs">
+      <DependentUpon>AddClass_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ClassManage_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ClassManage_SubTab.Designer.cs">
+      <DependentUpon>ClassManage_SubTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\AddSubject_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\AddSubject_Form.Designer.cs">
+      <DependentUpon>AddSubject_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectName_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectName_Form.Designer.cs">
+      <DependentUpon>ChangeSubjectName_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ParameterServices.cs" />
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\AddStudent_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\AddStudent_Form.Designer.cs">
+      <DependentUpon>AddStudent_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ClassServices.cs" />
     <Compile Include="Database\DataProvider.cs" />
     <Compile Include="Database\LoginServices\Hash.cs" />
     <Compile Include="Database\LoginServices\LoginServices.cs" />
     <Compile Include="Database\Models\CLASS.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Models\CONDUCT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\GRADE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Models\INFOR.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\LESSON.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Models\LIMIT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\Model.Context.cs">
@@ -151,13 +218,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\Models\ROLESUBJECT.cs">
+    <Compile Include="Database\Models\OTP.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\PARAMETER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\REPORTSEMESTER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\REPORTSUBJECT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\ROLESCORE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\SCHEDULE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\SCORE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Models\SEMESTER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Models\STAFF.cs">
@@ -193,8 +275,20 @@
     <Compile Include="Database\Models\USERROLE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\OTPServices.cs" />
+    <Compile Include="Database\ReportSemesterServices.cs" />
+    <Compile Include="Database\ScheduleServices.cs" />
+    <Compile Include="Database\StaffServices.cs" />
     <Compile Include="Database\StudentServices.cs" />
+    <Compile Include="Database\SubjectServices.cs" />
     <Compile Include="Database\TeacherServices.cs" />
+    <Compile Include="Database\UserServices.cs" />
+    <Compile Include="GUI\Login\OTPexample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Login\OTPexample.Designer.cs">
+      <DependentUpon>OTPexample.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\ClassHeadTeacherDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -249,6 +343,24 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.Designer.cs">
       <DependentUpon>NormalTeacherDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\PrincipalDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\PrincipalDashboard.Designer.cs">
+      <DependentUpon>PrincipalDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\PrincipalControl_SubTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\PrincipalControl_SubTab.Designer.cs">
+      <DependentUpon>PrincipalControl_SubTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LoadingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LoadingWindow.Designer.cs">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.cs">
@@ -287,8 +399,108 @@
     <Compile Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.Designer.cs">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.Designer.cs">
+      <DependentUpon>StatisticTab_Headteacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Statistic\StatisticTab.Designer.cs">
+      <DependentUpon>StatisticTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StaffDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StaffDashboard.Designer.cs">
+      <DependentUpon>StaffDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforTab_Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforTab_Staff.Designer.cs">
+      <DependentUpon>StudentInforTab_Staff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\SubjectManage_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\SubjectManage_Form.Designer.cs">
+      <DependentUpon>SubjectManage_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\TeacherManage_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\TeacherManage_Form.Designer.cs">
+      <DependentUpon>TeacherManage_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\VicePrincipalDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\VicePrincipalDashboard.Designer.cs">
+      <DependentUpon>VicePrincipalDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.Designer.cs">
+      <DependentUpon>TimeTableTab_Staff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforModify_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforModify_Form.Designer.cs">
+      <DependentUpon>StudentInforModify_Form.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\AddSubject_Form.resx">
+      <DependentUpon>AddSubject_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeGeneralPassScore_Form.resx">
+      <DependentUpon>ChangeGeneralPassScore_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectHead_Form.resx">
+      <DependentUpon>ChangeSubjectHead_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforModify_Form.resx">
+      <DependentUpon>StudentInforModify_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeAgeRange_Form.resx">
+      <DependentUpon>ChangeAgeRange_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\AddClass_Form.resx">
+      <DependentUpon>AddClass_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ChangeClassMaxCapacity_Form.resx">
+      <DependentUpon>ChangeClassMaxCapacity_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\SubTab\ClassManage_SubTab.resx">
+      <DependentUpon>ClassManage_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\PrincipalDashboard.resx">
+      <DependentUpon>PrincipalDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\ChangeSubjectName_Form.resx">
+      <DependentUpon>ChangeSubjectName_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\PrincipalControl_SubTab.resx">
+      <DependentUpon>PrincipalControl_SubTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\SubjectManage_Form.resx">
+      <DependentUpon>SubjectManage_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Principal\SubTab\TeacherManage_Form.resx">
+      <DependentUpon>TeacherManage_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\AddStudent_Form.resx">
+      <DependentUpon>AddStudent_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Login\OTPexample.resx">
+      <DependentUpon>OTPexample.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\GradeModify_SubTab.resx">
       <DependentUpon>GradeModify_SubTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\ClassInfor_SubTab.resx">
       <DependentUpon>ClassInfor_SubTab.cs</DependentUpon>
@@ -311,6 +523,12 @@
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Normal Teacher\NormalTeacherDashboard.resx">
       <DependentUpon>NormalTeacherDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LoadingWindow.resx">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\TimeTableTab_Staff.resx">
+      <DependentUpon>TimeTableTab_Staff.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -318,9 +536,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Base\SubTab\StudentInfor_SubTab.resx">
       <DependentUpon>StudentInfor_SubTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Class Head Teacher\SubTab\StudentMoralQualify_SubTab.resx">
       <DependentUpon>StudentMoralQualify_SubTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main Windows\Tab\Timetable\Timetable_Tab.resx">
       <DependentUpon>Timetable_Tab.cs</DependentUpon>
@@ -337,6 +557,24 @@
     <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Subject Head Teacher\SubTab\SubjectModify_SubTab.resx">
       <DependentUpon>SubjectModify_SubTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab_Headteacher.resx">
+      <DependentUpon>StatisticTab_Headteacher.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Statistic\StatisticTab.resx">
+      <DependentUpon>StatisticTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\StaffDashboard.resx">
+      <DependentUpon>StaffDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Staff\StudentInforTab_Staff.resx">
+      <DependentUpon>StudentInforTab_Staff.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Main Windows\Tab\Dashboard\Vice Principal\VicePrincipalDashboard.resx">
+      <DependentUpon>VicePrincipalDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Database\Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -345,6 +583,13 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\studMin.Database.Models.CLASS.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.CONDUCT.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.INFOR.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.SCORE.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.STUDENT2.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.STUDYING.datasource" />
+    <None Include="Properties\DataSources\studMin.Database.Models.TRANSCRIPT.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -434,7 +679,12 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Guna.UI.dll" />
     <Content Include="Logo.ico" />
+    <None Include="Resources\Icons\Login\SeePassword.png" />
+    <None Include="Resources\valid_icon.ico" />
+    <None Include="Resources\invalid_icon.ico" />
+    <None Include="Resources\mail.html" />
     <None Include="Resources\Icons\studMin_Icon.ico" />
   </ItemGroup>
   <ItemGroup>

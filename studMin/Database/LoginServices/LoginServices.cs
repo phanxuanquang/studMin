@@ -1,30 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace studMin.Database.LoginServices
 {
+    using Models;
     internal class LoginServices
     {
+        private USER currentUser;
+
+        public USER CurrentUser => currentUser;
+
+        private TEACHER currentTeacher;
+
+        public TEACHER CurrentTeacher => currentTeacher;
+
+        private STAFF currentStaff;
+
+        public STAFF CurrentStaff => currentStaff;
+
+        private CLASS classOfHeadTeacher;
+
+        public CLASS ClassOfHeadTeacher => classOfHeadTeacher;
+
         private static LoginServices instance;
+
         public static LoginServices Instance => instance ?? (instance = new LoginServices());
+
+        private static string FilePathRememberAccount = Application.StartupPath + @"/Document/accRe.studMin";
 
         private LoginServices() { }
 
         public bool CheckAccount(string userName, string passWord)
         {
-            //string passHashed = Hash.Encrypt(passWord);
-            string passHashed = passWord;
-            int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed).Count();
-            return accCount > 0;
+            //string passHashed = Hash.Encrypt(passWord)
+            try
+            {
+                string passHashed = passWord;
+                int accCount = DataProvider.Instance.Database.USERS.Where(user => user.USERNAME == userName && user.PASSWORD == passHashed && user.ISDELETED == false).Count();
+                return accCount > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đăng nhập thất bại. Vui lòng thử lại sau.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return false;
+            }
         }
 
         public bool CheckUser(string userName)
         {
-            int countUser = DataProvider.Instance.Database.USERS.Where((user) => user.USERNAME == userName).Count(); 
-            return countUser > 0;   
+            int countUser = DataProvider.Instance.Database.USERS.Where((user) => user.USERNAME == userName && user.ISDELETED == false).Count();
+            return countUser > 0;
         }
 
         public string CheckUserRole(string userName)
@@ -45,8 +76,118 @@ namespace studMin.Database.LoginServices
                     return staff.STAFFROLE.ROLE;
                 }
                 return user.USERROLE.ROLE;
-            } 
-                
+            }
         }
+
+        public string GetFilePathRememberAccount()
+        {
+            try
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(FilePathRememberAccount)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(FilePathRememberAccount));
+                }
+                if (!File.Exists(FilePathRememberAccount))
+                {
+                    File.Create(FilePathRememberAccount);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Lỗi truy cập , mã lỗi: {e}");
+            }
+            return FilePathRememberAccount;
+        }
+
+        public (string, string) GetRememberAccount()
+        {
+            string filePath = LoginServices.Instance.GetFilePathRememberAccount();
+            if (File.Exists(filePath))
+            {
+                string fileContent = "";
+                try
+                {
+                    using (StreamReader sr = new StreamReader(filePath))
+                    {
+                        fileContent = sr.ReadToEnd();
+                        string accountRow = fileContent.Split('\n')[0];
+                        if (accountRow == "")
+                            return (null, null);
+                        string[] account = accountRow.Split('\t');
+                        return (account[0], Hash.Decrypt(account[1].ToString()));
+                    }
+                }
+                catch
+                {
+                    //Application.Exit();
+                    //System.Diagnostics.Process.Start(Application.ExecutablePath);
+                }
+            }
+            return (null, null);
+        }
+
+        public void RememberAccount(string userName, string passWord)
+        {
+            try
+            {
+                if (LoginServices.Instance.CheckAccount(userName, passWord))
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(LoginServices.Instance.GetFilePathRememberAccount()))
+                        {
+                            sw.Write(userName + '\t' + Hash.Encrypt(passWord));
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Đã có lỗi trong việc ghi nhớ tài khoản", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void Login(string userName)
+        {
+            currentUser = UserServices.Instance.GetUserByUserName(userName);
+
+            currentTeacher = null;
+            classOfHeadTeacher = null;
+            currentStaff = null;
+
+            switch (currentUser.USERROLE.ROLE)
+            {
+                case "Giáo viên":
+                    currentTeacher = TeacherServices.Instance.GetTeacherByUsername(userName);
+                    if (currentTeacher.TEACHERROLE.ROLE == "Chủ nhiệm")
+                    {
+                        classOfHeadTeacher = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.IDTEACHER == currentTeacher.ID).FirstOrDefault();
+                    }
+                    break;
+                case "Nhân viên":
+                    currentStaff = StaffServices.Instance.GetStaffByUsername(userName);
+                    break;
+            }
+
+            /*if (currentUser.USERROLE.ROLE == "Giáo viên")
+            {
+                currentTeacher = TeacherServices.Instance.GetTeacherByUsername(userName);
+                if (currentTeacher.TEACHERROLE.ROLE == "Chủ nhiệm")
+                {
+                    classOfHeadTeacher = Database.DataProvider.Instance.Database.CLASSes.Where(item => item.IDTEACHER == currentTeacher.ID).FirstOrDefault();
+                }
+            }
+            if (currentUser.USERROLE.ROLE == "Nhân viên")
+            {
+                currentStaff = StaffServices.Instance.GetStaffByUsername(userName);
+            }*/
+        }
+
     }
 }

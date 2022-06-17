@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace studMin.Action.Excel
 {
-    internal class Summary:CommonExcel
+    internal class Summary : CommonExcel
     {
         private const int StartColumnIndex = 1;
         private const int StartRowIndex = 7;
@@ -28,20 +28,7 @@ namespace studMin.Action.Excel
 
         private (string, string) HocKy(int msg)
         {
-            string convert = null;
-            switch (msg)
-            {
-                case 0:
-                    convert = "I";
-                    break;
-                case 1:
-                    convert = "II";
-                    break;
-                case 2:
-                    convert = "Hè";
-                    break;
-            }
-            return ("D3", String.Format("Học kỳ: {0}", convert));
+            return ("D3", String.Format("Học kỳ: {0}", Methods.Semester(msg)));
         }
 
         private (string, string) SiSo(int member)
@@ -205,11 +192,13 @@ namespace studMin.Action.Excel
 
         List<Item> data;
 
-        public Summary()
+        public Summary(string sheetNamePrimary = "")
         {
             template = StoragePath.TemplateSummary;
             data = new List<Item>();
             InitExcel();
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)
@@ -296,6 +285,18 @@ namespace studMin.Action.Excel
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectInfo()
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
+
+        public override object SelectItem(object argument)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

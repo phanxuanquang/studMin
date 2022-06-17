@@ -44,7 +44,8 @@
             this.GradeModify_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.GradeModify_Button.HoverState.Parent = this.GradeModify_Button;
             this.GradeModify_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.GradeModify_Button.Location = new System.Drawing.Point(80, 0);
+            this.GradeModify_Button.Location = new System.Drawing.Point(107, 0);
+            this.GradeModify_Button.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.GradeModify_Button.ShadowDecoration.Parent = this.GradeModify_Button;
             this.GradeModify_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.GradeModify_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
@@ -62,7 +63,8 @@
             this.ClassInfor_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.ClassInfor_Button.HoverState.Parent = this.ClassInfor_Button;
             this.ClassInfor_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ClassInfor_Button.Location = new System.Drawing.Point(400, 0);
+            this.ClassInfor_Button.Location = new System.Drawing.Point(533, 0);
+            this.ClassInfor_Button.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ClassInfor_Button.ShadowDecoration.Parent = this.ClassInfor_Button;
             this.ClassInfor_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ClassInfor_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
@@ -80,7 +82,8 @@
             this.StudentInfor_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.StudentInfor_Button.HoverState.Parent = this.StudentInfor_Button;
             this.StudentInfor_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.StudentInfor_Button.Location = new System.Drawing.Point(240, 0);
+            this.StudentInfor_Button.Location = new System.Drawing.Point(320, 0);
+            this.StudentInfor_Button.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.StudentInfor_Button.ShadowDecoration.Parent = this.StudentInfor_Button;
             this.StudentInfor_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.StudentInfor_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
@@ -92,7 +95,8 @@
             // 
             // Badge
             // 
-            this.Badge.Location = new System.Drawing.Point(80, 42);
+            this.Badge.Location = new System.Drawing.Point(107, 52);
+            this.Badge.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // Specialized_Button
             // 
@@ -107,7 +111,7 @@
             this.Specialized_Button.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(225)))), ((int)(((byte)(249)))));
             this.Specialized_Button.HoverState.Parent = this.Specialized_Button;
             this.Specialized_Button.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Specialized_Button.Location = new System.Drawing.Point(480, 0);
+            this.Specialized_Button.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Specialized_Button.ShadowDecoration.Parent = this.Specialized_Button;
             this.Specialized_Button.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Specialized_Button.TextTransform = Guna.UI2.WinForms.Enums.TextTransform.None;
@@ -115,8 +119,9 @@
             // 
             // NormalTeacherDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "NormalTeacherDashboard";
             this.menuBar.ResumeLayout(false);
             this.ResumeLayout(false);

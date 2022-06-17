@@ -47,10 +47,11 @@
             this.getPassword_Button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.getPassword_Button.ForeColor = System.Drawing.Color.White;
             this.getPassword_Button.HoverState.Parent = this.getPassword_Button;
-            this.getPassword_Button.Location = new System.Drawing.Point(56, 234);
+            this.getPassword_Button.Location = new System.Drawing.Point(75, 288);
+            this.getPassword_Button.Margin = new System.Windows.Forms.Padding(4);
             this.getPassword_Button.Name = "getPassword_Button";
             this.getPassword_Button.ShadowDecoration.Parent = this.getPassword_Button;
-            this.getPassword_Button.Size = new System.Drawing.Size(340, 47);
+            this.getPassword_Button.Size = new System.Drawing.Size(453, 58);
             this.getPassword_Button.TabIndex = 8;
             this.getPassword_Button.Text = "NHẬN MẬT KHẨU MỚI";
             this.getPassword_Button.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -80,8 +81,8 @@
             this.Email_Box.IconLeft = global::studMin.Properties.Resources.Email;
             this.Email_Box.IconLeftOffset = new System.Drawing.Point(9, 0);
             this.Email_Box.IconLeftSize = new System.Drawing.Size(18, 18);
-            this.Email_Box.Location = new System.Drawing.Point(56, 154);
-            this.Email_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Email_Box.Location = new System.Drawing.Point(75, 190);
+            this.Email_Box.Margin = new System.Windows.Forms.Padding(5);
             this.Email_Box.Name = "Email_Box";
             this.Email_Box.PasswordChar = '\0';
             this.Email_Box.PlaceholderText = " E-mail";
@@ -90,10 +91,9 @@
             this.Email_Box.ShadowDecoration.Depth = 5;
             this.Email_Box.ShadowDecoration.Parent = this.Email_Box;
             this.Email_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Email_Box.Size = new System.Drawing.Size(340, 47);
+            this.Email_Box.Size = new System.Drawing.Size(453, 58);
             this.Email_Box.TabIndex = 7;
             this.Email_Box.TextOffset = new System.Drawing.Point(3, 0);
-            this.Email_Box.UseSystemPasswordChar = true;
             // 
             // Username_Box
             // 
@@ -118,17 +118,17 @@
             this.Username_Box.HoverState.Parent = this.Username_Box;
             this.Username_Box.IconLeft = global::studMin.Properties.Resources.Account;
             this.Username_Box.IconLeftOffset = new System.Drawing.Point(8, 0);
-            this.Username_Box.Location = new System.Drawing.Point(56, 88);
-            this.Username_Box.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Username_Box.Location = new System.Drawing.Point(75, 108);
+            this.Username_Box.Margin = new System.Windows.Forms.Padding(5);
             this.Username_Box.Name = "Username_Box";
             this.Username_Box.PasswordChar = '\0';
-            this.Username_Box.PlaceholderText = " Mã định danh";
+            this.Username_Box.PlaceholderText = "Tên đăng nhập";
             this.Username_Box.SelectedText = "";
             this.Username_Box.ShadowDecoration.BorderRadius = 12;
             this.Username_Box.ShadowDecoration.Depth = 5;
             this.Username_Box.ShadowDecoration.Parent = this.Username_Box;
             this.Username_Box.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(3, 0, 5, 3);
-            this.Username_Box.Size = new System.Drawing.Size(340, 47);
+            this.Username_Box.Size = new System.Drawing.Size(453, 58);
             this.Username_Box.TabIndex = 6;
             this.Username_Box.TextOffset = new System.Drawing.Point(3, 0);
             // 
@@ -138,7 +138,7 @@
             this.BackToLogin_Button.AutoRoundedCorners = true;
             this.BackToLogin_Button.BackColor = System.Drawing.Color.Transparent;
             this.BackToLogin_Button.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(118)))), ((int)(((byte)(245)))));
-            this.BackToLogin_Button.BorderRadius = 17;
+            this.BackToLogin_Button.BorderRadius = 21;
             this.BackToLogin_Button.BorderThickness = 2;
             this.BackToLogin_Button.CheckedState.Parent = this.BackToLogin_Button;
             this.BackToLogin_Button.CustomImages.Parent = this.BackToLogin_Button;
@@ -149,10 +149,11 @@
             this.BackToLogin_Button.HoverState.Parent = this.BackToLogin_Button;
             this.BackToLogin_Button.Image = global::studMin.Properties.Resources.BackToLogin;
             this.BackToLogin_Button.ImageSize = new System.Drawing.Size(25, 25);
-            this.BackToLogin_Button.Location = new System.Drawing.Point(341, 12);
+            this.BackToLogin_Button.Location = new System.Drawing.Point(455, 15);
+            this.BackToLogin_Button.Margin = new System.Windows.Forms.Padding(4);
             this.BackToLogin_Button.Name = "BackToLogin_Button";
             this.BackToLogin_Button.ShadowDecoration.Parent = this.BackToLogin_Button;
-            this.BackToLogin_Button.Size = new System.Drawing.Size(36, 36);
+            this.BackToLogin_Button.Size = new System.Drawing.Size(48, 44);
             this.BackToLogin_Button.TabIndex = 9;
             this.BackToLogin_Button.Visible = false;
             this.BackToLogin_Button.Click += new System.EventHandler(this.BackToLogin_Button_Click);
@@ -163,14 +164,14 @@
             this.ForgetPasswordUC_MoverDown.AnimationType = Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide;
             this.ForgetPasswordUC_MoverDown.Control = this;
             this.ForgetPasswordUC_MoverDown.CordinateEnd_X = 0F;
-            this.ForgetPasswordUC_MoverDown.CordinateEnd_Y = 350F;
+            this.ForgetPasswordUC_MoverDown.CordinateEnd_Y = 450F;
             this.ForgetPasswordUC_MoverDown.CordinateStart_X = 0F;
             this.ForgetPasswordUC_MoverDown.CordinateStart_Y = 670F;
             this.ForgetPasswordUC_MoverDown.Duration = 800;
             this.ForgetPasswordUC_MoverDown.EasingEnd = 1F;
             this.ForgetPasswordUC_MoverDown.EasingNames = Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.easingNames.BackEaseIn;
             this.ForgetPasswordUC_MoverDown.EasingStart = 0.2F;
-            this.ForgetPasswordUC_MoverDown.Editor = new Zeroit.Framework.Transitions.AnimationEditors.ZeroitPizaroAnimatorInput(Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide, 0F, 670F, 0F, 350F, true, this, 800, 0.7F, 0.2F, 1F);
+            this.ForgetPasswordUC_MoverDown.Editor = new Zeroit.Framework.Transitions.AnimationEditors.ZeroitPizaroAnimatorInput(Zeroit.Framework.Transitions.ZeroitPizaroAnimator.ZeroitPizaroAnimEdit.animationType.Slide, 0F, 670F, 0F, 450F, true, this, 800, 0.7F, 0.2F, 1F);
             this.ForgetPasswordUC_MoverDown.Fade_Begin = 0F;
             this.ForgetPasswordUC_MoverDown.Fade_Limit = 1F;
             this.ForgetPasswordUC_MoverDown.ResizeHeight_Begin = 10F;
@@ -180,7 +181,7 @@
             // 
             // ForgetPassword_UC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::studMin.Properties.Resources.Bottom_SlideBG;
@@ -190,8 +191,9 @@
             this.Controls.Add(this.Email_Box);
             this.Controls.Add(this.Username_Box);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ForgetPassword_UC";
-            this.Size = new System.Drawing.Size(440, 332);
+            this.Size = new System.Drawing.Size(587, 409);
             this.ResumeLayout(false);
 
         }

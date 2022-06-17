@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,11 +23,13 @@ namespace studMin.Action.Excel
 
         List<Item> data = new List<Item>();
 
-        public ScheduleAllTeacher(bool isReadOnly = false)
+        public ScheduleAllTeacher(bool isReadOnly = false, string pathFile = "", string sheetNamePrimary = "")
         {
-            this.template = isReadOnly ? StoragePath.DataSample : StoragePath.TemplateScheduleAllTeacher;
+            if (isReadOnly && String.IsNullOrEmpty(pathFile)) throw new Exception("Path file unavailable");
+            this.template = isReadOnly ? pathFile : StoragePath.TemplateScheduleAllTeacher;
             this.isReadOnly = isReadOnly;
             InitExcel();
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public class Info
@@ -74,22 +77,9 @@ namespace studMin.Action.Excel
                 set { msg = value; }
             }
 
-            private string GetHocKy()
+            public string GetHocKy()
             {
-                string temp = string.Empty;
-                switch (HocKy)
-                {
-                    case 0:
-                        temp = "1";
-                        break;
-                    case 1:
-                        temp = "2";
-                        break;
-                    case 2:
-                        temp = "Hè";
-                        break;
-                }
-                return temp;
+                return (Methods.Semester(HocKy));
             }
 
             public string Title()
@@ -119,7 +109,7 @@ namespace studMin.Action.Excel
                         dateOfWeekVNese = "THỨ BẢY";
                         break;
                 }
-                return String.Format("THỜI KHÓA BIỂU SỐ {0} - HỌC KỲ {1} - NĂM HỌC {2}, ÁP DỤNG TỪ {3}, {4}", BieuMauSo, GetHocKy(), NamHoc, dateOfWeekVNese, NgayApDung.ToString("dd/MM/yyyy"));
+                return String.Format("THỜI KHÓA BIỂU SỐ {0} - HỌC KỲ {1} - NĂM HỌC {2}, ÁP DỤNG TỪ {3}, {4}", BieuMauSo, GetHocKy().ToUpper(), NamHoc, dateOfWeekVNese, NgayApDung.ToString("dd/MM/yyyy"));
             }
 
             public static Info Parse(string value)
@@ -134,7 +124,7 @@ namespace studMin.Action.Excel
                     info.BieuMauSo = int.Parse(bieumauso[bieumauso.Length - 1]);
 
                     string[] hocky = split[1].Split(' ');
-                    info.HocKy = int.Parse(hocky[hocky.Length - 1]);
+                    info.HocKy = Methods.ParseSemester(hocky[hocky.Length - 1]);
 
                     string[] namhoc = split[2].Split(' ');
                     info.NamHoc = namhoc[namhoc.Length - 1];
@@ -156,7 +146,9 @@ namespace studMin.Action.Excel
             private string _teacher;
             private int _start;
             private int _duration;
-            private DateTime _date;
+            private int _date;
+            private Guid _idTeacher;
+            private Guid _idClass;
             private enum _session
             {
                 Morning,
@@ -166,13 +158,25 @@ namespace studMin.Action.Excel
             private string _subject;
             private string _class;
 
+            public Guid IDTeacher
+            {
+                get { return _idTeacher; }
+                set { _idTeacher = value; }
+            }
+
+            public Guid IDClass
+            {
+                get { return _idClass; }
+                set { _idClass = value; }
+            }
+
             public string Lop
             {
                 get { return _class; }
                 set { _class = value; }
             }
 
-            public DateTime NgayHoc
+            public int NgayHoc
             {
                 get { return _date; }
                 set { _date = value; }
@@ -279,7 +283,7 @@ namespace studMin.Action.Excel
         private bool Condition(Item item, int startIndex, int offset, string lop)
         {
             if (item != null && item.Lop != lop) return false;
-            int startIndexRow = ((int)item.NgayHoc.DayOfWeek - 1) * 20 + StartRowOfClass;
+            int startIndexRow = ((int)item.NgayHoc - 1) * 20 + StartRowOfClass;
             startIndexRow += item.Buoi == "Afternoon" ? 10 : 0;
             startIndexRow += (item.TietBatDau - 1) * 2;
 
@@ -327,13 +331,13 @@ namespace studMin.Action.Excel
 
                 Item newItem = item.Clone();
 
-                if (CheckBusyTeacher(newItem))
+                if (CheckBusyTeacher(data, newItem))
                 {
-                    //MessageBox.Show("giao vien ban");
+                    MessageBox.Show("Lỗi! TKB có giáo viên bị trùng lịch.");
                     return;
                 }
 
-                int startIndexRow = ((int)newItem.NgayHoc.DayOfWeek - 1) * RowOfPeriod * MaxPeriod * 2 + StartRowOfClass;
+                int startIndexRow = ((int)newItem.NgayHoc - 1) * RowOfPeriod * MaxPeriod * 2 + StartRowOfClass;
                 startIndexRow += newItem.Buoi == "Afternoon" ? RowOfPeriod * MaxPeriod : 0;
                 startIndexRow += (newItem.TietBatDau - 1) * RowOfPeriod;
 
@@ -404,18 +408,18 @@ namespace studMin.Action.Excel
             return (false, StartColumnClass);
         }
 
-        private bool CheckBusyTeacher(Item itemCheck)
+        private bool CheckBusyTeacher(List<Item> currentItem, Item itemCheck)
         {
             if (itemCheck == null) return false;
-            for (int index = 0; index < data.Count; index++)
+            for (int index = 0; index < currentItem.Count; index++)
             {
-                if (itemCheck.Buoi == data[index].Buoi && itemCheck.NgayHoc.DayOfWeek == data[index].NgayHoc.DayOfWeek && itemCheck.GiaoVien == data[index].GiaoVien)
+                if (itemCheck.Buoi == currentItem[index].Buoi && itemCheck.NgayHoc == currentItem[index].NgayHoc && itemCheck.GiaoVien == currentItem[index].GiaoVien)
                 {
-                    if (itemCheck.TietBatDau >= data[index].TietBatDau && itemCheck.TietBatDau < data[index].TietBatDau + data[index].TietKeoDai)
+                    if (itemCheck.TietBatDau >= currentItem[index].TietBatDau && itemCheck.TietBatDau < currentItem[index].TietBatDau + currentItem[index].TietKeoDai)
                     {
                         return true;
                     }
-                    if (itemCheck.TietBatDau <= data[index].TietBatDau && itemCheck.TietBatDau + itemCheck.TietKeoDai > data[index].TietBatDau)
+                    if (itemCheck.TietBatDau <= currentItem[index].TietBatDau && itemCheck.TietBatDau + itemCheck.TietKeoDai > currentItem[index].TietBatDau)
                     {
                         return true;
                     }
@@ -424,7 +428,7 @@ namespace studMin.Action.Excel
             return false;
         }
 
-        public Info SelecteInfo()
+        public override object SelectInfo()
         {
             Info info = Info.Parse(sheet.get_Range(title).Value.ToString());
             info.Truong = sheet.get_Range(nameSchool).Value.ToString();
@@ -445,10 +449,11 @@ namespace studMin.Action.Excel
             return DateTime.Now;
         }
 
-        public List<Item> SelectItem(DateTime dateTime)
+        public override object SelectItem(object argument)
         {
             List<Item> list = new List<Item>();
             Item item = null;
+            DateTime dateTime = (DateTime)argument;
 
             dateTime = FindDayNearly(dateTime, DayOfWeek.Monday);
 
@@ -477,7 +482,7 @@ namespace studMin.Action.Excel
                         item.TietKeoDai = merge / RowOfPeriod;
 
                         int calculation = row - StartRowOfClass;
-                        item.NgayHoc = FindDayNearly(dateTime, (DayOfWeek)((int)((calculation / (RowOfPeriod * MaxPeriod * 2)) + 1)));
+                        item.NgayHoc = ((int)((calculation / (RowOfPeriod * MaxPeriod * 2)) + 1));
 
                         calculation = calculation % (RowOfPeriod * MaxPeriod * 2);
                         item.Buoi = ((int)calculation / 10) == 0 ? "M" : "A";
@@ -494,12 +499,22 @@ namespace studMin.Action.Excel
                             row += merge - 1;
                         }
 
-                        list.Add(item);
+                        if (CheckBusyTeacher(list, item))
+                        {
+                            return new object[] { false, item };
+                        }
+                        else
+                        {
+                            list.Add(item);
+                        }
                     }
                 }
             }
 
-            return list;
+            /*Marshal.ReleaseComObject(sheet);
+            workbook.Close();*/
+
+            return new object[] { true, list };
         }
     }
 }

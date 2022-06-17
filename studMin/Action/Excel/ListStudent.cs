@@ -26,24 +26,6 @@ namespace studMin.Action.Excel
             return ("C3", String.Format("Năm học: {0}", msg));
         }
 
-        private (string, string) HocKy(int msg)
-        {
-            string convert = null;
-            switch (msg)
-            {
-                case 0:
-                    convert = "I";
-                    break;
-                case 1:
-                    convert = "II";
-                    break;
-                case 2:
-                    convert = "Hè";
-                    break;
-            }
-            return ("D3", String.Format("Học kỳ: {0}", convert));
-        }
-
         private (string, string) SiSo(int member)
         {
             return ("B3", String.Format("Sỉ số: {0}", member));
@@ -157,11 +139,13 @@ namespace studMin.Action.Excel
 
         List<Item> data;
 
-        public ListStudent()
+        public ListStudent(string sheetNamePrimary = "")
         {
             template = StoragePath.TemplateStudent;
             data = new List<Item>();
             InitExcel();
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)
@@ -173,13 +157,11 @@ namespace studMin.Action.Excel
 
                 (string, string) Info_Lop = Lop(clone.Lop);
                 (string, string) Info_GVCN = GVCN(clone.GiaoVien);
-                (string, string) Info_HocKy = HocKy(clone.HocKy);
                 (string, string) Info_NamHoc = NamHoc(clone.NamHoc);
                 (string, string) Info_SiSo = SiSo(clone.SiSo);
 
                 sheet.get_Range(Info_Lop.Item1).Value = Info_Lop.Item2;
                 sheet.get_Range(Info_GVCN.Item1).Value = Info_GVCN.Item2;
-                sheet.get_Range(Info_HocKy.Item1).Value = Info_HocKy.Item2;
                 sheet.get_Range(Info_NamHoc.Item1).Value = Info_NamHoc.Item2;
                 sheet.get_Range(Info_SiSo.Item1).Value = Info_SiSo.Item2;
             }
@@ -190,6 +172,8 @@ namespace studMin.Action.Excel
             }
         }
 
+        int rowUsed = 1;
+
         public override void InsertItem(dynamic item)
         {
             Item clone = item as Item;
@@ -198,7 +182,7 @@ namespace studMin.Action.Excel
                 if (item == null) return;
 
                 int indexColumn = StartColumnIndex;
-                int lastRow = FindLastRowUsed() + 1;
+                int lastRow = FindLastRowUsed() + rowUsed;
                 int No = lastRow - StartRowIndex + 1;
 
                 (string, string) Info_SiSo = SiSo(No);
@@ -229,13 +213,27 @@ namespace studMin.Action.Excel
                 sheet.get_Range(columnName + lastRow.ToString()).Value = clone.Email;
 
                 columnName = GetExcelColumnName(indexColumn++);
-                sheet.get_Range(columnName + lastRow.ToString()).Value = clone.SDT;
+                sheet.get_Range(columnName + lastRow.ToString()).Value = "'" + clone.SDT;
+
+                /*rowUsed++;*/
             }
             catch
             {
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectInfo()
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
+
+        public override object SelectItem(object argument)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

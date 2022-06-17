@@ -131,6 +131,16 @@ namespace studMin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon invalid_icon {
+            get {
+                object obj = ResourceManager.GetObject("invalid_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Login_BG {
@@ -147,6 +157,21 @@ namespace studMin.Properties {
             get {
                 object obj = ResourceManager.GetObject("Logout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;div style=&apos;font-family:Helvetica,Arial,sans-serif; min-width:500px; overflow:auto; line-height:2&apos;&gt;
+        ///    &lt;div style=&apos;margin:50px auto; width:70%; padding:20px 0&apos;&gt;
+        ///        &lt;div style=&apos;border-bottom:1px solid #eee&apos;&gt;
+        ///            &lt;a style=&apos;font-size:1.4em; color:#303f9f; text-decoration:none; font-weight:600&apos;&gt;StudMin&lt;/a&gt;
+        ///        &lt;/div&gt;
+        ///        &lt;p style=&apos;font-size:1.1em&apos;&gt;Chào bạn,&lt;/p&gt;
+        ///        &lt;p&gt;Hệ thống đã nhận được yêu cầu đặt lại mật khẩu của bạn. Vui lòng nhập mã OTP dưới đây để tiếp tục. Lưu ý, mã OTP  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string mail {
+            get {
+                return ResourceManager.GetString("mail", resourceCulture);
             }
         }
         
@@ -186,6 +211,16 @@ namespace studMin.Properties {
         internal static System.Drawing.Bitmap Search {
             get {
                 object obj = ResourceManager.GetObject("Search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SeePassword {
+            get {
+                object obj = ResourceManager.GetObject("SeePassword", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -237,6 +272,16 @@ namespace studMin.Properties {
             get {
                 object obj = ResourceManager.GetObject("Username", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon valid_icon {
+            get {
+                object obj = ResourceManager.GetObject("valid_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

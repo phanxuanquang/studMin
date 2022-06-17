@@ -15,12 +15,15 @@ namespace studMin.Database.Models
     public partial class TRANSCRIPT
     {
         public System.Guid ID { get; set; }
-        public Nullable<int> SCHOOLYEAR { get; set; }
-        public Nullable<int> SEMESTER { get; set; }
+        public string SCHOOLYEAR { get; set; }
         public Nullable<System.Guid> IDSTUDENT { get; set; }
-        public string CONDUCT { get; set; }
-        public string RANK { get; set; }
+        public string LEVEL { get; set; }
+        public Nullable<System.Guid> IDCONDUCT { get; set; }
+        public Nullable<System.Guid> IDSEMESTER { get; set; }
+        public Nullable<double> AVGSCORE { get; set; }
     
+        public virtual CONDUCT CONDUCT { get; set; }
+        public virtual SEMESTER SEMESTER { get; set; }
         public virtual STUDENT STUDENT { get; set; }
     }
 }

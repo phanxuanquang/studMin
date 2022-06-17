@@ -19,8 +19,8 @@ namespace studMin.Database.Models
         public Nullable<System.Guid> IDSTAFFROLE { get; set; }
         public Nullable<System.Guid> IDINFOR { get; set; }
     
+        public virtual INFOR INFOR { get; set; }
         public virtual STAFFROLE STAFFROLE { get; set; }
         public virtual USER USER { get; set; }
-        public virtual INFOR INFOR { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace studMin.Action.Excel
 {
-    internal class ScheduleStudent:CommonExcel
+    internal class ScheduleStudent : CommonExcel
     {
         private (string, string) Lop(string msg)
         {
@@ -26,20 +26,7 @@ namespace studMin.Action.Excel
 
         private (string, string) HocKy(int msg)
         {
-            string convert = null;
-            switch (msg)
-            {
-                case 0:
-                    convert = "I";
-                    break;
-                case 1:
-                    convert = "II";
-                    break;
-                case 2:
-                    convert = "Hè";
-                    break;
-            }
-            return ("D3", String.Format("Học kỳ: {0}", convert));
+            return ("D3", String.Format("Học kỳ: {0}", Methods.Semester(msg)));
         }
 
         private (string, string) NgayApDung(DateTime dateTime)
@@ -109,11 +96,13 @@ namespace studMin.Action.Excel
 
         List<ScheduleAllTeacher.Item> data;
 
-        public ScheduleStudent()
+        public ScheduleStudent(string sheetNamePrimary = "")
         {
             this.template = StoragePath.TemplateScheduleStudent;
             data = new List<ScheduleAllTeacher.Item>();
             InitExcel();
+
+            if (!String.IsNullOrEmpty(sheetNamePrimary)) sheet.Name = sheetNamePrimary;
         }
 
         public override void InsertInfo(dynamic info)
@@ -150,7 +139,7 @@ namespace studMin.Action.Excel
             {
                 if (clone == null) return;
 
-                int startIndexColumn = ((int)clone.NgayHoc.DayOfWeek - 1) + StartColumn;
+                int startIndexColumn = ((int)clone.NgayHoc - 1) + StartColumn;
                 int startIndexRow = StartRowClass + clone.TietBatDau + (clone.Buoi == "Afternoon" ? MaxPeriod + offset : 0) - 1;
 
                 string columnName = GetExcelColumnName(startIndexColumn);
@@ -174,6 +163,18 @@ namespace studMin.Action.Excel
                 //MessageBox.Show("Lỗi");
                 throw new Exception();
             }
+        }
+
+        public override object SelectInfo()
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
+
+        public override object SelectItem(object argument)
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }

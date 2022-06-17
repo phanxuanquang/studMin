@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace studMin
 {
@@ -17,6 +18,8 @@ namespace studMin
         {
             Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(true);
+            ChangePath();
+            _isRunning = true;
             Application.Run(login_Window);
         }
         public static Login_Window login_Window = new Login_Window();
@@ -34,5 +37,23 @@ namespace studMin
                 tab.BringToFront();
             }
         }
+
+        public static void ChangePath()
+        {
+            string executable = AppDomain.CurrentDomain.BaseDirectory;
+
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            for (int i = 0; i < 3; i++)
+            {
+                path = path.Remove(path.LastIndexOf("\\", StringComparison.Ordinal));
+            }
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+        }
+
+        public static bool isRunning
+        {
+            get { return _isRunning; }
+        }
+        private static bool _isRunning = false;
     }
 }

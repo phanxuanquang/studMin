@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -12,7 +13,8 @@ namespace studMin
 {
     public partial class Login_Window : Form
     {
-        role personRole;
+        private role personRole;
+        private bool isLoading = false;
         public Login_Window()
         {
             InitializeComponent();
@@ -50,39 +52,73 @@ namespace studMin
 
         private void Login_Window_Load(object sender, EventArgs e)
         {
-            if (!isInternetAvailable())
+            if (!isInternetAvailable() && MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) == DialogResult.OK)
             {
-                MessageBox.Show("Không có kết nối mạng, vui lòng thử lại sau.", "Lỗi kết nối mạng", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+            }
+            else
+            {
+                string isRememberLogin = String.Empty;
+                try
+                {
+                    isRememberLogin = File.ReadAllText("rem.loginf").Trim();
+                }
+                catch
+                {
+                    isRememberLogin = "0";
+                }
+                if (isRememberLogin == "1")
+                {
+                    RememberLogin_CheckBox.Checked = true;
+                    Username_Box.Text = LoginServices.Instance.GetRememberAccount().Item1; 
+                    Password_Box.Text = LoginServices.Instance.GetRememberAccount().Item2;
+                }
             }
         }
 
         #region Buttons
-        private void Login_Button_Click(object sender, EventArgs e)
+        private async void Login_Button_Click(object sender, EventArgs e)
         {
             if (Username_Box.Text == String.Empty || Password_Box.Text == String.Empty)
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Không thể đăng nhập!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin đăng nhập.", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else if (isInternetAvailable())
             {
-                if (LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text))
+                bool isValidAccount = false;
+                string accountRole = String.Empty;
+
+                GUI.LoadingWindow loadingWindow = new GUI.LoadingWindow(this, "ĐANG TẢI");
+                loadingWindow.Show();
+                this.Enabled = false;
+
+                await System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    isValidAccount = LoginServices.Instance.CheckAccount(Username_Box.Text, Password_Box.Text);
+                    if (isValidAccount)
+                    {
+                        LoginServices.Instance.Login(Username_Box.Text);
+                        accountRole = LoginServices.Instance.CheckUserRole(Username_Box.Text);
+                        if (RememberLogin_CheckBox.Checked)
+                        {
+                            LoginServices.Instance.RememberAccount(Username_Box.Text, Password_Box.Text);
+                        }
+                    }
+                });
+
+                loadingWindow.Close();
+                loadingWindow.Dispose();
+                this.Enabled = true;
+
+                if (isValidAccount)
                 {
                     this.Hide();
                     this.ShowIcon = this.ShowInTaskbar = false;
-                    // add check role here !
-                    //personRole = role.classHead; // example
-
-                    string role = LoginServices.Instance.CheckUserRole(Username_Box.Text);
-                    switch (role)
+                    
+                    switch (accountRole)
                     {
-                        case "Giáo viên":
-                            personRole = studMin.role.normalTeacher;
-                            break;
                         case "Nhân viên":
                             personRole = studMin.role.officeStaff;
-                            break;
-                        case "Quản lí":
-                            personRole = studMin.role.manager;
                             break;
                         case "Chủ nhiệm":
                             personRole = studMin.role.classHead;
@@ -96,7 +132,9 @@ namespace studMin
                         case "Phó hiệu trưởng":
                             personRole = studMin.role.vicePrincipal;
                             break;
-
+                        default:
+                            personRole = studMin.role.normalTeacher;
+                            break;
                     }    
 
                     MainWinfow mainWinfow = new MainWinfow(personRole);
@@ -107,6 +145,14 @@ namespace studMin
                     Username_Box.Text = Password_Box.Text = String.Empty;
                     MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác.\nVui lòng điền lại thông tin đăng nhập.", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                if (RememberLogin_CheckBox.Checked)
+                {
+                    File.WriteAllText("rem.loginf", "1");
+                }
+                else
+                {
+                    File.WriteAllText("rem.loginf", "0");
+                }
             }
             else
             {
@@ -116,6 +162,14 @@ namespace studMin
 
         private void Exit_Button_Click(object sender, EventArgs e)
         {
+            if (RememberLogin_CheckBox.Checked)
+            {
+                File.WriteAllText("rem.loginf", "1");
+            }
+            else
+            {
+                File.WriteAllText("rem.loginf", "0");
+            }
             Application.Exit();
         }
 
@@ -126,9 +180,55 @@ namespace studMin
             forgetPassword_UC1.BackToLogin_Button.Visible = true;
         }
         #endregion
+
+        private void SeePassword_Button_MouseDown(object sender, MouseEventArgs e)
+        {
+            Password_Box.UseSystemPasswordChar = false;
+        }
+
+        private void SeePassword_Button_MouseUp(object sender, MouseEventArgs e)
+        {
+            Password_Box.UseSystemPasswordChar = true;
+        }
+
+        private void ShowPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt && Password_Box.UseSystemPasswordChar)
+            {
+                Password_Box.UseSystemPasswordChar = false;
+            }
+            else if (e.Alt && !Password_Box.UseSystemPasswordChar)
+            {
+                Password_Box.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void Password_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Login_Button_Click(sender, null);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Password_Box.Text = String.Empty;
+            }
+        }
+
+        private void Username_Box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Login_Button_Click(sender, null);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                Username_Box.Text = String.Empty;
+            }
+        }
     }
     public enum role
     {
-        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff, manager
+        classHead, subjectHead, normalTeacher, principal, vicePrincipal, officeStaff
     }
 }

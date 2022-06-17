@@ -22,6 +22,7 @@ namespace studMin.Database.Models
         public Nullable<byte> TIMESTART { get; set; }
         public Nullable<byte> TIMEEND { get; set; }
         public Nullable<byte> DAYOFW { get; set; }
+        public string TIMEOFDAY { get; set; }
     
         public virtual CLASS CLASS { get; set; }
         public virtual SCHEDULE SCHEDULE { get; set; }

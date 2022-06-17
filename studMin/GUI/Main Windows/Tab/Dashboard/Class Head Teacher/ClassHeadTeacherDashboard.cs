@@ -23,5 +23,10 @@ namespace studMin
         {
             Program.loadTab(studentMoralQualify_SubTab, ContainerPanel, Specialized_Button, this.Badge);
         }
+
+        public void LoadToCBBox()
+        {
+            
+        }
     }
 }
